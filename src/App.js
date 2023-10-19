@@ -1,12 +1,14 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter,Route,Routes } from "react-router-dom";
+import HomePage from './Pages/HomePage';
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-        Students Portal
-      </h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
