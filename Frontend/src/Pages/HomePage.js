@@ -3,7 +3,7 @@ import Navbar from '../Components/Navbar'
 
 export default function HomePage() {
   return (
-    <div>
+    <div className='flex flex-col justify-center'>
         <Navbar/>
     </div>
   )
