@@ -20,9 +20,12 @@ export default function StudentSignUp() {
 {/*onKeyDown={(e)=> Otp.length===6&&e.preventDefault()}*/}
 </div>
        { Otp.length>=6?
-        <div className="flex justify-end mt-10"><Link to='/Otp'><button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">Submit</button></Link></div> 
-        :<div className="flex justify-end mt-10"><Link><button className=" inline-flex items-center p-1 bg-[rgba(188,190,194,1)] text-[rgba(141,144,150,1)] rounded-sm pl-4 pr-4">Submit</button></Link></div>
+        <div className="flex justify-between items-center mt-10"><Link to="/Otp" className=" text-[rgba(33,100,232,1)]">Resend OTP
+        </Link><Link to='/CreatePass'><button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">Submit</button></Link></div> 
+        :<div className="flex justify-between items-center mt-10"><Link to="/Otp" className="  text-[rgba(33,100,232,1)]">Resend OTP
+        </Link><Link><button className=" inline-flex items-center p-1 bg-[rgba(188,190,194,1)] text-[rgba(141,144,150,1)] rounded-sm pl-4 pr-4">Submit</button></Link></div>
        }
+       
       </div>
       <div className="w-[400px] p-4 pl-8 text-sm font-normal  items-center  bg-white shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)]">
         <p >

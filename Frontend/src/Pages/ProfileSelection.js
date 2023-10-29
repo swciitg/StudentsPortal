@@ -13,7 +13,7 @@ export default function ProfileSelection() {
 
         <div className="flex flex-col gap-2">
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
-            <input type="radio" name="radioGroup" value="option1" className=" appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:scale-0  checked:before:scale-100 checked:border-[#2164E8]" /> Student
+            <input type="radio" name="radioGroup" value="option1" defaultChecked className=" appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:scale-0  checked:before:scale-100 checked:border-[#2164E8]" /> Student
          
           </label>
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
