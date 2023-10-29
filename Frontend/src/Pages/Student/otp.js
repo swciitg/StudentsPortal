@@ -10,7 +10,7 @@ export default function StudentSignUp() {
         <div className="flex justify-start  mb-2">
           <img className="" src="/iitg_logo.png" alt="iitg_logo" width="65px" />
         </div>
-        <p className="text-[rgb(27,33,45)] font-semibold text-2xl mb-5">Sign up</p>
+        <p className="text-[rgb(27,33,45)] font-semibold text-2xl mb-5">Sign Up</p>
        <p className="text-sm font-normal mb-4">We’ve sent an OTP to your registered mail id.</p>
         <div className="flex flex-col gap-7">
 <label className="flex flex-col gap-2 ">

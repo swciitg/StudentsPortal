@@ -9,29 +9,29 @@ export default function ProfileSelection() {
         <div className="flex justify-center  mb-5">
           <img className="" src="/iitg_logo.png" alt="iitg_logo" width="65px" />
         </div>
-        <p className="text-[rgb(27,33,45)] font-semibold mb-2">I am a</p>
+        <p className="text-[rgb(27,33,45)] font-semibold mb-3">I am a</p>
 
         <div className="flex flex-col gap-2">
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
-            <input type="radio" name="radioGroup" value="option1" defaultChecked className=" appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:scale-0  checked:before:scale-100 checked:border-[#2164E8]" /> Student
+            <input type="radio" name="radioGroup" value="option1" defaultChecked className=" appearance-none border-[#494D57] h-4 w-4 border rounded-[50%] grid place-content-center  before:w-[0.6rem] before:h-[0.6rem] before:shadow-[inset_1em_1em_#2164E8]  before:rounded-[50%] before:scale-0  checked:before:scale-100 checked:border-[#2164E8]" /> Student
          
           </label>
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
-            <input type="radio" name="radioGroup" value="option3"  className="   appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"/> Alumni
+            <input type="radio" name="radioGroup" value="option3"  className="   appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"/> Alumni
+          </label>
+          <label className="flex items-center gap-x-2 cursor-pointer text-sm"> 
+            <input type="radio" name="radioGroup" value="option3"  className="   appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"/> Professor
           </label>
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
-            <input type="radio" name="radioGroup" value="option3"  className="   appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"/> Professor
-          </label>
-          <label className="flex items-center gap-x-2 cursor-pointer text-sm">
-            <input type="radio" name="radioGroup" value="option3"  className="   appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"/> VP/Board
+            <input type="radio" name="radioGroup" value="option3"  className="   appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"/> VP/Board
             Director
           </label>
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
-            <input type="radio" name="radioGroup" value="option3"  className="   appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"/> General
+            <input type="radio" name="radioGroup" value="option3"  className="   appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"/> General
             Secretary
           </label>
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
-            <input type="radio" name="radioGroup" value="option3"  className="  appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"/> Student
+            <input type="radio" name="radioGroup" value="option3"  className="  appearance-none border-[#494D57]  w-4 h-4 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"/> Student
             Body Representative
           </label>
 
