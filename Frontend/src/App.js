@@ -5,6 +5,7 @@ import ProfileSelection from './Pages/ProfileSelection';
 import StudentsSignUp from './Pages/Student/StudentsSignUp';
 import Otp from './Pages/Student/otp';
 import CreatePass from './Pages/Student/CreatePass';
+import AdminSignUp from './Pages/Admin/AdminSignUp';
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ function App() {
         <Route path="/StudentsSignUp" element={<StudentsSignUp/>}/>
         <Route path="/Otp" element={<Otp/>}/>
         <Route path="/CreatePass" element={<CreatePass/>}/>
+        <Route path="/AdminSignUp" element={<AdminSignUp/>}/>
       </Routes>
     </BrowserRouter>
   );
