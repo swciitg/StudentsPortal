@@ -9,7 +9,7 @@ function Home() {
     Program: "B.Des",
     Branch: "Design",
     Email: "y.chauhan@iitg.ac.in",
-    ProfileCompletion: "100",
+    ProfileCompletion: 100,
   };
   const [toggle1, setToggle1] = useState(true);
   const [toggle2, setToggle2] = useState(false);
@@ -121,9 +121,16 @@ function Home() {
                     <img src="/registration.svg" />
                     <div className="text-xl font-semibold">Registration</div>
                   </div>
-                  <div className="text-sm text-[#107C10]">
-                    Your Profile is complete!!
-                  </div>
+                  {user.ProfileCompletion !== 100 ? (
+                    <div className="text-sm text-[#D83B01]">
+                      Your Profile is not complete!!
+                    </div>
+                  ) : (
+                    <div className="text-sm text-[#107C10]">
+                      Your Profile is complete!!
+                    </div>
+                  )}
+
                   <p className="text-xs text-[#5F646C]">
                     Complete the Registration process by updating your Profile
                     in order to make Requests through this Portal.
@@ -221,9 +228,15 @@ function Home() {
                 <img src="/Profile-grey.svg" />
                 <div className=" text-base">
                   My Profile
-                  <span className=" text-xs font-semibold text-[rgba(16,124,16,1)]">
-                    ({user.ProfileCompletion}% complete)
-                  </span>
+                  {user.ProfileCompletion !== 100 ? (
+                    <span className=" text-xs font-semibold text-[#D83B01]">
+                      ({user.ProfileCompletion}% complete)
+                    </span>
+                  ) : (
+                    <span className=" text-xs font-semibold text-[rgba(16,124,16,1)]">
+                      ({user.ProfileCompletion}% complete)
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="mt-6 text-2xl font-semibold">{user.name}</div>
