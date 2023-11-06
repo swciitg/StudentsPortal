@@ -14,6 +14,7 @@ function Home() {
   const [toggle1, setToggle1] = useState(true);
   const [toggle2, setToggle2] = useState(false);
   const [toggle3, setToggle3] = useState(false);
+  const [logout_toggle, setlogout_toggle] = useState(false);
   const Notification = [
     {
       id: 1,
@@ -93,8 +94,34 @@ function Home() {
           >
             {user.name}
           </Link>
-          <img src="/down-arrow.svg" />
+
+         {logout_toggle===false? <img
+            onClick={() => {
+              logout_toggle === false
+                ? setlogout_toggle(true)
+                : setlogout_toggle(false);
+            }}
+            className=" cursor-pointer"
+            src="/down-arrow.svg"
+          />:<img
+            onClick={() => {
+              logout_toggle === false
+                ? setlogout_toggle(true)
+                : setlogout_toggle(false);
+            }}
+            className=" cursor-pointer"
+            src="/blue-arrow-up.svg"
+          />}
         </div>
+        {logout_toggle&&<div className="absolute -mt-3 mb-2 w-[95%] flex justify-end">
+          <div className="bg-[#EFF6FC] p-9 pl-12 pr-12 rounded-sm">
+            <Link to="/">
+              <button className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8] text-white rounded">
+                Log Out
+              </button>
+            </Link>
+          </div>
+        </div>}
         <div className=" grid gap-5 grid-cols-10 ">
           {/* Tile 1*/}
           <div className="h-[100%] flex flex-col gap-1 col-span-4  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
