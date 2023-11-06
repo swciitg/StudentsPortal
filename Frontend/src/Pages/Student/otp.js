@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 // import HomePage from "./HomePage";
 export default function StudentSignUp() {
   const [Otp, setOtp] = useState("");
-  console.log(Otp);
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
       <div className="bg-white pl-10 pr-10 w-[400px] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
@@ -27,7 +26,6 @@ export default function StudentSignUp() {
               className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
               type="number"
               placeholder="Enter OTP"
-              readOnly={Otp.length === 6}
 
             />
           </label>

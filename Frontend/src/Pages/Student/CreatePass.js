@@ -37,7 +37,7 @@ export default function StudentSignUp() {
         </div>
         {paas === confpass && paas.length > 0 ? (
           <div className="flex justify-end mt-10">
-            <Link to="/">
+            <Link to="/StudentDashboard/Home">
               <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                 Submit
               </button>

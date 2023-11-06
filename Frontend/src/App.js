@@ -6,6 +6,11 @@ import StudentsSignUp from './Pages/Student/StudentsSignUp';
 import Otp from './Pages/Student/otp';
 import CreatePass from './Pages/Student/CreatePass';
 import AdminSignUp from './Pages/Admin/AdminSignUp';
+import Home from './Pages/Student/StudentDashboard/Home';
+import Profile from './Pages/Student/StudentDashboard/Profile';
+import History from './Pages/Student/StudentDashboard/History';
+import Request from './Pages/Student/StudentDashboard/Request';
+import RequestsForward from './Pages/Student/StudentDashboard/RequestsForward';
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +21,11 @@ function App() {
         <Route path="/Otp" element={<Otp/>}/>
         <Route path="/CreatePass" element={<CreatePass/>}/>
         <Route path="/AdminSignUp" element={<AdminSignUp/>}/>
+        <Route path="/StudentDashboard/Home" element={<Home/>}/>
+        <Route path="/StudentDashboard/Profile" element={<Profile/>}/>
+        <Route path="/StudentDashboard/History" element={<History/>}/>
+        <Route path="/StudentDashboard/Request" element={<Request/>}/>
+        <Route path="/StudentDashboard/RequestsForward" element={<RequestsForward/>}/>
       </Routes>
     </BrowserRouter>
   );
