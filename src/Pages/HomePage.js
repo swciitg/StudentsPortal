@@ -1,10 +1,12 @@
-import React from 'react'
-import Navbar from '../Components/Navbar'
+import React from "react";
+import Navbar from "../Components/Navbar";
+import MainContent from "../Components/MainContent";
 
 export default function HomePage() {
   return (
-    <div>
-        <Navbar/>
+    <div className="flex">
+      <Navbar />
+      <MainContent />
     </div>
-  )
+  );
 }
