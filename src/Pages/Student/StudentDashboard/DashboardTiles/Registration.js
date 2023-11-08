@@ -6,18 +6,7 @@ function Registration(props) {
   const [toggle1, setToggle1] = useState(true);
   const [toggle2, setToggle2] = useState(false);
   const [toggle3, setToggle3] = useState(false);
-  const ManageRequests = [
-    {
-      id: 1,
-      status: "New POR Request uploaded: Designer SWC",
-      Date: "18/12/22",
-    },
-    {
-      id: 2,
-      status: "New POR Request uploaded: E-Cell Core De...",
-      Date: "18/12/22",
-    },
-  ];
+ 
   Registration.propTypes = {
     user: PropTypes.shape({
       name: PropTypes.string,
@@ -26,7 +15,15 @@ function Registration(props) {
       Email: PropTypes.string,
       ProfileCompletion: PropTypes.number,
     }),
+    ManageRequests: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        status: PropTypes.string,
+        Date: PropTypes.string,
+      })
+    ),
   };
+  
 
   return (
     <div className="h-[100%] flex flex-col gap-1 col-span-4  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -132,7 +129,7 @@ function Registration(props) {
             <div className="text-xl font-semibold">Manage Requests</div>
           </div>
           <div className="flex gap-1 flex-col">
-            {ManageRequests.map((item) => (
+            {props.ManageRequests.map((item) => (
               <div
                 key={item.id}
                 className="bg-[#EFF6FC] p-2 flex justify-between items-center"

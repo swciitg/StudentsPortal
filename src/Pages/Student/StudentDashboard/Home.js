@@ -17,7 +17,73 @@ function Home() {
     Email: "y.chauhan@iitg.ac.in",
     ProfileCompletion: 100,
   };
-
+  const ManageRequests = [
+    {
+      id: 1,
+      status: "New POR Request uploaded: Designer SWC",
+      Date: "18/12/22",
+    },
+    {
+      id: 2,
+      status: "New POR Request uploaded: E-Cell Core De...",
+      Date: "18/12/22",
+    },
+  ];
+  const ApprovedRequests_data = [
+    {
+      id: 1,
+      status: "POR: Designer SWC",
+      Date: "18/12/22",
+    },
+    {
+      id: 2,
+      status: "LOR: By Prof. Pankaj Upa....",
+      Date: "18/12/22",
+    },
+    {
+      id: 3,
+      status: "LOR: By Prof. Pankaj Upa....",
+      Date: "18/12/22",
+    },
+    {
+      id: 4,
+      status: "LOR: By Prof. Pankaj Upa....",
+      Date: "18/12/22",
+    },
+  ];
+  const Notification = [
+    {
+      id: 1,
+      description:
+        "Fr: Request For Design Head POR by Yash Chauhan, Forwaded by General Secretary SWC for C...",
+      status: "Pending",
+      Date: "18/12/22",
+    },
+    {
+      id: 2,
+      description:
+        "Fr: Request For Design Head POR by Yash Chauhan, Forwaded by General Secretary SWC for C...",
+      status: "Pending",
+      Date: "18/12/22",
+    },
+  ];
+  const PendingRequests_data = [
+    {
+      id: 1,
+      POR: "POR: Design Head E-Cell",
+      description: "Waiting for approval from General Secretary E-Cell",
+      status: "Pending",
+      Date: "18/12/22",
+    },
+    {
+      id: 2,
+      POR: "POR: Design Head E-Cell",
+      description:
+        "Your Request has been Forwaded to Sahil Nizam By General Secretary of E-Cell for Confirmation",
+      status: "Pending",
+      Date: "18/12/22",
+    },
+  ];
   const [logout_toggle, setlogout_toggle] = useState(false);
 
   return (
@@ -64,7 +130,7 @@ function Home() {
             />
           )}
         </div>
-        
+
         {/* Logout Toggle */}
         
         {logout_toggle && (
@@ -82,7 +148,7 @@ function Home() {
 
           {/* Tile 1*/}
 
-          <Registration user={user} />
+          <Registration user={user} ManageRequests={ManageRequests}/>
 
           {/* Tile 2*/}
 
@@ -90,15 +156,15 @@ function Home() {
 
           {/* Tile 3*/}
 
-          <ForwardNotification />
+          <ForwardNotification Notification={Notification} />
 
           {/* Tile 4*/}
 
-          <ApprovedRequests />
+          <ApprovedRequests ApprovedRequests={ApprovedRequests_data} />
 
           {/* Tile 5*/}
 
-          <PendingRequests />
+          <PendingRequests PendingRequests={PendingRequests_data}/>
 
           {/* Tile 6*/}
 

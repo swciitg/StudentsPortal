@@ -1,24 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types"
 
-function PendingRequests() {
-  const PendingRequests = [
-    {
-      id: 1,
-      POR: "POR: Design Head E-Cell",
-      description: "Waiting for approval from General Secretary E-Cell",
-      status: "Pending",
-      Date: "18/12/22",
-    },
-    {
-      id: 2,
-      POR: "POR: Design Head E-Cell",
-      description:
-        "Your Request has been Forwaded to Sahil Nizam By General Secretary of E-Cell for Confirmation",
-      status: "Pending",
-      Date: "18/12/22",
-    },
-  ];
+function PendingRequests(props) {
+    PendingRequests.propTypes = {
+        PendingRequests: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.number,
+            POR: PropTypes.string,
+            description: PropTypes.string,
+            status: PropTypes.string,
+            Date: PropTypes.string,
+          })
+        ),
+      };
+      
   return (
     <div className=" col-span-4 p-7 flex flex-col justify-between pb-4  bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       <div>
@@ -28,7 +24,7 @@ function PendingRequests() {
           <div className=" text-base">Pending Requests</div>
         </div>
         <div className="mt-2 flex flex-col gap-2">
-          {PendingRequests.map((item) => (
+          {props.PendingRequests.map((item) => (
             <div
               key={item.id}
               className="p-2 flex justify-center shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]"
