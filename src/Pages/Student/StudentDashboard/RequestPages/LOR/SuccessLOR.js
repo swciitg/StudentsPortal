@@ -3,7 +3,7 @@ import Student_Navbar from "../../../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
 import { Link } from "react-router-dom";
 
-function SuccessPage() {
+function SuccessLOR() {
   return (
     <div className=" relative h-screen w-[100%]">
       <Student_Navbar />
@@ -37,4 +37,4 @@ function SuccessPage() {
   );
 }
 
-export default SuccessPage;
+export default SuccessLOR;

@@ -59,7 +59,7 @@ function SelectValidation() {
                   type="radio"
                   name="radioGroup"
                   onChange={() => {
-                    SetSelectedOption("Project Validation");
+                    SetSelectedOption("ProjectValidation");
                   }}
                   className="   appearance-none border-[#494D57]  p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
                 />
@@ -81,7 +81,7 @@ function SelectValidation() {
                   type="radio"
                   name="radioGroup"
                   onChange={() => {
-                    SetSelectedOption("Inter IIT Participation Proof");
+                    SetSelectedOption("InterIIT");
                   }}
                   className="  appearance-none border-[#494D57]   p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
                 />
@@ -92,7 +92,7 @@ function SelectValidation() {
                   type="radio"
                   name="radioGroup"
                   onChange={() => {
-                    SetSelectedOption("Class/Branch Representative");
+                    SetSelectedOption("BR");
                   }}
                   className="  appearance-none border-[#494D57]   p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
                 />
@@ -102,7 +102,7 @@ function SelectValidation() {
             <div className="flex justify-end mt-10">
               <Link
                 to={
-                  `/StudentDashboard/Request/SelectValidation/${SelectedOption}/1`
+                  `/StudentDashboard/Request/${SelectedOption}/1`
                 }
               >
                 <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
