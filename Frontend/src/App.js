@@ -11,6 +11,11 @@ import Profile from './Pages/Student/StudentDashboard/Profile';
 import History from './Pages/Student/StudentDashboard/History';
 import Request from './Pages/Student/StudentDashboard/Request';
 import RequestsForward from './Pages/Student/StudentDashboard/RequestsForward';
+import SelectValidation from './Pages/Student/StudentDashboard/RequestPages/SelectValidation';
+import CreateRequestStep1 from './Pages/Student/StudentDashboard/RequestPages/ClubPOR/CreateRequestStep1';
+import CreateRequestStep2 from './Pages/Student/StudentDashboard/RequestPages/ClubPOR/CreateRequestStep2';
+import CreateRequestStep3 from './Pages/Student/StudentDashboard/RequestPages/ClubPOR/CreateRequestStep3';
+import SuccessPage from './Pages/Student/StudentDashboard/RequestPages/ClubPOR/SuccessPage';
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +30,11 @@ function App() {
         <Route path="/StudentDashboard/Profile" element={<Profile/>}/>
         <Route path="/StudentDashboard/History" element={<History/>}/>
         <Route path="/StudentDashboard/Request" element={<Request/>}/>
+        <Route path="/StudentDashboard/Request/SelectValidation" element={<SelectValidation/>}/>
+        <Route path="/StudentDashboard/Request/SelectValidation/ClubPOR/1" element={<CreateRequestStep1/>}/>
+        <Route path="/StudentDashboard/Request/SelectValidation/ClubPOR/2" element={<CreateRequestStep2/>}/>
+        <Route path="/StudentDashboard/Request/SelectValidation/ClubPOR/3" element={<CreateRequestStep3/>}/>
+        <Route path="/StudentDashboard/Request/SelectValidation/ClubPOR/success" element={<SuccessPage/>}/>
         <Route path="/StudentDashboard/RequestsForward" element={<RequestsForward/>}/>
       </Routes>
     </BrowserRouter>

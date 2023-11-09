@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 export default function Student_Navbar() {
   const location = useLocation();
   const isSelected = (path) => {
-    return location.pathname === path;
+    return location.pathname.startsWith(path);
   };
   return (
     <nav className=" flex flex-col  justify-between absolute bg-white w-[18%] h-screen shadow-[0px_3.2px_7.2px_0px_rgba(27,33,45,0.13),0px_0.6px_1.8px_0px_rgba(27,33,45,0.10)]">
