@@ -66,7 +66,7 @@ function App() {
         <Route path="/StudentDashboard/Request/BR/2" element={<CreateBRStep2/>}/>
         <Route path="/StudentDashboard/Request/BR/3" element={<CreateBRStep3/>}/>
         <Route path="/StudentDashboard/Request/BR/success" element={<SuccessBR/>}/>
-        <Route path="/StudentDashboard/RequestsForward" element={<RequestsForward/>}/>
+        <Route path="/StudentDashboard/ForwardRequest" element={<RequestsForward/>}/>
       </Routes>
     </BrowserRouter>
   );

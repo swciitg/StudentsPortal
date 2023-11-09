@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 export default function Student_Navbar() {
   const location = useLocation();
   const isSelected = (path) => {
+    if(path==="/StudentDashboard/Request")return location.pathname.startsWith(path);
     return location.pathname.startsWith(path);
   };
   return (
@@ -58,11 +59,11 @@ export default function Student_Navbar() {
               <div className=" ml-6">History</div>
             </div>
           </Link>
-          <Link to="/StudentDashboard/RequestsForward">
+          <Link to="/StudentDashboard/ForwardRequest">
             {" "}
             <div
               className={
-                isSelected("/StudentDashboard/RequestsForward")
+                isSelected("/StudentDashboard/ForwardRequest")
                   ? "bg-[#E8E9EA] p-3"
                   : "p-3"
               }
