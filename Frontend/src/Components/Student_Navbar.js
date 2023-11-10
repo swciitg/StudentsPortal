@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 export default function Student_Navbar() {
   const location = useLocation();
   const isSelected = (path) => {
-    if(path==="/StudentDashboard/Request")return location.pathname.startsWith(path);
     return location.pathname.startsWith(path);
   };
   return (
