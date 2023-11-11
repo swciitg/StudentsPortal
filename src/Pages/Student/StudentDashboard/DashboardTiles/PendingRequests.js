@@ -16,20 +16,20 @@ function PendingRequests(props) {
       };
       
   return (
-    <div className=" col-span-4 p-7 flex flex-col justify-between pb-4  bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+    <div className=" col-span-4 p-7 flex flex-col  justify-between pb-4  bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       <div>
         {" "}
         <div className="flex gap-2 items-center">
           <img src="/requests-pending.svg" />
           <div className=" text-base">Pending Requests</div>
         </div>
-        <div className="mt-2 flex flex-col gap-2">
+        <div className="mt-2 lg:mb-0 mb-3 flex flex-col gap-2">
           {props.PendingRequests.map((item) => (
             <div
               key={item.id}
               className="p-2 flex justify-center shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]"
             >
-              <div className="w-11/12 text-sm">
+              <div className="w-11/12 text-sm h-full">
                 {item.POR}, {item.description}
               </div>
               <div className=" items-center  flex flex-col gap-4 ">

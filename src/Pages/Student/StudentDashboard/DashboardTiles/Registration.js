@@ -26,9 +26,9 @@ function Registration(props) {
   
 
   return (
-    <div className="h-[100%] flex flex-col gap-1 col-span-4  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+    <div className="h-[100%] lg:mt-0 mt-10 flex flex-col gap-1 col-span-4  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       {toggle1 === false ? (
-        <div className="bg-white h-[20%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
+        <div className="bg-white lg:h-[20%] h-[60px]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
           <div className="flex gap-1 items-center">
             <div>Registration</div>
             <img src="/Checkmark.svg" width="20px " />
@@ -44,7 +44,7 @@ function Registration(props) {
           />
         </div>
       ) : (
-        <div className="bg-white border-l-[6px] p-3 pb-0 border-[#2164E8] h-[60%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
+        <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8] h-[60%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className=" flex flex-col gap-2">
             <div className="flex gap-2">
               <img src="/registration.svg" />
@@ -75,7 +75,7 @@ function Registration(props) {
         </div>
       )}
       {toggle2 === false ? (
-        <div className="bg-white h-[20%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
+        <div className="bg-white lg:h-[20%] h-[60px] shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
           <div>Request</div>
           <img
             className="cursor-pointer "
@@ -88,7 +88,7 @@ function Registration(props) {
           />
         </div>
       ) : (
-        <div className="bg-white border-l-[6px] p-3 pb-0 border-[#2164E8] h-[60%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
+        <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8] h-[60%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className="flex gap-2">
             <img src="/list.svg" />
             <div className="text-xl font-semibold">Request</div>
@@ -110,7 +110,7 @@ function Registration(props) {
         </div>
       )}
       {toggle3 === false ? (
-        <div className="bg-white h-[20%]    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
+        <div className="bg-white lg:h-[20%]  h-[60px]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
           <div>Manage requests</div>
           <img
             className="cursor-pointer "
@@ -123,12 +123,12 @@ function Registration(props) {
           />
         </div>
       ) : (
-        <div className="bg-white border-l-[6px] p-3 pb-0 border-[#2164E8] h-[60%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
+        <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8] h-[60%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className="flex gap-2">
             <img src="/registration.svg" />
             <div className="text-xl font-semibold">Manage Requests</div>
           </div>
-          <div className="flex gap-1 flex-col">
+          <div className="flex gap-1 flex-col lg:my-0 my-2">
             {props.ManageRequests.map((item) => (
               <div
                 key={item.id}

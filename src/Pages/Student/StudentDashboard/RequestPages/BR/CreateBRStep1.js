@@ -32,7 +32,7 @@ function CreateBRStep1() {
   return (
     <div className=" relative h-screen w-[100%]">
       <Student_Navbar />
-      <div className=" absolute flex flex-col  h-screen w-[82%] ml-[18%] p-5 ">
+      <div className="  flex flex-col  lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
         <CornerProfileLogoutSection />
         <div className="flex justify-center items-center h-full">

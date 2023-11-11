@@ -93,12 +93,12 @@ function Home() {
 
       {/*Tiles Area*/}
 
-      <div className=" absolute  h-screen w-[82%] ml-[18%] p-5 ">
+      <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
       
       {/*Corner Profile Option*/}
 <CornerProfileLogoutSection/>
        
-        <div className=" grid gap-5 grid-cols-10 ">
+        <div className="flex flex-col gap-10 lg:gap-5 lg:grid lg:grid-cols-10 pb-10 lg:pb-0 ">
 
           {/* Tile 1*/}
 
