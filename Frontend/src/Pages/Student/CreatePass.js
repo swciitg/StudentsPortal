@@ -8,7 +8,7 @@ export default function StudentSignUp() {
 
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
-      <div className="bg-white pl-10 pr-10 w-[400px] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
+      <div className="bg-white pl-10 pr-10 w-[90%] lg:w-[400px] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
         <div className="flex justify-start  mb-2">
           <img className="" src="/iitg_logo.png" alt="iitg_logo" width="65px" />
         </div>
@@ -53,7 +53,7 @@ export default function StudentSignUp() {
           </div>
         )}
       </div>
-      <div className="w-[400px] p-4 pl-8 text-sm font-normal  items-center  bg-white shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)]">
+      <div className="w-[90%] lg:w-[400px] p-4 pl-8 text-sm font-normal  items-center  bg-white shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)]">
         <p>
           {"Already have an account?\t"}
           <Link to="/" className="text-[rgba(33,100,232,1)]">
