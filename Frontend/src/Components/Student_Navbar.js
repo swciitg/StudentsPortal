@@ -41,7 +41,7 @@ export default function Student_Navbar() {
 
       {
         <nav
-          className={`flex flex-col justify-between absolute bg-white w-[50%] lg:w-[18%] h-screen shadow-[0px 3.2px 7.2px 0px rgba(27,33,45,0.13),0px 0.6px 1.8px 0px rgba(27,33,45,0.10)]  transition-all duration-300 ${
+          className={`flex flex-col justify-between fixed  bg-white w-[50%] lg:w-[18%] h-screen shadow-[0px 3.2px 7.2px 0px rgba(27,33,45,0.13),0px 0.6px 1.8px 0px rgba(27,33,45,0.10)]  transition-all duration-300 ${
             window.innerWidth < 1024 && (showNav ? "left-0" : "-left-full")
           }`}
         >
