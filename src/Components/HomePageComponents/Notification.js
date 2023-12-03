@@ -1,6 +1,6 @@
 import React from "react";
-import NotiLogo from "../Images/Calendar Clock.png";
-import NotificationList from "./NotificationList";
+import NotiLogo from "../HomePageComponents/Images/Calendar Clock.png";
+import NotificationList from "../HomePageComponents/NotificationList";
 
 const Notification = () => {
   return (

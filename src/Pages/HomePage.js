@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
-import MainContent from "../Components/MainContent";
+import MainContent from "../Components/HomePageComponents/MainContent";
 
 export default function HomePage() {
   return (

@@ -15,8 +15,9 @@ const HeaderSection = () => {
       <HeaderSectionList />
 
       <HeaderSectionList />
-
-      <Button value="View All Request" />
+      <div className="mt-2">
+        <Button value="View All Request" />
+      </div>
     </div>
   );
 };

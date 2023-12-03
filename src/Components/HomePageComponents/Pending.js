@@ -1,6 +1,6 @@
 import React from "react";
-import Listlogo from "../Images/List.png";
-import PendingList from "./PendingList";
+import Listlogo from "../HomePageComponents/Images/List.png";
+import PendingList from "../HomePageComponents/PendingList";
 
 const Pending = () => {
   return (
