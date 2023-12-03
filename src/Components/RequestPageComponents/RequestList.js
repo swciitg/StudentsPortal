@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 
 const RequestList = (prop) => {
   return (
-    <div className="text-sm flex items-center justify-around w-[75rem] px-4 py-4 mt-[0.2rem] shadow-md bg-white">
-      <div>1</div>
-      <div>{prop.req}</div>
+    <div className="text-sm flex items-center justify-start w-[75rem] px-4 py-4 mt-[0.2rem] shadow-md bg-white">
+      <div className="ml-6">1</div>
+      <div className="ml-16 w-[16rem]">{prop.req}</div>
 
-      <div className="ml-[11rem]">{prop.name}</div>
+      <div className="ml-4 w-[17.5rem]">{prop.name}</div>
 
-      <div>{prop.date}</div>
-      <div>Pending</div>
+      <div className="ml-6">{prop.date}</div>
+      <div className="ml-16">Pending</div>
 
-      <div>
+      <div className="ml-16">
         <Button value="Withdraw" />
       </div>
 
