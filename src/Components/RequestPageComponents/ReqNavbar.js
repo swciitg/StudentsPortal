@@ -14,31 +14,31 @@ const ReqNavbar = () => {
     <div>
       <div className="flex justify-around w-[48rem] mt-4">
         <div
-          className="px-8 py-2 hover:border-b-2 border-b-real-blue"
+          className="px-8 py-2 cursor-pointer hover:border-b-2 border-b-real-blue"
           onClick={() => setActive("por")}
         >
           POR
         </div>
         <div
-          className="px-8 py-2 hover:border-b-2 border-b-real-blue"
+          className="px-8 py-2 cursor-pointer hover:border-b-2 border-b-real-blue"
           onClick={() => setActive("projectValidation")}
         >
           Project Validation
         </div>
         <div
-          className="px-8 py-2 hover:border-b-2 border-b-real-blue"
+          className="px-8 py-2 cursor-pointer hover:border-b-2 border-b-real-blue"
           onClick={() => setActive("lor")}
         >
           LOR
         </div>
         <div
-          className="px-8 py-2 hover:border-b-2 border-b-real-blue"
+          className="px-8 py-2 cursor-pointer hover:border-b-2 border-b-real-blue"
           onClick={() => setActive("interIITParticipation")}
         >
           Inter IIT Participation
         </div>
         <div
-          className="px-8 py-2 hover:border-b-2 border-b-real-blue"
+          className="px-8 py-2 cursor-pointer hover:border-b-2 border-b-real-blue"
           onClick={() => setActive("crBrPOR")}
         >
           CR/BR POR

@@ -5,7 +5,7 @@ import Button from "../../HomePageComponents/Button";
 const DetailsContent = (prop) => {
   return (
     <div className="p-6 bg-dark-white h-screen">
-      <div>
+      <div className="text-real-blue text-sm">
         <Link to="/request">Request list</Link>
       </div>
       <div className="bg-white mt-6 w-[75rem]">
