@@ -272,7 +272,6 @@ function History() {
     );
   });
   };
-console.log(search)
   return (
     <div className=" relative h-screen w-[100%]">
       <Student_Navbar />
