@@ -30,15 +30,17 @@ import SuccessBR from './Pages/Student/StudentDashboard/RequestPages/BR/SuccessB
 import CreateBRStep3 from './Pages/Student/StudentDashboard/RequestPages/BR/CreateBRStep3';
 import CreateBRStep2 from './Pages/Student/StudentDashboard/RequestPages/BR/CreateBRStep2';
 import CreateBRStep1 from './Pages/Student/StudentDashboard/RequestPages/BR/CreateBRStep1';
+import Home_admin from './Pages/Admin/AdminDashboard/Home';
+import Request_admin from './Pages/Admin/AdminDashboard/Request';
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Student Side Routes*/}
         <Route path="/" element={<ProfileSelection/>}/>
         <Route path="/StudentsSignUp" element={<StudentsSignUp/>}/>
         <Route path="/Otp" element={<Otp/>}/>
         <Route path="/CreatePass" element={<CreatePass/>}/>
-        <Route path="/AdminSignUp" element={<AdminSignUp/>}/>
         <Route path="/StudentDashboard/Home" element={<Home/>}/>
         <Route path="/StudentDashboard/Profile" element={<Profile/>}/>
         <Route path="/StudentDashboard/History" element={<History/>}/>
@@ -65,6 +67,13 @@ function App() {
         <Route path="/StudentDashboard/Request/BR/3" element={<CreateBRStep3/>}/>
         <Route path="/StudentDashboard/Request/BR/success" element={<SuccessBR/>}/>
         <Route path="/StudentDashboard/ForwardRequest" element={<RequestsForward/>}/>
+
+        {/* Admin Side Routes*/}
+        <Route path="/AdminSignUp" element={<AdminSignUp/>}/>
+        <Route path="/AdminDashboard/Home" element={<Home_admin/>}/>
+        <Route path="/AdminDashboard/Request" element={<Request_admin/>}/>
+        
+
       </Routes>
     </BrowserRouter>
   );
