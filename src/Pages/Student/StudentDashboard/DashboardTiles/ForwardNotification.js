@@ -20,7 +20,7 @@ function ForwardNotification(props) {
         <div className="flex justify-between items-center">
           <div className="flex gap-2 items-center">
             <img src="/Notification.svg" />
-            <div>Forward Notification</div>
+            <div>Notification</div>
           </div>
           <div className="text-xs text-[#D83B01]">2 Unread</div>
         </div>

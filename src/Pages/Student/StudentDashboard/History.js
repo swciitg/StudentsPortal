@@ -23,7 +23,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 3,
@@ -31,7 +31,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status":true,
     },
     {
       "Sl.no": 4,
@@ -39,7 +39,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 5,
@@ -47,7 +47,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 6,
@@ -55,7 +55,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Denied",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 7,
@@ -63,7 +63,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 8,
@@ -79,7 +79,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Denied",
-      "Seen Status": false,
+      "Seen Status":true,
     },
     {
       "Sl.no": 10,
@@ -87,7 +87,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 11,
@@ -100,10 +100,10 @@ function History() {
     {
       "Sl.no": 12,
       "Request Name": "E-Cell design head",
-      "Type of Request": "",
+      "Type of Request": "Project validation",
       Date: "12/02/2023",
       Status: "Approved",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 13,
@@ -111,7 +111,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 14,
@@ -119,7 +119,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 15,
@@ -127,15 +127,15 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Approved",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 16,
       "Request Name": "LOR for Vedprakash",
-      "Type of Request": "LOR",
+      "Type of Request": "Project validation",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 17,
@@ -143,7 +143,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Approved",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 18,
@@ -151,7 +151,7 @@ function History() {
       "Type of Request": "Project validation",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status":true,
     },
     {
       "Sl.no": 19,
@@ -159,7 +159,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status":true,
     },
     {
       "Sl.no": 20,
@@ -167,7 +167,7 @@ function History() {
       "Type of Request": "Project validation",
       Date: "12/02/2023",
       Status: "Denied",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 21,
@@ -175,7 +175,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status": false,
+      "Seen Status":true,
     },
     {
       "Sl.no": 22,
@@ -183,7 +183,7 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Denied",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 23,
@@ -191,7 +191,7 @@ function History() {
       "Type of Request": "Project validation",
       Date: "12/02/2023",
       Status: "Denied",
-      "Seen Status": false,
+      "Seen Status": true,
     },
     {
       "Sl.no": 24,
@@ -247,7 +247,7 @@ function History() {
     return (
       <div
         key={index}
-        className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ${statusStyle}`}
+        className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
       >
         <div className="text-xs text-[#494D57] w-[10%] text-center py-5">
           {sequenceNumber}
@@ -282,7 +282,7 @@ console.log(search)
         <div className="flex flex-col py-2 pt-4 px-4 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
           <div className="flex  items-center  gap-3 mb-3">
             <div className="   font-semibold text-xl">Request History</div>
-            <h2 className="text-[#2164E8] text-xs">2 Updates</h2>
+            <h2 className="text-[#2164E8] text-xs">{History.filter(item => !item["Seen Status"]).length} Updates</h2>
           </div>
         </div>
         <div  className="bg-white relative ">
@@ -337,7 +337,7 @@ console.log(search)
           </div>
         </div>
         <div className=" flex flex-col gap-[3px] ">
-          <div className=" flex mt-4 -mb-[27px] bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+          <div className=" flex mt-4 bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
             <div className=" text-sm lg:w-[10%] w-[5%] text-center  py-3">Sl. No.</div>
             <div className=" text-sm lg:w-[25%]  justify-center  gap-[3px] flex items-center py-3">
               Request Name
@@ -352,7 +352,7 @@ console.log(search)
             </div>
             <div className=" text-sm  lg:w-[15%]  text-center  py-3">Status</div>
           </div>
-          ` <RenderHistory />
+         <RenderHistory />
           <div className="flex justify-center items-center mt-4 ">
             <div
               className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${
