@@ -1,8 +1,5 @@
-// import { useState } from "react";
-// import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import HomePage from "./HomePage";
 export default function ProfileSelection() {
   const [SelectedOption,SetSelectedOption]=useState('student');
   return (

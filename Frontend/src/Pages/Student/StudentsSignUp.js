@@ -1,7 +1,5 @@
-// import { useState } from "react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import HomePage from "./HomePage";
 export default function StudentSignUp() {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
