@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
+import RequestDetailsModal from "./History_CheckUpdates";
 
 function History() {
   const [selectedTab, setSelectedTab] = useState("Pending");
@@ -16,6 +17,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": false,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 2,
@@ -24,6 +36,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 3,
@@ -31,7 +54,18 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status":true,
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 4,
@@ -40,6 +74,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 5,
@@ -48,6 +93,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 6,
@@ -56,6 +112,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Denied",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 7,
@@ -64,6 +131,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 8,
@@ -72,6 +150,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Approved",
       "Seen Status": false,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 9,
@@ -79,7 +168,18 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Denied",
-      "Seen Status":true,
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 10,
@@ -88,6 +188,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 11,
@@ -96,14 +207,36 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": false,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 12,
       "Request Name": "E-Cell design head",
       "Type of Request": "Project validation",
       Date: "12/02/2023",
-      Status: "Approved",
+      Status: "Pending",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 13,
@@ -112,6 +245,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 14,
@@ -120,6 +264,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 15,
@@ -128,6 +283,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Approved",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 16,
@@ -136,6 +302,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 17,
@@ -144,6 +321,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Approved",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 18,
@@ -151,7 +339,18 @@ function History() {
       "Type of Request": "Project validation",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status":true,
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 19,
@@ -159,7 +358,18 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status":true,
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 20,
@@ -168,6 +378,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Denied",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 21,
@@ -175,7 +396,18 @@ function History() {
       "Type of Request": "LOR",
       Date: "12/02/2023",
       Status: "Pending",
-      "Seen Status":true,
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 22,
@@ -184,6 +416,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Denied",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 23,
@@ -192,6 +435,17 @@ function History() {
       Date: "12/02/2023",
       Status: "Denied",
       "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
     {
       "Sl.no": 24,
@@ -200,14 +454,32 @@ function History() {
       Date: "12/02/2023",
       Status: "Pending",
       "Seen Status": false,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: ' ',
+      Request_sent_date: "12/01/2023",
+      'POR Position':'Design Head'
     },
   ];
+  
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
     setCurrentPage(1)
   };
-
+  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const handleCheckUpdates = (requestData) => {
+    setSelectedRequest(requestData);
+    setIsModalOpen(true);
+  };
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
@@ -217,12 +489,21 @@ function History() {
     const calculatedTotalPages = Math.ceil(totalItems / itemsPerPage);
     setTotalPages(calculatedTotalPages);
   };
-
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tabParam = urlParams.get("tab");
+    const defaultTab = "Pending";
+    const initialTab = tabParam || defaultTab;
+  
+    setSelectedTab(initialTab);
+    setCurrentPage(1);
+  }, []);
+  
   useEffect(() => {
     updateTotalPages();
     // eslint-disable-next-line
   }, [selectedTab, History]);
-  const RenderHistory = () => {
+  const RenderHistory = ({ onCheckUpdates }) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const filteredHistory = History.filter((data) => data.Status === selectedTab);
@@ -264,7 +545,7 @@ function History() {
         <div className={`text-xs text-center w-[15%] py-5 ${statusStyle}`}>
           {data.Status}
         </div>
-        <div className="text-[#2164E8] flex items-center text-sm gap-1">
+        <div onClick={() => onCheckUpdates(data)} className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1">
           <div>Check Updates</div>
           <img src="/Arrow-right.svg" />
         </div>
@@ -278,7 +559,13 @@ function History() {
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
         <CornerProfileLogoutSection />
-        <div className="flex flex-col py-2 pt-4 px-4 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+     
+     
+       {selectedRequest? <RequestDetailsModal
+      isOpen={isModalOpen}
+      onRequestClose={() => setIsModalOpen(false)}
+      requestData={selectedRequest}
+    />: <><div className="flex flex-col py-2 pt-4 px-4 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
           <div className="flex  items-center  gap-3 mb-3">
             <div className="   font-semibold text-xl">Request History</div>
             <h2 className="text-[#2164E8] text-xs">{History.filter(item => !item["Seen Status"]).length} Updates</h2>
@@ -350,8 +637,8 @@ function History() {
               <img src="/Arrow Sort.svg" />
             </div>
             <div className=" text-sm  lg:w-[15%]  text-center  py-3">Status</div>
-          </div>
-         <RenderHistory />
+          </div> 
+           <RenderHistory onCheckUpdates={handleCheckUpdates} />
           <div className="flex justify-center items-center mt-4 ">
             <div
               className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${
@@ -403,6 +690,8 @@ function History() {
             </div>
           </div>
         </div>
+</>
+}
       </div>
     </div>
   );

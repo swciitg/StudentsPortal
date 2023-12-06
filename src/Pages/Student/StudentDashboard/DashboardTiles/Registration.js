@@ -101,7 +101,7 @@ function Registration(props) {
             </p>
           </div>
           <div className=" flex justify-end ">
-            <Link to="/StudentDashboard/Request">
+            <Link to="/StudentDashboard/Request/SelectValidation">
               <button className="text-sm p-[5px] pl-3 mt-4 pr-3 bg-[#2164E8] text-white rounded">
                 Make a Request
               </button>

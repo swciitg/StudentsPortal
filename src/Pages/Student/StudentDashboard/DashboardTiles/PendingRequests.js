@@ -45,7 +45,7 @@ function PendingRequests(props) {
         </div>
       </div>
       <Link
-        to="/StudentDashboard/ForwardRequest"
+        to="/StudentDashboard/History"
         className="text-[#2164E8] text-sm flex justify-end "
       >
         View all Pending Forwards

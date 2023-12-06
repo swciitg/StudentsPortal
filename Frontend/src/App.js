@@ -32,6 +32,9 @@ import CreateBRStep2 from './Pages/Student/StudentDashboard/RequestPages/BR/Crea
 import CreateBRStep1 from './Pages/Student/StudentDashboard/RequestPages/BR/CreateBRStep1';
 import Home_admin from './Pages/Admin/AdminDashboard/Home';
 import Request_admin from './Pages/Admin/AdminDashboard/Request';
+import RequestsForwardadmin from './Pages/Admin/AdminDashboard/RequestsForward';
+import AdminProfile from './Pages/Admin/AdminDashboard/Profile';
+import AdminHistory from './Pages/Admin/AdminDashboard/History';
 function App() {
   return (
     <BrowserRouter>
@@ -72,6 +75,9 @@ function App() {
         <Route path="/AdminSignUp" element={<AdminSignUp/>}/>
         <Route path="/AdminDashboard/Home" element={<Home_admin/>}/>
         <Route path="/AdminDashboard/Request" element={<Request_admin/>}/>
+        <Route path="/AdminDashboard/ForwardRequest" element={<RequestsForwardadmin/>}/>
+        <Route path="/AdminDashboard/Profile" element={<AdminProfile/>}/>
+        <Route path="/AdminDashboard/History" element={<AdminHistory/>}/>
         
 
       </Routes>
