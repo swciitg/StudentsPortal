@@ -6,6 +6,7 @@ function CornerProfileLogoutSection() {
   const user = {
     name: "Yash Chouhan"
   };
+
   return (<div>
     <div className="flex p-3 -mt-3 mb-2 justify-end gap-2 items-center">
     <img src="/profile-blue.svg" />

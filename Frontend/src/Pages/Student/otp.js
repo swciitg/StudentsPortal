@@ -20,7 +20,7 @@ export default function StudentSignUp() {
   
       if (response.status === 200) {
         console.log('OTP verified successfully');
-        navigate('/CreatePass')
+        navigate(`/CreatePass?email=${encodeURIComponent(Email)}`)
       } else {
         console.error('Error verifying OTP:', response.data.message);
       }

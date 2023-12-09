@@ -1,10 +1,32 @@
 // import { useState } from "react";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate,useLocation } from "react-router-dom";
+import axios from "axios";
 // import HomePage from "./HomePage";
 export default function StudentSignUp() {
   const [paas, setpass] = useState("");
   const [confpass, setconfpaas] = useState("");
+  const navigate=useNavigate();
+  const location = useLocation();
+  const email = new URLSearchParams(location.search).get("email");
+  const handleCreatePass = async () => {
+    try {
+
+      // Your logic to collect the password from the user input (paas) 
+      const newPassword = paas;
+  
+      // Your logic to send the request to the backend to create the password
+      await axios.post('http://localhost:3002/api/users/create-password', {
+        email: email, // Replace with the user's email
+        password: newPassword,
+      });
+
+      console.log('Password created successfully');
+      navigate(`/StudentDashboard/Home?email=${encodeURIComponent(email)}`);
+    } catch (error) {
+      console.error('Error creating password:', error.message);
+    }
+  };
 
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
@@ -37,8 +59,8 @@ export default function StudentSignUp() {
         </div>
         {paas === confpass && paas.length > 0 ? (
           <div className="flex justify-end mt-10">
-            <Link to="/StudentDashboard/Home">
-              <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
+            <Link>
+              <button onClick={handleCreatePass} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                 Submit
               </button>
             </Link>
