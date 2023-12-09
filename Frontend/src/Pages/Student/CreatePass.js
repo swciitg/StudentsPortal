@@ -12,12 +12,10 @@ export default function StudentSignUp() {
   const handleCreatePass = async () => {
     try {
 
-      // Your logic to collect the password from the user input (paas) 
       const newPassword = paas;
   
-      // Your logic to send the request to the backend to create the password
       await axios.post('http://localhost:3002/api/users/create-password', {
-        email: email, // Replace with the user's email
+        email: email, 
         password: newPassword,
       });
 

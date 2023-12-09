@@ -19,7 +19,7 @@ export default function StudentSignUp() {
   
       if (response.status === 201) {
         console.log('User created successfully');
-        // Redirect to OTP page
+       
         navigate(`/Otp?email=${encodeURIComponent(Email)}`);
       } else {
         console.error('Error creating user:', response.data.message);
