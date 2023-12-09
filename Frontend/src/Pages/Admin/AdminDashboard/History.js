@@ -10,8 +10,10 @@ function AdminHistory() {
         {/*Corner Profile Option*/}
         <CornerProfileLogoutSectionadmin />
         <div className="px-4 py-5 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-          <div className=" text-lg  font-semibold ">Request History</div>
+          <div className=" text-lg  font-semibold ">History</div>
+
         </div>
+      <div className="flex justify-center py-10 text-xl font-extrabold text-[#7a7e87]">Coming Soon...</div>
        
       </div>
     </div>
