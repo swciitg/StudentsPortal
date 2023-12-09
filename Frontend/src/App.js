@@ -37,6 +37,8 @@ import AdminProfile from './Pages/Admin/AdminDashboard/Profile';
 import AdminHistory from './Pages/Admin/AdminDashboard/History';
 import Otpadmin from './Pages/Admin/otp';
 import CreatePassadmin from './Pages/Admin/CreatePass';
+import StudentLogin from './Pages/Student/StudentLogin';
+import AdminLogin from './Pages/Admin/AdminLogIn';
 function App() {
   return (
     <BrowserRouter>
@@ -44,6 +46,7 @@ function App() {
         {/* Student Side Routes*/}
         <Route path="/" element={<ProfileSelection/>}/>
         <Route path="/StudentsSignUp" element={<StudentsSignUp/>}/>
+        <Route path="/StudentsLogIn" element={<StudentLogin/>}/>
         <Route path="/Otp" element={<Otp/>}/>
         <Route path="/CreatePass" element={<CreatePass/>}/>
         <Route path="/StudentDashboard/Home" element={<Home/>}/>
@@ -75,6 +78,7 @@ function App() {
 
         {/* Admin Side Routes*/}
         <Route path="/AdminSignUp" element={<AdminSignUp/>}/>
+        <Route path="/AdminLogin" element={<AdminLogin/>}/>
         <Route path="/Otp-admin" element={<Otpadmin/>}/>
         <Route path="/CreatePass-admin" element={<CreatePassadmin/>}/>
         <Route path="/AdminDashboard/Home" element={<Home_admin/>}/>

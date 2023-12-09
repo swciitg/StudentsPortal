@@ -26,13 +26,13 @@ export default function AdminSignUp() {
           </label>
           <label className="flex flex-col gap-1">
             <span className="font-medium text-sm">
-              Enter you IITG ERP id (without @iitg.ac.in)
+            Enter your Official IITG mail
             </span>
             <input
               onChange={(e) => setEmail(e.target.value)}
               className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
               type="text"
-              placeholder="Enter ERP id"
+              placeholder="Enter mail id"
             />
           </label>
         </div>
@@ -57,7 +57,7 @@ export default function AdminSignUp() {
       <div className="w-[90%] md:w-[60%] lg:w-[400px] p-4 pl-8 text-sm font-normal  items-center  bg-white shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)]">
         <p>
           {"Already have an account?\t"}
-          <Link to="/" className="text-[rgba(33,100,232,1)]">
+          <Link to="/AdminLogin" className="text-[rgba(33,100,232,1)]">
             Login
           </Link>
         </p>
