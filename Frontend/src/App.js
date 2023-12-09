@@ -35,6 +35,8 @@ import Request_admin from './Pages/Admin/AdminDashboard/Request';
 import RequestsForwardadmin from './Pages/Admin/AdminDashboard/RequestsForward';
 import AdminProfile from './Pages/Admin/AdminDashboard/Profile';
 import AdminHistory from './Pages/Admin/AdminDashboard/History';
+import Otpadmin from './Pages/Admin/otp';
+import CreatePassadmin from './Pages/Admin/CreatePass';
 function App() {
   return (
     <BrowserRouter>
@@ -73,6 +75,8 @@ function App() {
 
         {/* Admin Side Routes*/}
         <Route path="/AdminSignUp" element={<AdminSignUp/>}/>
+        <Route path="/Otp-admin" element={<Otpadmin/>}/>
+        <Route path="/CreatePass-admin" element={<CreatePassadmin/>}/>
         <Route path="/AdminDashboard/Home" element={<Home_admin/>}/>
         <Route path="/AdminDashboard/Request" element={<Request_admin/>}/>
         <Route path="/AdminDashboard/ForwardRequest" element={<RequestsForwardadmin/>}/>

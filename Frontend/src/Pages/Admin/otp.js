@@ -1,35 +1,9 @@
 // import { useState } from "react";
 import React, { useState } from "react";
-import { Link,useLocation ,useNavigate} from "react-router-dom";
+import { Link} from "react-router-dom";
 
-import axios from "axios";
-// import HomePage from "./HomePage";
-export default function Otp() {
+export default function Otpadmin() {
   const [Otp, setOtp] = useState("");
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false); 
-  const Email = new URLSearchParams(location.search).get("email");
-  const handleOtpSubmit = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.post('http://localhost:3002/api/users/verify-otp', {
-        email: Email, 
-        otp: Otp,
-      });
-  
-      if (response.status === 200) {
-        console.log('OTP verified successfully');
-        navigate(`/CreatePass?email=${encodeURIComponent(Email)}`)
-      } else {
-        console.error('Error verifying OTP:', response.data.message);
-      }
-    } catch (error) {
-      console.error('Error:', error.message);
-    }finally {
-      setLoading(false);  
-    }
-  };
 
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
@@ -63,9 +37,9 @@ export default function Otp() {
             <Link to="/Otp" className=" text-[rgba(33,100,232,1)]">
               Resend OTP
             </Link>
-            <Link>
-              <button disabled={loading}  onClick={handleOtpSubmit} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-              {loading ? 'Submiting...' : 'Submit'}
+            <Link to="/CreatePass-admin">
+              <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
+              {'Submit'}
               </button>
             </Link>
           </div>
