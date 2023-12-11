@@ -1,10 +1,34 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import axios from "axios";
 export default function AdminSignUp() {
 
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false); 
+  const navigate = useNavigate();
+  const handleSignUp = async () => {
+    try {
+      setLoading(true); 
+      const response = await axios.post('http://localhost:3002/api/users', {
+        name: Name,
+        email: Email,
+        role:'admin'
+      });
   
+      if (response.status === 201) {
+        console.log('User created successfully');
+       
+        navigate(`/Otp-admin?email=${encodeURIComponent(Email)}`);
+      } else {
+        console.error('Error creating user:', response.data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error.message);
+    }finally {
+      setLoading(false); 
+    }
+  };
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
       <div className="bg-white pl-10 pr-10 w-[90%] md:w-[60%] lg:w-[400px] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
@@ -38,9 +62,9 @@ export default function AdminSignUp() {
         </div>
         {Name.length > 0 && Email.length > 0 ? (
           <div className="flex justify-end mt-10">
-            <Link to="/Otp-admin">
-              <button    className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-              {'Submit'}
+            <Link>
+              <button  disabled={loading} onClick={handleSignUp}   className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
+              {loading ? 'Submiting...' : 'Submit'}
               </button>
             </Link>
           </div>

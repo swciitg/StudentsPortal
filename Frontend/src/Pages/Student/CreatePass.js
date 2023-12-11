@@ -6,12 +6,13 @@ import axios from "axios";
 export default function CreatePass() {
   const [paas, setpass] = useState("");
   const [confpass, setconfpaas] = useState("");
+  const [loading, setLoading] = useState(false); 
   const navigate=useNavigate();
   const location = useLocation();
   const email = new URLSearchParams(location.search).get("email");
   const handleCreatePass = async () => {
     try {
-
+setLoading(true)
       const newPassword = paas;
   
       await axios.post('http://localhost:3002/api/users/create-password', {
@@ -23,6 +24,9 @@ export default function CreatePass() {
       navigate(`/StudentDashboard/Home?email=${encodeURIComponent(email)}`);
     } catch (error) {
       console.error('Error creating password:', error.message);
+    }
+    finally{
+      setLoading(false)
     }
   };
 
@@ -58,8 +62,8 @@ export default function CreatePass() {
         {paas === confpass && paas.length > 0 ? (
           <div className="flex justify-end mt-10">
             <Link>
-              <button onClick={handleCreatePass} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-                Submit
+              <button disabled={loading} onClick={handleCreatePass} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
+              {loading ? 'Submiting...' : 'Submit'}
               </button>
             </Link>
           </div>

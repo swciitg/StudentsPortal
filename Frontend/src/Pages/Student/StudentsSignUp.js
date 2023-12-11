@@ -15,6 +15,7 @@ export default function StudentSignUp() {
         name: Name,
         email: Email,
         roll: Roll,
+        role:'student'
       });
   
       if (response.status === 201) {

@@ -1,9 +1,37 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
+import axios from 'axios'
 export default function StudentLogin() {
 
   const [Email, setEmail] = useState("");
   const [Password, setpassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      setLoading(true)
+      const response = await axios.post('http://localhost:3002/api/users/login', {
+        email: Email,
+        password: Password,
+        role:'student'
+      });
+
+      if (response.status === 200) {
+        console.log('Login successful');
+        // Redirect to the dashboard
+        navigate(`/StudentDashboard/Home?email=${encodeURIComponent(Email)}`);
+      } else {
+        console.error('Login failed:', response.data.message);
+        // Handle login failure (e.g., show an error message)
+      }
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+    finally{
+      setLoading(false)
+    }
+  };
 
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
@@ -31,7 +59,7 @@ export default function StudentLogin() {
             <input
               onChange={(e) => setpassword(e.target.value)}
               className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
-              type="text"
+              type="password"
               placeholder="Enter your Password"
             />
           </label>
@@ -41,9 +69,10 @@ export default function StudentLogin() {
             <Link to="/" className=" text-[rgba(33,100,232,1)]">
             Forgot password?
             </Link>
-            <Link to={"/StudentDashboard/Home"}>
-              <button  className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-              {'Submit'}
+            <Link >
+              <button  disabled={loading} onClick={handleLogin} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
+              {loading ? 'Submiting...' : 'Submit'}
+
               </button>
             </Link>
           </div>

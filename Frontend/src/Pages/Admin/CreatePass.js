@@ -1,10 +1,37 @@
 // import { useState } from "react";
+import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate,useLocation } from "react-router-dom";
+
 // import HomePage from "./HomePage";
 export default function CreatePassadmin() {
   const [paas, setpass] = useState("");
-  const [confpass, setconfpaas] = useState("");
+  const [confpass, setconfpaas] = useState(""); 
+  const [loading, setLoading] = useState(false); 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const email = new URLSearchParams(location.search).get("email");
+  const handleCreatePass = async () => {
+    try {
+setLoading(true)
+      const newPassword = paas;
+  
+      await axios.post('http://localhost:3002/api/users/create-password', {
+        email: email, 
+        password: newPassword,
+      });
+
+      console.log('Password created successfully');
+      navigate(`/AdminDashboard/Home?email=${encodeURIComponent(email)}`);
+    } catch (error) {
+      console.error('Error creating password:', error.message);
+    }
+    finally{
+      setLoading(false)
+    }
+  };
+
+
 
 
   return (
@@ -38,9 +65,9 @@ export default function CreatePassadmin() {
         </div>
         {paas === confpass && paas.length > 0 ? (
           <div className="flex justify-end mt-10">
-            <Link to="/AdminDashboard/Home">
-              <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-                Submit
+              <Link>
+              <button disabled={loading} onClick={handleCreatePass} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
+              {loading ? 'Submiting...' : 'Submit'}
               </button>
             </Link>
           </div>
