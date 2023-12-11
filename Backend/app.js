@@ -8,6 +8,7 @@ const dashboardRoutes=require('./routes/dashboardRoutes')
 const app = express();
 const port = 3002;
 
+
 mongoose.connect('mongodb+srv://auth-admin:AdHDOvAtNy8He2l3@cluster0.s875rof.mongodb.net/StudentsPortal');
 
 app.use(cors());

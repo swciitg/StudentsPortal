@@ -35,7 +35,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
           <div className=" text-lg font-semibold ">{requestData['Type of Request']} Request - {requestData["Request Name"]}</div>
         </div>
         <div className="flex w-full mt-1 gap-1">
-            <div className=" w-[80%] flex p-6 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+            <div className=" w-[100%] flex p-6 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
                 <div className="w-[50%] flex flex-col gap-6">
                 <div className="flex flex-col">
                       <label className="text-[#353B47] text-sm">
@@ -128,11 +128,11 @@ function RequestDetailsModal({ isOpen, requestData }) {
 
             
         </div>
-          <div className=" w-[20%] p-2 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+          {/* <div className=" w-[20%] p-2 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
                         <div>
                             
                         </div>
-            </div>
+            </div> */}
                  </div> 
              
     </div>

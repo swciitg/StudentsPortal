@@ -639,7 +639,7 @@ function History() {
             <div className=" text-sm  lg:w-[15%]  text-center  py-3">Status</div>
           </div> 
            <RenderHistory onCheckUpdates={handleCheckUpdates} />
-          <div className="flex justify-center items-center mt-4 ">
+          <div className="flex justify-center items-center mt-4 mb-10">
             <div
               className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${
                 currentPage === 1 ? "text-[#8D9096]" : "text-[#1E2532]"

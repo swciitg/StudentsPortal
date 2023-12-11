@@ -12,7 +12,7 @@ function PendingRequestsadmin(props) {
         ),
       };
   return (
-    <div className=" col-span-3 p-7 lg:w-[35%] w-full  flex flex-col gap-4 pb-4 bg-white h-[100%] shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+    <div className=" col-span-3 p-7 lg:w-[35%] w-full lg:mb-10 flex flex-col gap-4 pb-4 bg-white h-[100%] shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       <div>
         {" "}
         <div className="flex gap-2 items-center">

@@ -14,7 +14,7 @@ function ForwardNotification(props) {
         ),
       };
   return (
-    <div className="p-7 col-span-3 lg:w-[45%] w-full flex flex-col gap-3 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+    <div className="p-7 col-span-3 lg:w-[45%] w-full mb-10  flex flex-col gap-3 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       <div>
         {" "}
         <div className="flex justify-between items-center">
