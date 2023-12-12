@@ -1,9 +1,12 @@
+import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import CornerProfileLogoutSectionadmin from "./CornerProfileLogoutSectionadmin";
 import Admin_Navbar from "../../../Components/Admin_Navbar";
 import RequestDetailsModal from "./Request_Details";
 
 function Request_admin() {
+  const location = useLocation();
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
   const [selectedTab, setSelectedTab] = useState("POR");
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -572,10 +575,10 @@ function Request_admin() {
     <div className="relative h-screen w-[100%]">
       {/*Side Navbar */}
 
-      <Admin_Navbar />
+      <Admin_Navbar  encryptedEmail={encryptedEmail}/>
 
       <div className="lg:absolute h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
-        <CornerProfileLogoutSectionadmin />
+        <CornerProfileLogoutSectionadmin  encryptedEmail={encryptedEmail}/>
         {selectedRequest ? (
           <RequestDetailsModal
             isOpen={isModalOpen}

@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-
-export default function Admin_Navbar() {
+import PropTypes from 'prop-types';
+export default function Admin_Navbar({encryptedEmail}) {
+  Admin_Navbar.propTypes = {
+    encryptedEmail: PropTypes.string.isRequired,
+  };
   const location = useLocation();
   const [showNav, setShowNav] = useState(false);
   const [CurrentWidth, SetCurrentWidth] = useState(window.innerWidth);
@@ -52,7 +55,7 @@ export default function Admin_Navbar() {
               <div className="text-lg font-bold">Students Portal</div>
             </div>
             <ul>
-              <Link to="/AdminDashboard/Home">
+              <Link to={`/AdminDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`}>
                 <div
                   className={
                     
@@ -64,7 +67,7 @@ export default function Admin_Navbar() {
                   <div className="ml-6">Home</div>
                 </div>
               </Link>
-              <Link to="/AdminDashboard/Profile">
+              <Link to={`/AdminDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}>
                 <div
                   className={
                     isSelected("/AdminDashboard/Profile")
@@ -75,7 +78,7 @@ export default function Admin_Navbar() {
                   <div className="ml-6">Profile</div>
                 </div>
               </Link>
-              <Link to="/AdminDashboard/Request">
+              <Link to={`/AdminDashboard/Request?e=${encodeURIComponent(encryptedEmail)}`}>
                 <div
                   className={
                     isSelected("/AdminDashboard/Request")
@@ -86,7 +89,7 @@ export default function Admin_Navbar() {
                   <div className="ml-6">Request</div>
                 </div>
               </Link>
-              <Link to="/AdminDashboard/History">
+              <Link to={`/AdminDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}>
                 <div
                   className={
                     isSelected("/AdminDashboard/History")
@@ -97,7 +100,7 @@ export default function Admin_Navbar() {
                   <div className="ml-6">History</div>
                 </div>
               </Link>
-              <Link to="/AdminDashboard/ForwardRequest">
+              <Link to={`/AdminDashboard/ForwardRequest?e=${encodeURIComponent(encryptedEmail)}`}>
                 <div
                   className={
                     isSelected("/AdminDashboard/ForwardRequest")

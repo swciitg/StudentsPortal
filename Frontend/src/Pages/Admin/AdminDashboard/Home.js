@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import React from "react";
 import CornerProfileLogoutSectionadmin from "./CornerProfileLogoutSectionadmin";
 import Admin_Navbar from "../../../Components/Admin_Navbar";
@@ -6,6 +7,16 @@ import ForwardNotification from "./DashboardTilesadmin/ForwardNotification";
 import NewRequests from "./DashboardTilesadmin/NewRequests";
 
 function Home_admin() {
+  const location = useLocation();
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
+  // const ENCRYPTION_KEY = 'HELLO_WoRLD';
+
+  
+  // // function decryptEmail(encryptedEmail) {
+  // //   const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+  // //   const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+  // //   return decryptedEmail;
+  // // }
    const NewRequests_data=[
         {
             id:1,
@@ -63,19 +74,19 @@ function Home_admin() {
 
       {/*Side Navbar */}
 
-      <Admin_Navbar/>
+      <Admin_Navbar encryptedEmail={encryptedEmail}/>
 
       {/*Tiles Area*/}
 
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
       
       {/*Corner Profile Option*/}
-<CornerProfileLogoutSectionadmin/>
-<NewRequests NewRequests={NewRequests_data}/>
+<CornerProfileLogoutSectionadmin encryptedEmail={encryptedEmail}/>
+<NewRequests NewRequest={NewRequests_data} encryptedEmail={encryptedEmail}/>
 <div className=" lg:flex lg:flex-row gap-7 flex flex-col">
     
-<PendingRequests PendingRequests={PendingRequests_data}/>
-<ForwardNotification Notification={Notification} />
+<PendingRequests PendingRequests={PendingRequests_data} encryptedEmail={encryptedEmail}/>
+<ForwardNotification Notification={Notification} encryptedEmail={encryptedEmail} />
 
 </div>
       </div>

@@ -1,7 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-function CornerProfileLogoutSectionadmin() {
+function CornerProfileLogoutSectionadmin({encryptedEmail}) {
+CornerProfileLogoutSectionadmin.propTypes = {
+    encryptedEmail: PropTypes.string.isRequired,
+  };
   const [logout_toggle, setlogout_toggle] = useState(false);
   const user = {
     name: "General Secretary Ecell"
@@ -10,7 +14,7 @@ function CornerProfileLogoutSectionadmin() {
     <div className="flex p-3 -mt-3 mb-2 justify-end gap-2 items-center">
     <img src="/profile-blue.svg" />
     <Link
-      to="/AdminDashboard/Profile"
+      to={`/AdminDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}
       className="text-[rgba(33,100,232,1)]"
     >
       {user.name}

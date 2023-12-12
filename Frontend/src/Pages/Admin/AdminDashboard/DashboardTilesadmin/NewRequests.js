@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-function NewRequests(props) {
-  const [CurrentWidth, SetCurrentWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    SetCurrentWidth(window.innerWidth);
-  }, []);
+function NewRequests({ NewRequest, encryptedEmail }) {
   NewRequests.propTypes = {
-    NewRequests: PropTypes.arrayOf(
+    NewRequest: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
         Title: PropTypes.string,
         description: PropTypes.string,
         Date: PropTypes.string,
       })
-    ),
+    ).isRequired, // Make sure NewRequests is required
+    encryptedEmail: PropTypes.string.isRequired,
   };
+    const [CurrentWidth, SetCurrentWidth] = useState(window.innerWidth);
+    useEffect(() => {
+      SetCurrentWidth(window.innerWidth);
+    }, []);
   return (
     <div className="border-l-[5px] border-[#2164E8] col-span-3 p-7 w-full mb-7  flex flex-col gap-4 pb-4 bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       <div>
@@ -23,7 +24,7 @@ function NewRequests(props) {
           <div className=" text-xl font-semibold">New Requests received</div>
         </div>
         <div className="flex flex-col gap-2 mt-3">
-          {props.NewRequests.map((item) => (
+          {NewRequest.map((item) => (
             <div
               key={item.id}
               className=" flex border p-2   justify-between items-center"
@@ -43,7 +44,7 @@ function NewRequests(props) {
               </div>
             </div>
           ))}
-          <Link to="/AdminDashboard/Request">
+          <Link to={`/AdminDashboard/Request?e=${encodeURIComponent(encryptedEmail)}`}>
             <button className="text-sm mt-1 p-[5px] pl-3 pr-3 bg-[#2164E8] text-white rounded">
             View all Requests
             </button>
