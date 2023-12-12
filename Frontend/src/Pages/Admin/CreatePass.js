@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link,useNavigate,useLocation } from "react-router-dom";
+import CryptoJS from 'crypto-js'
 
 // import HomePage from "./HomePage";
 export default function CreatePassadmin() {
@@ -9,20 +10,28 @@ export default function CreatePassadmin() {
   const [confpass, setconfpaas] = useState(""); 
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
-  const location = useLocation();
-  const email = new URLSearchParams(location.search).get("email");
+  const location = useLocation();  
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
+  const ENCRYPTION_KEY = 'HELLO_WoRLD';
+
+  
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
   const handleCreatePass = async () => {
     try {
 setLoading(true)
       const newPassword = paas;
   
       await axios.post('http://localhost:3002/api/users/create-password', {
-        email: email, 
+        email: decryptEmail(encryptedEmail), 
         password: newPassword,
       });
 
       console.log('Password created successfully');
-      navigate(`/AdminDashboard/Home?email=${encodeURIComponent(email)}`);
+      navigate(`/AdminDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`);
     } catch (error) {
       console.error('Error creating password:', error.message);
     }

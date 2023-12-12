@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import CryptoJS from 'crypto-js'
 import { Link,useNavigate } from "react-router-dom";
 export default function AdminLogin() {
 
@@ -7,7 +8,13 @@ export default function AdminLogin() {
   const [Password, setpassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const ENCRYPTION_KEY = 'HELLO_WoRLD';
 
+  // Function to encrypt the email
+  function encryptEmail(email) {
+    const encryptedEmail = CryptoJS.AES.encrypt(email, ENCRYPTION_KEY).toString();
+    return encryptedEmail;
+  }
   const handleLogin = async () => {
     try {
       setLoading(true)
@@ -20,7 +27,7 @@ export default function AdminLogin() {
       if (response.status === 200) {
         console.log('Login successful');
         // Redirect to the dashboard
-        navigate(`/AdminDashboard/Home?email=${encodeURIComponent(Email)}`);
+        navigate(`/AdminDashboard/Home?e=${encodeURIComponent(encryptEmail(Email))}`);
       } else {
         console.error('Login failed:', response.data.message);
         // Handle login failure (e.g., show an error message)

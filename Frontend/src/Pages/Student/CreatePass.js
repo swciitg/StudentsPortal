@@ -1,32 +1,42 @@
 // import { useState } from "react";
 import React, { useState } from "react";
-import { Link,useNavigate,useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import CryptoJS from "crypto-js";
+
 // import HomePage from "./HomePage";
 export default function CreatePass() {
   const [paas, setpass] = useState("");
   const [confpass, setconfpaas] = useState("");
-  const [loading, setLoading] = useState(false); 
-  const navigate=useNavigate();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
-  const email = new URLSearchParams(location.search).get("email");
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
   const handleCreatePass = async () => {
     try {
-setLoading(true)
+      setLoading(true);
       const newPassword = paas;
-  
-      await axios.post('http://localhost:3002/api/users/create-password', {
-        email: email, 
+
+      await axios.post("http://localhost:3002/api/users/create-password", {
+        email: decryptEmail(encryptedEmail),
         password: newPassword,
       });
 
-      console.log('Password created successfully');
-      navigate(`/StudentDashboard/Home?email=${encodeURIComponent(email)}`);
+      console.log("Password created successfully");
+      navigate(
+        `/StudentDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`
+      );
     } catch (error) {
-      console.error('Error creating password:', error.message);
-    }
-    finally{
-      setLoading(false)
+      console.error("Error creating password:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -62,8 +72,12 @@ setLoading(true)
         {paas === confpass && paas.length > 0 ? (
           <div className="flex justify-end mt-10">
             <Link>
-              <button disabled={loading} onClick={handleCreatePass} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-              {loading ? 'Submiting...' : 'Submit'}
+              <button
+                disabled={loading}
+                onClick={handleCreatePass}
+                className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
+              >
+                {loading ? "Submiting..." : "Submit"}
               </button>
             </Link>
           </div>

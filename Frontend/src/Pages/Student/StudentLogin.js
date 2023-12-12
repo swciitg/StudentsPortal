@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link ,useNavigate} from "react-router-dom";
+import CryptoJS from 'crypto-js'
 import axios from 'axios'
 export default function StudentLogin() {
 
@@ -7,7 +8,11 @@ export default function StudentLogin() {
   const [Password, setpassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  function encryptEmail(email) {
+    const encryptedEmail = CryptoJS.AES.encrypt(email, ENCRYPTION_KEY).toString();
+    return encryptedEmail;
+  }
   const handleLogin = async () => {
     try {
       setLoading(true)
@@ -19,11 +24,9 @@ export default function StudentLogin() {
 
       if (response.status === 200) {
         console.log('Login successful');
-        // Redirect to the dashboard
-        navigate(`/StudentDashboard/Home?email=${encodeURIComponent(Email)}`);
+        navigate(`/StudentDashboard/Home?e=${encodeURIComponent(encryptEmail(Email))}`);
       } else {
         console.error('Login failed:', response.data.message);
-        // Handle login failure (e.g., show an error message)
       }
     } catch (error) {
       console.error('Error:', error.message);

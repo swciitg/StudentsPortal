@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
+import CryptoJS from 'crypto-js'
 export default function StudentSignUp() {
 
   const [Name, setName] = useState("");
@@ -8,6 +9,13 @@ export default function StudentSignUp() {
   const [Roll, setRoll] = useState("");
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
+  const ENCRYPTION_KEY = 'HELLO_WoRLD';
+
+  // Function to encrypt the email
+  function encryptEmail(email) {
+    const encryptedEmail = CryptoJS.AES.encrypt(email, ENCRYPTION_KEY).toString();
+    return encryptedEmail;
+  }
   const handleSignUp = async () => {
     try {
       setLoading(true); 
@@ -21,7 +29,7 @@ export default function StudentSignUp() {
       if (response.status === 201) {
         console.log('User created successfully');
        
-        navigate(`/Otp?email=${encodeURIComponent(Email)}`);
+        navigate(`/Otp?e=${encodeURIComponent(encryptEmail(Email))}`);
       } else {
         console.error('Error creating user:', response.data.message);
       }

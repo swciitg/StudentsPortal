@@ -1,6 +1,7 @@
 // import { useState } from "react";
 import React, { useState } from "react";
 import { Link,useLocation ,useNavigate} from "react-router-dom";
+import CryptoJS from 'crypto-js';
 
 import axios from "axios";
 // import HomePage from "./HomePage";
@@ -9,18 +10,26 @@ export default function Otp() {
   const location = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false); 
-  const Email = new URLSearchParams(location.search).get("email");
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
+  const ENCRYPTION_KEY = 'HELLO_WoRLD';
+
+  
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
   const handleOtpSubmit = async () => {
     try {
       setLoading(true);
       const response = await axios.post('http://localhost:3002/api/users/verify-otp', {
-        email: Email, 
+        email: decryptEmail(encryptedEmail), 
         otp: Otp,
       });
   
       if (response.status === 200) {
         console.log('OTP verified successfully');
-        navigate(`/CreatePass?email=${encodeURIComponent(Email)}`)
+        navigate(`/CreatePass?e=${encodeURIComponent(encryptedEmail)}`)
       } else {
         console.error('Error verifying OTP:', response.data.message);
       }
