@@ -1,14 +1,46 @@
 import { useLocation } from "react-router-dom";
-import React from "react";
+import CryptoJS from "crypto-js";
+import React, { useEffect, useState } from "react";
 import Admin_Navbar from "../../../Components/Admin_Navbar";
 import CornerProfileLogoutSectionadmin from "./CornerProfileLogoutSectionadmin";
+import axios from "axios";
 function AdminProfile() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const user = {
-    name: "General Secretary Ecell",
-   'Official mail id': "Gsececell@iitg.ac.in",
-  };
+  // const user = {
+  //   name: "General Secretary Ecell",
+  //  'Official mail id': "Gsececell@iitg.ac.in",
+  // };
+  const [user,setuser]=useState("")
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
+  useEffect(() => {
+    async function UserDetails() {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/api/users/user-details",
+          {
+            email: decryptEmail(encryptedEmail),
+          }
+        );
+
+        if (response.status === 200) {
+          const user=response.data;
+         setuser(user)
+        } else {
+          console.error(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    }
+    UserDetails();
+  }, []);
   return (
     <div className=" relative h-screen w-[100%]">
       <Admin_Navbar  encryptedEmail={encryptedEmail} />
@@ -31,7 +63,7 @@ function AdminProfile() {
             <div className="lg:w-[28%] w-full flex flex-col">
             <div className="flex  flex-col items-left">
                 <label className="text-[#353B47] text-sm">Official mail id</label>
-                <div>{user["Official mail id"]}</div>
+                <div>{user.email}@iitg.ac.in</div>
               </div>
             </div>
           </div>

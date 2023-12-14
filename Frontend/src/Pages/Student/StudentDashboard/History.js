@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
 import RequestDetailsModal from "./History_CheckUpdates";
+import { useLocation } from "react-router-dom";
 
 function History() {
+  const location = useLocation();
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
+ 
   const [selectedTab, setSelectedTab] = useState("Pending");
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -555,16 +559,17 @@ function History() {
   };
   return (
     <div className=" relative h-screen w-[100%]">
-      <Student_Navbar />
+      <Student_Navbar  encryptedEmail={encryptedEmail}/>
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection />
+        <CornerProfileLogoutSection  encryptedEmail={encryptedEmail}/>
      
      
        {selectedRequest? <RequestDetailsModal
       isOpen={isModalOpen}
       onRequestClose={() => setIsModalOpen(false)}
       requestData={selectedRequest}
+      encryptedEmail={encryptedEmail}
     />: <><div className="flex flex-col py-2 pt-4 px-4 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
           <div className="flex  items-center  gap-3 mb-3">
             <div className="   font-semibold text-xl">Request History</div>

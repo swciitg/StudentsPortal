@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-function RequestDetailsModal({ isOpen, requestData }) {
+function RequestDetailsModal({ isOpen, requestData, encryptedEmail}) {
   if (!isOpen) {    
     return null;
   }
@@ -27,6 +27,8 @@ function RequestDetailsModal({ isOpen, requestData }) {
       Request_sent_date: PropTypes.string.isRequired,
       "POR Position":PropTypes.string.isRequired,
     }).isRequired,
+    encryptedEmail: PropTypes.string.isRequired,
+
   };
   
   return (
@@ -75,12 +77,12 @@ function RequestDetailsModal({ isOpen, requestData }) {
                       <div>{requestData['Parent Body']}</div>
                     </div>
                <div className=" flex gap-6">
-                <Link to="/StudentDashboard/Profile">
+                <Link to={`/StudentDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}>
                 <button className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8] text-white rounded">
                   View Profile
                 </button>
               </Link>
-              <Link to="/StudentDashboard/History">
+              <Link to={`/StudentDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}>
               <button className="text-sm  p-[5px] pl-3 pr-3 border border-[#767A81] rounded">
                 Go Back
               </button></Link>

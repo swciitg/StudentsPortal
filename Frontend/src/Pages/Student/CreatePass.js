@@ -71,7 +71,7 @@ export default function CreatePass() {
         </div>
         {paas === confpass && paas.length > 0 ? (
           <div className="flex justify-end mt-10">
-            <Link>
+            <div>
               <button
                 disabled={loading}
                 onClick={handleCreatePass}
@@ -79,15 +79,15 @@ export default function CreatePass() {
               >
                 {loading ? "Submiting..." : "Submit"}
               </button>
-            </Link>
+            </div>
           </div>
         ) : (
           <div className="flex justify-end mt-10">
-            <Link>
+            <div>
               <button className=" inline-flex items-center p-1 bg-[rgba(188,190,194,1)] text-[rgba(141,144,150,1)] rounded-sm pl-4 pr-4">
                 Submit
               </button>
-            </Link>
+            </div>
           </div>
         )}
       </div>

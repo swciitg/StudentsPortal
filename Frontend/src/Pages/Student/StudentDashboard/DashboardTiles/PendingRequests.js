@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types"
 
-function PendingRequests(props) {
+function PendingRequests({PendingRequest,encryptedEmail}) {
     PendingRequests.propTypes = {
-        PendingRequests: PropTypes.arrayOf(
+        PendingRequest: PropTypes.arrayOf(
           PropTypes.shape({
             id: PropTypes.number,
             POR: PropTypes.string,
@@ -13,6 +13,7 @@ function PendingRequests(props) {
             Date: PropTypes.string,
           })
         ),
+    encryptedEmail: PropTypes.string.isRequired,
       };
       
   return (
@@ -24,7 +25,7 @@ function PendingRequests(props) {
           <div className=" text-base">Pending Requests</div>
         </div>
         <div className="mt-2 lg:mb-0 mb-3 flex flex-col gap-2">
-          {props.PendingRequests.map((item) => (
+          {PendingRequest.map((item) => (
             <div
               key={item.id}
               className="p-2 flex justify-center shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]"
@@ -45,7 +46,7 @@ function PendingRequests(props) {
         </div>
       </div>
       <Link
-        to="/StudentDashboard/History"
+        to={`/StudentDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}
         className="text-[#2164E8] text-sm flex justify-end "
       >
         View all Pending Forwards

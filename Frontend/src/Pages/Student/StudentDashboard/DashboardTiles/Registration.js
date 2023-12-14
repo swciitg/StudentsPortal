@@ -2,26 +2,28 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function Registration(props) {
+function Registration({user,ManageRequests,encryptedEmail}) {
   const [toggle1, setToggle1] = useState(true);
   const [toggle2, setToggle2] = useState(false);
   const [toggle3, setToggle3] = useState(false);
  
   Registration.propTypes = {
-    user: PropTypes.shape({
+    user: PropTypes.arrayOf(
+    PropTypes.shape({
       name: PropTypes.string,
       Program: PropTypes.string,
       Branch: PropTypes.string,
       Email: PropTypes.string,
       ProfileCompletion: PropTypes.number,
-    }),
+    })).isRequired,
     ManageRequests: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
         status: PropTypes.string,
         Date: PropTypes.string,
       })
-    ),
+    ).isRequired,
+    encryptedEmail: PropTypes.string.isRequired,
   };
   
 
@@ -50,7 +52,7 @@ function Registration(props) {
               <img src="/registration.svg" />
               <div className="text-xl font-semibold">Registration</div>
             </div>
-            {props.user.ProfileCompletion !== 100 ? (
+            {user.ProfileCompletion !== 100 ? (
               <div className="text-sm text-[#D83B01]">
                 Your Profile is not complete!!
               </div>
@@ -65,7 +67,7 @@ function Registration(props) {
               order to make Requests through this Portal.
             </p>
             <div className="flex justify-end ">
-              <Link to="/StudentDashboard/Profile">
+              <Link to={`/StudentDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}>
                 <button className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8] text-white rounded">
                   View Profile
                 </button>
@@ -101,7 +103,7 @@ function Registration(props) {
             </p>
           </div>
           <div className=" flex justify-end ">
-            <Link to="/StudentDashboard/Request/SelectValidation">
+            <Link to={`/StudentDashboard/Request/SelectValidation?e=${encodeURIComponent(encryptedEmail)}`}>
               <button className="text-sm p-[5px] pl-3 mt-4 pr-3 bg-[#2164E8] text-white rounded">
                 Make a Request
               </button>
@@ -129,7 +131,7 @@ function Registration(props) {
             <div className="text-xl font-semibold">Manage Requests</div>
           </div>
           <div className="flex gap-1 flex-col lg:my-0 my-2">
-            {props.ManageRequests.map((item) => (
+            {ManageRequests.map((item) => (
               <div
                 key={item.id}
                 className="bg-[#EFF6FC] p-2 flex justify-between items-center"
@@ -140,7 +142,7 @@ function Registration(props) {
             ))}
           </div>
           <div className=" flex justify-end ">
-            <Link to="/StudentDashboard/History">
+            <Link to={`/StudentDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}>
               <button className="text-sm p-[5px] pl-3 pr-3 bg-[#2164E8] text-white rounded">
                 Check my History
               </button>

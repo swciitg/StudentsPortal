@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import PropTypes from 'prop-types';
 
-export default function Student_Navbar() {
+export default function Student_Navbar({encryptedEmail}) {
+  Student_Navbar.propTypes = {
+    encryptedEmail: PropTypes.string.isRequired,
+  };
   const location = useLocation();
   const [showNav, setShowNav] = useState(false);
   const [CurrentWidth, SetCurrentWidth] = useState(window.innerWidth);
@@ -39,6 +43,7 @@ export default function Student_Navbar() {
         </div>
       )}
 
+
       {
         <nav
         style={{ zIndex: 10 }}
@@ -52,7 +57,7 @@ export default function Student_Navbar() {
               <div className="text-lg font-bold">Students Portal</div>
             </div>
             <ul>
-              <Link to="/StudentDashboard/Home">
+              <Link to={`/StudentDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`}>
                 <div
                   className={
                     
@@ -64,7 +69,7 @@ export default function Student_Navbar() {
                   <div className="ml-6">Home</div>
                 </div>
               </Link>
-              <Link to="/StudentDashboard/Profile">
+              <Link to={`/StudentDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}>
                 <div
                   className={
                     isSelected("/StudentDashboard/Profile")
@@ -75,7 +80,7 @@ export default function Student_Navbar() {
                   <div className="ml-6">Profile</div>
                 </div>
               </Link>
-              <Link to="/StudentDashboard/Request">
+              <Link  to={`/StudentDashboard/Request?e=${encodeURIComponent(encryptedEmail)}`}>
                 <div
                   className={
                     isSelected("/StudentDashboard/Request")
@@ -86,7 +91,7 @@ export default function Student_Navbar() {
                   <div className="ml-6">Request</div>
                 </div>
               </Link>
-              <Link to="/StudentDashboard/History">
+              <Link to={`/StudentDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}>
                 <div
                   className={
                     isSelected("/StudentDashboard/History")
@@ -97,7 +102,7 @@ export default function Student_Navbar() {
                   <div className="ml-6">History</div>
                 </div>
               </Link>
-              <Link to="/StudentDashboard/ForwardRequest">
+              <Link to={`/StudentDashboard/ForwardRequest?e=${encodeURIComponent(encryptedEmail)}`}>
                 <div
                   className={
                     isSelected("/StudentDashboard/ForwardRequest")

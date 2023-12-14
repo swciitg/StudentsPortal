@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Student_Navbar from "../../../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function CreateClubPORStep2() {
+  const location = useLocation();
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
   const [Tenure, SetTenur] = useState("");
   const [Validation, SetValidation] = useState("");
   const TenureOptions = [
@@ -17,10 +19,10 @@ function CreateClubPORStep2() {
   const ValidationOptions = ["General secretary", "Vice President"];
   return (
     <div className=" relative h-screen w-[100%]">
-      <Student_Navbar />
+      <Student_Navbar  encryptedEmail={encryptedEmail} />
       <div className=" lg:absolute flex flex-col  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection />
+        <CornerProfileLogoutSection  encryptedEmail={encryptedEmail} />
         <div className="flex justify-center items-center h-full">
           <div className="bg-white px-10 w-[400px] pb-9 pt-9 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
             <div className="flex flex-col gap-2 items-center">
@@ -84,13 +86,13 @@ function CreateClubPORStep2() {
             <div className="flex justify-between mt-10">
               <Link
                 className="text-[#2164E8] "
-                to="/StudentDashboard/Request/ClubPOR/1"
+            to={`/StudentDashboard/Request/ClubPOR/1?e=${encodeURIComponent(encryptedEmail)}`}
               >
                 Go Back
               </Link>
               {Tenure.length > 0 && Validation.length > 0 ? (
                 <Link
-                  to={"/StudentDashboard/Request/ClubPOR/3"}
+                  to={`/StudentDashboard/Request/ClubPOR/3?e=${encodeURIComponent(encryptedEmail)}`}
                 >
                   <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                     Submit

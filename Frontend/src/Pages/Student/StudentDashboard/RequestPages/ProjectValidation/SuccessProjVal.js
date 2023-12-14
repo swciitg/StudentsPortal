@@ -1,15 +1,17 @@
 import React from "react";
 import Student_Navbar from "../../../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function SuccessProjVal() {
+  const location = useLocation();
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
   return (
     <div className=" relative h-screen w-[100%]">
-      <Student_Navbar />
+      <Student_Navbar  encryptedEmail={encryptedEmail} />
       <div className=" lg:absolute flex flex-col  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection />
+        <CornerProfileLogoutSection  encryptedEmail={encryptedEmail}  />
         <div className="flex justify-center items-center h-full">
           <div className="bg-white px-10 w-[400px] pb-9 pt-9 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
             <div>
@@ -26,17 +28,12 @@ function SuccessProjVal() {
             </div>
 
             <div className="flex flex-col items-center mt-12">
-              <Link to={"/StudentDashboard/History"}>
+              <Link to={`/StudentDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}>
                 <button className=" inline-flex items-center p-2 bg-[#2164E8] text-white rounded-sm px-5">
                   Check History
                 </button>
               </Link>
-              <Link
-                to={"/StudentDashboard/Request"}
-                className="text-[#2164E8] mt-2"
-              >
-                Add another request
-              </Link>
+              <Link to={`/StudentDashboard/Request?e=${encodeURIComponent(encryptedEmail)}`} className="text-[#2164E8] mt-2">Add another request</Link>
             </div>
           </div>
         </div>

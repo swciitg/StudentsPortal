@@ -50,7 +50,7 @@ export default function AdminSignUp() {
           <label className="flex flex-col gap-1">
             <span className="font-medium text-sm">Name</span>
             <input
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '))}
               className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
               type="text"
               placeholder="Enter your Full name"

@@ -10,7 +10,7 @@ function NewRequests({ NewRequest, encryptedEmail }) {
         description: PropTypes.string,
         Date: PropTypes.string,
       })
-    ).isRequired, // Make sure NewRequests is required
+    ).isRequired, 
     encryptedEmail: PropTypes.string.isRequired,
   };
     const [CurrentWidth, SetCurrentWidth] = useState(window.innerWidth);

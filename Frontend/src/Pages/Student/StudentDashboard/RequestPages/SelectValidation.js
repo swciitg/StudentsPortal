@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import CornerProfileLogoutSection from "../CornerProfileLogoutSection";
 import Student_Navbar from "../../../../Components/Student_Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function SelectValidation() {
+  const location = useLocation();
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
+ 
   const [SelectedOption, SetSelectedOption] = useState("ClubPOR");
   return (
     <div className=" relative h-screen w-[100%]">
-      <Student_Navbar />
+      <Student_Navbar  encryptedEmail={encryptedEmail} />
       <div className=" lg:absolute flex flex-col  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection />
+        <CornerProfileLogoutSection  encryptedEmail={encryptedEmail} />
         <div className="flex justify-center items-center h-full">
           <div className="bg-white px-10 w-[400px] pb-9 pt-9 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
             <div className="flex justify-center  mb-5">
@@ -102,9 +105,10 @@ function SelectValidation() {
             <div className="flex justify-end mt-10">
               <Link
                 to={
-                  `/StudentDashboard/Request/${SelectedOption}/1`
+                  `/StudentDashboard/Request/${SelectedOption}/1?e=${encodeURIComponent(encryptedEmail)}`
                 }
               >
+
                 <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                   Continue
                 </button>

@@ -1,12 +1,47 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
+import CryptoJS from "crypto-js";
+import PropTypes from "prop-types";
+import axios from "axios";
 import { Link } from 'react-router-dom';
-function CornerProfileLogoutSection() {
-  const [logout_toggle, setlogout_toggle] = useState(false);
-  const user = {
-    name: "Yash Chouhan"
+function CornerProfileLogoutSection({ encryptedEmail }) {
+  CornerProfileLogoutSection.propTypes = {
+    encryptedEmail: PropTypes.string.isRequired,
   };
+  const [logout_toggle, setlogout_toggle] = useState(false);
+  // const user = {
+  //   name: "Yash Chouhan"
+  // };
+  const [user,setuser]=useState("")
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
 
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
+  useEffect(() => {
+    async function UserDetails() {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/api/users/user-details",
+          {
+            email: decryptEmail(encryptedEmail),
+          }
+        );
+
+        if (response.status === 200) {
+          const user=response.data;
+         setuser(user)
+        } else {
+          console.error(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    }
+    UserDetails();
+  }, []);
   return (<div>
     <div className="flex p-3 -mt-3 mb-2 justify-end gap-2 items-center">
     <img src="/profile-blue.svg" />

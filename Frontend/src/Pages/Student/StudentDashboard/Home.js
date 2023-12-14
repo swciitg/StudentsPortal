@@ -7,8 +7,12 @@ import ApprovedRequests from "./DashboardTiles/ApprovedRequests";
 import PendingRequests from "./DashboardTiles/PendingRequests";
 import BuildMyCV from "./DashboardTiles/BuildMyCV";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
+import { useLocation } from "react-router-dom";
+
 
 function Home() {
+  const location = useLocation();
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
   const user = {
     name: "Yash Chouhan",
     Program: "B.Des",
@@ -89,40 +93,40 @@ function Home() {
 
       {/*Side Navbar */}
 
-      <Student_Navbar />
+      <Student_Navbar  encryptedEmail={encryptedEmail}/>
 
       {/*Tiles Area*/}
 
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
       
       {/*Corner Profile Option*/}
-<CornerProfileLogoutSection/>
+<CornerProfileLogoutSection  encryptedEmail={encryptedEmail}/>
        
         <div className="flex flex-col gap-10 lg:gap-5 lg:grid lg:grid-cols-10 pb-10 lg:pb-0 ">
 
           {/* Tile 1*/}
 
-          <Registration user={user} ManageRequests={ManageRequests}/>
+          <Registration user={user} ManageRequests={ManageRequests}  encryptedEmail={encryptedEmail}/>
 
           {/* Tile 2*/}
 
-          <MyProfile user={user} />
+          <MyProfile user={user}  encryptedEmail={encryptedEmail}/>
 
           {/* Tile 3*/}
 
-          <ForwardNotification Notification={Notification} />
+          <ForwardNotification Notification={Notification} encryptedEmail={encryptedEmail} />
 
           {/* Tile 4*/}
 
-          <ApprovedRequests ApprovedRequests={ApprovedRequests_data} />
+          <ApprovedRequests ApprovedRequest={ApprovedRequests_data} encryptedEmail={encryptedEmail} />
 
           {/* Tile 5*/}
 
-          <PendingRequests PendingRequests={PendingRequests_data}/>
+          <PendingRequests PendingRequest={PendingRequests_data} encryptedEmail={encryptedEmail}/>
 
           {/* Tile 6*/}
 
-          <BuildMyCV />
+          <BuildMyCV  encryptedEmail={encryptedEmail}/>
 
         </div>
       </div>
