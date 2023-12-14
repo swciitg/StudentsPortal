@@ -81,19 +81,19 @@ export default function StudentSignUp() {
         </div>
         {Roll.length > 0 && Name.length > 0 && Email.length > 0 ? (
           <div className="flex justify-end mt-10">
-            <Link>
+            <div>
               <button   disabled={loading} onClick={handleSignUp} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
               {loading ? 'Submiting...' : 'Submit'}
               </button>
-            </Link>
+            </div>
           </div>
         ) : (
           <div className="flex justify-end mt-10">
-            <Link>
+            <div>
               <button className=" inline-flex items-center p-1 bg-[rgba(188,190,194,1)] text-[rgba(141,144,150,1)] rounded-sm pl-4 pr-4">
                 Submit
               </button>
-            </Link>
+            </div>
           </div>
         )}
       </div>

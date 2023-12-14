@@ -35,12 +35,12 @@ async function verifyOTP(req, res) {
   const { email, otp } = req.body;
 
   try {
-    const user = await User.findOne({ email, otp, verified: false });
+    const user = await User.findOne({ email, otp});
 
     if (!user) {
       return res
         .status(400)
-        .json({ message: "Invalid OTP or user already verified" });
+        .json({ message: "Invalid OTP" });
     }
 
     user.verified = true;
@@ -50,6 +50,23 @@ async function verifyOTP(req, res) {
     res.status(200).json({ message: "OTP verified successfully" });
   } catch (error) {
     console.error("Error verifying OTP:", error);
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
+  }
+}
+async function resendOTP(req, res) {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    const otp = generateOTP();
+    user.otp = otp;
+    await user.save();
+    await emailService.sendOTP(email, otp);
+    console.log("OTP Re-sended Successfully");
+    res.status(201).json({ message: "OTP Re-send successful" });
+  } catch (error) {
+    console.log("Error Re-sending OTP:", error);
     res
       .status(500)
       .json({ message: "Internal Server Error", error: error.message });
@@ -84,7 +101,7 @@ async function login(req, res) {
   const { email, password, role } = req.body;
 
   try {
-    const user = await User.findOne({ email, role });
+    const user = await User.findOne({ email, role,verified:true });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -139,4 +156,5 @@ module.exports = {
   generateOTP,
   createPassword,
   userDetails,
+  resendOTP,
 };

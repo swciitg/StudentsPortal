@@ -74,25 +74,25 @@ export default function AdminLogin() {
         </div>
         {Password.length > 0 && Email.length > 0 ? (
             <div className="flex justify-between items-center mt-10">
-            <Link to="/" className=" text-[rgba(33,100,232,1)]">
+            <div className=" text-[rgba(33,100,232,1)]">
             Forgot password?
-            </Link>
-            <Link >
+            </div>
+            <div>
               <button disabled={loading} onClick={handleLogin} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
               {loading ? 'Submiting...' : 'Submit'}
               </button>
-            </Link>
+            </div>
           </div>
         ) : (
           <div className="flex justify-between items-center mt-10">
-            <Link to="/" className="  text-[rgba(33,100,232,1)]">
+            <div className="  text-[rgba(33,100,232,1)]">
             Forgot password?
-            </Link>
-            <Link>
+            </div>
+            <div>
               <button className=" inline-flex items-center p-1 bg-[rgba(188,190,194,1)] text-[rgba(141,144,150,1)] rounded-sm pl-4 pr-4">
                 Submit
               </button>
-            </Link>
+            </div>
           </div>
         )}
       </div>
