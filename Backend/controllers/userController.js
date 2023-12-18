@@ -2,6 +2,8 @@ const User = require("../models/User");
 const emailService = require("../services/emailService");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const path = require("path");
 
 async function createUser(req, res) {
   const { name, email, roll, role } = req.body;
@@ -35,12 +37,10 @@ async function verifyOTP(req, res) {
   const { email, otp } = req.body;
 
   try {
-    const user = await User.findOne({ email, otp});
+    const user = await User.findOne({ email, otp });
 
     if (!user) {
-      return res
-        .status(400)
-        .json({ message: "Invalid OTP" });
+      return res.status(400).json({ message: "Invalid OTP" });
     }
 
     user.verified = true;
@@ -101,7 +101,7 @@ async function login(req, res) {
   const { email, password, role } = req.body;
 
   try {
-    const user = await User.findOne({ email, role,verified:true });
+    const user = await User.findOne({ email, role, verified: true });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -114,7 +114,6 @@ async function login(req, res) {
     }
     console.log(`${role} Login successfully`);
 
-    // Assuming you have a secret key for JWT, replace 'your_secret_key' with your actual secret key
     const token = jwt.sign({ userId: user._id }, "your_secret_key", {
       expiresIn: "1h",
     });
@@ -129,17 +128,34 @@ async function login(req, res) {
 }
 async function userDetails(req, res) {
   try {
-    const { email } = req.body;
+    const {
+      email,
+      program,
+      altEmail,
+      department,
+      profileCompletion,
+      profileUrl,
+    } = req.body;
     const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
+    if (program && program.length > 0) user.program = program;
+    if (altEmail && altEmail.length > 0) user.altEmail = altEmail;
+    if (department && department.length > 0) user.department = department;
+    user.profileCompletion = profileCompletion;
+    if (profileUrl && profileUrl.length > 0) user.profileUrl = profileUrl;
+    await user.save();
     res.status(200).json({
       name: user.name,
       email: user.email,
       roll: user.roll,
+      program: user.program,
+      altEmail: user.altEmail,
+      department: user.department,
+      profileCompletion: user.profileCompletion,
+      profileUrl: user.profileUrl,
     });
   } catch (error) {
     console.error("Error fetching user details:", error);
@@ -148,8 +164,37 @@ async function userDetails(req, res) {
       .json({ message: "Internal Server Error", error: error.message });
   }
 }
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({ storage: storage });
+
+async function handleFileUpload(req, res) {
+  try {
+    const filePath = req.file.path;
+    const serverURL =
+      "http://localhost:3002/uploads/" + path.basename(filePath); // Assuming your uploads are in the 'uploads' folder
+    res.json({ url: serverURL });
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
+  }
+}
 
 module.exports = {
+  upload,
+  handleFileUpload,
   createUser,
   verifyOTP,
   login,

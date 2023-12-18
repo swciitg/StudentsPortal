@@ -12,6 +12,11 @@ const userSchema = new mongoose.Schema({
     enum: ['student', 'admin'],
     required: true,
   },
+  program: String,
+  altEmail: String,
+  department: String,
+  profileCompletion: { type: Number, default: 0 },
+  profileUrl: String,
 });
 
 const User = mongoose.model('User', userSchema);

@@ -1,21 +1,36 @@
-import React, {  useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
+import axios from "axios";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
+import CryptoJS from "crypto-js";
 import { useLocation } from "react-router-dom";
 
 function Profile() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const [user, setUser] = useState({
-    name: "Yash Chouhan",
-    Program: "",
-    Roll: "",
-    Department: "",
-    ERP_Email: "y.chauhan@iitg.ac.in",
-    Alt_Email: "",
-    ProfileCompletion: 0,
-    Profile_url: "",
+  const [user, setuser] = useState({
+    name: "",
+    roll: "",
+    program: "",
+    department: "",
+    altEmail: "",
+    email: "",
+    profileCompletion: 0,
+    profileUrl: "",
   });
+//These States are going to be updated
+  const [Program, setProgram] = useState("");
+  const [Department, setDepartment] = useState("");
+  const [AltEmail, setAlt_email] = useState("");
+  const [ProfileUrl, setProfileURL] = useState("");
+
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
+
   const Departments = [
     "Biosciences and Bioengineering",
     "Chemical Engineering",
@@ -31,46 +46,97 @@ function Profile() {
   ];
   const [isEditing, setIsEditing] = useState(false);
   const fileInputRef = useRef(null);
-  
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUser((prevUser) => ({ ...prevUser, [name]: value }));
-  };
-  const handleFileInputChange = (e) => {
+
+ 
+  const handleFileInputChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const previewURL = URL.createObjectURL(file);
-      // For simplicity, you might want to upload the file to a server and store the URL in the state.
-      // Here, we're just storing the file object for now.
-      setUser((prevUser) => ({ ...prevUser, Profile_url: previewURL }));
+      const formData = new FormData();
+      formData.append('file', file);
+  
+      try {
+        const response= await axios.post('http://localhost:3002/api/users/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+  
+        const serverURL = response.data.url; // Assuming the server responds with the file URL
+        await axios.post('http://localhost:3002/api/users/user-details', {
+          email: decryptEmail(encryptedEmail),
+          profileUrl: serverURL,
+        });
+  
+        setProfileURL(serverURL);
+
+      
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
     }
   };
 
-  const handleCompleteProfile = () => {
-    // Perform profile completion calculation here
-    // Update the points based on the fields you want to include
+  const handleCompleteProfile = async () => {
     let Points = 0;
-    if (user.Roll.length>0) Points += 25;
-  if (user.Program.length>0) Points += 25;
-  if (user.Alt_Email.length>0) Points += 25;
-  if (user.Department.length>0) Points += 25;
-    // ...
-
-    // Update the user state with new data
-    setUser((prevUser) => ({ ...prevUser, ProfileCompletion: Points }));
-
-    // Set isEditing to false to hide the editing fields
+    if( user.program && user.program.length>0) Points += 25;
+    if (user.altEmail&&user.altEmail.length > 0) Points += 25;
+    if (user.department&&user.department.length > 0) Points += 25;
+    if (user.profileUrl&&user.profileUrl.length > 0) Points += 25;
+    try {
+      const response = await axios.post(
+        "http://localhost:3002/api/users/user-details",
+        {
+          email: decryptEmail(encryptedEmail),
+          program: Program,
+          altEmail: AltEmail,
+          department: Department,
+          profileCompletion: Points
+        }
+      );
+      if (response.status === 200) {
+        console.log("Profile Update successful");
+        console.log(response.data);
+      } else {
+        console.error("Profile Update failed:", response.data.message);
+      }
+    } catch (error) {
+      console.log("Error:" + error);
+    }
     setIsEditing(false);
   };
+  useEffect(() => {
+    async function UserDetails() {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/api/users/user-details",
+          {
+            email: decryptEmail(encryptedEmail),
+          }
+        );
+
+        if (response.status === 200) {
+          const user = response.data;
+          setuser(user);
+          
+        } else {
+          console.error(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    }
+    UserDetails();
+  }, [isEditing,handleFileInputChange],[]);
   const handleCustomButtonClick = () => {
     fileInputRef.current.click();
   };
+
   return (
     <div className="relative h-screen w-[100%]">
-      <Student_Navbar encryptedEmail={encryptedEmail}/>
+      <Student_Navbar encryptedEmail={encryptedEmail} />
       <div className="lg:absolute h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection encryptedEmail={encryptedEmail}/>
+        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
         <div className="px-4 py-5 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
           <div className="text-lg font-semibold">My Profile</div>
         </div>
@@ -84,36 +150,18 @@ function Profile() {
                   <div>{user.name}</div>
                 </div>
 
-                {isEditing ? (
-                  <div className="flex lg:mt-16 mt-5 flex-col">
-                    <label className="text-[#353B47] text-sm">Roll no. </label>
-                    <input
-                      className=" border border-[#767A81] outline-none px-2 py-1 rounded"
-                      placeholder="Enter Roll no."
-                      type="number"
-                      name="Roll"
-                      value={user.Roll}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                ) : (
-                  user.Roll.length > 0 && (
-                    <div className="flex  lg:mt-16 mt-5 flex-col">
-                      <label className="text-[#353B47] text-sm">
-                        Roll no.{" "}
-                      </label>
-                      <div>{user.Roll}</div>
-                    </div>
-                  )
-                )}
+                <div className="flex  lg:mt-16 mt-5 flex-col">
+                  <label className="text-[#353B47] text-sm">Roll no. </label>
+                  <div>{user.roll}</div>
+                </div>
                 {isEditing ? (
                   <div className="flex  lg:mt-16 mt-5 flex-col">
                     <label className="text-[#353B47] text-sm">Program</label>
                     <select
                       name="Program"
                       className="border px-2 py-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
-                      onChange={handleInputChange}
-                      value={user.Program}
+                      onChange={(e) => setProgram(e.target.value)}
+                      value={user.program}
                     >
                       <option hidden>Select Program</option>
                       <option>{" B.Tech"}</option>
@@ -121,10 +169,11 @@ function Profile() {
                     </select>
                   </div>
                 ) : (
-                  user.Program.length > 0 && (
+                  user.program &&
+                  user.program.length > 0 && (
                     <div className=" flex flex-col lg:mt-16 mt-5 ">
                       <label className="text-[#353B47] text-sm">Program</label>
-                      <div>{user.Program}</div>
+                      <div>{user.program}</div>
                     </div>
                   )
                 )}
@@ -133,7 +182,7 @@ function Profile() {
                 <div className="flex  flex-col items-left">
                   <label className="text-[#353B47] text-sm">ERP mail id</label>
 
-                  <div>{user.ERP_Email}</div>
+                  <div>{user.email}@iitg.ac.in</div>
                 </div>
                 <div className="flex  flex-col items-left">
                   {isEditing ? (
@@ -143,20 +192,19 @@ function Profile() {
                       </label>
                       <input
                         className=" border border-[#767A81] outline-none px-2 py-1 rounded"
-                        placeholder="Enter Email address"
+                        placeholder={!(user.altEmail&&user.altEmail.length > 0)?"Enter Email address":user.altEmail}
                         type="email"
                         name="Alt_Email"
-                        value={user.Alt_Email}
-                        onChange={handleInputChange}
+                        onChange={(e) => setAlt_email(e.target.value)}
                       />
                     </div>
                   ) : (
-                    user.Alt_Email.length > 0 && (
+                    (user.altEmail && user.altEmail.length > 0) > 0 && (
                       <div className="flex  lg:mt-16 mt-5 flex-col items-left">
                         <label className="text-[#353B47] text-sm">
                           Alternate mail id
                         </label>{" "}
-                        <div>{user.Alt_Email}</div>
+                        <div>{user.altEmail}</div>
                       </div>
                     )
                   )}
@@ -170,8 +218,8 @@ function Profile() {
                       <select
                         name="Department"
                         className="border px-2 py-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
-                        onChange={handleInputChange}
-                        value={user.Department}
+                        onChange={(e) => setDepartment(e.target.value)}
+                        value={user.department}
                       >
                         <option hidden>Select your department</option>
                         {Departments.map((option) => (
@@ -182,12 +230,13 @@ function Profile() {
                       </select>
                     </div>
                   ) : (
-                    user.Department.length > 0 && (
+                    user.department &&
+                    user.department.length > 0 && (
                       <div className="flex   lg:mt-16 mt-5  flex-col items-left">
                         <label className="text-[#353B47] text-sm">
                           Department
                         </label>
-                        <div>{user.Department}</div>
+                        <div>{user.department}</div>
                       </div>
                     )
                   )}
@@ -204,19 +253,16 @@ function Profile() {
                       onClick={handleCustomButtonClick}
                       className="cursor-pointer border flex  justify-center  rounded-full bg-[#D9D9D9] "
                     >
-                      {user.Profile_url.length > 0 ? (
+                      {(ProfileUrl && ProfileUrl.length > 0)||(user.profileUrl && user.profileUrl.length > 0) ? (
                         <div className="relative  w-40 object-cover">
                           <img
-                            src={user.Profile_url}
+                            src={(user.profileUrl && user.profileUrl.length > 0)?user.profileUrl:ProfileUrl}
                             alt="Profile"
                             className=""
                             style={{ width: "200px" }}
                           />
                           <div className="absolute  inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                          <img
-                          src="/edit_profile.svg"
-                          width="50px"
-                        />
+                            <img src="/edit_profile.svg" width="50px" />
                           </div>
                         </div>
                       ) : (
@@ -233,7 +279,6 @@ function Profile() {
                       className="hidden"
                       onChange={handleFileInputChange}
                       accept="image/*"
-
                     />
                   </div>
                 }
@@ -241,20 +286,20 @@ function Profile() {
             </div>
           </div>
 
-          {!isEditing &&
+          {!isEditing && (
             !(
-              user.name.trim() !== "" &&
-              user.Roll.trim() !== "" &&
-              user.Program.trim() !== "" &&
-              user.ERP_Email.trim() !== "" &&
-              user.Alt_Email.trim() !== "" &&
-              user.Department.trim() !== "" &&
-              user.Profile_url.trim() !== ""
-            ) && (
-              <div className="mt-3 text-[#D83B01]">
-                Your Profile seems to be incomplete!
-              </div>
-            )}
+              (user.name&&user.name.trim() !== "" )&&
+              (user.roll&&user.roll.trim() !== "") &&
+             ( user.program&&user.program.trim() !== "" )&&
+             (user.email&& user.email.trim() !== "") &&
+           ( user.altEmail&&  user.altEmail.trim() !== "" )&&
+            (user.department&&user.department.trim() !== "" )&&
+             ( user.profileUrl&&user.profileUrl.trim() !== "")
+            ) &&
+            <div className="mt-3 text-[#D83B01]">
+              Your Profile seems to be incomplete!
+            </div>
+          )}
 
           {isEditing ? (
             <div className="mt-3 flex gap-4">
