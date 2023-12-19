@@ -26,9 +26,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
     encryptedEmail: PropTypes.string.isRequired,
   };
   
-  if (!user) {
-    return <div>Loading...</div>; // or handle loading state as needed
-  }
+  
 
   return (
     <div className="h-[100%] lg:mt-0 mt-10 flex flex-col gap-1 col-span-4  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -55,7 +53,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
               <img src="/registration.svg" />
               <div className="text-xl font-semibold">Registration</div>
             </div>
-            {user.profileCompletion !== 100 ? (
+          { user&& user.profileCompletion !== 100 ? (
               <div className="text-sm text-[#D83B01]">
                 Your Profile is not complete!!
               </div>

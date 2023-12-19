@@ -13,9 +13,7 @@ function MyProfile({user,encryptedEmail}) {
     })).isRequired,
     encryptedEmail: PropTypes.string.isRequired,
   };
-  if (!user) {
-    return <div>Loading...</div>; // or handle loading state as needed
-  }
+ 
   return (
     <div className=" col-span-3 flex flex-col justify-between p-7  bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       <div>
@@ -24,7 +22,7 @@ function MyProfile({user,encryptedEmail}) {
           <img src="/Profile-grey.svg" />
           <div className=" text-base">
             My Profile
-            {user.profileCompletion !== 100 ? (
+            {user&&(user.profileCompletion !== 100 ? (
               <span className=" text-xs font-semibold text-[#D83B01]">
                 ({user.profileCompletion}% complete)
               </span>
@@ -32,11 +30,15 @@ function MyProfile({user,encryptedEmail}) {
               <span className=" text-xs font-semibold text-[rgba(16,124,16,1)]">
                 ({user.profileCompletion}% complete)
               </span>
-            )}
+            ))}
           </div>
         </div>
-        <div className="mt-6 text-2xl font-semibold">{user.name}</div>
-        <div className="mt-3">
+       {!user? <div className="mt-6 text-2xl font-semibold">--</div>:
+        <div className="mt-6 text-2xl font-semibold">{user.name}</div>}
+       {!user?<div className="flex justify-center items-center h-full text-[#8D9096]">
+        Loading...
+      </div>:
+         <div className="mt-3">
           <div className="flex gap-2">
             <img src="/branch.svg" />
             <div>{user.program}</div>
@@ -49,7 +51,7 @@ function MyProfile({user,encryptedEmail}) {
             <img src="/email.svg" />
             <div>{user.email}</div>
           </div>
-        </div>
+        </div> }
       </div>
       <Link
         to={`/StudentDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}
