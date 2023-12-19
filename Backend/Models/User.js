@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
   program: String,
   altEmail: String,
   department: String,
-  profileCompletion: { type: Number, default: 0 },
+  profileCompletion:Number,
   profileUrl: String,
 });
 

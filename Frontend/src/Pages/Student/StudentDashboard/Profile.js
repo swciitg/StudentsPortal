@@ -3,9 +3,10 @@ import Student_Navbar from "../../../Components/Student_Navbar";
 import axios from "axios";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
 import CryptoJS from "crypto-js";
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 
 function Profile() {
+  const navigate = useNavigate();
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const [user, setuser] = useState({
@@ -95,7 +96,6 @@ function Profile() {
       );
       if (response.status === 200) {
         console.log("Profile Update successful");
-        console.log(response.data);
       } else {
         console.error("Profile Update failed:", response.data.message);
       }
@@ -104,6 +104,7 @@ function Profile() {
     }
     setIsEditing(false);
   };
+
   useEffect(() => {
     async function UserDetails() {
       try {
@@ -120,13 +121,40 @@ function Profile() {
           
         } else {
           console.error(response.data.message);
+          
         }
       } catch (error) {
         console.error("Error:", error.message);
+        navigate("/");
+
       }
     }
     UserDetails();
-  }, [isEditing,handleFileInputChange],[]);
+    let Points = 0;
+    if( user.program && user.program.length>0) Points += 25;
+    if (user.altEmail&&user.altEmail.length > 0) Points += 25;
+    if (user.department&&user.department.length > 0) Points += 25;
+    if (user.profileUrl&&user.profileUrl.length > 0) Points += 25;
+    async function UpdateProfileCompletion() {
+    try {
+      const response = await axios.post(
+        "http://localhost:3002/api/users/user-details",
+        {
+          email: decryptEmail(encryptedEmail),
+          profileCompletion: Points
+        }
+      );
+      if (response.status === 200) {
+        console.log("Profile Update successful");
+      } else {
+        console.error("Profile Update failed:", response.data.message);
+      }
+    } catch (error) {
+      console.log("Error:" + error);
+    }}
+    UpdateProfileCompletion();
+
+  }, [isEditing,handleFileInputChange,user],[]);
   const handleCustomButtonClick = () => {
     fileInputRef.current.click();
   };

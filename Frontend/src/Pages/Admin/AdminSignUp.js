@@ -5,7 +5,8 @@ import CryptoJS from 'crypto-js'
 export default function AdminSignUp() {
 
   const [Name, setName] = useState("");
-  const [Email, setEmail] = useState("");
+  const [Email, setEmail] = useState(""); 
+  const [error, seterror] = useState([{status:false,message:""}]);
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
   const ENCRYPTION_KEY = 'HELLO_WoRLD';
@@ -17,6 +18,7 @@ export default function AdminSignUp() {
   }
   const handleSignUp = async () => {
     try {
+      seterror({status:false})
       setLoading(true); 
       const response = await axios.post('http://localhost:3002/api/users', {
         name: Name,
@@ -32,6 +34,13 @@ export default function AdminSignUp() {
         console.error('Error creating user:', response.data.message);
       }
     } catch (error) {
+      if (error.response) {
+        if (error.response.status === 400) {
+          seterror({ status: true, message:"User already exists!"  });
+        } else if (error.response.status === 500) {
+          seterror({ status: true, message:"Enter correct email!"  });
+          
+        }}
       console.error('Error:', error.message);
     }finally {
       setLoading(false); 
@@ -62,10 +71,11 @@ export default function AdminSignUp() {
             </span>
             <input
               onChange={(e) => setEmail(e.target.value)}
-              className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.status?"border-[#ba3940] animate-shake":'border-[rgba(118,122,129,1)]'} pl-3`}
               type="text"
-              placeholder="Enter mail id"
+              placeholder="Enter ERP id"
             />
+       {error.status&&   <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">{error.message}</div>}
           </label>
         </div>
         {Name.length > 0 && Email.length > 0 ? (

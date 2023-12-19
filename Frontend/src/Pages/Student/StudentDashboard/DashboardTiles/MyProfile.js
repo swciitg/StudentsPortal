@@ -6,13 +6,16 @@ function MyProfile({user,encryptedEmail}) {
     user: PropTypes.arrayOf(
    PropTypes.shape({
       name: PropTypes.string,
-      Program: PropTypes.string,
-      Branch: PropTypes.string,
-      Email: PropTypes.string,
-      ProfileCompletion: PropTypes.number,
+      program: PropTypes.string,
+      department: PropTypes.string,
+      email: PropTypes.string,
+      profileCompletion: PropTypes.number,
     })).isRequired,
     encryptedEmail: PropTypes.string.isRequired,
   };
+  if (!user) {
+    return <div>Loading...</div>; // or handle loading state as needed
+  }
   return (
     <div className=" col-span-3 flex flex-col justify-between p-7  bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       <div>
@@ -21,13 +24,13 @@ function MyProfile({user,encryptedEmail}) {
           <img src="/Profile-grey.svg" />
           <div className=" text-base">
             My Profile
-            {user.ProfileCompletion !== 100 ? (
+            {user.profileCompletion !== 100 ? (
               <span className=" text-xs font-semibold text-[#D83B01]">
-                ({user.ProfileCompletion}% complete)
+                ({user.profileCompletion}% complete)
               </span>
             ) : (
               <span className=" text-xs font-semibold text-[rgba(16,124,16,1)]">
-                ({user.ProfileCompletion}% complete)
+                ({user.profileCompletion}% complete)
               </span>
             )}
           </div>
@@ -36,15 +39,15 @@ function MyProfile({user,encryptedEmail}) {
         <div className="mt-3">
           <div className="flex gap-2">
             <img src="/branch.svg" />
-            <div>{user.Program}</div>
+            <div>{user.program}</div>
           </div>
           <div className="flex gap-2">
             <img src="/tag.svg" />
-            <div>{user.Branch}</div>
+            <div>{user.department}</div>
           </div>
           <div className="flex gap-2">
             <img src="/email.svg" />
-            <div>{user.Email}</div>
+            <div>{user.email}</div>
           </div>
         </div>
       </div>

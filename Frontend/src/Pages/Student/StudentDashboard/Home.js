@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
 import Registration from "./DashboardTiles/Registration";
 import MyProfile from "./DashboardTiles/MyProfile";
@@ -7,19 +7,50 @@ import ApprovedRequests from "./DashboardTiles/ApprovedRequests";
 import PendingRequests from "./DashboardTiles/PendingRequests";
 import BuildMyCV from "./DashboardTiles/BuildMyCV";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
+import CryptoJS from 'crypto-js';
 import { useLocation } from "react-router-dom";
-
+import axios from "axios";
 
 function Home() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const user = {
-    name: "Yash Chouhan",
-    Program: "B.Des",
-    Branch: "Design",
-    Email: "y.chauhan@iitg.ac.in",
-    ProfileCompletion: 100,
-  };
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
+  // const user = {
+  //   name: "Yash Chouhan",
+  //   Program: "B.Des",
+  //   Branch: "Design",
+  //   Email: "y.chauhan@iitg.ac.in",
+  //   ProfileCompletion: 100,
+  // };
+  const [user, setuser] = useState();
+  useEffect(() => {
+    async function UserDetails() {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/api/users/user-details",
+          {
+            email: decryptEmail(encryptedEmail),
+          }
+        );
+
+        if (response.status === 200) {
+          const user = response.data;
+          console.log(user);
+          setuser(user);
+        } else {
+          console.error(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    }
+    UserDetails();
+  }, []);
   const ManageRequests = [
     {
       id: 1,
@@ -90,44 +121,53 @@ function Home() {
 
   return (
     <div className=" relative h-screen w-[100%]">
-
       {/*Side Navbar */}
 
-      <Student_Navbar  encryptedEmail={encryptedEmail}/>
+      <Student_Navbar encryptedEmail={encryptedEmail} />
 
       {/*Tiles Area*/}
 
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
-      
-      {/*Corner Profile Option*/}
-<CornerProfileLogoutSection  encryptedEmail={encryptedEmail}/>
-       
-        <div className="flex flex-col gap-10 lg:gap-5 lg:grid lg:grid-cols-10 pb-10 lg:pb-0 ">
+        {/*Corner Profile Option*/}
+        <CornerProfileLogoutSection user={user} encryptedEmail={encryptedEmail} />
 
+        <div className="flex flex-col gap-10 lg:gap-5 lg:grid lg:grid-cols-10 pb-10 lg:pb-0 ">
           {/* Tile 1*/}
 
-          <Registration user={user} ManageRequests={ManageRequests}  encryptedEmail={encryptedEmail}/>
+          <Registration
+            user={user}
+            ManageRequests={ManageRequests}
+            encryptedEmail={encryptedEmail}
+          />
 
           {/* Tile 2*/}
 
-          <MyProfile user={user}  encryptedEmail={encryptedEmail}/>
+          <MyProfile user={user} encryptedEmail={encryptedEmail} />
 
           {/* Tile 3*/}
 
-          <ForwardNotification Notification={Notification} encryptedEmail={encryptedEmail} />
+          <ForwardNotification
+            Notification={Notification}
+            encryptedEmail={encryptedEmail}
+          />
 
           {/* Tile 4*/}
 
-          <ApprovedRequests ApprovedRequest={ApprovedRequests_data} encryptedEmail={encryptedEmail} />
+          <ApprovedRequests
+            ApprovedRequest={ApprovedRequests_data}
+            encryptedEmail={encryptedEmail}
+          />
 
           {/* Tile 5*/}
 
-          <PendingRequests PendingRequest={PendingRequests_data} encryptedEmail={encryptedEmail}/>
+          <PendingRequests
+            PendingRequest={PendingRequests_data}
+            encryptedEmail={encryptedEmail}
+          />
 
           {/* Tile 6*/}
 
-          <BuildMyCV  encryptedEmail={encryptedEmail}/>
-
+          <BuildMyCV encryptedEmail={encryptedEmail} />
         </div>
       </div>
     </div>

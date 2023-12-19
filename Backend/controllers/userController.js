@@ -9,6 +9,27 @@ async function createUser(req, res) {
   const { name, email, roll, role } = req.body;
 
   try {
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      if (existingUser.verified&&existingUser.password) {
+        return res.status(400).json({ message: 'User already exists and is verified' });
+      }
+      // If the user exists but is not verified,update the existing user
+      const otp = generateOTP();
+
+      existingUser.name = name;
+      existingUser.roll = role === 'student' ? roll : undefined;
+      existingUser.verified = false;
+      existingUser.otp = otp;
+      existingUser.role = role;
+
+      await existingUser.save();
+
+      await emailService.sendOTP(email, otp);
+
+      return res.status(201).json({ message: 'User updated with new OTP' });
+    }
     const otp = generateOTP();
 
     const newUser = new User({
@@ -84,7 +105,7 @@ async function createPassword(req, res) {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const hashedPassword = await bcrypt.hash(password, 10); // You can adjust the salt rounds
+    const hashedPassword = await bcrypt.hash(password, 10); 
     user.password = hashedPassword;
     await user.save();
 
@@ -143,9 +164,11 @@ async function userDetails(req, res) {
     }
     if (program && program.length > 0) user.program = program;
     if (altEmail && altEmail.length > 0) user.altEmail = altEmail;
-    if (department && department.length > 0) user.department = department;
-    user.profileCompletion = profileCompletion;
+    if (department && department.length > 0) user.department = department; 
     if (profileUrl && profileUrl.length > 0) user.profileUrl = profileUrl;
+    if (profileCompletion) {
+      user.profileCompletion = profileCompletion;
+    }
     await user.save();
     res.status(200).json({
       name: user.name,

@@ -8,6 +8,7 @@ import axios from "axios";
 export default function Otp() {
   const [Otp, setOtp] = useState("");
   const location = useLocation();
+  const [error, seterror] = useState([{status:false,message:""}]);
   const navigate = useNavigate();
   const [resending, setresending] = useState(false);   
   const [resent, setresent] = useState(false);   
@@ -23,6 +24,7 @@ export default function Otp() {
   }
   const handleOtpSubmit = async () => {
     try {
+      seterror({error:false})
       setLoading(true);
       const response = await axios.post('http://localhost:3002/api/users/verify-otp', {
         email: decryptEmail(encryptedEmail), 
@@ -36,6 +38,9 @@ export default function Otp() {
         console.error('Error verifying OTP:', response.data.message);
       }
     } catch (error) {
+      if (error.response) {
+        if (error.response.status === 400) {
+        seterror({ status: true, message:'Invalid OTP!'  });}}
       console.error('Error:', error.message);
     }finally {
       setLoading(false);  
@@ -80,11 +85,12 @@ export default function Otp() {
               onChange={(e) => {setOtp(e.target.value)}}
               min="0"
               max="999999"
-              className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.status?"border-[#ba3940] animate-shake":'border-[rgba(118,122,129,1)]'} pl-3`}
               type="number"
               placeholder="Enter OTP"
 
             />
+          {error.status&&<div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">{error.message}</div>}
           </label>
           {/*onKeyDown={(e)=> Otp.length===6&&e.preventDefault()}*/}
         </div>

@@ -5,6 +5,7 @@ import axios from 'axios'
 export default function StudentLogin() {
 
   const [Email, setEmail] = useState("");
+  const [error, seterror] = useState([{message:"",email:false,pass:false}]);
   const [Password, setpassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function StudentLogin() {
   }
   const handleLogin = async () => {
     try {
+      seterror({status:false})
       setLoading(true)
       const response = await axios.post('http://localhost:3002/api/users/login', {
         email: Email,
@@ -29,6 +31,13 @@ export default function StudentLogin() {
         console.error('Login failed:', response.data.message);
       }
     } catch (error) {
+      if (error.response) {
+        if (error.response.status === 404) {
+          seterror({ message:"Incorrect ID. If you don’t remember it,",email:true,pass:false  });
+        }  if (error.response.status === 401) {
+          seterror({  message:"Incorrect password. Click on ‘Forgot password’ to reset it.",email:false,pass:true  });
+          
+        }}
       console.error('Error:', error.message);
     }
     finally{
@@ -52,19 +61,23 @@ export default function StudentLogin() {
             </span>
             <input
               onChange={(e) => setEmail(e.target.value)}
-              className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.email?"border-[#ba3940] animate-shake":'border-[rgba(118,122,129,1)]'} pl-3`}
               type="text"
               placeholder="Enter ERP id"
             />
+       {(error.email)&&   <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">{error.message}<span className=" text-[#2164E8]">Contact us.</span></div>}
+
           </label>
           <label className="flex flex-col gap-1">
             <span className="font-medium text-sm">Password</span>
             <input
               onChange={(e) => setpassword(e.target.value)}
-              className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.pass?"border-[#ba3940] animate-shake":'border-[rgba(118,122,129,1)]'} pl-3`}
               type="password"
               placeholder="Enter your Password"
             />
+       {(error.pass)&&   <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">{error.message}</div>}
+
           </label>
         </div>
         {Password.length > 0 && Email.length > 0 ? (

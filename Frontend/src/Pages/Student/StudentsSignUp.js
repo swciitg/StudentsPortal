@@ -7,6 +7,7 @@ export default function StudentSignUp() {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Roll, setRoll] = useState("");
+  const [error, seterror] = useState([{status:false,message:""}]);
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
   const ENCRYPTION_KEY = 'HELLO_WoRLD';
@@ -20,6 +21,7 @@ export default function StudentSignUp() {
   const handleSignUp = async () => {
     try {
       setLoading(true); 
+      seterror({status:false})
       const response = await axios.post('http://localhost:3002/api/users', {
         name: Name,
         email: Email,
@@ -27,15 +29,24 @@ export default function StudentSignUp() {
         role:'student'
       });
   
-      if (response.status === 201) {
+     if (response.status === 201) {
         console.log('User created successfully');
        
         navigate(`/Otp?e=${encodeURIComponent(encryptEmail(Email))}`);
-      } else {
+      } 
+      else {
         console.error('Error creating user:', response.data.message);
       }
     } catch (error) {
+      if (error.response) {
+        if (error.response.status === 400) {
+          seterror({ status: true, message:"User already exists!"  });
+        } else if (error.response.status === 500) {
+          seterror({ status: true, message:"Enter correct email!"  });
+          
+        }}
       console.error('Error:', error.message);
+      
     }finally {
       setLoading(false); 
     }
@@ -65,10 +76,11 @@ export default function StudentSignUp() {
             </span>
             <input
               onChange={(e) => setEmail(e.target.value)}
-              className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.status?"border-[#ba3940] animate-shake":'border-[rgba(118,122,129,1)]'} pl-3`}
               type="text"
               placeholder="Enter ERP id"
             />
+       {error.status&&   <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">{error.message}</div>}
           </label>
           <label className="flex flex-col gap-1">
             <span className="font-medium text-sm">Enter your Roll no.</span>
