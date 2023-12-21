@@ -105,7 +105,7 @@ function SelectValidation() {
             <div className="flex justify-end mt-10">
               <Link
                 to={
-                  `/StudentDashboard/Request/${SelectedOption}/1?e=${encodeURIComponent(encryptedEmail)}`
+                  `/StudentDashboard/Request/${SelectedOption}?e=${encodeURIComponent(encryptedEmail)}`
                 }
               >
 

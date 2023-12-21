@@ -49,7 +49,7 @@ function MyProfile({user,encryptedEmail}) {
           </div>
           <div className="flex gap-2">
             <img src="/email.svg" />
-            <div>{user.email}</div>
+            <div>{user.email}@iitg.ac.in</div>
           </div>
         </div> }
       </div>

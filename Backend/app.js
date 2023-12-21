@@ -3,8 +3,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
+const requestRoutes = require('./routes/requestRoutes');
 const path = require('path');
-const dashboardRoutes=require('./routes/dashboardRoutes')
+
 
 const app = express();
 const port = 3002;
@@ -16,7 +17,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', userRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/', dashboardRoutes); 
+app.use('/api/request', requestRoutes); 
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

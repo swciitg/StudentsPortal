@@ -11,10 +11,6 @@ import History from './Pages/Student/StudentDashboard/History';
 import Request from './Pages/Student/StudentDashboard/Request';
 import RequestsForward from './Pages/Student/StudentDashboard/RequestsForward';
 import SelectValidation from './Pages/Student/StudentDashboard/RequestPages/SelectValidation';
-import CreateClubPORStep1 from './Pages/Student/StudentDashboard/RequestPages/ClubPOR/CreateClubPORStep1';
-import CreateClubPORStep2 from './Pages/Student/StudentDashboard/RequestPages/ClubPOR/CreateClubPORStep2';
-import CreateClubPORStep3 from './Pages/Student/StudentDashboard/RequestPages/ClubPOR/CreateClubPORStep3';
-import SuccessClubPOR from './Pages/Student/StudentDashboard/RequestPages/ClubPOR/SuccessClubPOR';
 import CreateProjValStep1 from './Pages/Student/StudentDashboard/RequestPages/ProjectValidation/CreateProjValStep1';
 import CreateProjValStep2 from './Pages/Student/StudentDashboard/RequestPages/ProjectValidation/CreateProjValStep2';
 import CreateProjValStep3 from './Pages/Student/StudentDashboard/RequestPages/ProjectValidation/CreateProjValStep3';
@@ -39,6 +35,7 @@ import Otpadmin from './Pages/Admin/otp';
 import CreatePassadmin from './Pages/Admin/CreatePass';
 import StudentLogin from './Pages/Student/StudentLogin';
 import AdminLogin from './Pages/Admin/AdminLogIn';
+import CreateClubPOR from './Pages/Student/StudentDashboard/RequestPages/ClubPOR/ClubPOR';
 function App() {
   return (
     <BrowserRouter>
@@ -55,10 +52,7 @@ function App() {
         <Route path="/StudentDashboard/History" element={<History/>}/>
         <Route path="/StudentDashboard/Request" element={<Request/>}/>
         <Route path="/StudentDashboard/Request/SelectValidation" element={<SelectValidation/>}/>
-        <Route path="/StudentDashboard/Request/ClubPOR/1" element={<CreateClubPORStep1/>}/>
-        <Route path="/StudentDashboard/Request/ClubPOR/2" element={<CreateClubPORStep2/>}/>
-        <Route path="/StudentDashboard/Request/ClubPOR/3" element={<CreateClubPORStep3/>}/>
-        <Route path="/StudentDashboard/Request/ClubPOR/success" element={<SuccessClubPOR/>}/>
+        <Route path="/StudentDashboard/Request/ClubPOR" element={<CreateClubPOR/>}/>
         <Route path="/StudentDashboard/Request/ProjectValidation/1" element={<CreateProjValStep1/>}/>
         <Route path="/StudentDashboard/Request/ProjectValidation/2" element={<CreateProjValStep2/>}/>
         <Route path="/StudentDashboard/Request/ProjectValidation/3" element={<CreateProjValStep3/>}/>

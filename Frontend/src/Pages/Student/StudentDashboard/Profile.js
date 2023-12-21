@@ -157,7 +157,7 @@ function Profile() {
       console.log("Error:" + error);
     }}
     UpdateProfileCompletion();
-
+// eslint-disable-next-line
   }, [isEditing,handleFileInputChange,user],[]);
   const handleCustomButtonClick = () => {
     fileInputRef.current.click();

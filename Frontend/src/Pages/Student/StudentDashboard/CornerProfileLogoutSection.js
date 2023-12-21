@@ -42,6 +42,7 @@ function CornerProfileLogoutSection({ encryptedEmail }) {
       }
     }
     UserDetails();
+    // eslint-disable-next-line
   }, []);
   return (<div>
     <div className="flex p-3 -mt-3 mb-2 justify-end gap-2 items-center">
