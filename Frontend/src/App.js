@@ -44,7 +44,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Student Side Routes*/}
-        <Route path="/" element={<ProfileSelection/>}/>
+        <Route path="*" element={<ProfileSelection/>}/>
         <Route path="/StudentsSignUp" element={<StudentsSignUp/>}/>
         <Route path="/StudentsLogIn" element={<StudentLogin/>}/>
         {/* Private Routes--Cannot be accessed without authentication or previous step*/}

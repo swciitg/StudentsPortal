@@ -27,6 +27,7 @@ function CornerProfileLogoutSection({ encryptedEmail }) {
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
+            role:'student'
           }
         );
 
@@ -46,7 +47,7 @@ function CornerProfileLogoutSection({ encryptedEmail }) {
     <div className="flex p-3 -mt-3 mb-2 justify-end gap-2 items-center">
     <img src="/profile-blue.svg" />
     <Link
-      to="/StudentDashboard/Profile"
+      to={`/StudentDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}
       className="text-[rgba(33,100,232,1)]"
     >
       {user.name}

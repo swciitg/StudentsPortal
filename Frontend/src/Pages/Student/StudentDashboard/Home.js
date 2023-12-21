@@ -8,11 +8,12 @@ import PendingRequests from "./DashboardTiles/PendingRequests";
 import BuildMyCV from "./DashboardTiles/BuildMyCV";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
 import CryptoJS from 'crypto-js';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Home() {
   const location = useLocation();
+  const navigate =useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const ENCRYPTION_KEY = "HELLO_WoRLD";
   function decryptEmail(encryptedEmail) {
@@ -20,13 +21,6 @@ function Home() {
     const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
     return decryptedEmail;
   }
-  // const user = {
-  //   name: "Yash Chouhan",
-  //   Program: "B.Des",
-  //   Branch: "Design",
-  //   Email: "y.chauhan@iitg.ac.in",
-  //   ProfileCompletion: 100,
-  // };
   const [user, setuser] = useState();
   useEffect(() => {
     async function UserDetails() {
@@ -35,18 +29,20 @@ function Home() {
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
+            role:'student'
           }
         );
 
         if (response.status === 200) {
           const user = response.data;
-          console.log(user);
           setuser(user);
         } else {
           console.error(response.data.message);
         }
       } catch (error) {
         console.error("Error:", error.message);
+        navigate("/");
+
       }
     }
     UserDetails();
@@ -129,7 +125,7 @@ function Home() {
 
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection user={user} encryptedEmail={encryptedEmail} />
+        <CornerProfileLogoutSection  encryptedEmail={encryptedEmail} />
 
         <div className="flex flex-col gap-10 lg:gap-5 lg:grid lg:grid-cols-10 pb-10 lg:pb-0 ">
           {/* Tile 1*/}

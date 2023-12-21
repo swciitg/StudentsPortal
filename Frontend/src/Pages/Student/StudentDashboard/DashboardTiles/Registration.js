@@ -8,14 +8,10 @@ function Registration({user,ManageRequests,encryptedEmail}) {
   const [toggle3, setToggle3] = useState(false);
  
   Registration.propTypes = {
-    user: PropTypes.arrayOf(
+    user: (
     PropTypes.shape({
-      name: PropTypes.string,
-      program: PropTypes.string,
-      department: PropTypes.string,
-      email: PropTypes.string,
       profileCompletion: PropTypes.number,
-    })).isRequired,
+    })),
     ManageRequests: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,

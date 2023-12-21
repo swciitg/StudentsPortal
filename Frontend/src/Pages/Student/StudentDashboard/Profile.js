@@ -66,6 +66,7 @@ function Profile() {
         await axios.post('http://localhost:3002/api/users/user-details', {
           email: decryptEmail(encryptedEmail),
           profileUrl: serverURL,
+          role:'student'
         });
   
         setProfileURL(serverURL);
@@ -91,6 +92,7 @@ function Profile() {
           program: Program,
           altEmail: AltEmail,
           department: Department,
+          role:'student',
           profileCompletion: Points
         }
       );
@@ -112,6 +114,7 @@ function Profile() {
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
+            role:'student'
           }
         );
 
@@ -141,6 +144,7 @@ function Profile() {
         "http://localhost:3002/api/users/user-details",
         {
           email: decryptEmail(encryptedEmail),
+          role:'student',
           profileCompletion: Points
         }
       );

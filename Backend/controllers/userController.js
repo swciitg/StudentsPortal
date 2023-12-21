@@ -133,11 +133,14 @@ async function login(req, res) {
     if (!passwordMatch) {
       return res.status(401).json({ message: "Invalid password" });
     }
-    console.log(`${role} Login successfully`);
-
     const token = jwt.sign({ userId: user._id }, "your_secret_key", {
       expiresIn: "1h",
     });
+    // res.cookie('Login', token, { httpOnly: true,sameSite: 'None', secure: true , maxAge: 3600000 });
+
+
+    console.log(`${role}  Login successfully`);
+
 
     res.status(200).json({ token });
   } catch (error) {
@@ -156,8 +159,9 @@ async function userDetails(req, res) {
       department,
       profileCompletion,
       profileUrl,
+      role
     } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email,role });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });

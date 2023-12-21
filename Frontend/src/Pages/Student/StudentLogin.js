@@ -14,6 +14,7 @@ export default function StudentLogin() {
     const encryptedEmail = CryptoJS.AES.encrypt(email, ENCRYPTION_KEY).toString();
     return encryptedEmail;
   }
+
   const handleLogin = async () => {
     try {
       seterror({status:false})

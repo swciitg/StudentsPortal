@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 function MyProfile({user,encryptedEmail}) {
   MyProfile.propTypes = {
-    user: PropTypes.arrayOf(
+    user:(
    PropTypes.shape({
       name: PropTypes.string,
       program: PropTypes.string,
       department: PropTypes.string,
       email: PropTypes.string,
       profileCompletion: PropTypes.number,
-    })).isRequired,
+    })),
     encryptedEmail: PropTypes.string.isRequired,
   };
  
