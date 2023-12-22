@@ -1,10 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import CornerProfileLogoutSectionadmin from "./CornerProfileLogoutSectionadmin";
 import Admin_Navbar from "../../../Components/Admin_Navbar";
 import RequestDetailsModal from "./Request_Details";
 
 function Request_admin() {
+  const navigate = useNavigate();
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const [selectedTab, setSelectedTab] = useState("POR");
@@ -12,7 +13,11 @@ function Request_admin() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 6;
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token)
+      navigate('/');
+  }, []);
 
   // const POR_TYPES = ["POR", "Project Validation", "LOR", "Inter IIT Participation", "CR/BR POR"];
 

@@ -1,16 +1,22 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import React, { useEffect, useState } from "react";
 import Admin_Navbar from "../../../Components/Admin_Navbar";
 import CornerProfileLogoutSectionadmin from "./CornerProfileLogoutSectionadmin";
 import axios from "axios";
 function AdminProfile() {
+  const navigate = useNavigate();
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   // const user = {
   //   name: "General Secretary Ecell",
   //  'Official mail id': "Gsececell@iitg.ac.in",
   // };
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token)
+      navigate('/');
+  }, []);
   const [user,setuser]=useState("")
   const ENCRYPTION_KEY = "HELLO_WoRLD";
 
@@ -37,6 +43,7 @@ function AdminProfile() {
           console.error(response.data.message);
         }
       } catch (error) {
+      navigate('/');
         console.error("Error:", error.message);
       }
     }

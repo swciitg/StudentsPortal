@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreateClubPORStep3 from "./Components/CreateClubPORStep3";
 import CreateClubPORStep1 from "./Components/CreateClubPORStep1";
 import CreateClubPORStep2 from "./Components/CreateClubPORStep2";
@@ -11,7 +11,7 @@ import axios from "axios";
 const CreateClubPOR = () => {
     const location = useLocation();
     const encryptedEmail = new URLSearchParams(location.search).get("e");
-   
+    const [user, setuser] = useState("")
     const [formData, setFormData] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
   
@@ -34,6 +34,31 @@ const CreateClubPOR = () => {
       const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
       return decryptedEmail;
     }
+    useEffect(() => {
+        async function UserDetails() {
+          try {
+            const response = await axios.post(
+              "http://localhost:3002/api/users/user-details",
+              {
+                email: decryptEmail(encryptedEmail),
+                role: "student",
+              }
+            );
+    
+            if (response.status === 200) {
+              const user = response.data;
+              setuser(user);
+            } else {
+              console.error(response.data.message);
+            }
+          } catch (error) {
+            console.error("Error:", error.message);
+          }
+        }
+        UserDetails();
+        // eslint-disable-next-line
+      }, []);
+      console.log(user)
     const handleComplete = async () => {
       try {
         const response = await axios.post('http://localhost:3002/api/request', {
@@ -41,9 +66,11 @@ const CreateClubPOR = () => {
         organisation: formData.Organisation,
         "POR Position": formData.Position,
         Request_sent_date: formattedDate,
+        "Sender Name":user.name,
+        "Sender Roll no.":user.roll,
         "Year of Tenure":formData.Tenure,
         "Request Validator":formData.Validation ,
-        "Sender email":decryptEmail(encryptedEmail),
+        "Sender email":`${decryptEmail(encryptedEmail)}@iitg.ac.in`,
         "Type of Request":'POR',
         "Document requested":formData.Document,
         Status: 'Pending',
@@ -61,7 +88,6 @@ const CreateClubPOR = () => {
         
       }
     };
-   console.log(formData)
   
     return (
          <div className=" relative h-screen w-[100%]">

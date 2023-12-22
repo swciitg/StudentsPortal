@@ -133,11 +133,14 @@ async function login(req, res) {
     if (!passwordMatch) {
       return res.status(401).json({ message: "Invalid password" });
     }
-    const token = jwt.sign({ userId: user._id }, "your_secret_key", {
+  
+
+    const token = jwt.sign({ email: user.email,role:user.role }, "your_secret_key", {
       expiresIn: "1h",
     });
+    user.token=token;
+    await user.save();
     // res.cookie('Login', token, { httpOnly: true,sameSite: 'None', secure: true , maxAge: 3600000 });
-
 
     console.log(`${role}  Login successfully`);
 

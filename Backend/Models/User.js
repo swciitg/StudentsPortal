@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
   department: String,
   profileCompletion:Number,
   profileUrl: String,
+  token: String, 
 });
 
 const User = mongoose.model('User', userSchema);

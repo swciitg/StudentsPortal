@@ -1,7 +1,35 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import CryptoJS from "crypto-js";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// import jwt from 'jsonwebtoken';
 export default function ProfileSelection() {
   const [SelectedOption,SetSelectedOption]=useState('student');
+  const navigate=useNavigate();
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  function encryptEmail(email) {
+    const encryptedEmail = CryptoJS.AES.encrypt(
+      email,
+      ENCRYPTION_KEY
+    ).toString();
+    return encryptedEmail;
+  } 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    function parseJwt(token) {
+      if (!token) {
+        return;
+      }
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace("-", "+").replace("_", "/");
+      return JSON.parse(window.atob(base64));
+    }
+  
+    const user=parseJwt(token)
+    if (token)
+   { navigate(
+      `/${user.role==='student'?"StudentDashboard":"AdminDashboard"}/Home?e=${encodeURIComponent(encryptEmail(user.email))}`
+    );}
+  }, []);
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
       <div className="bg-white pl-10 pr-10 w-[90%] lg:w-[400px] md:w-[60%] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">

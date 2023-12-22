@@ -1,53 +1,89 @@
 import axios from "axios";
-import React, { useState } from "react";
-import CryptoJS from 'crypto-js'
-import { Link,useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import CryptoJS from "crypto-js";
+import { Link, useNavigate } from "react-router-dom";
 export default function AdminLogin() {
-
   const [Email, setEmail] = useState("");
   const [Password, setpassword] = useState("");
-  const [error, seterror] = useState([{message:"",email:false,pass:false}]);
+  const [error, seterror] = useState([
+    { message: "", email: false, pass: false },
+  ]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const ENCRYPTION_KEY = 'HELLO_WoRLD';
-
-  // Function to encrypt the email
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+ 
   function encryptEmail(email) {
-    const encryptedEmail = CryptoJS.AES.encrypt(email, ENCRYPTION_KEY).toString();
+    const encryptedEmail = CryptoJS.AES.encrypt(
+      email,
+      ENCRYPTION_KEY
+    ).toString();
     return encryptedEmail;
-  }
+  } 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    function parseJwt(token) {
+      if (!token) {
+        return;
+      }
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace("-", "+").replace("_", "/");
+      return JSON.parse(window.atob(base64));
+    }
+  
+    // loggedin user
+    const user=parseJwt(token)
+
+    if (token)
+   { navigate(
+      `/AdminDashboard/Home?e=${encodeURIComponent(encryptEmail(user.email))}`
+    );}
+  }, []);
   const handleLogin = async () => {
     try {
-      setLoading(true)
-      const response = await axios.post('http://localhost:3002/api/users/login', {
-        email: Email,
-        password: Password,
-        role:'admin'
-      });
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:3002/api/users/login",
+        {
+          email: Email,
+          password: Password,
+          role: "admin",
+        }
+      );
 
       if (response.status === 200) {
-        console.log('Login successful');
+        localStorage.setItem("token", response.data.token);
+        console.log("Login successful");
         // Redirect to the dashboard
-        navigate(`/AdminDashboard/Home?e=${encodeURIComponent(encryptEmail(Email))}`);
+        navigate(
+          `/AdminDashboard/Home?e=${encodeURIComponent(encryptEmail(Email))}`
+        );
       } else {
-        console.error('Login failed:', response.data.message);
+        console.error("Login failed:", response.data.message);
         // Handle login failure (e.g., show an error message)
       }
     } catch (error) {
       if (error.response) {
         if (error.response.status === 404) {
-          seterror({ message:"Incorrect ID. If you don’t remember it,",email:true,pass:false  });
-        }  if (error.response.status === 401) {
-          seterror({  message:"Incorrect password. Click on ‘Forgot password’ to reset it.",email:false,pass:true  });
-          
-        }}
-      console.error('Error:', error.message);
-    }
-    finally{
-      setLoading(false)
+          seterror({
+            message: "Incorrect ID. If you don’t remember it,",
+            email: true,
+            pass: false,
+          });
+        }
+        if (error.response.status === 401) {
+          seterror({
+            message:
+              "Incorrect password. Click on ‘Forgot password’ to reset it.",
+            email: false,
+            pass: true,
+          });
+        }
+      }
+      console.error("Error:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
-
 
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
@@ -61,45 +97,60 @@ export default function AdminLogin() {
         <div className="flex flex-col gap-7">
           <label className="flex flex-col gap-1">
             <span className="font-medium text-sm">
-            Enter you official mail id
+              Enter you official mail id
             </span>
             <input
               onChange={(e) => setEmail(e.target.value)}
-              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.email?"border-[#ba3940] animate-shake":'border-[rgba(118,122,129,1)]'} pl-3`}
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${
+                error.email
+                  ? "border-[#ba3940] animate-shake"
+                  : "border-[rgba(118,122,129,1)]"
+              } pl-3`}
               type="text"
               placeholder="Enter ERP id"
             />
-       {(error.email)&&   <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">{error.message}<span className=" text-[#2164E8]">Contact us.</span></div>}
-
+            {error.email && (
+              <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">
+                {error.message}
+                <span className=" text-[#2164E8]">Contact us.</span>
+              </div>
+            )}
           </label>
           <label className="flex flex-col gap-1">
             <span className="font-medium text-sm">Password</span>
             <input
               onChange={(e) => setpassword(e.target.value)}
-              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.pass?"border-[#ba3940] animate-shake":'border-[rgba(118,122,129,1)]'} pl-3`}
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${
+                error.pass
+                  ? "border-[#ba3940] animate-shake"
+                  : "border-[rgba(118,122,129,1)]"
+              } pl-3`}
               type="password"
               placeholder="Enter your Password"
             />
-       {(error.pass)&&   <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">{error.message}</div>}
-
+            {error.pass && (
+              <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">
+                {error.message}
+              </div>
+            )}
           </label>
         </div>
         {Password.length > 0 && Email.length > 0 ? (
-            <div className="flex justify-between items-center mt-10">
-            <div className=" text-[rgba(33,100,232,1)]">
-            Forgot password?
-            </div>
+          <div className="flex justify-between items-center mt-10">
+            <div className=" text-[rgba(33,100,232,1)]">Forgot password?</div>
             <div>
-              <button disabled={loading} onClick={handleLogin} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-              {loading ? 'Submiting...' : 'Submit'}
+              <button
+                disabled={loading}
+                onClick={handleLogin}
+                className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
+              >
+                {loading ? "Submiting..." : "Submit"}
               </button>
             </div>
           </div>
         ) : (
           <div className="flex justify-between items-center mt-10">
-            <div className="  text-[rgba(33,100,232,1)]">
-            Forgot password?
-            </div>
+            <div className="  text-[rgba(33,100,232,1)]">Forgot password?</div>
             <div>
               <button className=" inline-flex items-center p-1 bg-[rgba(188,190,194,1)] text-[rgba(141,144,150,1)] rounded-sm pl-4 pr-4">
                 Submit

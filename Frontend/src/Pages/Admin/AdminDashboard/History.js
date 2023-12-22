@@ -1,11 +1,17 @@
-import { useLocation } from "react-router-dom";
-import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
 import Admin_Navbar from "../../../Components/Admin_Navbar";
 import CornerProfileLogoutSectionadmin from "./CornerProfileLogoutSectionadmin";
 
 function AdminHistory() {
+  const navigate = useNavigate();
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token)
+      navigate('/');
+  }, []);
   return (
     <div className=" relative h-screen w-[100%]">
       <Admin_Navbar  encryptedEmail={encryptedEmail}/>
