@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
+import CryptoJS from "crypto-js";
 import RequestDetailsModal from "./History_CheckUpdates";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function History() {
   const location = useLocation();
@@ -493,6 +495,36 @@ function History() {
     const calculatedTotalPages = Math.ceil(totalItems / itemsPerPage);
     setTotalPages(calculatedTotalPages);
   };
+  const navigate=useNavigate();
+  const ENCRYPTION_KEY = 'HELLO_WoRLD';
+  
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
+  useEffect(() => {
+    
+     async function checkEmail()  {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/api/users/user-details",
+          {
+            email: decryptEmail(encryptedEmail),
+            role: "student",
+            token:localStorage.getItem("token")
+          }
+        );
+          if (response.status === 200) {
+            console.log('OK')
+          
+        }
+      } catch (error) {
+        navigate(`/`);
+      }
+    }
+    checkEmail();
+  }, []);
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const tabParam = urlParams.get("tab");
@@ -534,7 +566,7 @@ function History() {
         key={index}
         className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
       >
-        <div className="text-xs text-[#494D57] w-[10%] text-center py-5">
+        <div className="text-xs w-[10%]  text-[#494D57]  text-center py-5">
           {sequenceNumber}
         </div>
         <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
@@ -576,7 +608,7 @@ function History() {
             <h2 className="text-[#2164E8] text-xs">{History.filter(item => !item["Seen Status"]).length} Updates</h2>
           </div>
         </div>
-        <div  className="bg-white relative ">
+        <div  className="bg-white relative overflow-scroll ">
           <nav className="flex border-b-3 relative z-10">
             <div
               onClick={() => handleTabClick("Pending")}
@@ -637,21 +669,21 @@ function History() {
 
           </div>
         </div>
-        <div className=" flex flex-col gap-[3px] ">
+        <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]">
           <div className=" flex mt-4 bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-            <div className=" text-sm lg:w-[10%] w-[5%] text-center  py-3">Sl. No.</div>
-            <div className=" text-sm lg:w-[25%]  justify-center  gap-[3px] flex items-center py-3">
+            <div className=" text-sm w-[10%] text-center  py-3">Sl. No.</div>
+            <div className=" text-sm w-[25%]  justify-center  gap-[3px] flex items-center py-3">
               Request Name
               <img src="/sort.svg" />
             </div>
-            <div className=" text-sm  lg:w-[20%] text-center   py-3">
+            <div className=" text-sm  w-[20%] text-center   py-3">
               Type of Request.
             </div>
-            <div className=" text-sm  lg:w-[15%] justify-center  gap-[3px]   flex items-center py-3">
+            <div className=" text-sm  w-[15%] justify-center  gap-[3px]   flex items-center py-3">
               Date
               <img src="/Arrow Sort.svg" />
             </div>
-            <div className=" text-sm  lg:w-[15%]  text-center  py-3">Status</div>
+            <div className=" text-sm  w-[15%]  text-center  py-3">Status</div>
           </div> 
            <RenderHistory onCheckUpdates={handleCheckUpdates} />
           <div className="flex justify-center items-center mt-4 mb-10">

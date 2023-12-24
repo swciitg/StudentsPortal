@@ -3,15 +3,22 @@ import { useState } from "react";
 import CryptoJS from "crypto-js";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function CornerProfileLogoutSection({ encryptedEmail }) {
   CornerProfileLogoutSection.propTypes = {
     encryptedEmail: PropTypes.string.isRequired,
   };
   const [logout_toggle, setlogout_toggle] = useState(false);
+  const navigate=useNavigate();
   // const user = {
   //   name: "Yash Chouhan"
   // };
+  const handleLogout=()=>{
+    
+    localStorage.removeItem('token');
+    console.log('Logout Successfully')
+    navigate('/');
+  }
   const [user, setuser] = useState("");
   const ENCRYPTION_KEY = "HELLO_WoRLD";
 
@@ -28,6 +35,7 @@ function CornerProfileLogoutSection({ encryptedEmail }) {
           {
             email: decryptEmail(encryptedEmail),
             role: "student",
+            token:localStorage.getItem("token"),
           }
         );
 
@@ -85,11 +93,9 @@ function CornerProfileLogoutSection({ encryptedEmail }) {
       {logout_toggle && (
         <div className="absolute -mt-3 mb-2 w-[95%] flex justify-end">
           <div className="bg-white p-9 pl-12 pr-12 rounded-sm shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-            <Link to="/">
-              <button className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8] text-white rounded">
+          <button onClick={handleLogout} className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8] text-white rounded">
                 Log Out
               </button>
-            </Link>
           </div>
         </div>
       )}

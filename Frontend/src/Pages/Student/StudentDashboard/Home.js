@@ -29,7 +29,8 @@ function Home() {
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
-            role:'student'
+            role:'student',
+            token:localStorage.getItem("token")
           }
         );
 

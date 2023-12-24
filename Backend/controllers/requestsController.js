@@ -19,6 +19,7 @@ async function createRequest(req, res) {
         Supporting_Document_url:Supporting_Document_url,
         Request_sent_date: Request_sent_date,
         "POR Position": PORPosition,
+        token
     } = req.body;
     
     const newRequest = new Request({
@@ -38,6 +39,7 @@ async function createRequest(req, res) {
         Supporting_Document_url:Supporting_Document_url,
         Request_sent_date: Request_sent_date,
         "POR Position": PORPosition,
+        token
     });
   
 

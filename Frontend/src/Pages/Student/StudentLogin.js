@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link ,useNavigate} from "react-router-dom";
 import CryptoJS from 'crypto-js'
 import axios from 'axios'
@@ -15,6 +15,25 @@ export default function StudentLogin() {
     return encryptedEmail;
   }
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    function parseJwt(token) {
+      if (!token) {
+        return;
+      }
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace("-", "+").replace("_", "/");
+      return JSON.parse(window.atob(base64));
+    }
+  
+    // loggedin user
+    const user=parseJwt(token)
+    
+    if (token)
+   { navigate(
+      `/StudentDashboard/Home?e=${encodeURIComponent(encryptEmail(user.email))}`
+    );}
+  }, []);
   const handleLogin = async () => {
     try {
       seterror({status:false})
@@ -26,6 +45,7 @@ export default function StudentLogin() {
       });
 
       if (response.status === 200) {
+        localStorage.setItem("token", response.data.token);
         console.log('Login successful');
         navigate(`/StudentDashboard/Home?e=${encodeURIComponent(encryptEmail(Email))}`);
       } else {

@@ -32,7 +32,7 @@ export default function AdminLogin() {
   
     // loggedin user
     const user=parseJwt(token)
-
+    
     if (token)
    { navigate(
       `/AdminDashboard/Home?e=${encodeURIComponent(encryptEmail(user.email))}`

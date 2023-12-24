@@ -55,6 +55,7 @@ const requestSchema = new mongoose.Schema({
   "POR Position": {
     type: String,
   },
+  token: String, 
 });
 
 const Request = mongoose.model('Request', requestSchema);

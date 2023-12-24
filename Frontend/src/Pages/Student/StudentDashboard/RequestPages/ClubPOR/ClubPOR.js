@@ -4,12 +4,13 @@ import CreateClubPORStep1 from "./Components/CreateClubPORStep1";
 import CreateClubPORStep2 from "./Components/CreateClubPORStep2";
 import SuccessClubPOR from "./Components/SuccessClubPOR";
 import CryptoJS from 'crypto-js';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Student_Navbar from "../../../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
 import axios from "axios";
 const CreateClubPOR = () => {
     const location = useLocation();
+    const navigate=useNavigate();
     const encryptedEmail = new URLSearchParams(location.search).get("e");
     const [user, setuser] = useState("")
     const [formData, setFormData] = useState({});
@@ -42,6 +43,7 @@ const CreateClubPOR = () => {
               {
                 email: decryptEmail(encryptedEmail),
                 role: "student",
+                token:localStorage.getItem('token')
               }
             );
     
@@ -53,12 +55,12 @@ const CreateClubPOR = () => {
             }
           } catch (error) {
             console.error("Error:", error.message);
+        navigate(`/`);
           }
         }
         UserDetails();
         // eslint-disable-next-line
       }, []);
-      console.log(user)
     const handleComplete = async () => {
       try {
         const response = await axios.post('http://localhost:3002/api/request', {

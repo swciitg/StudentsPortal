@@ -14,25 +14,37 @@ export default function CreatePass() {
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const ENCRYPTION_KEY = "HELLO_WoRLD";
 
+
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
     const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
     return decryptedEmail;
   }
   const handleCreatePass = async () => {
+    const password=paas;
     try {
       setLoading(true);
-      const newPassword = paas;
-
-      await axios.post("http://localhost:3002/api/users/create-password", {
-        email: decryptEmail(encryptedEmail),
-        password: newPassword,
-      });
-
-      console.log("Password created successfully");
-      navigate(
-        `/StudentDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`
+      const response = await axios.post(
+        "http://localhost:3002/api/users/create-password",
+        {
+          email: decryptEmail(encryptedEmail),
+          password: password,
+        }
       );
+
+      if (response.status === 200) {
+        // console.log(response)
+        localStorage.setItem("token", response.data.token);
+        console.log("Password created successfully");
+
+        // Redirect to the dashboard
+        navigate(
+        `/StudentDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`
+        );}
+        else{
+          console.log("error while creating password")
+        }
+      
     } catch (error) {
       console.error("Error creating password:", error.message);
     } finally {

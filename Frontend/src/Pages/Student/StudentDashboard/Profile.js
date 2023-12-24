@@ -66,7 +66,8 @@ function Profile() {
         await axios.post('http://localhost:3002/api/users/user-details', {
           email: decryptEmail(encryptedEmail),
           profileUrl: serverURL,
-          role:'student'
+            token:localStorage.getItem("token"),
+            role:'student'
         });
   
         setProfileURL(serverURL);
@@ -93,7 +94,8 @@ function Profile() {
           altEmail: AltEmail,
           department: Department,
           role:'student',
-          profileCompletion: Points
+          profileCompletion: Points,
+          token:localStorage.getItem("token")
         }
       );
       if (response.status === 200) {
@@ -114,6 +116,7 @@ function Profile() {
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
+            token:localStorage.getItem("token"),
             role:'student'
           }
         );
@@ -145,7 +148,8 @@ function Profile() {
         {
           email: decryptEmail(encryptedEmail),
           role:'student',
-          profileCompletion: Points
+            token:localStorage.getItem("token"),
+            profileCompletion: Points,
         }
       );
       if (response.status === 200) {

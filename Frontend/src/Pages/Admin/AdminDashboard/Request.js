@@ -627,7 +627,7 @@ function Request_admin() {
               </div>
             </div>
 
-            <div className="bg-white  relative ">
+            <div className="bg-white  relative overflow-scroll">
               <nav className="flex border-b-3 relative -z-1 ">
                 <div
                   onClick={() => handleTabClick("POR")}
@@ -703,7 +703,7 @@ function Request_admin() {
   <div className=" text-xs font-semibold text-[#666b78]">Total Requests received : {History.length} </div>
 </div>
             </div>
-            <div className=" flex flex-col gap-[3px] ">
+            <div className=" flex flex-col gap-[3px] lg:w-full w-[720px] ">
               <div className="flex mt-4 bg-[#E8E9EA] items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
                 <div className=" text-sm lg:w-[7%] w-[5%] text-center  py-3">
                   Sl. No.

@@ -39,6 +39,7 @@ async function createUser(req, res) {
       verified: false,
       otp,
       role,
+      profileCompletion:0
     });
 
     await newUser.save();
