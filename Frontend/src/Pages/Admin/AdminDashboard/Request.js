@@ -1,8 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import CornerProfileLogoutSectionadmin from "./CornerProfileLogoutSectionadmin";
+import CryptoJS from "crypto-js";
 import Admin_Navbar from "../../../Components/Admin_Navbar";
 import RequestDetailsModal from "./Request_Details";
+import axios from "axios";
 
 function Request_admin() {
   const navigate = useNavigate();
@@ -13,12 +15,35 @@ function Request_admin() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 6;
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token)
-      navigate('/');
-  }, []);
+  const ENCRYPTION_KEY = 'HELLO_WoRLD';
 
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
+  useEffect(() => {
+    
+     async function checkEmail()  {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/api/users/user-details",
+          {
+            email: decryptEmail(encryptedEmail),
+            role: "admin",
+            token:localStorage.getItem("token")
+          }
+        );
+          if (response.status === 200) {
+            console.log('OK')
+          
+        }
+      } catch (error) {
+        navigate(`/`);
+      }
+    }
+    checkEmail();
+  }, []);
   // const POR_TYPES = ["POR", "Project Validation", "LOR", "Inter IIT Participation", "CR/BR POR"];
 
   const [selectedRequest, setSelectedRequest] = useState(null);

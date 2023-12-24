@@ -41,11 +41,13 @@ function MyProfile({user,encryptedEmail}) {
          <div className="mt-3">
           <div className="flex gap-2">
             <img src="/branch.svg" />
-            <div>{user.program}</div>
+           {user.program&& user.program.length>0?<div>{user.program}</div>:
+            <div>--</div>}
           </div>
           <div className="flex gap-2">
             <img src="/tag.svg" />
-            <div>{user.department}</div>
+           {user.department&&user.department.length>0? <div>{user.department}</div>:
+            <div>--</div>}
           </div>
           <div className="flex gap-2">
             <img src="/email.svg" />

@@ -198,6 +198,10 @@ function Profile() {
                       <option hidden>Select Program</option>
                       <option>{" B.Tech"}</option>
                       <option>{" B.Des"}</option>
+                      <option>{" M.Tech"}</option>
+                      <option>{" M.Sc"}</option>
+                      <option>{" MBA"}</option>
+                      <option>{" Phd"}</option>
                     </select>
                   </div>
                 ) : (

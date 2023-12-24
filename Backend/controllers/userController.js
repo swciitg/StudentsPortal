@@ -12,14 +12,14 @@ async function createUser(req, res) {
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      if (existingUser.verified&&existingUser.password) {
+      if (existingUser.verified&&existingUser.password){
         return res.status(400).json({ message: 'User already exists and is verified' });
       }
       // If the user exists but is not verified,update the existing user
       const otp = generateOTP();
 
       existingUser.name = name;
-      existingUser.roll = role === 'student' ? roll : undefined;
+     existingUser.roll = role==='student'?roll:undefined;
       existingUser.verified = false;
       existingUser.otp = otp;
       existingUser.role = role;
@@ -106,13 +106,17 @@ async function createPassword(req, res) {
       return res.status(404).json({ message: "User not found" });
     }
     const hashedPassword = await bcrypt.hash(password, 10); 
+    
+    const token = jwt.sign({ email: user.email,role:user.role }, "your_secret_key", {
+      expiresIn: "1h",
+    });
     user.password = hashedPassword;
+    user.token=token;
     await user.save();
-
+    res.status(200).json({ token });
     console.log("Password created successfully");
-    res.status(200).json({ message: "Password created successfully" });
   } catch (error) {
-    console.error("Error creating password:", error);
+    console.error("Error creating pass:", error);
     res
       .status(500)
       .json({ message: "Internal Server Error", error: error.message });
@@ -162,9 +166,10 @@ async function userDetails(req, res) {
       department,
       profileCompletion,
       profileUrl,
-      role
+      role,
+      token
     } = req.body;
-    const user = await User.findOne({ email,role });
+    const user = await User.findOne({ email,role,token });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -231,5 +236,5 @@ module.exports = {
   generateOTP,
   createPassword,
   userDetails,
-  resendOTP,
+  resendOTP
 };

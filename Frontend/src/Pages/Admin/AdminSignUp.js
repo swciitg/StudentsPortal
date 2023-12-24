@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import CryptoJS from 'crypto-js'
@@ -16,6 +16,25 @@ export default function AdminSignUp() {
     const encryptedEmail = CryptoJS.AES.encrypt(email, ENCRYPTION_KEY).toString();
     return encryptedEmail;
   }
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    function parseJwt(token) {
+      if (!token) {
+        return;
+      }
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace("-", "+").replace("_", "/");
+      return JSON.parse(window.atob(base64));
+    }
+  
+    // loggedin user
+    const user=parseJwt(token)
+
+    if (token)
+   { navigate(
+      `/AdminDashboard/Home?e=${encodeURIComponent(encryptEmail(user.email))}`
+    );}
+  }, []);
   const handleSignUp = async () => {
     try {
       seterror({status:false})

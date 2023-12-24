@@ -1,16 +1,42 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import CornerProfileLogoutSectionadmin from "./CornerProfileLogoutSectionadmin";
+import CryptoJS from "crypto-js";
 import Admin_Navbar from "../../../Components/Admin_Navbar";
+import axios from "axios";
 
 function RequestsForwardadmin() {
   const navigate= useNavigate();
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
+  const ENCRYPTION_KEY = 'HELLO_WoRLD';
+
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token)
-      navigate('/');
+    
+     async function checkEmail()  {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/api/users/user-details",
+          {
+            email: decryptEmail(encryptedEmail),
+            role: "admin",
+            token:localStorage.getItem("token")
+          }
+        );
+          if (response.status === 200) {
+            console.log('OK')
+          
+        }
+      } catch (error) {
+        navigate(`/`);
+      }
+    }
+    checkEmail();
   }, []);
   const ForwardRequest = [
     {

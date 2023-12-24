@@ -12,11 +12,7 @@ function AdminProfile() {
   //   name: "General Secretary Ecell",
   //  'Official mail id': "Gsececell@iitg.ac.in",
   // };
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token)
-      navigate('/');
-  }, []);
+
   const [user,setuser]=useState("")
   const ENCRYPTION_KEY = "HELLO_WoRLD";
 
@@ -32,7 +28,8 @@ function AdminProfile() {
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
-            role:'admin'
+            role:'admin',
+            token:localStorage.getItem("token")
           }
         );
 

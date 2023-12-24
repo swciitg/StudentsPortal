@@ -33,7 +33,8 @@ function CornerProfileLogoutSectionadmin({ encryptedEmail }) {
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
-            role:'admin'
+            role:'admin',
+            token:localStorage.getItem("token")
           }
         );
 

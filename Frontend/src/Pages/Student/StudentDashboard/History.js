@@ -19,7 +19,7 @@ function History() {
       "Request Name": "LOR for Vedprakash",
       "Type of Request": "LOR",
       Date: "12/02/2023",
-      Status: "Pending",
+      Status: "Withdrawn",
       "Seen Status": false,
       "Sender Name": "Yash Chauhan",
       "Sender Roll no.": "210205058",
@@ -95,7 +95,7 @@ function History() {
       "Request Name": "Website design",
       "Type of Request": "LOR",
       Date: "12/02/2023",
-      Status: "Pending",
+      Status: "Withdrawn",
       "Seen Status": true,
       "Sender Name": "Yash Chauhan",
       "Sender Roll no.": "210205058",
@@ -190,7 +190,7 @@ function History() {
       "Request Name": "E-Cell design head",
       "Type of Request": "LOR",
       Date: "12/02/2023",
-      Status: "Pending",
+      Status: "Withdrawn",
       "Seen Status": true,
       "Sender Name": "Yash Chauhan",
       "Sender Roll no.": "210205058",
@@ -565,7 +565,7 @@ function History() {
         <CornerProfileLogoutSection  encryptedEmail={encryptedEmail}/>
      
      
-       {selectedRequest? <RequestDetailsModal
+       {selectedRequest&&isModalOpen? <RequestDetailsModal
       isOpen={isModalOpen}
       onRequestClose={() => setIsModalOpen(false)}
       requestData={selectedRequest}
@@ -607,6 +607,16 @@ function History() {
               }`}
             >
               Denied
+            </div>
+            <div
+              onClick={() => handleTabClick("Withdrawn")}
+              className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
+                selectedTab === "Withdrawn"
+                  ? "border-b-[#2164E8] relative "
+                  : "border-b-[#E9E9EB] text-[#494D57]"
+              }`}
+            >
+              Withdrawn
             </div>
           </nav>
           <hr className=" absolute border-[2px] text-[#E9E9EB] -translate-y-[3px]  w-full z-0 " />

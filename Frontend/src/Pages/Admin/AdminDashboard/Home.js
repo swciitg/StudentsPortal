@@ -20,9 +20,6 @@ function Home_admin() {
     return decryptedEmail;
   }
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    console.log();
-    if (!token || !encryptedEmail) navigate("/");
      async function checkEmail()  {
       try {
         const response = await axios.post(
@@ -30,6 +27,7 @@ function Home_admin() {
           {
             email: decryptEmail(encryptedEmail),
             role: "admin",
+            token:localStorage.getItem("token")
           }
         );
           if (response.status === 200) {

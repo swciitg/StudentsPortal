@@ -1,47 +1,55 @@
 // import { useState } from "react";
 import axios from "axios";
 import React, { useState } from "react";
-import { Link,useNavigate,useLocation } from "react-router-dom";
-import CryptoJS from 'crypto-js'
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import CryptoJS from "crypto-js";
 
 // import HomePage from "./HomePage";
 export default function CreatePassadmin() {
   const [paas, setpass] = useState("");
-  const [confpass, setconfpaas] = useState(""); 
-  const [loading, setLoading] = useState(false); 
+  const [confpass, setconfpaas] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();  
+  const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const ENCRYPTION_KEY = 'HELLO_WoRLD';
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
 
-  
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
     const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
     return decryptedEmail;
   }
   const handleCreatePass = async () => {
+    const password=paas;
     try {
-setLoading(true)
-      const newPassword = paas;
-  
-      await axios.post('http://localhost:3002/api/users/create-password', {
-        email: decryptEmail(encryptedEmail), 
-        password: newPassword,
-      });
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:3002/api/users/create-password",
+        {
+          email: decryptEmail(encryptedEmail),
+          password: password,
+        }
+      );
 
-      console.log('Password created successfully');
-      navigate(`/AdminDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`);
+      if (response.status === 200) {
+        // console.log(response)
+        localStorage.setItem("token", response.data.token);
+        console.log("Password created successfully");
+
+        // Redirect to the dashboard
+        navigate(
+          `/AdminDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`
+        );}
+        else{
+          console.log("error while creating password")
+        }
+      
     } catch (error) {
-      console.error('Error creating password:', error.message);
-    }
-    finally{
-      setLoading(false)
+      console.error("Error creating password:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
-
-
-
 
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
@@ -74,9 +82,13 @@ setLoading(true)
         </div>
         {paas === confpass && paas.length > 0 ? (
           <div className="flex justify-end mt-10">
-              <div>
-              <button disabled={loading} onClick={handleCreatePass} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-              {loading ? 'Submiting...' : 'Submit'}
+            <div>
+              <button
+                disabled={loading}
+                onClick={handleCreatePass}
+                className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
+              >
+                {loading ? "Submiting..." : "Submit"}
               </button>
             </div>
           </div>
