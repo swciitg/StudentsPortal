@@ -9,7 +9,7 @@ const CommonListHeader = () => {
       <div className="ml-48">Request Sender</div>
       <div className="ml-48">Received on</div>
       <div className="ml-16">Status</div>
-      <div className="ml-16">Approve/Withdraw</div>
+      <div className="ml-16">Approve/Deny</div>
     </div>
   );
 };

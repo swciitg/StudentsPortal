@@ -14,7 +14,9 @@ const RequestList = (prop) => {
       <div className="ml-16">Pending</div>
 
       <div className="ml-16">
-        <Button value="Withdraw" />
+        <Link to="/request/details/approve">
+          <Button value="Approve" />
+        </Link>
       </div>
 
       <div className="text-real-blue ml-12 cursor-pointer hover:underline">
