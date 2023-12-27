@@ -17,14 +17,14 @@ function PendingRequests({PendingRequest,encryptedEmail}) {
       };
       
   return (
-    <div className=" col-span-4 p-7 flex flex-col  justify-between pb-4  bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-      <div>
+    <div className=" col-span-4 p-7 h-full flex flex-col  justify-between pb-4  bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+      <div className="h-full w-full">
         {" "}
         <div className="flex gap-2 items-center">
           <img src="/requests-pending.svg" />
           <div className=" text-base">Pending Requests</div>
         </div>
-        <div className="mt-2 lg:mb-0 mb-3 flex flex-col gap-2">
+     {PendingRequest.length>0?   <div className="mt-2 lg:mb-0 mb-3 flex flex-col gap-2">
           {PendingRequest.map((item) => (
             <div
               key={item.id}
@@ -43,7 +43,9 @@ function PendingRequests({PendingRequest,encryptedEmail}) {
               </div>
             </div>
           ))}
-        </div>
+        </div>:<div className="flex justify-center items-center h-full text-[#8D9096]">
+        Nothing To Show!!!
+      </div>}
       </div>
       <Link
         to={`/StudentDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}

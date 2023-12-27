@@ -53,37 +53,35 @@ async function createRequest(req, res) {
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }
-async function UpdateRequest(req, res) {
-    try {
-      const {
-          "Request Name": RequestName,
-          "Type of Request":TypeofRequest,
-          Status: Status,
-          "Seen Status": SeenStatus,
-            "Sender Name": senderName,
-            "Sender Roll no.": senderRollNo,
-            "Sender email": senderEmail,
-          "Request sent to":RequestsentTo,
-          "Year of Tenure":YearofTenure ,
-          "Request Validator": RandomValidator,
-          organisation: organisation,
-          "Parent Body": ParentBody,
-          "Document requested": Documentrequested,
-          Supporting_Document_url:Supporting_Document_url,
-          Request_sent_date: Request_sent_date,
-          "POR Position": PORPosition,
-      } = req.body;
-  
-      const request=await Request.findOne({"Sender email": senderEmail,})
-      await request.save();
-  
-      return res
-        .status(201)
-        .json({ message: "Request udated successfully" });
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: "Internal Server Error" });
-    }
-  }
+async function RequestDetails(req, res) {
+  try {
+    const {"Sender email": senderEmail}=req.body
+    const request = await Request.find({"Sender email": senderEmail});
 
-module.exports = createRequest;
+    if (!request) {
+      return res.status(404).json({ message: 'Request not found' });
+    }
+
+    return res.status(200).json({ message: 'Request details fetched successfully', data: request });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+async function WithdrawRequest(req,res){
+  try {
+    const {"Sender email": senderEmail,_id:id}=req.body
+    const request = await Request.findOne({"Sender email": senderEmail,_id:id});
+
+    if (!request) {
+      return res.status(404).json({ message: 'Request not found' });
+    }
+    request.Status="Withdrawn";
+    await request.save();
+    return res.status(200).json({ message: 'Request Withdrawn successfully'});
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+module.exports = {createRequest,RequestDetails,WithdrawRequest};

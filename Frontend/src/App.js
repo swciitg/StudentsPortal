@@ -11,10 +11,6 @@ import History from './Pages/Student/StudentDashboard/History';
 import Request from './Pages/Student/StudentDashboard/Request';
 import RequestsForward from './Pages/Student/StudentDashboard/RequestsForward';
 import SelectValidation from './Pages/Student/StudentDashboard/RequestPages/SelectValidation';
-import CreateProjValStep1 from './Pages/Student/StudentDashboard/RequestPages/ProjectValidation/CreateProjValStep1';
-import CreateProjValStep2 from './Pages/Student/StudentDashboard/RequestPages/ProjectValidation/CreateProjValStep2';
-import CreateProjValStep3 from './Pages/Student/StudentDashboard/RequestPages/ProjectValidation/CreateProjValStep3';
-import SuccessProjVal from './Pages/Student/StudentDashboard/RequestPages/ProjectValidation/SuccessProjVal';
 import CreateLORStep1 from './Pages/Student/StudentDashboard/RequestPages/LOR/CreateLORStep1';
 import CreateLORStep2 from './Pages/Student/StudentDashboard/RequestPages/LOR/CreateLORStep2';
 import CreateLORStep3 from './Pages/Student/StudentDashboard/RequestPages/LOR/CreateLORStep3';
@@ -36,6 +32,7 @@ import CreatePassadmin from './Pages/Admin/CreatePass';
 import StudentLogin from './Pages/Student/StudentLogin';
 import AdminLogin from './Pages/Admin/AdminLogIn';
 import CreateClubPOR from './Pages/Student/StudentDashboard/RequestPages/ClubPOR/ClubPOR';
+import CreateProjectVal from './Pages/Student/StudentDashboard/RequestPages/ProjectValidation/ProjectValidation';
 function App() {
   return (
     <BrowserRouter>
@@ -53,14 +50,10 @@ function App() {
         <Route path="/StudentDashboard/Request" element={<Request/>}/>
         <Route path="/StudentDashboard/Request/SelectValidation" element={<SelectValidation/>}/>
         <Route path="/StudentDashboard/Request/ClubPOR" element={<CreateClubPOR/>}/>
-        <Route path="/StudentDashboard/Request/ProjectValidation/1" element={<CreateProjValStep1/>}/>
-        <Route path="/StudentDashboard/Request/ProjectValidation/2" element={<CreateProjValStep2/>}/>
-        <Route path="/StudentDashboard/Request/ProjectValidation/3" element={<CreateProjValStep3/>}/>
-        <Route path="/StudentDashboard/Request/ProjectValidation/success" element={<SuccessProjVal/>}/>
+        <Route path="/StudentDashboard/Request/ProjectValidation" element={<CreateProjectVal/>}/>
         <Route path="/StudentDashboard/Request/LOR/1" element={<CreateLORStep1/>}/>
         <Route path="/StudentDashboard/Request/LOR/2" element={<CreateLORStep2/>}/>
         <Route path="/StudentDashboard/Request/LOR/3" element={<CreateLORStep3/>}/>
-        <Route path="/StudentDashboard/Request/LOR/success" element={<SuccessProjVal/>}/>
         <Route path="/StudentDashboard/Request/InterIIT/1" element={<CreateInterIITStep1/>}/>
         <Route path="/StudentDashboard/Request/InterIIT/2" element={<CreateInterIITStep2/>}/>
         <Route path="/StudentDashboard/Request/InterIIT/3" element={<CreateInterIITStep3/>}/>

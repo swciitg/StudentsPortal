@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import CreateClubPORStep3 from "./Components/CreateClubPORStep3";
-import CreateClubPORStep1 from "./Components/CreateClubPORStep1";
-import CreateClubPORStep2 from "./Components/CreateClubPORStep2";
-import SuccessClubPOR from "./Components/SuccessClubPOR";
+import React, {  useEffect, useState } from "react";
 import CryptoJS from 'crypto-js';
 import { useLocation, useNavigate } from "react-router-dom";
 import Student_Navbar from "../../../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
+import CreateProjValStep1 from "./Components/CreateProjValStep1";
+import CreateProjValStep2 from "./Components/CreateProjValStep2";
+import CreateProjValStep3 from "./Components/CreateProjValStep3";
+import SuccessProjVal from "./Components/SuccessProjVal";
 import axios from "axios";
-const CreateClubPOR = () => {
+const CreateProjectVal = () => {
     const location = useLocation();
     const navigate=useNavigate();
     const encryptedEmail = new URLSearchParams(location.search).get("e");
@@ -64,17 +64,16 @@ const CreateClubPOR = () => {
     const handleComplete = async () => {
       try {
         const response = await axios.post('http://localhost:3002/api/request', {
-        "Request Name": `ClubPOR for ${user.name}`,
+        "Request Name": `ProjectValidation for ${user.name}`,
         "Parent Body": formData.ParentBody,
         organisation: formData.Organisation,
-        "POR Position": formData.Position,
         Request_sent_date: formattedDate,
         "Sender Name":user.name,
         "Sender Roll no.":user.roll.toString(),
-        "Year of Tenure":formData.Tenure,
         "Request Validator":formData.Validation ,
         "Sender email":`${decryptEmail(encryptedEmail)}@iitg.ac.in`,
-        "Type of Request":'POR',
+        "Request sent to":formData.ValidatorMail,
+        "Type of Request":'Project Validation',
         "Document requested":formData.Document,
         Status: 'Pending',
         });
@@ -91,6 +90,8 @@ const CreateClubPOR = () => {
         
       }
     };
+    console.log(formData)
+    console.log(user)
   
     return (
          <div className=" relative h-screen w-[100%]">
@@ -99,14 +100,14 @@ const CreateClubPOR = () => {
         {/*Corner Profile Option*/}
         <CornerProfileLogoutSection  encryptedEmail={encryptedEmail} />
        
-      {currentPage === 1 && <CreateClubPORStep1 onNext={handleNext} formData={formData} setFormData={setFormData} />}
-      {currentPage === 2 && <CreateClubPORStep2 onNext={handleNext} formData={formData} setFormData={setFormData} />}
-      {currentPage === 3 && <CreateClubPORStep3 onComplete={handleComplete} formData={formData} setFormData={setFormData} />}
-      {currentPage === 4 && <SuccessClubPOR />}
+      {currentPage === 1 && <CreateProjValStep1 onNext={handleNext} formData={formData} setFormData={setFormData} />}
+      {currentPage === 2 && <CreateProjValStep2 onNext={handleNext} formData={formData} setFormData={setFormData} />}
+      {currentPage === 3 && <CreateProjValStep3 onComplete={handleComplete} formData={formData} setFormData={setFormData} />}
+      {currentPage === 4 && <SuccessProjVal />}
   
       </div>
     </div>
     );
   };
   
-  export default CreateClubPOR;
+  export default CreateProjectVal;

@@ -35,6 +35,7 @@ function Home_admin() {
           
         }
       } catch (error) {
+        localStorage.removeItem('token')
         navigate("/");
       }
     }

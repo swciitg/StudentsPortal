@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
+import axios from "axios";
 function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
-  const [isWithdrawModalOpen, setWithdrawModalOpen] = useState(false);
-  const [reason, setReason] = useState('');
-  if (!isOpen) {
-    return null;
-  }
   RequestDetailsModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
@@ -18,6 +14,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
       "Seen Status": PropTypes.bool.isRequired,
       "Sender Name": PropTypes.string.isRequired,
       "Sender Roll no.": PropTypes.string.isRequired,
+      "Sender email": PropTypes.string.isRequired,
       "Request sent to": PropTypes.string.isRequired,
       "Year of Tenure": PropTypes.string.isRequired,
       "Request Validator": PropTypes.string.isRequired,
@@ -27,14 +24,51 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
       Supporting_Document_url: PropTypes.string.isRequired,
       Request_sent_date: PropTypes.string.isRequired,
       "POR Position": PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
     }).isRequired,
     encryptedEmail: PropTypes.string.isRequired,
   };
 
+  const [loading, setLoading] = useState(false);
+  const [isWithdrawModalOpen, setWithdrawModalOpen] = useState(false);
+  const [reason, setReason] = useState("");
+  const [Status, setStatus] = useState(requestData.Status);
+  if (!isOpen) {
+    return null;
+  }
+
   const openWithdrawModal = () => setWithdrawModalOpen(true);
   const closeWithdrawModal = () => setWithdrawModalOpen(false);
-  const reasonOptions = [ "Mind has changed",
-  "Created request to the wrong person","Request is no longer necessary",];
+
+  const reasonOptions = [
+    "Mind has changed",
+    "Created request to the wrong person",
+    "Request is no longer necessary",
+  ];
+   const handleWithdraw= async()=>  {
+     try {
+       setLoading(true)
+       const response = await axios.post(
+         "http://localhost:3002/api/request/withdraw-request",
+         {
+          "Sender email":requestData["Sender email"],
+          _id:requestData._id
+
+         }
+       );
+         if (response.status === 200) {
+          console.log("Withdrawn Successfull!!")
+          setStatus("Withdrawn");
+          closeWithdrawModal()
+         
+       }
+     } catch (error) {
+      console.log(error)
+     }
+     finally{
+      setLoading(false)
+   }
+   }
   return (
     <div>
       <div className="px-3 py-5 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -111,10 +145,13 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
                       </div>
                       {reason.length > 0 ? (
                         <button
-                          onClick={closeWithdrawModal}
+                          onClick={handleWithdraw}
+                          disabled={loading}
                           className="inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
                         >
-                          Withdraw Request
+              {loading ? 'Withdrawing...' : 'Withdraw Request'}
+
+                         
                         </button>
                       ) : (
                         <button className="inline-flex items-center p-1 bg-gray-300 text-gray-600 rounded-sm px-4">
@@ -124,12 +161,14 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
                     </div>
                   </div>
                 </Modal>
-               {requestData.Status==='Pending'&& <button
-                  onClick={openWithdrawModal}
-                  className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8] text-white rounded"
-                >
-                  Withdraw
-                </button>}
+                {Status === "Pending" && (
+                  <button
+                    onClick={openWithdrawModal}
+                    className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8] text-white rounded"
+                  >
+                    Withdraw
+                  </button>
+                )}
               </div>
               <div>
                 <button
@@ -153,7 +192,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
             </div>
             <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">Sender Mail Id</label>
-              <div>{requestData["Request sent to"]}</div>
+              <div>{requestData["Sender email"]}</div>
             </div>
             <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">

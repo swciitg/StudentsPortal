@@ -15,13 +15,13 @@ function ApprovedRequests({ApprovedRequest,encryptedEmail}) {
       };
   return (
     <div className=" col-span-3 p-7 flex flex-col gap-4 pb-4 bg-white h-[100%] shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-      <div>
+      <div className=" h-full w-full">
         {" "}
         <div className="flex gap-2 items-center">
           <img src="/requests-approved.svg" />
           <div className=" text-base">Approved Requests</div>
         </div>
-        <div className="flex flex-col gap-2 mt-3">
+       {ApprovedRequest.length>0? <div className="flex flex-col gap-2 mt-3">
           {ApprovedRequest.map((item) => (
             <div
               key={item.id}
@@ -31,7 +31,9 @@ function ApprovedRequests({ApprovedRequest,encryptedEmail}) {
               <p className="text-sm text-[#494D57]">{item.Date}</p>
             </div>
           ))}
-        </div>
+        </div>:<div className="flex justify-center items-center h-full text-[#8D9096]">
+        Nothing To Show!!!
+      </div>}
       </div>
       <Link
          to={{
