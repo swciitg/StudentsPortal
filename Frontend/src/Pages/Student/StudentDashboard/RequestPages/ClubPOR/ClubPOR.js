@@ -39,16 +39,12 @@ const CreateClubPOR = () => {
   useEffect(() => {
     async function UserDetails() {
       try {
-<<<<<<< HEAD
-        const response = await axios.post('http://localhost:3002/api/request', {
-        "Request Name": `ClubPOR for ${user.name}`,
-=======
         const response = await axios.post(
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
             role: "student",
-            token: localStorage.getItem("token"),
+            token:localStorage.getItem('token')
           }
         );
 
@@ -60,63 +56,39 @@ const CreateClubPOR = () => {
         }
       } catch (error) {
         console.error("Error:", error.message);
-        navigate(`/`);
+    navigate(`/`);
       }
     }
     UserDetails();
     // eslint-disable-next-line
   }, []);
-  const handleComplete = async () => {
-    try {
-      const response = await axios.post("http://localhost:3002/api/request", {
->>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
-        "Parent Body": formData.ParentBody,
-        organisation: formData.Organisation,
-        "POR Position": formData.Position,
-        Request_sent_date: formattedDate,
-<<<<<<< HEAD
-        "Sender Name":user.name,
-        "Sender Roll no.":user.roll.toString(),
-        "Year of Tenure":formData.Tenure,
-        "Request Validator":formData.Validation ,
-        "Sender email":`${decryptEmail(encryptedEmail)}@iitg.ac.in`,
-        "Type of Request":'POR',
-        "Document requested":formData.Document,
-        Status: 'Pending',
-        });
-    
-       if (response.status === 201) {
-          console.log('Request created successfully');
-         handleNext()
-        } 
-        else {
-          console.error('Error creating request:', response.data.message);
-        }
-      } catch (error) {
-        console.error('Error:', error.message);
-        
-=======
-        "Sender Name": user.name,
-        "Sender Roll no.": user.roll,
-        "Year of Tenure": formData.Tenure,
-        "Request Validator": formData.Validation,
-        "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
-        "Type of Request": "POR",
-        "Document requested": formData.Document,
-        Status: "Pending",
-      });
-
-      if (response.status === 201) {
-        console.log("Request created successfully");
-        handleNext();
-      } else {
-        console.error("Error creating request:", response.data.message);
->>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
-      }
-    } catch (error) {
-      console.error("Error:", error.message);
-    }
-  };
+    const handleComplete = async () => {
+      try {
+        const response = await axios.post("http://localhost:3002/api/request", {
+          "Parent Body": formData.ParentBody,
+          "Request Name": `ClubPOR for ${user.name}`,
+          organisation: formData.Organisation,
+          "POR Position": formData.Position,
+          Request_sent_date: formattedDate,
+          "Sender Name":user.name,
+          "Sender Roll no.":user.roll.toString(),
+          "Year of Tenure":formData.Tenure,
+          "Request Validator":formData.Validation ,
+          "Sender email":`${decryptEmail(encryptedEmail)}@iitg.ac.in`,
+          "Type of Request":'POR',
+          "Document requested":formData.Document,
+          Status: 'Pending',
+          });
+      
+         if (response.status === 201) {
+            console.log('Request created successfully');
+           handleNext()
+          } 
+          else {
+            console.error('Error creating request:', response.data.message);
+          }
+        } catch (error) {
+          console.error('Error:', error.message);}}
 
   return (
     <div className=" relative h-screen w-[100%]">
