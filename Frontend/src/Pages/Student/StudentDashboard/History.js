@@ -9,12 +9,17 @@ import axios from "axios";
 function History() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
+<<<<<<< HEAD
   const [History,setHistory]=useState(null)
+=======
+
+>>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
   const [selectedTab, setSelectedTab] = useState("Pending");
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 6;
+<<<<<<< HEAD
   // const History = [
   //   {
   //     "Sl.no": 1,
@@ -473,14 +478,474 @@ function History() {
   //     'POR Position':'Design Head'
   //   },
   // ];
+=======
+  const History = [
+    {
+      "Sl.no": 1,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Withdrawn",
+      "Seen Status": false,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 2,
+      "Request Name": "Website design",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 3,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 4,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 5,
+      "Request Name": "Website design",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Withdrawn",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 6,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Denied",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 7,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 8,
+      "Request Name": "Website design",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Approved",
+      "Seen Status": false,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 9,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Denied",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 10,
+      "Request Name": "E-Cell design head",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Withdrawn",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 11,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": false,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 12,
+      "Request Name": "E-Cell design head",
+      "Type of Request": "Project validation",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 13,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 14,
+      "Request Name": "E-Cell design head",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 15,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Approved",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 16,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "Project validation",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 17,
+      "Request Name": "E-Cell design head",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Approved",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 18,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "Project validation",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 19,
+      "Request Name": "E-Cell design head",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 20,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "Project validation",
+      Date: "12/02/2023",
+      Status: "Denied",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 21,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 22,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Denied",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 23,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "Project validation",
+      Date: "12/02/2023",
+      Status: "Denied",
+      "Seen Status": true,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+    {
+      "Sl.no": 24,
+      "Request Name": "LOR for Vedprakash",
+      "Type of Request": "LOR",
+      Date: "12/02/2023",
+      Status: "Pending",
+      "Seen Status": false,
+      "Sender Name": "Yash Chauhan",
+      "Sender Roll no.": "210205058",
+      "Request sent to": "ecell@iitg.ac.in",
+      "Year of Tenure": "2021-22",
+      "Request Validator": "General Secretary",
+      organisation: "E-Cell",
+      "Parent Body": "Technical Board",
+      "Document requested": "Letter of Approval",
+      Supporting_Document_url: " ",
+      Request_sent_date: "12/01/2023",
+      "POR Position": "Design Head",
+    },
+  ];
+>>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
-    setCurrentPage(1)
+    setCurrentPage(1);
   };
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   const handleCheckUpdates = (requestData) => {
     setSelectedRequest(requestData);
     setIsModalOpen(true);
@@ -489,16 +954,25 @@ function History() {
     setCurrentPage(newPage);
   };
   const updateTotalPages = () => {
+<<<<<<< HEAD
     if (History !== null) {
       const filteredHistory = History.filter((data) => data.Status === selectedTab);
       const totalItems = filteredHistory.length;
       const calculatedTotalPages = Math.ceil(totalItems / itemsPerPage);
       setTotalPages(calculatedTotalPages);
     }
+=======
+    const filteredHistory = History.filter(
+      (data) => data.Status === selectedTab
+    );
+    const totalItems = filteredHistory.length;
+    const calculatedTotalPages = Math.ceil(totalItems / itemsPerPage);
+    setTotalPages(calculatedTotalPages);
+>>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
   };
-  const navigate=useNavigate();
-  const ENCRYPTION_KEY = 'HELLO_WoRLD';
-  
+  const navigate = useNavigate();
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
     const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
@@ -506,20 +980,18 @@ function History() {
   }
   
   useEffect(() => {
-    
-     async function checkEmail()  {
+    async function checkEmail() {
       try {
         const response = await axios.post(
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
             role: "student",
-            token:localStorage.getItem("token")
+            token: localStorage.getItem("token"),
           }
         );
-          if (response.status === 200) {
-            console.log('OK')
-          
+        if (response.status === 200) {
+          console.log("OK");
         }
       } catch (error) {
         navigate(`/`);
@@ -553,7 +1025,7 @@ function History() {
     const tabParam = urlParams.get("tab");
     const defaultTab = "Pending";
     const initialTab = tabParam || defaultTab;
-  
+
     setSelectedTab(initialTab);
     setCurrentPage(1);
   }, []);
@@ -565,18 +1037,25 @@ function History() {
   const RenderHistory = ({ onCheckUpdates }) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const filteredHistory = History.filter((data) => data.Status === selectedTab);
+    const filteredHistory = History.filter(
+      (data) => data.Status === selectedTab
+    );
 
     const filteredAndSearchedHistory = filteredHistory.filter((data) =>
       data["Request Name"].toLowerCase().includes(search.toLowerCase())
     );
+<<<<<<< HEAD
   
    if(History!==null|| !Array.isArray(History)) return filteredAndSearchedHistory
+=======
+
+    return filteredAndSearchedHistory
+>>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
       .slice(startIndex, endIndex)
       .map((data, index) => {
         const sequenceNumber = index + 1 + (currentPage - 1) * itemsPerPage;
         let statusStyle;
-  
+
         if (data.Status === "Pending") {
           statusStyle = "text-[#494D57]";
         } else if (data.Status === "Denied") {
@@ -584,6 +1063,7 @@ function History() {
         } else if (data.Status === "Approved") {
           statusStyle = "text-[#107C10]";
         }
+<<<<<<< HEAD
           
  
     return (
@@ -615,11 +1095,46 @@ function History() {
   });
   };
  
+=======
+        return (
+          <div
+            key={index}
+            className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
+          >
+            <div className="text-xs w-[10%]  text-[#494D57]  text-center py-5">
+              {sequenceNumber}
+            </div>
+            <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
+              {data["Request Name"]}
+            </div>
+            <div className="text-xs text-[#494D57] w-[20%] text-center py-5">
+              {data["Type of Request"]}
+            </div>
+            <div className="text-xs text-[#494D57] w-[15%] text-center py-5">
+              {data.Date}
+            </div>
+            <div className={`text-xs text-center w-[15%] py-5 ${statusStyle}`}>
+              {data.Status}
+            </div>
+            <div
+              onClick={() => onCheckUpdates(data)}
+              className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1"
+            >
+              <div>Check Updates</div>
+              <img src="/Arrow-right.svg" />
+            </div>
+          </div>
+        );
+      });
+  };
+
+>>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
   return (
     <div className=" relative h-screen w-[100%]">
-      <Student_Navbar  encryptedEmail={encryptedEmail}/>
+      <Student_Navbar encryptedEmail={encryptedEmail} />
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
+<<<<<<< HEAD
         <CornerProfileLogoutSection  encryptedEmail={encryptedEmail}/>
      
      
@@ -684,24 +1199,29 @@ function History() {
             <img src="/filter.svg" />
             <div>Filter</div>
           </div>
+=======
+        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
+>>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
 
-          <div   className=" relative flex items-center  w-full">
-            <img className="translate-x-[26px]" src="/search.svg" />
-            <input
-              onChange={(e)=>setSearch(e.target.value)}
-              className="my-3 lg:w-[50%] w-[90%] px-3 pl-8 py-[6px] border-[1px] rounded outline-none placeholder-[#113274] border-[#626670] "
-              placeholder="Search"
-            />
-
-          </div>
-        </div>
-        <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]">
-          <div className=" flex mt-4 bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-            <div className=" text-sm w-[10%] text-center  py-3">Sl. No.</div>
-            <div className=" text-sm w-[25%]  justify-center  gap-[3px] flex items-center py-3">
-              Request Name
-              <img src="/sort.svg" />
+        {selectedRequest && isModalOpen ? (
+          <RequestDetailsModal
+            isOpen={isModalOpen}
+            onRequestClose={() => setIsModalOpen(false)}
+            requestData={selectedRequest}
+            encryptedEmail={encryptedEmail}
+          />
+        ) : (
+          <>
+            <div className="flex flex-col py-2 pt-4 px-4 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+              <div className="flex  items-center  gap-3 mb-3">
+                <div className="   font-semibold text-xl">Request History</div>
+                <h2 className="text-[#2164E8] text-xs">
+                  {History.filter((item) => !item["Seen Status"]).length}{" "}
+                  Updates
+                </h2>
+              </div>
             </div>
+<<<<<<< HEAD
             <div className=" text-sm  w-[20%] text-center   py-3">
               Type of Request.
             </div>
@@ -733,41 +1253,147 @@ function History() {
             </div>
             {[...Array(Math.ceil(totalPages)).keys()].map(
               (page) => (
+=======
+            <div className="bg-white relative overflow-scroll ">
+              <nav className="flex border-b-3 relative z-10">
+>>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
                 <div
-                  key={page + 1}
-                  onClick={() => handlePageChange(page + 1)}
-                  className={`cursor-pointer select-none px-4 py-2  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ${
-                    currentPage === page + 1
-                      ? "bg-[#2164E8] text-white"
-                      : "bg-white text-[#2164E8]"
+                  onClick={() => handleTabClick("Pending")}
+                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform  border-b-[3px] ${
+                    selectedTab === "Pending"
+                      ? "border-b-[#2164E8] relative "
+                      : "border-b-[#E9E9EB] text-[#494D57]"
                   }`}
                 >
-                  {page + 1}
+                  Pending
                 </div>
-              )
-            )}
-            <div
-              className={` flex select-none items-center cursor-pointer  px-4 py-3  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] bg-white text-xs ${
-                currentPage === totalPages
-                  ? "text-[#8D9096]"
-                  : "text-[#1E2532]"
-              }`}
-              onClick={() =>
-                currentPage < totalPages &&
-                handlePageChange(currentPage + 1)
-              }
-            >
-              Next
-              {currentPage < totalPages ? (
-                <img src="/b-arrow-right.svg" />
-              ) : (
-                <img src="/grey-arrow-right.svg" />
-              )}
+                <div
+                  onClick={() => handleTabClick("Approved")}
+                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
+                    selectedTab === "Approved"
+                      ? "border-b-[#2164E8] relative "
+                      : "border-b-[#E9E9EB] text-[#494D57]"
+                  }`}
+                >
+                  Approved
+                </div>
+                <div
+                  onClick={() => handleTabClick("Denied")}
+                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
+                    selectedTab === "Denied"
+                      ? "border-b-[#2164E8] relative "
+                      : "border-b-[#E9E9EB] text-[#494D57]"
+                  }`}
+                >
+                  Denied
+                </div>
+                <div
+                  onClick={() => handleTabClick("Withdrawn")}
+                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
+                    selectedTab === "Withdrawn"
+                      ? "border-b-[#2164E8] relative "
+                      : "border-b-[#E9E9EB] text-[#494D57]"
+                  }`}
+                >
+                  Withdrawn
+                </div>
+              </nav>
+              <hr className=" absolute border-[2px] text-[#E9E9EB] -translate-y-[3px]  w-full z-0 " />
             </div>
+<<<<<<< HEAD
           </div></div>}
         </div>
 </>
 }
+=======
+            <div className=" flex -gap-2 bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+              <div className=" px-4 my-3 flex gap-[6px] items-center ">
+                <img src="/filter.svg" />
+                <div>Filter</div>
+              </div>
+
+              <div className=" relative flex items-center  w-full">
+                <img className="translate-x-[26px]" src="/search.svg" />
+                <input
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="my-3 lg:w-[50%] w-[90%] px-3 pl-8 py-[6px] border-[1px] rounded outline-none placeholder-[#113274] border-[#626670] "
+                  placeholder="Search"
+                />
+              </div>
+            </div>
+            <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]">
+              <div className=" flex mt-4 bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+                <div className=" text-sm w-[10%] text-center  py-3">
+                  Sl. No.
+                </div>
+                <div className=" text-sm w-[25%]  justify-center  gap-[3px] flex items-center py-3">
+                  Request Name
+                  <img src="/sort.svg" />
+                </div>
+                <div className=" text-sm  w-[20%] text-center   py-3">
+                  Type of Request.
+                </div>
+                <div className=" text-sm  w-[15%] justify-center  gap-[3px]   flex items-center py-3">
+                  Date
+                  <img src="/Arrow Sort.svg" />
+                </div>
+                <div className=" text-sm  w-[15%]  text-center  py-3">
+                  Status
+                </div>
+              </div>
+              <RenderHistory onCheckUpdates={handleCheckUpdates} />
+              <div className="flex justify-center items-center mt-4 mb-10">
+                <div
+                  className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${
+                    currentPage === 1 ? "text-[#8D9096]" : "text-[#1E2532]"
+                  }`}
+                  onClick={() =>
+                    currentPage > 1 && handlePageChange(currentPage - 1)
+                  }
+                >
+                  {currentPage > 1 ? (
+                    <img src="/b-arrow-left.svg" />
+                  ) : (
+                    <img src="/grey-arrow-left.svg" />
+                  )}
+                  Previous
+                </div>
+                {[...Array(Math.ceil(totalPages)).keys()].map((page) => (
+                  <div
+                    key={page + 1}
+                    onClick={() => handlePageChange(page + 1)}
+                    className={`cursor-pointer select-none px-4 py-2  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ${
+                      currentPage === page + 1
+                        ? "bg-[#2164E8] text-white"
+                        : "bg-white text-[#2164E8]"
+                    }`}
+                  >
+                    {page + 1}
+                  </div>
+                ))}
+                <div
+                  className={` flex select-none items-center cursor-pointer  px-4 py-3  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] bg-white text-xs ${
+                    currentPage === totalPages
+                      ? "text-[#8D9096]"
+                      : "text-[#1E2532]"
+                  }`}
+                  onClick={() =>
+                    currentPage < totalPages &&
+                    handlePageChange(currentPage + 1)
+                  }
+                >
+                  Next
+                  {currentPage < totalPages ? (
+                    <img src="/b-arrow-right.svg" />
+                  ) : (
+                    <img src="/grey-arrow-right.svg" />
+                  )}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+>>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
       </div>
     </div>
   );

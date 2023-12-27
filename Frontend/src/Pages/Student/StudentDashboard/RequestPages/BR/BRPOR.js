@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import CreateClubPORStep3 from "./Components/CreateClubPORStep3";
-import CreateClubPORStep1 from "./Components/CreateClubPORStep1";
-import CreateClubPORStep2 from "./Components/CreateClubPORStep2";
-import SuccessClubPOR from "./Components/SuccessClubPOR";
 import CryptoJS from "crypto-js";
 import { useLocation, useNavigate } from "react-router-dom";
 import Student_Navbar from "../../../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
 import axios from "axios";
-const CreateClubPOR = () => {
+import CreateBRStep1 from "./Components/CreateBRStep1";
+import CreateBRStep2 from "./Components/CreateBRStep2";
+import CreateBRStep3 from "./Components/CreateBRStep3";
+import SuccessBR from "./Components/SuccessBR";
+import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
+
+const CreateBRPOR = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
@@ -39,10 +40,6 @@ const CreateClubPOR = () => {
   useEffect(() => {
     async function UserDetails() {
       try {
-<<<<<<< HEAD
-        const response = await axios.post('http://localhost:3002/api/request', {
-        "Request Name": `ClubPOR for ${user.name}`,
-=======
         const response = await axios.post(
           "http://localhost:3002/api/users/user-details",
           {
@@ -69,33 +66,10 @@ const CreateClubPOR = () => {
   const handleComplete = async () => {
     try {
       const response = await axios.post("http://localhost:3002/api/request", {
->>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
         "Parent Body": formData.ParentBody,
         organisation: formData.Organisation,
         "POR Position": formData.Position,
         Request_sent_date: formattedDate,
-<<<<<<< HEAD
-        "Sender Name":user.name,
-        "Sender Roll no.":user.roll.toString(),
-        "Year of Tenure":formData.Tenure,
-        "Request Validator":formData.Validation ,
-        "Sender email":`${decryptEmail(encryptedEmail)}@iitg.ac.in`,
-        "Type of Request":'POR',
-        "Document requested":formData.Document,
-        Status: 'Pending',
-        });
-    
-       if (response.status === 201) {
-          console.log('Request created successfully');
-         handleNext()
-        } 
-        else {
-          console.error('Error creating request:', response.data.message);
-        }
-      } catch (error) {
-        console.error('Error:', error.message);
-        
-=======
         "Sender Name": user.name,
         "Sender Roll no.": user.roll,
         "Year of Tenure": formData.Tenure,
@@ -111,7 +85,6 @@ const CreateClubPOR = () => {
         handleNext();
       } else {
         console.error("Error creating request:", response.data.message);
->>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
       }
     } catch (error) {
       console.error("Error:", error.message);
@@ -126,30 +99,30 @@ const CreateClubPOR = () => {
         <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
 
         {currentPage === 1 && (
-          <CreateClubPORStep1
+          <CreateBRStep1
             onNext={handleNext}
             formData={formData}
             setFormData={setFormData}
           />
         )}
         {currentPage === 2 && (
-          <CreateClubPORStep2
+          <CreateBRStep2
             onNext={handleNext}
             formData={formData}
             setFormData={setFormData}
           />
         )}
         {currentPage === 3 && (
-          <CreateClubPORStep3
+          <CreateBRStep3
             onComplete={handleComplete}
             formData={formData}
             setFormData={setFormData}
           />
         )}
-        {currentPage === 4 && <SuccessClubPOR />}
+        {currentPage === 4 && <SuccessBR />}
       </div>
     </div>
   );
 };
 
-export default CreateClubPOR;
+export default CreateBRPOR;
