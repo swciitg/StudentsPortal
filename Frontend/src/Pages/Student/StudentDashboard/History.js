@@ -9,7 +9,7 @@ import axios from "axios";
 function History() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
- 
+
   const [selectedTab, setSelectedTab] = useState("Pending");
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,9 +31,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 2,
@@ -50,9 +50,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 3,
@@ -69,9 +69,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 4,
@@ -88,9 +88,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 5,
@@ -107,9 +107,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 6,
@@ -126,9 +126,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 7,
@@ -145,9 +145,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 8,
@@ -164,9 +164,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 9,
@@ -183,9 +183,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 10,
@@ -202,9 +202,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 11,
@@ -221,9 +221,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 12,
@@ -240,9 +240,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 13,
@@ -259,9 +259,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 14,
@@ -278,9 +278,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 15,
@@ -297,9 +297,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 16,
@@ -316,9 +316,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 17,
@@ -335,9 +335,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 18,
@@ -354,9 +354,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 19,
@@ -373,9 +373,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 20,
@@ -392,9 +392,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 21,
@@ -411,9 +411,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 22,
@@ -430,9 +430,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 23,
@@ -449,9 +449,9 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
     {
       "Sl.no": 24,
@@ -468,20 +468,19 @@ function History() {
       organisation: "E-Cell",
       "Parent Body": "Technical Board",
       "Document requested": "Letter of Approval",
-      Supporting_Document_url: ' ',
+      Supporting_Document_url: " ",
       Request_sent_date: "12/01/2023",
-      'POR Position':'Design Head'
+      "POR Position": "Design Head",
     },
   ];
-  
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
-    setCurrentPage(1)
+    setCurrentPage(1);
   };
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   const handleCheckUpdates = (requestData) => {
     setSelectedRequest(requestData);
     setIsModalOpen(true);
@@ -490,34 +489,34 @@ function History() {
     setCurrentPage(newPage);
   };
   const updateTotalPages = () => {
-    const filteredHistory = History.filter((data) => data.Status === selectedTab);
+    const filteredHistory = History.filter(
+      (data) => data.Status === selectedTab
+    );
     const totalItems = filteredHistory.length;
     const calculatedTotalPages = Math.ceil(totalItems / itemsPerPage);
     setTotalPages(calculatedTotalPages);
   };
-  const navigate=useNavigate();
-  const ENCRYPTION_KEY = 'HELLO_WoRLD';
-  
+  const navigate = useNavigate();
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
     const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
     return decryptedEmail;
   }
   useEffect(() => {
-    
-     async function checkEmail()  {
+    async function checkEmail() {
       try {
         const response = await axios.post(
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
             role: "student",
-            token:localStorage.getItem("token")
+            token: localStorage.getItem("token"),
           }
         );
-          if (response.status === 200) {
-            console.log('OK')
-          
+        if (response.status === 200) {
+          console.log("OK");
         }
       } catch (error) {
         navigate(`/`);
@@ -530,11 +529,11 @@ function History() {
     const tabParam = urlParams.get("tab");
     const defaultTab = "Pending";
     const initialTab = tabParam || defaultTab;
-  
+
     setSelectedTab(initialTab);
     setCurrentPage(1);
   }, []);
-  
+
   useEffect(() => {
     updateTotalPages();
     // eslint-disable-next-line
@@ -542,18 +541,20 @@ function History() {
   const RenderHistory = ({ onCheckUpdates }) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const filteredHistory = History.filter((data) => data.Status === selectedTab);
+    const filteredHistory = History.filter(
+      (data) => data.Status === selectedTab
+    );
 
     const filteredAndSearchedHistory = filteredHistory.filter((data) =>
       data["Request Name"].toLowerCase().includes(search.toLowerCase())
     );
-  
+
     return filteredAndSearchedHistory
       .slice(startIndex, endIndex)
       .map((data, index) => {
         const sequenceNumber = index + 1 + (currentPage - 1) * itemsPerPage;
         let statusStyle;
-  
+
         if (data.Status === "Pending") {
           statusStyle = "text-[#494D57]";
         } else if (data.Status === "Denied") {
@@ -561,184 +562,195 @@ function History() {
         } else if (data.Status === "Approved") {
           statusStyle = "text-[#107C10]";
         }
-    return (
-      <div
-        key={index}
-        className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
-      >
-        <div className="text-xs w-[10%]  text-[#494D57]  text-center py-5">
-          {sequenceNumber}
-        </div>
-        <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
-          {data["Request Name"]}
-        </div>
-        <div className="text-xs text-[#494D57] w-[20%] text-center py-5">
-          {data["Type of Request"]}
-        </div>
-        <div className="text-xs text-[#494D57] w-[15%] text-center py-5">
-          {data.Date}
-        </div>
-        <div className={`text-xs text-center w-[15%] py-5 ${statusStyle}`}>
-          {data.Status}
-        </div>
-        <div onClick={() => onCheckUpdates(data)} className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1">
-          <div>Check Updates</div>
-          <img src="/Arrow-right.svg" />
-        </div>
-      </div>
-    );
-  });
+        return (
+          <div
+            key={index}
+            className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
+          >
+            <div className="text-xs w-[10%]  text-[#494D57]  text-center py-5">
+              {sequenceNumber}
+            </div>
+            <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
+              {data["Request Name"]}
+            </div>
+            <div className="text-xs text-[#494D57] w-[20%] text-center py-5">
+              {data["Type of Request"]}
+            </div>
+            <div className="text-xs text-[#494D57] w-[15%] text-center py-5">
+              {data.Date}
+            </div>
+            <div className={`text-xs text-center w-[15%] py-5 ${statusStyle}`}>
+              {data.Status}
+            </div>
+            <div
+              onClick={() => onCheckUpdates(data)}
+              className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1"
+            >
+              <div>Check Updates</div>
+              <img src="/Arrow-right.svg" />
+            </div>
+          </div>
+        );
+      });
   };
+
   return (
     <div className=" relative h-screen w-[100%]">
-      <Student_Navbar  encryptedEmail={encryptedEmail}/>
+      <Student_Navbar encryptedEmail={encryptedEmail} />
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection  encryptedEmail={encryptedEmail}/>
-     
-     
-       {selectedRequest&&isModalOpen? <RequestDetailsModal
-      isOpen={isModalOpen}
-      onRequestClose={() => setIsModalOpen(false)}
-      requestData={selectedRequest}
-      encryptedEmail={encryptedEmail}
-    />: <><div className="flex flex-col py-2 pt-4 px-4 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-          <div className="flex  items-center  gap-3 mb-3">
-            <div className="   font-semibold text-xl">Request History</div>
-            <h2 className="text-[#2164E8] text-xs">{History.filter(item => !item["Seen Status"]).length} Updates</h2>
-          </div>
-        </div>
-        <div  className="bg-white relative overflow-scroll ">
-          <nav className="flex border-b-3 relative z-10">
-            <div
-              onClick={() => handleTabClick("Pending")}
-              className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform  border-b-[3px] ${
-                selectedTab === "Pending"
-                  ? "border-b-[#2164E8] relative "
-                  : "border-b-[#E9E9EB] text-[#494D57]"
-              }`}
-            >
-              Pending
-            </div>
-            <div
-              onClick={() => handleTabClick("Approved")}
-              className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
-                selectedTab === "Approved"
-                  ? "border-b-[#2164E8] relative "
-                  : "border-b-[#E9E9EB] text-[#494D57]"
-              }`}
-            >
-              Approved
-            </div>
-            <div
-              onClick={() => handleTabClick("Denied")}
-              className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
-                selectedTab === "Denied"
-                  ? "border-b-[#2164E8] relative "
-                  : "border-b-[#E9E9EB] text-[#494D57]"
-              }`}
-            >
-              Denied
-            </div>
-            <div
-              onClick={() => handleTabClick("Withdrawn")}
-              className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
-                selectedTab === "Withdrawn"
-                  ? "border-b-[#2164E8] relative "
-                  : "border-b-[#E9E9EB] text-[#494D57]"
-              }`}
-            >
-              Withdrawn
-            </div>
-          </nav>
-          <hr className=" absolute border-[2px] text-[#E9E9EB] -translate-y-[3px]  w-full z-0 " />
-        </div>
-        <div className=" flex -gap-2 bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-          <div className=" px-4 my-3 flex gap-[6px] items-center ">
-            <img src="/filter.svg" />
-            <div>Filter</div>
-          </div>
+        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
 
-          <div   className=" relative flex items-center  w-full">
-            <img className="translate-x-[26px]" src="/search.svg" />
-            <input
-              onChange={(e)=>setSearch(e.target.value)}
-              className="my-3 lg:w-[50%] w-[90%] px-3 pl-8 py-[6px] border-[1px] rounded outline-none placeholder-[#113274] border-[#626670] "
-              placeholder="Search"
-            />
-
-          </div>
-        </div>
-        <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]">
-          <div className=" flex mt-4 bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-            <div className=" text-sm w-[10%] text-center  py-3">Sl. No.</div>
-            <div className=" text-sm w-[25%]  justify-center  gap-[3px] flex items-center py-3">
-              Request Name
-              <img src="/sort.svg" />
+        {selectedRequest && isModalOpen ? (
+          <RequestDetailsModal
+            isOpen={isModalOpen}
+            onRequestClose={() => setIsModalOpen(false)}
+            requestData={selectedRequest}
+            encryptedEmail={encryptedEmail}
+          />
+        ) : (
+          <>
+            <div className="flex flex-col py-2 pt-4 px-4 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+              <div className="flex  items-center  gap-3 mb-3">
+                <div className="   font-semibold text-xl">Request History</div>
+                <h2 className="text-[#2164E8] text-xs">
+                  {History.filter((item) => !item["Seen Status"]).length}{" "}
+                  Updates
+                </h2>
+              </div>
             </div>
-            <div className=" text-sm  w-[20%] text-center   py-3">
-              Type of Request.
-            </div>
-            <div className=" text-sm  w-[15%] justify-center  gap-[3px]   flex items-center py-3">
-              Date
-              <img src="/Arrow Sort.svg" />
-            </div>
-            <div className=" text-sm  w-[15%]  text-center  py-3">Status</div>
-          </div> 
-           <RenderHistory onCheckUpdates={handleCheckUpdates} />
-          <div className="flex justify-center items-center mt-4 mb-10">
-            <div
-              className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${
-                currentPage === 1 ? "text-[#8D9096]" : "text-[#1E2532]"
-              }`}
-              onClick={() =>
-                currentPage > 1 && handlePageChange(currentPage - 1)
-              }
-            >
-              {currentPage > 1 ? (
-                <img src="/b-arrow-left.svg" />
-              ) : (
-                <img src="/grey-arrow-left.svg" />
-              )}
-              Previous
-            </div>
-            {[...Array(Math.ceil(totalPages)).keys()].map(
-              (page) => (
+            <div className="bg-white relative overflow-scroll ">
+              <nav className="flex border-b-3 relative z-10">
                 <div
-                  key={page + 1}
-                  onClick={() => handlePageChange(page + 1)}
-                  className={`cursor-pointer select-none px-4 py-2  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ${
-                    currentPage === page + 1
-                      ? "bg-[#2164E8] text-white"
-                      : "bg-white text-[#2164E8]"
+                  onClick={() => handleTabClick("Pending")}
+                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform  border-b-[3px] ${
+                    selectedTab === "Pending"
+                      ? "border-b-[#2164E8] relative "
+                      : "border-b-[#E9E9EB] text-[#494D57]"
                   }`}
                 >
-                  {page + 1}
+                  Pending
                 </div>
-              )
-            )}
-            <div
-              className={` flex select-none items-center cursor-pointer  px-4 py-3  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] bg-white text-xs ${
-                currentPage === totalPages
-                  ? "text-[#8D9096]"
-                  : "text-[#1E2532]"
-              }`}
-              onClick={() =>
-                currentPage < totalPages &&
-                handlePageChange(currentPage + 1)
-              }
-            >
-              Next
-              {currentPage < totalPages ? (
-                <img src="/b-arrow-right.svg" />
-              ) : (
-                <img src="/grey-arrow-right.svg" />
-              )}
+                <div
+                  onClick={() => handleTabClick("Approved")}
+                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
+                    selectedTab === "Approved"
+                      ? "border-b-[#2164E8] relative "
+                      : "border-b-[#E9E9EB] text-[#494D57]"
+                  }`}
+                >
+                  Approved
+                </div>
+                <div
+                  onClick={() => handleTabClick("Denied")}
+                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
+                    selectedTab === "Denied"
+                      ? "border-b-[#2164E8] relative "
+                      : "border-b-[#E9E9EB] text-[#494D57]"
+                  }`}
+                >
+                  Denied
+                </div>
+                <div
+                  onClick={() => handleTabClick("Withdrawn")}
+                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
+                    selectedTab === "Withdrawn"
+                      ? "border-b-[#2164E8] relative "
+                      : "border-b-[#E9E9EB] text-[#494D57]"
+                  }`}
+                >
+                  Withdrawn
+                </div>
+              </nav>
+              <hr className=" absolute border-[2px] text-[#E9E9EB] -translate-y-[3px]  w-full z-0 " />
             </div>
-          </div>
-        </div>
-</>
-}
+            <div className=" flex -gap-2 bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+              <div className=" px-4 my-3 flex gap-[6px] items-center ">
+                <img src="/filter.svg" />
+                <div>Filter</div>
+              </div>
+
+              <div className=" relative flex items-center  w-full">
+                <img className="translate-x-[26px]" src="/search.svg" />
+                <input
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="my-3 lg:w-[50%] w-[90%] px-3 pl-8 py-[6px] border-[1px] rounded outline-none placeholder-[#113274] border-[#626670] "
+                  placeholder="Search"
+                />
+              </div>
+            </div>
+            <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]">
+              <div className=" flex mt-4 bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+                <div className=" text-sm w-[10%] text-center  py-3">
+                  Sl. No.
+                </div>
+                <div className=" text-sm w-[25%]  justify-center  gap-[3px] flex items-center py-3">
+                  Request Name
+                  <img src="/sort.svg" />
+                </div>
+                <div className=" text-sm  w-[20%] text-center   py-3">
+                  Type of Request.
+                </div>
+                <div className=" text-sm  w-[15%] justify-center  gap-[3px]   flex items-center py-3">
+                  Date
+                  <img src="/Arrow Sort.svg" />
+                </div>
+                <div className=" text-sm  w-[15%]  text-center  py-3">
+                  Status
+                </div>
+              </div>
+              <RenderHistory onCheckUpdates={handleCheckUpdates} />
+              <div className="flex justify-center items-center mt-4 mb-10">
+                <div
+                  className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${
+                    currentPage === 1 ? "text-[#8D9096]" : "text-[#1E2532]"
+                  }`}
+                  onClick={() =>
+                    currentPage > 1 && handlePageChange(currentPage - 1)
+                  }
+                >
+                  {currentPage > 1 ? (
+                    <img src="/b-arrow-left.svg" />
+                  ) : (
+                    <img src="/grey-arrow-left.svg" />
+                  )}
+                  Previous
+                </div>
+                {[...Array(Math.ceil(totalPages)).keys()].map((page) => (
+                  <div
+                    key={page + 1}
+                    onClick={() => handlePageChange(page + 1)}
+                    className={`cursor-pointer select-none px-4 py-2  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ${
+                      currentPage === page + 1
+                        ? "bg-[#2164E8] text-white"
+                        : "bg-white text-[#2164E8]"
+                    }`}
+                  >
+                    {page + 1}
+                  </div>
+                ))}
+                <div
+                  className={` flex select-none items-center cursor-pointer  px-4 py-3  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] bg-white text-xs ${
+                    currentPage === totalPages
+                      ? "text-[#8D9096]"
+                      : "text-[#1E2532]"
+                  }`}
+                  onClick={() =>
+                    currentPage < totalPages &&
+                    handlePageChange(currentPage + 1)
+                  }
+                >
+                  Next
+                  {currentPage < totalPages ? (
+                    <img src="/b-arrow-right.svg" />
+                  ) : (
+                    <img src="/grey-arrow-right.svg" />
+                  )}
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
