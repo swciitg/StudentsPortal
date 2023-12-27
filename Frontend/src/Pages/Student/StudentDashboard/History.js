@@ -9,17 +9,13 @@ import axios from "axios";
 function History() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-<<<<<<< HEAD
   const [History,setHistory]=useState(null)
-=======
 
->>>>>>> c78d6712c5a356802e017bbf402612539ed12cc8
   const [selectedTab, setSelectedTab] = useState("Pending");
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 6;
-<<<<<<< HEAD
   // const History = [
   //   {
   //     "Sl.no": 1,
@@ -954,7 +950,6 @@ function History() {
     setCurrentPage(newPage);
   };
   const updateTotalPages = () => {
-<<<<<<< HEAD
     if (History !== null) {
       const filteredHistory = History.filter((data) => data.Status === selectedTab);
       const totalItems = filteredHistory.length;
@@ -1134,7 +1129,6 @@ function History() {
       <Student_Navbar encryptedEmail={encryptedEmail} />
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-<<<<<<< HEAD
         <CornerProfileLogoutSection  encryptedEmail={encryptedEmail}/>
      
      
