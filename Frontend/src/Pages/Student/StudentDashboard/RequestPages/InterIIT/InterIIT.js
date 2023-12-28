@@ -8,7 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Student_Navbar from "../../../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
 import axios from "axios";
-const CreateInterIIT = () => {
+const CreateInterIITPOR = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
@@ -68,14 +68,14 @@ const CreateInterIIT = () => {
         "Request Name": `InterIIT participation from ${user.name}`,
         "Parent Body": formData.ParentBody,
         organisation: formData.Organisation,
-        // "POR Position": formData.Position,
         Request_sent_date: formattedDate,
         "Sender Name": user.name,
         "Sender Roll no.": user.roll,
         "Year of Tenure": formData.Tenure,
         "Request Validator": formData.Validation,
+        "Request sent to":formData.ValidatorMail,
         "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
-        "Type of Request": "POR",
+        "Type of Request": "InterIIT Paticipation",
         "Document requested": formData.Document,
         Status: "Pending",
       });
@@ -125,4 +125,4 @@ const CreateInterIIT = () => {
   );
 };
 
-export default CreateInterIIT;
+export default CreateInterIITPOR;

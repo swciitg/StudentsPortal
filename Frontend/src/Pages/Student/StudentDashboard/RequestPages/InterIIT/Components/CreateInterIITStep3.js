@@ -84,11 +84,10 @@ function CreateInterIITStep3({ onComplete, formData, setFormData }) {
         </div>
         <div className="flex justify-between mt-10">
           <div className="text-[#2164E8] ">Go Back</div>
-
           {Documentclaim.length > 0 &&
           SelectedFile.length > 0 &&
           Document.length > 0 ? (
-            <div onClick={handleNext}>
+            <div>
               <button
                 onClick={handleNext}
                 disabled={loading}

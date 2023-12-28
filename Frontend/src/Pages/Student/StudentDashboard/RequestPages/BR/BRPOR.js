@@ -76,7 +76,7 @@ const CreateBRPOR = () => {
         "Year of Tenure": formData.Tenure,
         "Request Validator": formData.Validation,
         "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
-        "Type of Request": "POR",
+        "Type of Request": "CR/BR",
         "Document requested": formData.Document,
         Status: "Pending",
       });

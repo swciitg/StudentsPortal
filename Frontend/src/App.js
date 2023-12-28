@@ -26,7 +26,7 @@ import AdminLogin from "./Pages/Admin/AdminLogIn";
 import CreateClubPOR from "./Pages/Student/StudentDashboard/RequestPages/ClubPOR/ClubPOR";
 import CreateProjectVal from "./Pages/Student/StudentDashboard/RequestPages/ProjectValidation/ProjectValidation";
 import CreateBRPOR from "./Pages/Student/StudentDashboard/RequestPages/BR/BRPOR";
-import CreateInterIIT from "./Pages/Student/StudentDashboard/RequestPages/InterIIT/InterIIT";
+import CreateInterIITPOR from "./Pages/Student/StudentDashboard/RequestPages/InterIIT/InterIIT"
 function App() {
   return (
     <BrowserRouter>
@@ -69,7 +69,7 @@ function App() {
 
         <Route
           path="/StudentDashboard/Request/InterIIT"
-          element={<CreateInterIIT />}
+          element={<CreateInterIITPOR/>}
         />
         <Route path="/StudentDashboard/Request/BR" element={<CreateBRPOR />} />
         <Route
