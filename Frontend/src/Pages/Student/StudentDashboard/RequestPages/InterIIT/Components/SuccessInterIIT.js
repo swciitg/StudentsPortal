@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-function SuccessClubPOR() {
+function SuccessInterIIT() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   return (
@@ -44,4 +44,4 @@ function SuccessClubPOR() {
   );
 }
 
-export default SuccessClubPOR;
+export default SuccessInterIIT;

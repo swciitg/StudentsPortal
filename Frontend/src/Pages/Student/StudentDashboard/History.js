@@ -491,14 +491,13 @@ function History() {
   };
   const updateTotalPages = () => {
     if (History !== null) {
-      
-    
-    const filteredHistory = History.filter(
-      (data) => data.Status === selectedTab
-    );
-    const totalItems = filteredHistory.length;
-    const calculatedTotalPages = Math.ceil(totalItems / itemsPerPage);
-    setTotalPages(calculatedTotalPages);}
+      const filteredHistory = History.filter(
+        (data) => data.Status === selectedTab
+      );
+      const totalItems = filteredHistory.length;
+      const calculatedTotalPages = Math.ceil(totalItems / itemsPerPage);
+      setTotalPages(calculatedTotalPages);
+    }
   };
   const navigate = useNavigate();
   const ENCRYPTION_KEY = "HELLO_WoRLD";
@@ -578,50 +577,52 @@ function History() {
     );
 
     if (History !== null || !Array.isArray(History))
-    return filteredAndSearchedHistory
-      .slice(startIndex, endIndex)
-      .map((data, index) => {
-        const sequenceNumber = index + 1 + (currentPage - 1) * itemsPerPage;
-        let statusStyle;
+      return filteredAndSearchedHistory
+        .slice(startIndex, endIndex)
+        .map((data, index) => {
+          const sequenceNumber = index + 1 + (currentPage - 1) * itemsPerPage;
+          let statusStyle;
 
-        if (data.Status === "Pending") {
-          statusStyle = "text-[#494D57]";
-        } else if (data.Status === "Denied") {
-          statusStyle = "text-[#D83B01]";
-        } else if (data.Status === "Approved") {
-          statusStyle = "text-[#107C10]";
-        }
+          if (data.Status === "Pending") {
+            statusStyle = "text-[#494D57]";
+          } else if (data.Status === "Denied") {
+            statusStyle = "text-[#D83B01]";
+          } else if (data.Status === "Approved") {
+            statusStyle = "text-[#107C10]";
+          }
 
-        return (
-          <div
-            key={index}
-            className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
-          >
-            <div className="text-xs w-[10%]  text-[#494D57]  text-center py-5">
-              {sequenceNumber}
-            </div>
-            <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
-              {data["Request Name"]}
-            </div>
-            <div className="text-xs text-[#494D57] w-[20%] text-center py-5">
-              {data["Type of Request"]}
-            </div>
-            <div className="text-xs text-[#494D57] w-[15%] text-center py-5">
-              {data["Request_sent_date"]}
-            </div>
-            <div className={`text-xs text-center w-[15%] py-5 ${statusStyle}`}>
-              {data.Status}
-            </div>
+          return (
             <div
-              onClick={() => onCheckUpdates(data)}
-              className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1"
+              key={index}
+              className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
             >
-              <div>Check Updates</div>
-              <img src="/Arrow-right.svg" />
+              <div className="text-xs w-[10%]  text-[#494D57]  text-center py-5">
+                {sequenceNumber}
+              </div>
+              <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
+                {data["Request Name"]}
+              </div>
+              <div className="text-xs text-[#494D57] w-[20%] text-center py-5">
+                {data["Type of Request"]}
+              </div>
+              <div className="text-xs text-[#494D57] w-[15%] text-center py-5">
+                {data["Request_sent_date"]}
+              </div>
+              <div
+                className={`text-xs text-center w-[15%] py-5 ${statusStyle}`}
+              >
+                {data.Status}
+              </div>
+              <div
+                onClick={() => onCheckUpdates(data)}
+                className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1"
+              >
+                <div>Check Updates</div>
+                <img src="/Arrow-right.svg" />
+              </div>
             </div>
-          </div>
-        );
-      });
+          );
+        });
   };
 
   return (
@@ -692,16 +693,15 @@ function History() {
               <hr className=" absolute border-[2px] text-[#E9E9EB] -translate-y-[3px]  w-full z-0 " />
             </div>
 
-              <div className=" flex -gap-2 bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-
-                <div className=" relative flex items-center  w-full">
-                  <img className="translate-x-[26px]" src="/search.svg" />
-                  <input
-                    onChange={(e) => setSearch(e.target.value)}
-                    className="my-3 lg:w-[50%] w-[90%] px-3 pl-8 py-[6px] border-[1px] rounded outline-none placeholder-[#113274] border-[#626670] "
-                    placeholder="Search"
-                  />
-                </div>
+            <div className=" flex -gap-2 bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+              <div className=" relative flex items-center  w-full">
+                <img className="translate-x-[26px]" src="/search.svg" />
+                <input
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="my-3 lg:w-[50%] w-[90%] px-3 pl-8 py-[6px] border-[1px] rounded outline-none placeholder-[#113274] border-[#626670] "
+                  placeholder="Search"
+                />
+              </div>
             </div>
             <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]">
               <div className=" flex mt-4 bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -723,10 +723,14 @@ function History() {
                   Status
                 </div>
               </div>
-              
-  {(History==null|| !Array.isArray(History))?
-      <div className="flex justify-center py-5 text-xl font-extrabold text-[#7a7e87]">Loading...</div>
-              :<RenderHistory onCheckUpdates={handleCheckUpdates} />}
+
+              {History == null || !Array.isArray(History) ? (
+                <div className="flex justify-center py-5 text-xl font-extrabold text-[#7a7e87]">
+                  Loading...
+                </div>
+              ) : (
+                <RenderHistory onCheckUpdates={handleCheckUpdates} />
+              )}
               <div className="flex justify-center items-center mt-4 mb-10">
                 <div
                   className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${

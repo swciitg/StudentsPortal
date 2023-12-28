@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-function CreateClubPORStep3({ onComplete, formData, setFormData }) {
-  CreateClubPORStep3.propTypes = {
+
+function CreateInterIITStep3({ onComplete, formData, setFormData }) {
+  CreateInterIITStep3.propTypes = {
     onComplete: PropTypes.func.isRequired,
     formData: PropTypes.object.isRequired,
     setFormData: PropTypes.func.isRequired,
   };
+
   const [Documentclaim, SetDocumentclaim] = useState("");
   const [SelectedFile, SetSelectedFile] = useState("");
   const [Document, SetDocument] = useState("");
   const DocumentclaimOptions = ["xyz", "abc"];
   const [loading, setLoading] = useState(false);
+
   const handleNext = () => {
     setFormData({
       ...formData,
@@ -85,7 +88,7 @@ function CreateClubPORStep3({ onComplete, formData, setFormData }) {
           {Documentclaim.length > 0 &&
           SelectedFile.length > 0 &&
           Document.length > 0 ? (
-            <div>
+            <div onClick={handleNext}>
               <button
                 onClick={handleNext}
                 disabled={loading}
@@ -107,4 +110,4 @@ function CreateClubPORStep3({ onComplete, formData, setFormData }) {
   );
 }
 
-export default CreateClubPORStep3;
+export default CreateInterIITStep3;

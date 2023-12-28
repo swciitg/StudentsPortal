@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import CreateClubPORStep3 from "./Components/CreateClubPORStep3";
-import CreateClubPORStep1 from "./Components/CreateClubPORStep1";
-import CreateClubPORStep2 from "./Components/CreateClubPORStep2";
-import SuccessClubPOR from "./Components/SuccessClubPOR";
+import CreateInterIITStep1 from "./Components/CreateInterIITStep1";
+import CreateInterIITStep2 from "./Components/CreateInterIITStep2";
+import CreateInterIITStep3 from "./Components/CreateInterIITStep3";
+import SuccessInterIIT from "./Components/SuccessInterIIT";
 import CryptoJS from "crypto-js";
 import { useLocation, useNavigate } from "react-router-dom";
 import Student_Navbar from "../../../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
 import axios from "axios";
-const CreateClubPOR = () => {
+const CreateInterIIT = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
@@ -67,7 +67,7 @@ const CreateClubPOR = () => {
       const response = await axios.post("http://localhost:3002/api/request", {
         "Parent Body": formData.ParentBody,
         organisation: formData.Organisation,
-        "POR Position": formData.Position,
+        // "POR Position": formData.Position,
         Request_sent_date: formattedDate,
         "Sender Name": user.name,
         "Sender Roll no.": user.roll,
@@ -98,30 +98,30 @@ const CreateClubPOR = () => {
         <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
 
         {currentPage === 1 && (
-          <CreateClubPORStep1
+          <CreateInterIITStep1
             onNext={handleNext}
             formData={formData}
             setFormData={setFormData}
           />
         )}
         {currentPage === 2 && (
-          <CreateClubPORStep2
+          <CreateInterIITStep2
             onNext={handleNext}
             formData={formData}
             setFormData={setFormData}
           />
         )}
         {currentPage === 3 && (
-          <CreateClubPORStep3
+          <CreateInterIITStep3
             onComplete={handleComplete}
             formData={formData}
             setFormData={setFormData}
           />
         )}
-        {currentPage === 4 && <SuccessClubPOR />}
+        {currentPage === 4 && <SuccessInterIIT />}
       </div>
     </div>
   );
 };
 
-export default CreateClubPOR;
+export default CreateInterIIT;
