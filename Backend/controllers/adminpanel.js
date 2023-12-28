@@ -4,8 +4,8 @@ import mongoose from 'mongoose'
 import * as AdminJSMongoose from '@adminjs/mongoose'
 import express from 'express'
 
-import { Request } from './request.js'
-import { Profile } from './profile.js'
+import { Request } from '../Models/request.js'
+import { Profile } from '../Models/profile.js'
 
 const PORT = 3000
 
@@ -16,7 +16,7 @@ AdminJS.registerAdapter({
 
 const start = async () => {
 
-  const mongoosedb = await mongoose.connect('mongodb://localhost/')
+  const mongoosedb = await mongoose.connect('mongodb+srv://auth-admin:AdHDOvAtNy8He2l3@cluster0.s875rof.mongodb.net/StudentsPortal')
   const app = express()
 
   const adminOptions = {
@@ -35,6 +35,6 @@ const start = async () => {
   admin.watch()
 }
 
-start()
+const export adminpanel = start()
 
 
