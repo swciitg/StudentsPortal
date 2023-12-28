@@ -66,7 +66,7 @@ const CreateBRPOR = () => {
   const handleComplete = async () => {
     try {
       const response = await axios.post("http://localhost:3002/api/request", {
-        "Request Name": `BR request for ${user.name}`,
+        "Request Name": `BR request from ${user.name}`,
         "Parent Body": formData.ParentBody,
         organisation: formData.Organisation,
         "POR Position": formData.Position,

@@ -65,6 +65,7 @@ const CreateInterIIT = () => {
   const handleComplete = async () => {
     try {
       const response = await axios.post("http://localhost:3002/api/request", {
+        "Request Name": `InterIIT participation from ${user.name}`,
         "Parent Body": formData.ParentBody,
         organisation: formData.Organisation,
         // "POR Position": formData.Position,
