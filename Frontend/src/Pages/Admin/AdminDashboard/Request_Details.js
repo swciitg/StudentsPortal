@@ -71,6 +71,30 @@ function RequestDetailsModal({ isOpen, requestData }) {
      setLoading(false)
   }
   }
+  const handleDeny= async()=>  {
+    try {
+      setLoading(true)
+      const response = await axios.post(
+        "http://localhost:3002/api/request/deny-request",
+        {
+         "Request sent to":requestData["Request sent to"],
+         _id:requestData._id
+
+        }
+      );
+        if (response.status === 200) {
+         console.log("Denied Successfull!!")
+         setStatus("Denied");
+         closeDenyModal()
+        
+      }
+    } catch (error) {
+     console.log(error)
+    }
+    finally{
+     setLoading(false)
+  }
+  }
   return (
     <div>
       <div className="px-3 py-5 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -213,10 +237,12 @@ function RequestDetailsModal({ isOpen, requestData }) {
                     </div>
                     {message.length > 0 ? (
                       <button
-                        onClick={closeDenyModal}
+                        onClick={handleDeny}
+                        disabled={loading}
                         className="inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
                       >
-                       Deny Request
+                  {loading ? 'Denying...' : 'Deny Request'}
+                       
                       </button>
                     ) : (
                       <button className="inline-flex items-center p-1 bg-gray-300 text-gray-600 rounded-sm px-4">
