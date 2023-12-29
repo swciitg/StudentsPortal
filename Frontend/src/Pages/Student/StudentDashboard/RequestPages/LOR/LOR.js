@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import CryptoJS from "crypto-js";
 import { useLocation, useNavigate } from "react-router-dom";
 import Student_Navbar from "../../../../../Components/Student_Navbar";
-import axios from "axios";
-import CreateBRStep1 from "./Components/CreateBRStep1";
-import CreateBRStep2 from "./Components/CreateBRStep2";
-import CreateBRStep3 from "./Components/CreateBRStep3";
-import SuccessBR from "./Components/SuccessBR";
 import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
-
-const CreateBRPOR = () => {
+import axios from "axios";
+import CreateLORStep1 from "./Components/CreateLORStep1";
+import CreateLORStep2 from "./Components/CreateLORStep2";
+import CreateLORStep3 from "./Components/CreateLORStep3";
+import SuccessLOR from "./Components/SuccessLOR";
+const CreateLOR = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
@@ -66,7 +65,7 @@ const CreateBRPOR = () => {
   const handleComplete = async () => {
     try {
       const response = await axios.post("http://localhost:3002/api/request", {
-        "Request Name": `BR request for ${user.name}`,
+        "Request Name": `LOR for ${user.name}`,
         "Parent Body": formData.ParentBody,
         organisation: formData.Organisation,
         "POR Position": formData.Position,
@@ -76,7 +75,7 @@ const CreateBRPOR = () => {
         "Year of Tenure": formData.Tenure,
         "Request Validator": formData.Validation,
         "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
-        "Type of Request": "BR/CR POR",
+        "Type of Request": "POR",
         "Document requested": formData.Document,
         Status: "Pending",
       });
@@ -100,30 +99,30 @@ const CreateBRPOR = () => {
         <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
 
         {currentPage === 1 && (
-          <CreateBRStep1
+          <CreateLORStep1
             onNext={handleNext}
             formData={formData}
             setFormData={setFormData}
           />
         )}
         {currentPage === 2 && (
-          <CreateBRStep2
+          <CreateLORStep2
             onNext={handleNext}
             formData={formData}
             setFormData={setFormData}
           />
         )}
         {currentPage === 3 && (
-          <CreateBRStep3
+          <CreateLORStep3
             onComplete={handleComplete}
             formData={formData}
             setFormData={setFormData}
           />
         )}
-        {currentPage === 4 && <SuccessBR />}
+        {currentPage === 4 && <SuccessLOR />}
       </div>
     </div>
   );
 };
 
-export default CreateBRPOR;
+export default CreateLOR;

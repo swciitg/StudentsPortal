@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-function CreateClubPORStep3({ onComplete, formData, setFormData }) {
-  CreateClubPORStep3.propTypes = {
+
+function CreateLORStep3({ onComplete, formData, setFormData }) {
+  CreateLORStep3.propTypes = {
     onComplete: PropTypes.func.isRequired,
     formData: PropTypes.object.isRequired,
     setFormData: PropTypes.func.isRequired,
   };
+
   const [Documentclaim, SetDocumentclaim] = useState("");
   const [SelectedFile, SetSelectedFile] = useState("");
   const [Document, SetDocument] = useState("");
@@ -21,7 +23,6 @@ function CreateClubPORStep3({ onComplete, formData, setFormData }) {
     setLoading(true);
     onComplete();
   };
-
   return (
     <div className="flex justify-center items-center h-full">
       <div className="bg-white px-10 w-[400px] pb-9 pt-9 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
@@ -107,4 +108,4 @@ function CreateClubPORStep3({ onComplete, formData, setFormData }) {
   );
 }
 
-export default CreateClubPORStep3;
+export default CreateLORStep3;

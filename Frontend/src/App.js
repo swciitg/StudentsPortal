@@ -11,9 +11,6 @@ import History from "./Pages/Student/StudentDashboard/History";
 import Request from "./Pages/Student/StudentDashboard/Request";
 import RequestsForward from "./Pages/Student/StudentDashboard/RequestsForward";
 import SelectValidation from "./Pages/Student/StudentDashboard/RequestPages/SelectValidation";
-import CreateLORStep1 from "./Pages/Student/StudentDashboard/RequestPages/LOR/CreateLORStep1";
-import CreateLORStep2 from "./Pages/Student/StudentDashboard/RequestPages/LOR/CreateLORStep2";
-import CreateLORStep3 from "./Pages/Student/StudentDashboard/RequestPages/LOR/CreateLORStep3";
 import Home_admin from "./Pages/Admin/AdminDashboard/Home";
 import Request_admin from "./Pages/Admin/AdminDashboard/Request";
 import RequestsForwardadmin from "./Pages/Admin/AdminDashboard/RequestsForward";
@@ -27,6 +24,7 @@ import CreateClubPOR from "./Pages/Student/StudentDashboard/RequestPages/ClubPOR
 import CreateProjectVal from "./Pages/Student/StudentDashboard/RequestPages/ProjectValidation/ProjectValidation";
 import CreateBRPOR from "./Pages/Student/StudentDashboard/RequestPages/BR/BRPOR";
 import CreateInterIIT from "./Pages/Student/StudentDashboard/RequestPages/InterIIT/InterIIT";
+import CreateLOR from "./Pages/Student/StudentDashboard/RequestPages/LOR/LOR";
 function App() {
   return (
     <BrowserRouter>
@@ -55,23 +53,12 @@ function App() {
           element={<CreateProjectVal />}
         />
         <Route
-          path="/StudentDashboard/Request/LOR/1"
-          element={<CreateLORStep1 />}
-        />
-        <Route
-          path="/StudentDashboard/Request/LOR/2"
-          element={<CreateLORStep2 />}
-        />
-        <Route
-          path="/StudentDashboard/Request/LOR/3"
-          element={<CreateLORStep3 />}
-        />
-
-        <Route
           path="/StudentDashboard/Request/InterIIT"
           element={<CreateInterIIT />}
         />
         <Route path="/StudentDashboard/Request/BR" element={<CreateBRPOR />} />
+
+        <Route path="/StudentDashboard/Request/LOR" element={<CreateLOR />} />
         <Route
           path="/StudentDashboard/ForwardRequest"
           element={<RequestsForward />}

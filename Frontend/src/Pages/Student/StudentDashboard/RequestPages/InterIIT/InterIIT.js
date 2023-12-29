@@ -65,16 +65,17 @@ const CreateInterIIT = () => {
   const handleComplete = async () => {
     try {
       const response = await axios.post("http://localhost:3002/api/request", {
+        "Request Name": `InterIIT Participation for ${user.name}`,
         "Parent Body": formData.ParentBody,
         organisation: formData.Organisation,
-        // "POR Position": formData.Position,
+        "POR Position": formData.Position,
         Request_sent_date: formattedDate,
         "Sender Name": user.name,
         "Sender Roll no.": user.roll,
         "Year of Tenure": formData.Tenure,
         "Request Validator": formData.Validation,
         "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
-        "Type of Request": "POR",
+        "Type of Request": "Inter IIT",
         "Document requested": formData.Document,
         Status: "Pending",
       });
