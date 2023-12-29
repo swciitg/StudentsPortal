@@ -61,7 +61,6 @@ function Request_admin() {
           "http://localhost:3002/api/request/request-details-admin",
           {
             "Request sent to": decryptEmail(encryptedEmail) + "@iitg.ac.in",
-            Status:'Pending'
           }
         );
         if (response.status === 200) {
@@ -617,7 +616,7 @@ function Request_admin() {
             {data["Sender Name"]}
           </div>
           <div className="text-xs text-[#494D57] w-[15%] text-center py-5">
-            {data.Date}
+            {data.Request_sent_date}
           </div>
           <div className={`text-xs text-center w-[15%] py-5 ${statusStyle}`}>
             {data.Status}
@@ -634,7 +633,7 @@ function Request_admin() {
       );
     });
   };
-
+console.log(History)
   return (
     <div className="relative h-screen w-[100%]">
       {/*Side Navbar */}

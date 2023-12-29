@@ -40,29 +40,13 @@ function App() {
         <Route path="/StudentDashboard/Profile" element={<Profile />} />
         <Route path="/StudentDashboard/History" element={<History />} />
         <Route path="/StudentDashboard/Request" element={<Request />} />
-        <Route
-          path="/StudentDashboard/Request/SelectValidation"
-          element={<SelectValidation />}
-        />
-        <Route
-          path="/StudentDashboard/Request/ClubPOR"
-          element={<CreateClubPOR />}
-        />
-        <Route
-          path="/StudentDashboard/Request/ProjectValidation"
-          element={<CreateProjectVal />}
-        />
-        <Route
-          path="/StudentDashboard/Request/InterIIT"
-          element={<CreateInterIIT />}
-        />
+        <Route path="/StudentDashboard/Request/SelectValidation" element={<SelectValidation />}/>
+        <Route path="/StudentDashboard/Request/ClubPOR" element={<CreateClubPOR />}/>
+        <Route path="/StudentDashboard/Request/ProjectValidation" element={<CreateProjectVal />}/>
+        <Route path="/StudentDashboard/Request/InterIIT" element={<CreateInterIIT />}/>
         <Route path="/StudentDashboard/Request/BR" element={<CreateBRPOR />} />
-
         <Route path="/StudentDashboard/Request/LOR" element={<CreateLOR />} />
-        <Route
-          path="/StudentDashboard/ForwardRequest"
-          element={<RequestsForward />}
-        />
+        <Route path="/StudentDashboard/ForwardRequest" element={<RequestsForward />}/>
 
         {/* Admin Side Routes*/}
         <Route path="/AdminSignUp" element={<AdminSignUp />} />

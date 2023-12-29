@@ -70,8 +70,8 @@ async function RequestDetails(req, res) {
 }
 async function RequestDetailsadmin(req, res) {
   try {
-    const {"Request sent to": Requestsentto,Status:Status}=req.body
-    const request = await Request.find({"Request sent to": Requestsentto,Status:Status});
+    const {"Request sent to": Requestsentto}=req.body
+    const request = await Request.find({"Request sent to": Requestsentto});
 
     if (!request) {
       return res.status(404).json({ message: 'Request not found' });

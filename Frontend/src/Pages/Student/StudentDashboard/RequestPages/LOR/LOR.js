@@ -72,10 +72,11 @@ const CreateLOR = () => {
         Request_sent_date: formattedDate,
         "Sender Name": user.name,
         "Sender Roll no.": user.roll,
+        "Request sent to":formData.ValidatorMail,
         "Year of Tenure": formData.Tenure,
         "Request Validator": formData.Validation,
         "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
-        "Type of Request": "POR",
+        "Type of Request": "LOR",
         "Document requested": formData.Document,
         Status: "Pending",
       });
@@ -90,6 +91,7 @@ const CreateLOR = () => {
       console.error("Error:", error.message);
     }
   };
+  console.log(formData)
 
   return (
     <div className=" relative h-screen w-[100%]">
