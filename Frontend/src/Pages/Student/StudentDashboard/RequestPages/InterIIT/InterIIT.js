@@ -75,7 +75,7 @@ const CreateInterIITPOR = () => {
         "Request Validator": formData.Validation,
         "Request sent to":formData.ValidatorMail,
         "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
-        "Type of Request": "InterIIT Paticipation",
+        "Type of Request": "Inter IIT Participation",
         "Document requested": formData.Document,
         Status: "Pending",
       });
