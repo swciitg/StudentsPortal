@@ -633,7 +633,6 @@ function Request_admin() {
       );
     });
   };
-console.log(History)
   return (
     <div className="relative h-screen w-[100%]">
       {/*Side Navbar */}
@@ -733,10 +732,10 @@ console.log(History)
               </div>
               <div className="flex items-center gap-2 lg:gap-4 flex-col lg:flex lg:flex-row ">
                 <div className=" text-sm font-semibold text-[#1E2532] ">
-                  Requests Approved by you : 12{" "}
+                  Requests Approved by you : {(History == null || !Array.isArray(History))?"":History.filter(req => req.Status === 'Approved').length}
                 </div>
                 <div className=" text-xs font-semibold text-[#666b78]">
-                  {/* Total Requests received : {History.length}{" "} */}
+                  Total Requests received :{ (History == null || !Array.isArray(History))?"":History.length}
                 </div>
               </div>
             </div>
