@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Student_Navbar from "../../../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
+import Student_Navbar from "../../../../../../Components/Student_Navbar";
+import CornerProfileLogoutSection from "../../../CornerProfileLogoutSection";
 import { Link, useLocation } from "react-router-dom";
 
-function CreateBRStep2() {
+function CreateLORStep2() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
     const [ValidatorMail, SetValidatorMail] = useState("");
@@ -11,7 +11,7 @@ function CreateBRStep2() {
     return (
       <div className=" relative h-screen w-[100%]">
         <Student_Navbar  encryptedEmail={encryptedEmail} />
-        <div className="  flex flex-col  h-screen lg:absolute  lg:w-[82%] lg:ml-[18%] p-5 ">
+        <div className=" lg:absolute flex flex-col  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
           {/*Corner Profile Option*/}
           <CornerProfileLogoutSection  encryptedEmail={encryptedEmail} />
           <div className="flex justify-center items-center h-full">
@@ -56,13 +56,13 @@ function CreateBRStep2() {
               <div className="flex justify-between mt-10">
                 <Link
                   className="text-[#2164E8] "
-                  to={`/StudentDashboard/Request/BR/1?e=${encodeURIComponent(encryptedEmail)}`}
+                  to={`/StudentDashboard/Request/LOR/1?e=${encodeURIComponent(encryptedEmail)}`}
                 >
                   Go Back
                 </Link>
                 { ValidatorMail.length > 0&&Validator.length>0 ? (
                   <Link
-                    to={`/StudentDashboard/Request/BR/3?e=${encodeURIComponent(encryptedEmail)}`}
+                    to={`/StudentDashboard/Request/LOR/3?e=${encodeURIComponent(encryptedEmail)}`}
                   >
                     <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                       Submit
@@ -83,4 +83,4 @@ function CreateBRStep2() {
   )
 }
 
-export default CreateBRStep2
+export default CreateLORStep2

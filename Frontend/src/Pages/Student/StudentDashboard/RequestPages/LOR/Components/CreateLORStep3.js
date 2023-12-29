@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Student_Navbar from "../../../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
+import Student_Navbar from "../../../../../../Components/Student_Navbar";
+import CornerProfileLogoutSection from "../../../CornerProfileLogoutSection";
 import { Link, useLocation } from "react-router-dom";
 
-function CreateBRStep3() {
+function CreateLORStep3() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const [Documentclaim, SetDocumentclaim] = useState("");
@@ -13,7 +13,7 @@ function CreateBRStep3() {
   return (
     <div className=" relative h-screen w-[100%]">
       <Student_Navbar  encryptedEmail={encryptedEmail} />
-      <div className=" lg:absolute flex flex-col  h-screen lg:w-[82%] lg:ml-[18%]p-5 ">
+      <div className=" lg:absolute flex flex-col  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
         <CornerProfileLogoutSection  encryptedEmail={encryptedEmail} />
         <div className="flex justify-center items-center h-full">
@@ -75,7 +75,7 @@ function CreateBRStep3() {
             <div className="flex justify-between mt-10">
               <Link
                 className="text-[#2164E8] "
-                to={`/StudentDashboard/Request/BR/2?e=${encodeURIComponent(encryptedEmail)}`}
+                to={`/StudentDashboard/Request/LOR/2?e=${encodeURIComponent(encryptedEmail)}`}
               >
                 Go Back
               </Link>
@@ -85,7 +85,7 @@ function CreateBRStep3() {
               Document.length > 0 ? (
                 <Link
                   to={
-                    `/StudentDashboard/Request/BR/success?e=${encodeURIComponent(encryptedEmail)}`
+                    `/StudentDashboard/Request/LOR/success?e=${encodeURIComponent(encryptedEmail)}`
                   }
                 >
                   <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
@@ -107,4 +107,4 @@ function CreateBRStep3() {
   );
 }
 
-export default CreateBRStep3;
+export default CreateLORStep3;

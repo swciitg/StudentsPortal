@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import Student_Navbar from "../../../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
+import Student_Navbar from "../../../../../../Components/Student_Navbar";
+import CornerProfileLogoutSection from "../../../CornerProfileLogoutSection";
 import { Link, useLocation } from "react-router-dom";
 
-function CreateLORStep3() {
+function CreateProjValStep3() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const [Documentclaim, SetDocumentclaim] = useState("");
   const [SelectedFile, SetSelectedFile] = useState("");
   const [Document, SetDocument] = useState("");
-  const DocumentclaimOptions = ["xyz","abc"];
+  const DocumentclaimOptions = ["xyz", "abc"];
   return (
     <div className=" relative h-screen w-[100%]">
       <Student_Navbar  encryptedEmail={encryptedEmail} />
@@ -75,7 +75,7 @@ function CreateLORStep3() {
             <div className="flex justify-between mt-10">
               <Link
                 className="text-[#2164E8] "
-                to={`/StudentDashboard/Request/LOR/2?e=${encodeURIComponent(encryptedEmail)}`}
+                to={`/StudentDashboard/Request/ProjectValidation/2?e=${encodeURIComponent(encryptedEmail)}`}
               >
                 Go Back
               </Link>
@@ -84,9 +84,7 @@ function CreateLORStep3() {
               SelectedFile.length > 0 &&
               Document.length > 0 ? (
                 <Link
-                  to={
-                    `/StudentDashboard/Request/LOR/success?e=${encodeURIComponent(encryptedEmail)}`
-                  }
+                  to={`/StudentDashboard/Request/ProjectValidation/success?e=${encodeURIComponent(encryptedEmail)}`}
                 >
                   <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                     Submit
@@ -107,4 +105,4 @@ function CreateLORStep3() {
   );
 }
 
-export default CreateLORStep3;
+export default CreateProjValStep3;

@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-import Student_Navbar from "../../../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
+import Student_Navbar from "../../../../../../Components/Student_Navbar";
+import CornerProfileLogoutSection from "../../../CornerProfileLogoutSection";
 import { Link, useLocation } from "react-router-dom";
 
-function CreateLORStep1() {
+function CreateInterIITStep1() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const [Authority, SetAuthority] = useState("");
+  const [ParentBody, SetParentBody] = useState("");
   const [Organisation, SetOrganisation] = useState("");
-  const AuthorityOptions = [
-    "Professor",
-    "Board Director",
-    "Director",
-    'Dean'
+  const [Event, SetEvent] = useState("");
+  const ParentBodyOptions = [
+    "Technical Board",
+    "Sports Board",
+    "Cultural Board",
   ];
   const OrganisationOptions = {
-    "Professor": ["E-Cell", "SWC", "Coding Club", "FEC", "AI Club"],
-    "Board Director": [
+    "Technical Board": ["E-Cell", "SWC", "Coding Club", "FEC", "AI Club"],
+    "Sports Board": [
       "Aquatics Club",
       "Basketball Club",
       "Cricket Club",
@@ -27,21 +27,13 @@ function CreateLORStep1() {
       "Badminton Club",
       "Weight Lifting Club",
     ],
-    "Director": [
+    "Cultural Board": [
       "Octaves",
       "Fine Arts",
       "Expressions",
       "Cadence",
       "Anchoring Club",
     ],
-    'Dean':[
-        "Octaves",
-        "Fine Arts",
-        "Expressions",
-        "Cadence",
-        "Anchoring Club",
-      ],
-
   };
   return (
     <div className=" relative h-screen w-[100%]">
@@ -59,16 +51,16 @@ function CreateLORStep1() {
             </div>
             <div>
               <label className="flex flex-col gap-1 my-6">
-                <span className="font-medium text-base">Name of Authority</span>
+                <span className="font-medium text-base">Parent Body</span>
                 <select
                   className="border px-2 py-[7px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
                   onChange={(e) => {
-                    SetAuthority(e.target.value);
+                    SetParentBody(e.target.value);
                     SetOrganisation("");
                   }}
                 >
                   <option hidden>Select Category</option>
-                  {AuthorityOptions.map((option) => (
+                  {ParentBodyOptions.map((option) => (
                     <option key={option} value={option}>
                       {option}
                     </option>
@@ -79,7 +71,7 @@ function CreateLORStep1() {
                 <span className="font-medium text-base">
                   Name of organisation
                 </span>
-                {Authority ? (
+                {ParentBody ? (
                   <select
                     className="border px-2 py-[7px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3 "
                     onChange={(e) => {
@@ -87,7 +79,7 @@ function CreateLORStep1() {
                     }}
                   >
                     <option hidden>Select Category</option>
-                    {OrganisationOptions[Authority].map((option) => (
+                    {OrganisationOptions[ParentBody].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
@@ -104,12 +96,25 @@ function CreateLORStep1() {
                   </select>
                 )}
               </label>
-            
+              <label className="flex flex-col gap-1 my-6">
+                <span className="font-medium text-base">Which event did you Participate in?</span>
+                <input
+                  onChange={(e) => {
+                    SetEvent(e.target.value);
+                  }}
+                  className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
+                  type="text"
+                  placeholder="Enter your Event name "
+                />
+              </label>
             </div>
             <div className="flex justify-end mt-10">
-              {Authority.length > 0 &&
-              Organisation.length > 0? (
-                <Link to={`/StudentDashboard/Request/LOR/2?e=${encodeURIComponent(encryptedEmail)}`}>
+              {ParentBody.length > 0 &&
+              Organisation.length > 0 &&
+              Event.length > 0 ? (
+                <Link
+                  to={`/StudentDashboard/Request/InterIIT/2?e=${encodeURIComponent(encryptedEmail)}`}
+                >
                   <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                     Submit
                   </button>
@@ -129,4 +134,4 @@ function CreateLORStep1() {
   );
 }
 
-export default CreateLORStep1;
+export default CreateInterIITStep1;

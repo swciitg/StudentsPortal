@@ -1,22 +1,34 @@
 import React, { useState } from "react";
-import Student_Navbar from "../../../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
+import Student_Navbar from "../../../../../../Components/Student_Navbar";
+import CornerProfileLogoutSection from "../../../CornerProfileLogoutSection";
 import { Link, useLocation } from "react-router-dom";
 
-function CreateInterIITStep1() {
+function CreateProjValStep1() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const [ParentBody, SetParentBody] = useState("");
   const [Organisation, SetOrganisation] = useState("");
-  const [Event, SetEvent] = useState("");
+  const [ProjectName, SetProjectName] = useState("");
+  const [ProjectRole, SetProjectRole] = useState("");
   const ParentBodyOptions = [
     "Technical Board",
     "Sports Board",
-    "Cultural Board",
+    "Cultural Board"
   ];
   const OrganisationOptions = {
-    "Technical Board": ["E-Cell", "SWC", "Coding Club", "FEC", "AI Club"],
+    "Technical Board": [
+      "E-Cell",
+      "SWC",
+      "Coding Club",
+      "FEC",
+      "AI Club",
+      "Udgam",
+      "Techniche",
+      "Techvince",
+    ],
     "Sports Board": [
+      "Spirit",
+      "Spardha",
       "Aquatics Club",
       "Basketball Club",
       "Cricket Club",
@@ -28,6 +40,9 @@ function CreateInterIITStep1() {
       "Weight Lifting Club",
     ],
     "Cultural Board": [
+      "Alcheringa",
+      "Manthan",
+      "Kirti",
       "Octaves",
       "Fine Arts",
       "Expressions",
@@ -97,24 +112,38 @@ function CreateInterIITStep1() {
                 )}
               </label>
               <label className="flex flex-col gap-1 my-6">
-                <span className="font-medium text-base">Which event did you Participate in?</span>
+                <span className="font-medium text-base">
+                  Name of your Project
+                </span>
                 <input
                   onChange={(e) => {
-                    SetEvent(e.target.value);
+                    SetProjectName(e.target.value);
                   }}
                   className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
                   type="text"
-                  placeholder="Enter your Event name "
+                  placeholder="Enter your Project name "
+                />
+              </label>
+              <label className="flex flex-col gap-1 my-6">
+                <span className="font-medium text-base">
+                  Your role in Project
+                </span>
+                <input
+                  onChange={(e) => {
+                    SetProjectRole(e.target.value);
+                  }}
+                  className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
+                  type="text"
+                  placeholder="Your role"
                 />
               </label>
             </div>
             <div className="flex justify-end mt-10">
               {ParentBody.length > 0 &&
               Organisation.length > 0 &&
-              Event.length > 0 ? (
-                <Link
-                  to={`/StudentDashboard/Request/InterIIT/2?e=${encodeURIComponent(encryptedEmail)}`}
-                >
+              ProjectName.length > 0 &&
+              ProjectRole.length > 0 ? (
+                <Link to={`/StudentDashboard/Request/ProjectValidation/2?e=${encodeURIComponent(encryptedEmail)}`}>
                   <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                     Submit
                   </button>
@@ -134,4 +163,4 @@ function CreateInterIITStep1() {
   );
 }
 
-export default CreateInterIITStep1;
+export default CreateProjValStep1;

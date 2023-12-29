@@ -1,15 +1,23 @@
 import React, { useState } from "react";
-import Student_Navbar from "../../../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
+import Student_Navbar from "../../../../../../Components/Student_Navbar";
+import CornerProfileLogoutSection from "../../../CornerProfileLogoutSection";
 import { Link, useLocation } from "react-router-dom";
 
-function CreateProjValStep3() {
+function CreateInterIITStep2() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const [Documentclaim, SetDocumentclaim] = useState("");
-  const [SelectedFile, SetSelectedFile] = useState("");
-  const [Document, SetDocument] = useState("");
-  const DocumentclaimOptions = ["xyz", "abc"];
+  const [Tenure, SetTenur] = useState("");
+  const [Validation, SetValidation] = useState("");
+  const [ValidatorMail, SetValidatorMail] = useState("");
+  const TenureOptions = [
+    "2022-23",
+    "2021-22",
+    "2020-21",
+    "2019-20",
+    "2018-19",
+    "2017-18",
+  ];
+  const ValidationOptions = ["General secretary", "Vice President"];
   return (
     <div className=" relative h-screen w-[100%]">
       <Student_Navbar  encryptedEmail={encryptedEmail} />
@@ -18,25 +26,26 @@ function CreateProjValStep3() {
         <CornerProfileLogoutSection  encryptedEmail={encryptedEmail} />
         <div className="flex justify-center items-center h-full">
           <div className="bg-white px-10 w-[400px] pb-9 pt-9 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
-            <div className="flex flex-col gap-2 items-center ">
+            <div className="flex flex-col gap-2 items-center">
               <p className="text-[rgb(27,33,45)] font-semibold text-2xl mb-3">
-                One last step!
+                You’re almost there!
               </p>
-              <img src="/progress-bar3.svg" />
+              <img src="/progress-bar2.svg" />
             </div>
             <div>
               <label className="flex flex-col gap-1 my-6">
                 <span className="font-medium text-base">
-                  Any necessary document supporting claim
+                  Select your year of Tenure
                 </span>
                 <select
                   className="border px-2 py-[7px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
                   onChange={(e) => {
-                    SetDocumentclaim(e.target.value);
+                    SetTenur(e.target.value);
+                    SetValidation("");
                   }}
                 >
                   <option hidden>Select Category</option>
-                  {DocumentclaimOptions.map((option) => (
+                  {TenureOptions.map((option) => (
                     <option key={option} value={option}>
                       {option}
                     </option>
@@ -44,47 +53,59 @@ function CreateProjValStep3() {
                 </select>
               </label>
               <label className="flex flex-col gap-1 my-6">
-                <span className="font-medium text-base">Upload Document</span>
-                <input
-                  onChange={(e) => {
-                    SetSelectedFile(e.target.value);
-                  }}
-                  className="border p-1 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
-                  type="file"
-                  accept=".pdf"
-                  placeholder="Select a file"
-                />
+                <span className="font-medium text-base">
+                  From whom it should be Validated
+                </span>
+                {Tenure ? (
+                  <select
+                    className="border px-2 py-[7px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3 "
+                    onChange={(e) => {
+                      SetValidation(e.target.value);
+                    }}
+                  >
+                    <option hidden>Select Category</option>
+                    {ValidationOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <select
+                    className="border px-2 py-[7px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3 "
+                    onChange={(e) => {
+                      SetValidation(e.target.value);
+                    }}
+                  >
+                    <option>Select Category</option>
+                  </select>
+                )}
               </label>
               <label className="flex flex-col gap-1 my-6">
                 <span className="font-medium text-base">
-                  Request of any document from authority
+                Official mail Id of Validator
                 </span>
                 <input
                   onChange={(e) => {
-                    SetDocument(e.target.value);
+                    SetValidatorMail(e.target.value);
                   }}
                   className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
                   type="text"
-                  placeholder="Document name"
+                  placeholder="Enter mail id "
                 />
-                <p className="text-xs mt-1 text-[#939393]">
-                  Enter NA if no document is needed
-                </p>
               </label>
             </div>
+
             <div className="flex justify-between mt-10">
               <Link
                 className="text-[#2164E8] "
-                to={`/StudentDashboard/Request/ProjectValidation/2?e=${encodeURIComponent(encryptedEmail)}`}
+                to={`/StudentDashboard/Request/InterIIT/1?e=${encodeURIComponent(encryptedEmail)}`}
               >
                 Go Back
               </Link>
-
-              {Documentclaim.length > 0 &&
-              SelectedFile.length > 0 &&
-              Document.length > 0 ? (
+              {Tenure.length > 0 && Validation.length > 0 &&ValidatorMail.length>0? (
                 <Link
-                  to={`/StudentDashboard/Request/ProjectValidation/success?e=${encodeURIComponent(encryptedEmail)}`}
+                  to={`/StudentDashboard/Request/InterIIT/3?e=${encodeURIComponent(encryptedEmail)}`}
                 >
                   <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                     Submit
@@ -105,4 +126,4 @@ function CreateProjValStep3() {
   );
 }
 
-export default CreateProjValStep3;
+export default CreateInterIITStep2;

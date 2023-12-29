@@ -1,34 +1,22 @@
 import React, { useState } from "react";
-import Student_Navbar from "../../../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "../../CornerProfileLogoutSection";
+import Student_Navbar from "../../../../../../Components/Student_Navbar";
+import CornerProfileLogoutSection from "../../../CornerProfileLogoutSection";
 import { Link, useLocation } from "react-router-dom";
 
-function CreateProjValStep1() {
+function CreateLORStep1() {
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const [ParentBody, SetParentBody] = useState("");
+  const [Authority, SetAuthority] = useState("");
   const [Organisation, SetOrganisation] = useState("");
-  const [ProjectName, SetProjectName] = useState("");
-  const [ProjectRole, SetProjectRole] = useState("");
-  const ParentBodyOptions = [
-    "Technical Board",
-    "Sports Board",
-    "Cultural Board"
+  const AuthorityOptions = [
+    "Professor",
+    "Board Director",
+    "Director",
+    'Dean'
   ];
   const OrganisationOptions = {
-    "Technical Board": [
-      "E-Cell",
-      "SWC",
-      "Coding Club",
-      "FEC",
-      "AI Club",
-      "Udgam",
-      "Techniche",
-      "Techvince",
-    ],
-    "Sports Board": [
-      "Spirit",
-      "Spardha",
+    "Professor": ["E-Cell", "SWC", "Coding Club", "FEC", "AI Club"],
+    "Board Director": [
       "Aquatics Club",
       "Basketball Club",
       "Cricket Club",
@@ -39,16 +27,21 @@ function CreateProjValStep1() {
       "Badminton Club",
       "Weight Lifting Club",
     ],
-    "Cultural Board": [
-      "Alcheringa",
-      "Manthan",
-      "Kirti",
+    "Director": [
       "Octaves",
       "Fine Arts",
       "Expressions",
       "Cadence",
       "Anchoring Club",
     ],
+    'Dean':[
+        "Octaves",
+        "Fine Arts",
+        "Expressions",
+        "Cadence",
+        "Anchoring Club",
+      ],
+
   };
   return (
     <div className=" relative h-screen w-[100%]">
@@ -66,16 +59,16 @@ function CreateProjValStep1() {
             </div>
             <div>
               <label className="flex flex-col gap-1 my-6">
-                <span className="font-medium text-base">Parent Body</span>
+                <span className="font-medium text-base">Name of Authority</span>
                 <select
                   className="border px-2 py-[7px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
                   onChange={(e) => {
-                    SetParentBody(e.target.value);
+                    SetAuthority(e.target.value);
                     SetOrganisation("");
                   }}
                 >
                   <option hidden>Select Category</option>
-                  {ParentBodyOptions.map((option) => (
+                  {AuthorityOptions.map((option) => (
                     <option key={option} value={option}>
                       {option}
                     </option>
@@ -86,7 +79,7 @@ function CreateProjValStep1() {
                 <span className="font-medium text-base">
                   Name of organisation
                 </span>
-                {ParentBody ? (
+                {Authority ? (
                   <select
                     className="border px-2 py-[7px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3 "
                     onChange={(e) => {
@@ -94,7 +87,7 @@ function CreateProjValStep1() {
                     }}
                   >
                     <option hidden>Select Category</option>
-                    {OrganisationOptions[ParentBody].map((option) => (
+                    {OrganisationOptions[Authority].map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
@@ -111,39 +104,12 @@ function CreateProjValStep1() {
                   </select>
                 )}
               </label>
-              <label className="flex flex-col gap-1 my-6">
-                <span className="font-medium text-base">
-                  Name of your Project
-                </span>
-                <input
-                  onChange={(e) => {
-                    SetProjectName(e.target.value);
-                  }}
-                  className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
-                  type="text"
-                  placeholder="Enter your Project name "
-                />
-              </label>
-              <label className="flex flex-col gap-1 my-6">
-                <span className="font-medium text-base">
-                  Your role in Project
-                </span>
-                <input
-                  onChange={(e) => {
-                    SetProjectRole(e.target.value);
-                  }}
-                  className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
-                  type="text"
-                  placeholder="Your role"
-                />
-              </label>
+            
             </div>
             <div className="flex justify-end mt-10">
-              {ParentBody.length > 0 &&
-              Organisation.length > 0 &&
-              ProjectName.length > 0 &&
-              ProjectRole.length > 0 ? (
-                <Link to={`/StudentDashboard/Request/ProjectValidation/2?e=${encodeURIComponent(encryptedEmail)}`}>
+              {Authority.length > 0 &&
+              Organisation.length > 0? (
+                <Link to={`/StudentDashboard/Request/LOR/2?e=${encodeURIComponent(encryptedEmail)}`}>
                   <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                     Submit
                   </button>
@@ -163,4 +129,4 @@ function CreateProjValStep1() {
   );
 }
 
-export default CreateProjValStep1;
+export default CreateLORStep1;
