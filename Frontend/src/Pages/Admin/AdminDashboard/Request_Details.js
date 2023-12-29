@@ -1,26 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
+import axios from "axios";
 function RequestDetailsModal({ isOpen, requestData }) {
-  const [isApproveModalOpen, setApproveModalOpen] = useState(false);
-  const [isDenyModalOpen, setDenyModalOpen] = useState(false);
-  const [isForwardModalOpen, setForwardModalOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState("");
-  const [forwardname, setForwardname] = useState("");
-  const [forwardemail, setforwardemail] = useState("");
-  const [message,setmessage] = useState("");
-  if (!isOpen) {
-    return null;
-  }
-  const openApproveModal = () => setApproveModalOpen(true);
-  const closeApproveModal = () => setApproveModalOpen(false);
-
-  const openDenyModal = () => setDenyModalOpen(true);
-  const closeDenyModal = () => setDenyModalOpen(false);
-
-  const openForwardModal = () => setForwardModalOpen(true);
-  const closeForwardModal = () => setForwardModalOpen(false);
-
   RequestDetailsModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
@@ -41,13 +23,54 @@ function RequestDetailsModal({ isOpen, requestData }) {
       Supporting_Document_url: PropTypes.string.isRequired,
       Request_sent_date: PropTypes.string.isRequired,
       "POR Position": PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
     }).isRequired,
   };
-  // const customModalStyle = {
-  //   overlay: "fixed inset-5 inset-y-12  bg-white opacity-50",
-  //   content:
-  //     "absolute top-1/2 lg:left-[60%] left-[10%] right-[10%]  lg:transform lg:-translate-x-1/2 -translate-y-1/2 bg-white p-4",
-  // };
+  const [isApproveModalOpen, setApproveModalOpen] = useState(false);
+  const [isDenyModalOpen, setDenyModalOpen] = useState(false);
+  const [isForwardModalOpen, setForwardModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [Status, setStatus] = useState(requestData.Status);
+  const [forwardname, setForwardname] = useState("");
+  const [forwardemail, setforwardemail] = useState("");
+  const [message,setmessage] = useState("");
+  if (!isOpen) {
+    return null;
+  }
+  const openApproveModal = () => setApproveModalOpen(true);
+  const closeApproveModal = () => setApproveModalOpen(false);
+
+  const openDenyModal = () => setDenyModalOpen(true);
+  const closeDenyModal = () => setDenyModalOpen(false);
+
+  const openForwardModal = () => setForwardModalOpen(true);
+  const closeForwardModal = () => setForwardModalOpen(false);
+
+  const handleApprove= async()=>  {
+    try {
+      setLoading(true)
+      const response = await axios.post(
+        "http://localhost:3002/api/request/approve-request",
+        {
+         "Request sent to":requestData["Request sent to"],
+         _id:requestData._id
+
+        }
+      );
+        if (response.status === 200) {
+         console.log("Approval Successfull!!")
+         setStatus("Approved");
+         closeApproveModal()
+        
+      }
+    } catch (error) {
+     console.log(error)
+    }
+    finally{
+     setLoading(false)
+  }
+  }
   return (
     <div>
       <div className="px-3 py-5 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -129,10 +152,12 @@ function RequestDetailsModal({ isOpen, requestData }) {
                     </div>
                     {selectedFile.length > 0 ? (
                       <button
-                        onClick={closeApproveModal}
+                        onClick={handleApprove}
+                        disabled={loading}
                         className="inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
                       >
-                        Send Approval
+                  {loading ? 'Approving...' : 'Send Approval'}
+
                       </button>
                     ) : (
                       <button className="inline-flex items-center p-1 bg-gray-300 text-gray-600 rounded-sm px-4">
@@ -142,12 +167,24 @@ function RequestDetailsModal({ isOpen, requestData }) {
                   </div>
                 </div>
               </Modal>
-              <button
+            { Status === "Pending" &&  <button
                 onClick={openApproveModal}
                 className="text-sm p-[5px] px-4 bg-[#2164E8] text-white rounded"
               >
                 Approve
-              </button>
+              </button>}
+              {Status === "Pending" && <button
+                onClick={openDenyModal}
+                className="text-sm  p-[5px] px-4 border border-[#767A81] rounded"
+              >
+                Deny
+              </button> }
+             {Status === "Pending" &&  <button
+                onClick={openForwardModal}
+                className="text-sm  p-[5px]  px-4 border border-[#767A81] rounded"
+              >
+                Forward
+              </button> } 
               <Modal
                 isOpen={isDenyModalOpen}
                 onRequestClose={closeDenyModal}
@@ -189,12 +226,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
                   </div>
                 </div>
               </Modal>
-              <button
-                onClick={openDenyModal}
-                className="text-sm  p-[5px] px-4 border border-[#767A81] rounded"
-              >
-                Deny
-              </button>           
+                     
               <Modal
                 isOpen={isForwardModalOpen}
                 onRequestClose={closeForwardModal}
@@ -264,12 +296,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
                 </div>
               </Modal>
 
-              <button
-                onClick={openForwardModal}
-                className="text-sm  p-[5px]  px-4 border border-[#767A81] rounded"
-              >
-                Forward
-              </button>
+              
             </div>{" "}
           </div>
 

@@ -111,8 +111,8 @@ function CreateInterIITStep2({ onNext, formData, setFormData }) {
           {Tenure.length > 0 &&
           Validation.length > 0 &&
           ValidatorMail.length > 0 ? (
-            <div onClick={handleNext}>
-              <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
+            <div >
+              <button onClick={handleNext} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                 Next
               </button>
             </div>
