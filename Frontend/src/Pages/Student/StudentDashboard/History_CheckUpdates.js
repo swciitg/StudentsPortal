@@ -88,10 +88,10 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
               <label className="text-[#353B47] text-sm">Sender name</label>
               <div>{requestData["Sender Name"]}</div>
             </div>
-            <div className="flex flex-col">
+           {requestData["Type of Request"]==='LOR'&& <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">POR Position</label>
               <div>{requestData["POR Position"]}</div>
-            </div>
+            </div>}
             <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">Year of Tenure</label>
               <div>{requestData["Year of Tenure"]}</div>

@@ -57,11 +57,10 @@ const validAuthority = [
 
 const validationrequest = ["Branch Rep", "Class Rep", null];
 
-const validator = ["General Secretary", "Vice President", null];
 
 const validyear = ["2021-22", "2020-21", "2019-20", "2018-19", "2017-18", null];
 
-const validStatus = ["Pending", "Approved", "Denied"];
+const validStatus = ["Pending", "Approved", "Denied","Withdrawn"];
 
 // Define the Request schema
 const requestSchema = new mongoose.Schema({
@@ -70,7 +69,6 @@ const requestSchema = new mongoose.Schema({
   },
   "Type of Request": {
     type: String,
-    enum: validRequest,
     default: null,
   },
   "Parent Body": {
@@ -120,7 +118,6 @@ const requestSchema = new mongoose.Schema({
   },
   "Request Validator": {
     type: String,
-    enum: validator,
     default: null,
   },
   mentor: {
