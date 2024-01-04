@@ -1,8 +1,8 @@
 const AdminJS = require('adminjs');
 const AdminJSExpress = require('@adminjs/express');
 const mongooseAdapter = require('@adminjs/mongoose');
-const User = require('../models/User');
 const Request = require('../Models/Request');
+const User = require('../models/User');
 
 // Register Mongoose adapter with AdminJS
 AdminJS.registerAdapter({

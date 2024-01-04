@@ -58,7 +58,7 @@ const validAuthority = [
 const validationrequest = ["Branch Rep", "Class Rep", null];
 
 
-const validyear = ["2021-22", "2020-21", "2019-20", "2018-19", "2017-18", null];
+const validyear = ["2023-24","2022-23","2021-22", "2020-21", "2019-20", "2018-19", "2017-18", null];
 
 const validStatus = ["Pending", "Approved", "Denied","Withdrawn"];
 
