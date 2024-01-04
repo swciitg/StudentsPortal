@@ -19,7 +19,7 @@ async function createUser(req, res) {
       const otp = generateOTP();
 
       existingUser.name = name;
-     existingUser.roll = role==='student'?roll:undefined;
+      existingUser.roll = role==='student'?roll:undefined;
       existingUser.verified = false;
       existingUser.otp = otp;
       existingUser.role = role;
