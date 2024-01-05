@@ -562,8 +562,8 @@ function History() {
       updateTotalPages();
       // eslint-disable-next-line
     },
-    [selectedTab],
-    [History]
+    [selectedTab,History],
+    []
   );
   const RenderHistory = ({ onCheckUpdates }) => {
     const startIndex = (currentPage - 1) * itemsPerPage;

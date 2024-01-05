@@ -41,7 +41,7 @@ async function createUser(req, res) {
       role,
       profileCompletion:0
     });
-
+    
     await newUser.save();
 
     await emailService.sendOTP(email, otp);
