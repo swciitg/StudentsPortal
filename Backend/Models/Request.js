@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
+
 const validRequest = [
   "Club POR",
   "Student Body POR",
@@ -58,7 +59,7 @@ const validAuthority = [
 const validationrequest = ["Branch Rep", "Class Rep", null];
 
 
-const validyear = ["2021-22", "2020-21", "2019-20", "2018-19", "2017-18", null];
+const validyear = ["2022-23","2021-22", "2020-21", "2019-20", "2018-19", "2017-18", null];
 
 const validStatus = ["Pending", "Approved", "Denied","Withdrawn"];
 
@@ -166,6 +167,6 @@ const requestSchema = new mongoose.Schema({
   },
 });
 
-const Request = mongoose.model('Request', requestSchema);
+export const Request = mongoose.model('Request', requestSchema);
 
-module.exports = Request;
+

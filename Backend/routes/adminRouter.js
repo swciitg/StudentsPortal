@@ -1,27 +1,29 @@
-const AdminJS = require('adminjs');
-const AdminJSExpress = require('@adminjs/express');
-const mongooseAdapter = require('@adminjs/mongoose');
-const User = require('../models/User');
-const Request = require('../Models/Request');
+import AdminJS from 'adminjs'
+import AdminJSExpress from '@adminjs/express'
+import * as AdminJSMongoose from '@adminjs/mongoose'
+import express from 'express'
+import { Request } from '../Models/Request.js'
+import { User } from '../Models/User.js'
 
-// Register Mongoose adapter with AdminJS
+const PORT = 3002
+
 AdminJS.registerAdapter({
-    Resource: mongooseAdapter.Resource,
-    Database: mongooseAdapter.Database,
-});
+    Resource: AdminJSMongoose.Resource,
+    Database: AdminJSMongoose.Database,
+})
 
-// Set up AdminJS
-const adminOptions = {
-    resources: [Request, User],
-};
 
-const admin = new AdminJS(adminOptions);
+  // await mongoose.connect('mongodb+srv://auth-admin:AdHDOvAtNy8He2l3@cluster0.s875rof.mongodb.net/StudentsPortal')
 
-// Build AdminJS router
-const adminRouter = AdminJSExpress.buildRouter(admin);
+  const adminOptions = {
+    resources: [Request,User]
+  }
 
-// Export the adminRouter for use in app.js
-module.exports = {
-    adminRouter,
-    admin, // Export AdminJS instance for watching changes
-};
+  const admin = new AdminJS(adminOptions)
+
+  const adminRouter = AdminJSExpress.buildRouter(admin)
+
+  admin.watch()
+
+  export {admin,adminRouter}
+

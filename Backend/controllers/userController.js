@@ -1,9 +1,9 @@
-const User = require("../models/User");
-const emailService = require("../services/emailService");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const multer = require("multer");
-const path = require("path");
+import { User } from "../Models/User.js";
+import emailService from "../services/emailService.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import multer from "multer";
+import path from "path";
 
 async function createUser(req, res) {
   const { name, email, roll, role } = req.body;
@@ -228,7 +228,7 @@ async function handleFileUpload(req, res) {
   }
 }
 
-module.exports = {
+export {
   upload,
   handleFileUpload,
   createUser,
