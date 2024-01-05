@@ -3,22 +3,11 @@ const Request = require("../Models/Request");
 async function createRequest(req, res) {
   try {
     const {
-        "Request Name": RequestName,
-        "Type of Request":TypeofRequest,
         Status: Status,
-        "Seen Status": SeenStatus,
-          "Sender Name": senderName,
-          "Sender Roll no.": senderRollNo,
-          "Sender email": senderEmail,
+        "Sender Name": senderName,
+        "Sender Roll no.": senderRollNo,
+        "Sender email": senderEmail,
         "Request sent to":RequestsentTo,
-        "Year of Tenure":YearofTenure ,
-        "Request Validator": Validator,
-        organisation: organisation,
-        "Parent Body": ParentBody,
-        "Document requested": Documentrequested,
-        Supporting_Document_url:Supporting_Document_url,
-        Request_sent_date: Request_sent_date,
-        "POR Position": PORPosition,
         token
     } = req.body;
     
