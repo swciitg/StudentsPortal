@@ -1,4 +1,67 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
+
+const validRequest = [
+  "Club POR",
+  "Student Body POR",
+  "Gymkhana POR",
+  "Project validation",
+  "LOR",
+  "Inter IIT participation",
+  "CR/BR POR",
+  null,
+];
+
+const validParentBody = [
+  "Technical Board",
+  "Sports Board",
+  "Cultural Board",
+  "Professor",
+  null,
+];
+
+const validOrganisation = [
+  "E-Cell",
+  "SWC",
+  "Coding Club",
+  "FEC",
+  "AI Club",
+  "Aquatics Club",
+  "Basketball Club",
+  "Cricket Club",
+  "Table Tennis Club",
+  "Football Club",
+  "Athletics Club",
+  "Squash Club",
+  "Badminton Club",
+  "Weight Lifting Club",
+  "Octaves",
+  "Fine Arts",
+  "Expressions",
+  "Cadence",
+  "Anchoring Club",
+  "Udgam",
+  "Spirit",
+  "Spardha",
+  "Alcheringa",
+  "Manthan",
+  "Kriti",
+  null,
+];
+
+const validAuthority = [
+  "Professor",
+  "Board Director",
+  "Director",
+  "Dean",
+  null,
+];
+
+const validationrequest = ["Branch Rep", "Class Rep", null];
+
+
+const validyear = ["2023-24","2022-23","2021-22", "2020-21", "2019-20", "2018-19", "2017-18", null];
+
+const validStatus = ["Pending", "Approved", "Denied","Withdrawn"];
 
 // Define the Request schema
 const requestSchema = new mongoose.Schema({
@@ -58,6 +121,6 @@ const requestSchema = new mongoose.Schema({
   token: String, 
 });
 
-const Request = mongoose.model('Request', requestSchema);
+export const Request = mongoose.model('Request', requestSchema);
 
-module.exports = Request;
+

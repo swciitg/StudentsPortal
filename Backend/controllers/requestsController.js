@@ -1,4 +1,4 @@
-const Request = require("../Models/Request");
+import { Request } from "../Models/Request.js";
 
 async function createRequest(req, res) {
   try {
@@ -121,4 +121,6 @@ async function WithdrawRequest(req,res){
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
-module.exports = {createRequest,RequestDetails,WithdrawRequest,RequestDetailsadmin,DenyRequest,ApproveRequest};
+
+
+export {createRequest,RequestDetails,WithdrawRequest,RequestDetailsadmin,DenyRequest,ApproveRequest};

@@ -1,7 +1,8 @@
-const session = require('express-session');
+import session from "express-session";
 
-module.exports = session({
+export default session({
   secret: 'your-secret-key', // Replace with a strong secret key
   resave: false,
   saveUninitialized: false,
 });
+
