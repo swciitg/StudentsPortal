@@ -1,12 +1,12 @@
-const User = require("../models/User");
-const emailService = require("../services/emailService");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const multer = require("multer");
-const path = require("path");
+import { User } from "../Models/User.js";
+import emailService from "../services/emailService.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import multer from "multer";
+import path from "path";
 
 async function createUser(req, res) {
-  const { name, email, roll, role } = req.body;
+  const { name, email, roll } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
@@ -19,10 +19,9 @@ async function createUser(req, res) {
       const otp = generateOTP();
 
       existingUser.name = name;
-      existingUser.roll = role==='student'?roll:undefined;
+      existingUser.roll = roll;
       existingUser.verified = false;
       existingUser.otp = otp;
-      existingUser.role = role;
 
       await existingUser.save();
 
@@ -35,10 +34,9 @@ async function createUser(req, res) {
     const newUser = new User({
       name,
       email,
-      roll: role === "student" ? roll : undefined,
+      roll:  roll ,
       verified: false,
       otp,
-      role,
       profileCompletion:0
     });
     
@@ -228,7 +226,7 @@ async function handleFileUpload(req, res) {
   }
 }
 
-module.exports = {
+export {
   upload,
   handleFileUpload,
   createUser,

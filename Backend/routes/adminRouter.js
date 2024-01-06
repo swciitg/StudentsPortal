@@ -1,27 +1,52 @@
-const AdminJS = require('adminjs');
-const AdminJSExpress = require('@adminjs/express');
-const mongooseAdapter = require('@adminjs/mongoose');
-const Request = require('../Models/Request');
-const User = require('../models/User');
+// 
 
-// Register Mongoose adapter with AdminJS
+import AdminJS from 'adminjs';
+import AdminJSExpress from '@adminjs/express';
+import * as AdminJSMongoose from '@adminjs/mongoose';
+import { Request } from '../Models/Request.js';
+import { User } from '../Models/User.js';
+import bcrypt from 'bcrypt';
+import express from 'express';
+import formidableMiddleware from 'express-formidable';
+
+const PORT = 3002;
+const app = express();
+
+app.use(formidableMiddleware());
+
 AdminJS.registerAdapter({
-    Resource: mongooseAdapter.Resource,
-    Database: mongooseAdapter.Database,
+  Resource: AdminJSMongoose.Resource,
+  Database: AdminJSMongoose.Database,
 });
 
-// Set up AdminJS
 const adminOptions = {
-    resources: [Request, User],
+  resources: [Request, User],
+  authenticate: async (email, password) => {
+    const user = await User.findOne({ email });
+    if (user && bcrypt.compareSync(password, user.encryptedPassword)) {
+      return user;
+    }
+    return null;
+  },
 };
 
 const admin = new AdminJS(adminOptions);
 
-// Build AdminJS router
-const adminRouter = AdminJSExpress.buildRouter(admin);
+const adminRouter = AdminJSExpress.buildAuthenticatedRouter(admin, {
+  cookieName: 'adminjs',
+  cookiePassword: 'complicatedsecurepassword',
+  authenticate: async (email, password, next) => {
+    const user = await User.findOne({ email });
+    if (user) {
+      const matched = await bcrypt.compare(password, user.password);
+      if (matched) {
+        return user;// Call next with null and the user to indicate successful authentication
+      } 
+    }
+    return false;
+  },
+});
 
-// Export the adminRouter for use in app.js
-module.exports = {
-    adminRouter,
-    admin, // Export AdminJS instance for watching changes
-};
+admin.watch();
+
+export { admin, adminRouter };
