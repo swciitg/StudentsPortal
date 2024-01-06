@@ -1,20 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-function ForwardNotification({Notification,encryptedEmail}) {
-    ForwardNotification.propTypes = {
-        Notification: PropTypes.arrayOf(
-          PropTypes.shape({
-            id: PropTypes.number,
-            description: PropTypes.string,
-            status: PropTypes.string,
-            Date: PropTypes.string,
-          })
-        ).isRequired,
+function ForwardNotification({ Notification, encryptedEmail }) {
+  ForwardNotification.propTypes = {
+    Notification: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        description: PropTypes.string,
+        status: PropTypes.string,
+        Date: PropTypes.string,
+      })
+    ).isRequired,
     encryptedEmail: PropTypes.string.isRequired,
-
-      };
+  };
   return (
     <div className="p-7 col-span-3 flex flex-col gap-3 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       <div>
@@ -46,7 +45,9 @@ function ForwardNotification({Notification,encryptedEmail}) {
         </div>
       </div>
       <Link
-        to={`/StudentDashboard/ForwardRequest?e=${encodeURIComponent(encryptedEmail)}`}
+        to={`/StudentDashboard/ForwardRequest?e=${encodeURIComponent(
+          encryptedEmail
+        )}`}
         className="text-[#2164E8] text-sm flex justify-end "
       >
         View all Request Forwards

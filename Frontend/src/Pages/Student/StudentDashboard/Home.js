@@ -7,13 +7,13 @@ import ApprovedRequests from "./DashboardTiles/ApprovedRequests";
 import PendingRequests from "./DashboardTiles/PendingRequests";
 import BuildMyCV from "./DashboardTiles/BuildMyCV";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
-import CryptoJS from 'crypto-js';
+import CryptoJS from "crypto-js";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Home() {
   const location = useLocation();
-  const navigate =useNavigate();
+  const navigate = useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const ENCRYPTION_KEY = "HELLO_WoRLD";
   function decryptEmail(encryptedEmail) {
@@ -29,8 +29,7 @@ function Home() {
           "http://localhost:3002/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
-            role:'student',
-            token:localStorage.getItem("token")
+            token: localStorage.getItem("token"),
           }
         );
 
@@ -43,7 +42,6 @@ function Home() {
       } catch (error) {
         console.error("Error:", error.message);
         navigate("/");
-
       }
     }
     UserDetails();
@@ -127,7 +125,7 @@ function Home() {
 
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection  encryptedEmail={encryptedEmail} />
+        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
 
         <div className="flex flex-col gap-10 lg:gap-5 lg:grid lg:grid-cols-10 pb-10 lg:pb-0 ">
           {/* Tile 1*/}

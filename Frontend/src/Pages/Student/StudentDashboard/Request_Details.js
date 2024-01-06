@@ -34,7 +34,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
   const [Status, setStatus] = useState(requestData.Status);
   const [forwardname, setForwardname] = useState("");
   const [forwardemail, setforwardemail] = useState("");
-  const [message,setmessage] = useState("");
+  const [message, setmessage] = useState("");
   if (!isOpen) {
     return null;
   }
@@ -47,54 +47,48 @@ function RequestDetailsModal({ isOpen, requestData }) {
   const openForwardModal = () => setForwardModalOpen(true);
   const closeForwardModal = () => setForwardModalOpen(false);
 
-  const handleApprove= async()=>  {
+  const handleApprove = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await axios.post(
         "http://localhost:3002/api/request/approve-request",
         {
-         "Request sent to":requestData["Request sent to"],
-         _id:requestData._id
-
+          "Request sent to": requestData["Request sent to"],
+          _id: requestData._id,
         }
       );
-        if (response.status === 200) {
-         console.log("Approval Successfull!!")
-         setStatus("Approved");
-         closeApproveModal()
-        
+      if (response.status === 200) {
+        console.log("Approval Successfull!!");
+        setStatus("Approved");
+        closeApproveModal();
       }
     } catch (error) {
-     console.log(error)
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-    finally{
-     setLoading(false)
-  }
-  }
-  const handleDeny= async()=>  {
+  };
+  const handleDeny = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await axios.post(
         "http://localhost:3002/api/request/deny-request",
         {
-         "Request sent to":requestData["Request sent to"],
-         _id:requestData._id
-
+          "Request sent to": requestData["Request sent to"],
+          _id: requestData._id,
         }
       );
-        if (response.status === 200) {
-         console.log("Denied Successfull!!")
-         setStatus("Denied");
-         closeDenyModal()
-        
+      if (response.status === 200) {
+        console.log("Denied Successfull!!");
+        setStatus("Denied");
+        closeDenyModal();
       }
     } catch (error) {
-     console.log(error)
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-    finally{
-     setLoading(false)
-  }
-  }
+  };
   return (
     <div>
       <div className="px-3 py-5 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -161,7 +155,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
                         Any personalized message you would like to send
                       </label>
                       <input
-                        onChange={(e)=>setmessage(e.target.value)}
+                        onChange={(e) => setmessage(e.target.value)}
                         className="border pl-3 w-full pb-32 text-black outline-none rounded-md border-gray-400"
                         placeholder="Write a message"
                       />
@@ -180,8 +174,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
                         disabled={loading}
                         className="inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
                       >
-                  {loading ? 'Approving...' : 'Send Approval'}
-
+                        {loading ? "Approving..." : "Send Approval"}
                       </button>
                     ) : (
                       <button className="inline-flex items-center p-1 bg-gray-300 text-gray-600 rounded-sm px-4">
@@ -191,24 +184,30 @@ function RequestDetailsModal({ isOpen, requestData }) {
                   </div>
                 </div>
               </Modal>
-            { Status === "Pending" &&  <button
-                onClick={openApproveModal}
-                className="text-sm p-[5px] px-4 bg-[#2164E8] text-white rounded"
-              >
-                Approve
-              </button>}
-              {Status === "Pending" && <button
-                onClick={openDenyModal}
-                className="text-sm  p-[5px] px-4 border border-[#767A81] rounded"
-              >
-                Deny
-              </button> }
-             {Status === "Pending" &&  <button
-                onClick={openForwardModal}
-                className="text-sm  p-[5px]  px-4 border border-[#767A81] rounded"
-              >
-                Forward
-              </button> } 
+              {Status === "Pending" && (
+                <button
+                  onClick={openApproveModal}
+                  className="text-sm p-[5px] px-4 bg-[#2164E8] text-white rounded"
+                >
+                  Approve
+                </button>
+              )}
+              {Status === "Pending" && (
+                <button
+                  onClick={openDenyModal}
+                  className="text-sm  p-[5px] px-4 border border-[#767A81] rounded"
+                >
+                  Deny
+                </button>
+              )}
+              {Status === "Pending" && (
+                <button
+                  onClick={openForwardModal}
+                  className="text-sm  p-[5px]  px-4 border border-[#767A81] rounded"
+                >
+                  Forward
+                </button>
+              )}
               <Modal
                 isOpen={isDenyModalOpen}
                 onRequestClose={closeDenyModal}
@@ -219,10 +218,11 @@ function RequestDetailsModal({ isOpen, requestData }) {
                   <h2 className="text-xl font-bold mb-4">Request Denial</h2>
                   <div className="flex flex-col gap-3">
                     <div className="mb-5">
-                      <label className="text-sm">Reason for denying the request
+                      <label className="text-sm">
+                        Reason for denying the request
                       </label>
                       <input
-                        onChange={(e)=>setmessage(e.target.value)}
+                        onChange={(e) => setmessage(e.target.value)}
                         className="border pl-3 w-full pb-32 text-black outline-none rounded-md border-gray-400"
                         placeholder="Write a message"
                       />
@@ -241,18 +241,17 @@ function RequestDetailsModal({ isOpen, requestData }) {
                         disabled={loading}
                         className="inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
                       >
-                  {loading ? 'Denying...' : 'Deny Request'}
-                       
+                        {loading ? "Denying..." : "Deny Request"}
                       </button>
                     ) : (
                       <button className="inline-flex items-center p-1 bg-gray-300 text-gray-600 rounded-sm px-4">
-                       Deny Request
+                        Deny Request
                       </button>
                     )}
                   </div>
                 </div>
               </Modal>
-                     
+
               <Modal
                 isOpen={isForwardModalOpen}
                 onRequestClose={closeForwardModal}
@@ -263,41 +262,45 @@ function RequestDetailsModal({ isOpen, requestData }) {
                   <h2 className="text-xl font-bold mb-4">Forward request</h2>
                   <div className="flex flex-col gap-3">
                     <div className="">
-                      <label className="text-sm">Name of the person
-                      </label>
+                      <label className="text-sm">Name of the person</label>
                       <input
-                        onChange={(e)=>setForwardname(e.target.value)}
+                        onChange={(e) => setForwardname(e.target.value)}
                         className="border pl-3 py-1 w-full text-black outline-none rounded-md border-gray-400"
                         placeholder="Name"
                       />
                     </div>
                     <div className="">
-                      <label className="text-sm">Mail Id of the person
-                      </label>
+                      <label className="text-sm">Mail Id of the person</label>
                       <input
-                        onChange={(e)=>setforwardemail(e.target.value)}
+                        onChange={(e) => setforwardemail(e.target.value)}
                         className="border pl-3 w-full py-1 text-black outline-none rounded-md border-gray-400"
                         placeholder="Mail Id"
                       />
                     </div>
                     <div className="">
-                      <label className="text-sm">Any message for the person?
+                      <label className="text-sm">
+                        Any message for the person?
                       </label>
                       <input
-                        onChange={(e)=>setmessage(e.target.value)}
+                        onChange={(e) => setmessage(e.target.value)}
                         className="border pl-3 w-full pb-10 text-black outline-none rounded-md border-gray-400"
                         placeholder="Write a message"
                       />
                     </div>
                     <div className="mb-5">
-                      <label className="text-sm">Note-
-                      </label>
-                     <ul  className=" text-xs text-[#494D57] flex flex-col gap-1">
-                      <li className=" list-disc">This Person does not get access to Approve or Deny the request.</li>
-                      <li className=" list-disc">Forward feature is introduced so that you can receive a confirmation from this person to help you in making an informed decision.</li>
-                     </ul>
+                      <label className="text-sm">Note-</label>
+                      <ul className=" text-xs text-[#494D57] flex flex-col gap-1">
+                        <li className=" list-disc">
+                          This Person does not get access to Approve or Deny the
+                          request.
+                        </li>
+                        <li className=" list-disc">
+                          Forward feature is introduced so that you can receive
+                          a confirmation from this person to help you in making
+                          an informed decision.
+                        </li>
+                      </ul>
                     </div>
-
                   </div>
                   <div className="flex items-center justify-between">
                     <div
@@ -306,23 +309,21 @@ function RequestDetailsModal({ isOpen, requestData }) {
                     >
                       Go Back
                     </div>
-                    {forwardname.length > 0 &&forwardemail.length>0? (
+                    {forwardname.length > 0 && forwardemail.length > 0 ? (
                       <button
                         onClick={closeForwardModal}
                         className="inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
                       >
-                       Forward Request
+                        Forward Request
                       </button>
                     ) : (
                       <button className="inline-flex items-center p-1 bg-gray-300 text-gray-600 rounded-sm px-4">
-                       Forward Request
+                        Forward Request
                       </button>
                     )}
                   </div>
                 </div>
               </Modal>
-
-              
             </div>{" "}
           </div>
 
