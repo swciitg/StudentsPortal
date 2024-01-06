@@ -44,7 +44,7 @@ async function createUser(req, res) {
     const Admin = await Admins.findOne({ email });
 
     if(Admin){
-      const token = jwt.sign({ email: Admin.email }, "your_secret_key", {
+      const token = jwt.sign({ email: Admin.email }, "Heloo_World", {
         expiresIn: "1h",
       });
       Admin.token=token;
@@ -117,7 +117,7 @@ async function createPassword(req, res) {
     }
     const hashedPassword = await bcrypt.hash(password, 10); 
     
-    const token = jwt.sign({ email: user.email,role:user.role }, "your_secret_key", {
+    const token = jwt.sign({ email: user.email }, "Heloo_World", {
       expiresIn: "1h",
     });
     user.password = hashedPassword;
@@ -133,10 +133,10 @@ async function createPassword(req, res) {
   }
 }
 async function login(req, res) {
-  const { email, password, role } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email, role, verified: true });
+    const user = await User.findOne({ email, verified: true });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -151,7 +151,7 @@ async function login(req, res) {
     const Admin = await Admins.findOne({ email });
 
     if(Admin){
-      const token = jwt.sign({ email: Admin.email }, "your_secret_key", {
+      const token = jwt.sign({ email: Admin.email }, "Heloo_World", {
         expiresIn: "1h",
       });
       Admin.token=token;
@@ -159,14 +159,14 @@ async function login(req, res) {
     }
   
 
-    const token = jwt.sign({ email: user.email,role:user.role }, "your_secret_key", {
+    const token = jwt.sign({ email: user.email}, "Heloo_World", {
       expiresIn: "1h",
     });
     user.token=token;
     await user.save();
     // res.cookie('Login', token, { httpOnly: true,sameSite: 'None', secure: true , maxAge: 3600000 });
 
-    console.log(`${role}  Login successfully`);
+    
 
 
     res.status(200).json({ token });
@@ -177,6 +177,31 @@ async function login(req, res) {
       .json({ message: "Internal Server Error", error: error.message });
   }
 }
+
+async function CheckAdmin(req, res) {
+  const {email}=req.body;
+try {
+  const admin=Admins.findOne({email});
+  const user=User.findOne({email});
+  if(admin){
+user.role='admin';
+await user.save();
+  }
+  else{
+    
+user.role='student';
+await user.save();
+  }
+  
+res.status(201).json({ message: "Checked Admin Successfully" });
+} catch (error) {
+  console.error( error);
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
+}
+}
+
 async function userDetails(req, res) {
   try {
     const {
@@ -186,10 +211,9 @@ async function userDetails(req, res) {
       department,
       profileCompletion,
       profileUrl,
-      role,
       token
     } = req.body;
-    const user = await User.findOne({ email,role,token });
+    const user = await User.findOne({ email,token });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
