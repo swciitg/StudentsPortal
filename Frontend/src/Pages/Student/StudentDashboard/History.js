@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
 import CryptoJS from "crypto-js";
-import RequestDetailsModal from "./History_CheckUpdates";
+import RequestDetailsModal from "./Modals/History_CheckUpdates";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
