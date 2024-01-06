@@ -7,7 +7,6 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
     isOpen: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     requestData: PropTypes.shape({
-      Date: PropTypes.string.isRequired,
       Status: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired,
       subject: PropTypes.string.isRequired,

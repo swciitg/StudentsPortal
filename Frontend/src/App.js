@@ -21,6 +21,7 @@ function App() {
         <Route path="*" element={<ProfileSelection />} />
         <Route path="/StudentsSignUp" element={<StudentsSignUp />} />
         <Route path="/StudentsLogIn" element={<StudentLogin />} />
+        <Route path="/" element={<StudentLogin />} />
         {/* Private Routes--Cannot be accessed without authentication or previous step*/}
         <Route path="/Otp" element={<Otp />} />
         <Route path="/CreatePass" element={<CreatePass />} />

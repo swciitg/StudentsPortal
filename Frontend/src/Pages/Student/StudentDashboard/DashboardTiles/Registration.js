@@ -27,7 +27,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
   return (
     <div className="h-[100%] lg:mt-0 mt-10 flex flex-col gap-1 col-span-4  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       {toggle1 === false ? (
-        <div className="bg-white lg:h-[20%] h-[60px]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
+        <div className="bg-white  h-[60px]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
           <div className="flex gap-1 items-center">
             <div>Registration</div>
             <img src="/Checkmark.svg" width="20px " />
@@ -43,7 +43,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
           />
         </div>
       ) : (
-        <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8] h-[60%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
+        <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className=" flex flex-col gap-2">
             <div className="flex gap-2">
               <img src="/registration.svg" />
@@ -65,7 +65,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
             </p>
             <div className="flex justify-end ">
               <Link to={`/StudentDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}>
-                <button className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8] text-white rounded">
+                <button className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8]  my-2 text-white rounded">
                   View Profile
                 </button>
               </Link>
@@ -74,7 +74,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
         </div>
       )}
       {toggle2 === false ? (
-        <div className="bg-white lg:h-[20%] h-[60px] shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
+        <div className="bg-white  h-[60px] shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
           <div>Request</div>
           <img
             className="cursor-pointer "
@@ -87,7 +87,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
           />
         </div>
       ) : (
-        <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8] h-[60%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
+        <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className="flex gap-2">
             <img src="/list.svg" />
             <div className="text-xl font-semibold">Request</div>
@@ -100,8 +100,8 @@ function Registration({user,ManageRequests,encryptedEmail}) {
             </p>
           </div>
           <div className=" flex justify-end ">
-            <Link to={`/StudentDashboard/Request/SelectValidation?e=${encodeURIComponent(encryptedEmail)}`}>
-              <button className="text-sm p-[5px] pl-3 mt-4 pr-3 bg-[#2164E8] text-white rounded">
+            <Link to={`/StudentDashboard/CreateRequest?e=${encodeURIComponent(encryptedEmail)}`}>
+              <button className="text-sm p-[5px] pl-3   my-2 mt-4 pr-3 bg-[#2164E8] text-white rounded">
                 Make a Request
               </button>
             </Link>
@@ -109,7 +109,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
         </div>
       )}
       {toggle3 === false ? (
-        <div className="bg-white lg:h-[20%]  h-[60px]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
+        <div className="bg-white   h-[60px]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
           <div>Manage requests</div>
           <img
             className="cursor-pointer "
@@ -122,25 +122,25 @@ function Registration({user,ManageRequests,encryptedEmail}) {
           />
         </div>
       ) : (
-        <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8] h-[60%]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
+        <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4  border-[#2164E8]   shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className="flex gap-2">
             <img src="/registration.svg" />
             <div className="text-xl font-semibold">Manage Requests</div>
           </div>
           <div className="flex gap-1 flex-col lg:my-0 my-2">
-            {ManageRequests.map((item) => (
+            {ManageRequests.slice(0, 2).map((item) => (
               <div
                 key={item.id}
                 className="bg-[#EFF6FC] p-2 flex justify-between items-center"
               >
-                <p className=" text-sm">{item.status}</p>
-                <p className="text-xs text-[#494D57]">{item.Date}</p>
+                <p className=" text-sm">{item.subject}</p>
+                <p className="text-xs text-[#494D57]">{item.Request_sent_date}</p>
               </div>
             ))}
           </div>
           <div className=" flex justify-end ">
             <Link to={`/StudentDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}>
-              <button className="text-sm p-[5px] pl-3 pr-3 bg-[#2164E8] text-white rounded">
+              <button className="text-sm p-[5px] pl-3 pr-3 my-2  bg-[#2164E8] text-white rounded">
                 Check my History
               </button>
             </Link>
