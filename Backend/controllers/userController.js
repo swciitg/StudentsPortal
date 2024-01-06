@@ -69,10 +69,13 @@ async function forgotPassword(req,res){
 try {
   const user = await User.findOne({ email });
 
-  const otp=generateOTP();
+  
 if(!user){
   return res.status(404).json({ message: "User not found" });
 }
+const otp=generateOTP();
+  user.otp = otp;
+  await user.save();
 await emailService.sendOTP(email, otp);
 
     res.status(200).json({ message:"User Found"});
