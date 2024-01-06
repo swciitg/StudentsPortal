@@ -117,7 +117,7 @@ async function createPassword(req, res) {
     }
     const hashedPassword = await bcrypt.hash(password, 10); 
     
-    const token = jwt.sign({ email: user.email,role:user.role }, "your_secret_key", {
+    const token = jwt.sign({ email: user.email }, "your_secret_key", {
       expiresIn: "1h",
     });
     user.password = hashedPassword;
@@ -133,10 +133,10 @@ async function createPassword(req, res) {
   }
 }
 async function login(req, res) {
-  const { email, password, role } = req.body;
+  const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email, role, verified: true });
+    const user = await User.findOne({ email, verified: true });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -159,14 +159,14 @@ async function login(req, res) {
     }
   
 
-    const token = jwt.sign({ email: user.email,role:user.role }, "your_secret_key", {
+    const token = jwt.sign({ email: user.email}, "your_secret_key", {
       expiresIn: "1h",
     });
     user.token=token;
     await user.save();
     // res.cookie('Login', token, { httpOnly: true,sameSite: 'None', secure: true , maxAge: 3600000 });
 
-    console.log(`${role}  Login successfully`);
+    
 
 
     res.status(200).json({ token });
@@ -186,10 +186,9 @@ async function userDetails(req, res) {
       department,
       profileCompletion,
       profileUrl,
-      role,
       token
     } = req.body;
-    const user = await User.findOne({ email,role,token });
+    const user = await User.findOne({ email,token });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
