@@ -37,7 +37,6 @@ const adminRouter = AdminJSExpress.buildAuthenticatedRouter(admin, {
   cookiePassword: 'complicatedsecurepassword',
   authenticate: async (email, password, next) => {
     const user = await User.findOne({ email });
-    console.log(user);
     if (user) {
       const matched = await bcrypt.compare(password, user.password);
       if (matched) {
