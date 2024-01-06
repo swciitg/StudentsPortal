@@ -43,8 +43,7 @@ export default function StudentSignUp() {
       const response = await axios.post('http://localhost:3002/api/users', {
         name: Name,
         email: Email,
-        roll: Roll,
-        role:'student'
+        roll: Roll
       });
   
      if (response.status === 201) {

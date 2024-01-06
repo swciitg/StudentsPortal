@@ -1,4 +1,5 @@
 import { User } from "../Models/User.js";
+import { Admins } from "../Models/Admins.js";
 import emailService from "../services/emailService.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -39,6 +40,16 @@ async function createUser(req, res) {
       otp,
       profileCompletion:0
     });
+
+    const Admin = await Admins.findOne({ email });
+
+    if(Admin){
+      const token = jwt.sign({ email: Admin.email }, "your_secret_key", {
+        expiresIn: "1h",
+      });
+      Admin.token=token;
+      await Admin.save(); 
+    }
     
     await newUser.save();
 
@@ -135,6 +146,16 @@ async function login(req, res) {
 
     if (!passwordMatch) {
       return res.status(401).json({ message: "Invalid password" });
+    }
+
+    const Admin = await Admins.findOne({ email });
+
+    if(Admin){
+      const token = jwt.sign({ email: Admin.email }, "your_secret_key", {
+        expiresIn: "1h",
+      });
+      Admin.token=token;
+      await Admin.save(); 
     }
   
 

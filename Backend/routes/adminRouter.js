@@ -5,6 +5,7 @@ import AdminJSExpress from '@adminjs/express';
 import * as AdminJSMongoose from '@adminjs/mongoose';
 import { Request } from '../Models/Request.js';
 import { User } from '../Models/User.js';
+import { Admins } from '../Models/Admins.js';
 import bcrypt from 'bcrypt';
 import express from 'express';
 import formidableMiddleware from 'express-formidable';
@@ -20,7 +21,7 @@ AdminJS.registerAdapter({
 });
 
 const adminOptions = {
-  resources: [Request, User],
+  resources: [Request, User,Admins],
   authenticate: async (email, password) => {
     const user = await User.findOne({ email });
     if (user && bcrypt.compareSync(password, user.encryptedPassword)) {

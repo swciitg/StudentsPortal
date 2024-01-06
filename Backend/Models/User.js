@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ["student", "admin"],
-    required: true,
   },
   program: String,
   altEmail: String,
