@@ -21,7 +21,6 @@ function AddNewRequest() {
     <div className=" relative h-screen w-[100%]">
       <Student_Navbar encryptedEmail={encryptedEmail} />
       <div className=" lg:absolute flex flex-col  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
-        {/*Corner Profile Option*/}
         <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
         <div className="flex justify-center items-center h-full">
           <div className="bg-white px-10 w-[400px] pb-9 pt-9 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">

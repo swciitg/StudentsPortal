@@ -179,7 +179,6 @@ function RequestSent() {
     <div className="relative h-screen w-[100%]">
       {/*Side Navbar */}
 
-      {/* <Admin_Navbar encryptedEmail={encryptedEmail} /> */}
       <Student_Navbar encryptedEmail={encryptedEmail} />
 
       <div className="lg:absolute h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
@@ -195,10 +194,6 @@ function RequestSent() {
             <div className="flex flex-col py-2 pt-4 px-4  bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
               <div className="flex items-center gap-3 mb-3">
                 <div className="font-semibold text-xl">Request Sent</div>
-                {/* <h2 className="text-[#2164E8] text-xs">
-                  {History.filter((item) => !item["Seen Status"]).length}
-                  Updates
-                </h2> */}
               </div>
             </div>
 
@@ -214,46 +209,6 @@ function RequestSent() {
                 >
                   POR
                 </div>
-                {/* <div
-                  onClick={() => handleTabClick("Project Validation")}
-                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
-                    selectedTab === "Project Validation"
-                      ? "border-b-[#2164E8] relative "
-                      : "border-b-[#E9E9EB] text-[#494D57]"
-                  }`}
-                >
-                  Project Validation
-                </div> */}
-                {/* <div
-                  onClick={() => handleTabClick("LOR")}
-                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
-                    selectedTab === "LOR"
-                      ? "border-b-[#2164E8] relative "
-                      : "border-b-[#E9E9EB] text-[#494D57]"
-                  }`}
-                >
-                  LOR
-                </div> */}
-                {/* <div
-                  onClick={() => handleTabClick("Inter IIT Participation")}
-                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
-                    selectedTab === "Inter IIT Participation"
-                      ? "border-b-[#2164E8] relative "
-                      : "border-b-[#E9E9EB] text-[#494D57]"
-                  }`}
-                >
-                  Inter IIT Participation
-                </div> */}
-                {/* <div
-                  onClick={() => handleTabClick("CR/BR POR")}
-                  className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
-                    selectedTab === "CR/BR POR"
-                      ? "border-b-[#2164E8] relative "
-                      : "border-b-[#E9E9EB] text-[#494D57]"
-                  }`}
-                >
-                  CR/BR POR
-                </div> */}
               </nav>
               <hr className=" absolute border-[2px] text-[#E9E9EB] -translate-y-[3px] w-full  lg:w-full -z-10 " />
             </div>

@@ -1,35 +1,9 @@
 // import CryptoJS from "crypto-js";
 import React, { useState } from "react";
-import { Link,} from "react-router-dom";
-// import jwt from 'jsonwebtoken';
+import { Link } from "react-router-dom";
 export default function ProfileSelection() {
-  const [SelectedOption,SetSelectedOption]=useState('student');
-  // const navigate=useNavigate();
-  // const ENCRYPTION_KEY = "HELLO_WoRLD";
-  // function encryptEmail(email) {
-  //   const encryptedEmail = CryptoJS.AES.encrypt(
-  //     email,
-  //     ENCRYPTION_KEY
-  //   ).toString();
-  //   return encryptedEmail;
-  // } 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   function parseJwt(token) {
-  //     if (!token) {
-  //       return;
-  //     }
-  //     const base64Url = token.split(".")[1];
-  //     const base64 = base64Url.replace("-", "+").replace("_", "/");
-  //     return JSON.parse(window.atob(base64));
-  //   }
-  
-  //   const user=parseJwt(token)
-  //   if (token)
-  //  { navigate(
-  //     `/${user.role==='student'?"StudentDashboard":"AdminDashboard"}/Home?e=${encodeURIComponent(encryptEmail(user.email))}`
-  //   );}
-  // }, []);
+  const [SelectedOption, SetSelectedOption] = useState("student");
+
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
       <div className="bg-white pl-10 pr-10 w-[90%] lg:w-[400px] md:w-[60%] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
@@ -44,59 +18,75 @@ export default function ProfileSelection() {
               type="radio"
               name="radioGroup"
               defaultChecked
-              onChange={()=>{SetSelectedOption('student')}}
+              onChange={() => {
+                SetSelectedOption("student");
+              }}
               className=" appearance-none p-1 border-[#494D57]  border rounded-[50%] grid place-content-center  before:w-[0.6rem] before:h-[0.6rem] before:shadow-[inset_1em_1em_#2164E8]  before:rounded-[50%] before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
-            />{"Student"}
-            
+            />
+            {"Student"}
           </label>
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
             <input
               type="radio"
               name="radioGroup"
-              onChange={()=>{SetSelectedOption('admin')}}
+              onChange={() => {
+                SetSelectedOption("admin");
+              }}
               className="   appearance-none border-[#494D57]   p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
-            />{"Alumni"}
-            
+            />
+            {"Alumni"}
           </label>
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
             <input
               type="radio"
               name="radioGroup"
-              onChange={()=>{SetSelectedOption('admin')}}
+              onChange={() => {
+                SetSelectedOption("admin");
+              }}
               className="   appearance-none border-[#494D57]   p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
-            />{"Professor"}
-            
+            />
+            {"Professor"}
           </label>
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
             <input
               type="radio"
               name="radioGroup"
-              onChange={()=>{SetSelectedOption('admin')}}
+              onChange={() => {
+                SetSelectedOption("admin");
+              }}
               className="   appearance-none border-[#494D57]  p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
-            />{"VP/Board Director"}
-            
-          </label>
-          <label className="flex items-center gap-x-2 cursor-pointer text-sm">
-            <input
-              type="radio"
-              name="radioGroup"   
-              onChange={()=>{SetSelectedOption('admin')}}
-              className="   appearance-none border-[#494D57]  p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
-            />{"General Secretary"}
-            
+            />
+            {"VP/Board Director"}
           </label>
           <label className="flex items-center gap-x-2 cursor-pointer text-sm">
             <input
               type="radio"
               name="radioGroup"
-              onChange={()=>{SetSelectedOption('admin')}}
+              onChange={() => {
+                SetSelectedOption("admin");
+              }}
+              className="   appearance-none border-[#494D57]  p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
+            />
+            {"General Secretary"}
+          </label>
+          <label className="flex items-center gap-x-2 cursor-pointer text-sm">
+            <input
+              type="radio"
+              name="radioGroup"
+              onChange={() => {
+                SetSelectedOption("admin");
+              }}
               className="  appearance-none border-[#494D57]   p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
-            />{"Student Body Representative"}
-            
+            />
+            {"Student Body Representative"}
           </label>
         </div>
         <div className="flex justify-end mt-10">
-          <Link to={SelectedOption==="student"?"/StudentsSignUp":"/AdminSignUp"}>
+          <Link
+            to={
+              SelectedOption === "student" ? "/StudentsSignUp" : "/AdminSignUp"
+            }
+          >
             <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
               Continue
             </button>

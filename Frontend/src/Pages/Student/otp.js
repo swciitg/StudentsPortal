@@ -1,23 +1,20 @@
-// import { useState } from "react";
 import React, { useState } from "react";
-import { Link,useLocation ,useNavigate} from "react-router-dom";
-import CryptoJS from 'crypto-js';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import CryptoJS from "crypto-js";
 
 import axios from "axios";
-// import HomePage from "./HomePage";
 export default function Otp() {
   const [Otp, setOtp] = useState("");
   const location = useLocation();
-  const [error, seterror] = useState([{status:false,message:""}]);
+  const [error, seterror] = useState([{ status: false, message: "" }]);
   const navigate = useNavigate();
-  const [resending, setresending] = useState(false);   
-  const [resent, setresent] = useState(false);   
-  const [loading, setLoading] = useState(false); 
-  
-  const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const ENCRYPTION_KEY = 'HELLO_WoRLD';
+  const [resending, setresending] = useState(false);
+  const [resent, setresent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  
+  const encryptedEmail = new URLSearchParams(location.search).get("e");
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
     const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
@@ -25,45 +22,53 @@ export default function Otp() {
   }
   const handleOtpSubmit = async () => {
     try {
-      seterror({error:false})
+      seterror({ error: false });
       setLoading(true);
-      const response = await axios.post('http://localhost:3002/api/users/verify-otp', {
-        email: decryptEmail(encryptedEmail), 
-        otp: Otp,
-      });
-  
+      const response = await axios.post(
+        "http://localhost:3002/api/users/verify-otp",
+        {
+          email: decryptEmail(encryptedEmail),
+          otp: Otp,
+        }
+      );
+
       if (response.status === 200) {
-        console.log('OTP verified successfully');
-        navigate(`/CreatePass?e=${encodeURIComponent(encryptedEmail)}`)
+        console.log("OTP verified successfully");
+        navigate(`/CreatePass?e=${encodeURIComponent(encryptedEmail)}`);
       } else {
-        console.error('Error verifying OTP:', response.data.message);
+        console.error("Error verifying OTP:", response.data.message);
       }
     } catch (error) {
       if (error.response) {
         if (error.response.status === 400) {
-        seterror({ status: true, message:'Invalid OTP!'  });}}
-      console.error('Error:', error.message);
-    }finally {
-      setLoading(false);  
+          seterror({ status: true, message: "Invalid OTP!" });
+        }
+      }
+      console.error("Error:", error.message);
+    } finally {
+      setLoading(false);
     }
   };
   const handleResendOtp = async () => {
     try {
-      setresent(false)
-      setresending(true)
-      const response = await axios.post('http://localhost:3002/api/users/resend-otp', {
-        email: decryptEmail(encryptedEmail)
-      });
-      
+      setresent(false);
+      setresending(true);
+      const response = await axios.post(
+        "http://localhost:3002/api/users/resend-otp",
+        {
+          email: decryptEmail(encryptedEmail),
+        }
+      );
+
       if (response.status === 201) {
-        console.log('OTP resend successfully');
-        setresending(false)
-        setresent(true);  
+        console.log("OTP resend successfully");
+        setresending(false);
+        setresent(true);
       } else {
-        console.error('Error re-sending OTP:', response.data.message);
+        console.error("Error re-sending OTP:", response.data.message);
       }
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error("Error:", error.message);
     }
   };
 
@@ -83,37 +88,72 @@ export default function Otp() {
           <label className="flex flex-col gap-2 ">
             <span className="font-medium text-sm">OTP</span>
             <input
-              onChange={(e) => {setOtp(e.target.value)}}
+              onChange={(e) => {
+                setOtp(e.target.value);
+              }}
               min="0"
               max="999999"
-              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.status?"border-[#ba3940] animate-shake":'border-[rgba(118,122,129,1)]'} pl-3`}
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${
+                error.status
+                  ? "border-[#ba3940] animate-shake"
+                  : "border-[rgba(118,122,129,1)]"
+              } pl-3`}
               type="number"
               placeholder="Enter OTP"
-
             />
-          {error.status&&<div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">{error.message}</div>}
+            {error.status && (
+              <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">
+                {error.message}
+              </div>
+            )}
           </label>
           {/*onKeyDown={(e)=> Otp.length===6&&e.preventDefault()}*/}
         </div>
         {Otp.length >= 6 ? (
           <div className="flex justify-between items-center mt-10">
-            <button onClick={handleResendOtp} className=" flex flex-col text-[rgba(33,100,232,1)]">
-            <div  className="  hover:text-[#315191]"> Resend OTP  </div>   
-              {resending?<div className="text-black text-xs">Sending...</div>:""}
-              {resent?<div className="text-[#107C10] text-xs">OTP Sent!</div>:""}
+            <button
+              onClick={handleResendOtp}
+              className=" flex flex-col text-[rgba(33,100,232,1)]"
+            >
+              <div className="  hover:text-[#315191]"> Resend OTP </div>
+              {resending ? (
+                <div className="text-black text-xs">Sending...</div>
+              ) : (
+                ""
+              )}
+              {resent ? (
+                <div className="text-[#107C10] text-xs">OTP Sent!</div>
+              ) : (
+                ""
+              )}
             </button>
             <div>
-              <button disabled={loading}  onClick={handleOtpSubmit} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-              {loading ? 'Submiting...' : 'Submit'}
+              <button
+                disabled={loading}
+                onClick={handleOtpSubmit}
+                className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
+              >
+                {loading ? "Submiting..." : "Submit"}
               </button>
             </div>
           </div>
         ) : (
           <div className="flex justify-between items-center mt-10">
-           <button onClick={handleResendOtp} className=" flex flex-col text-[rgba(33,100,232,1)]">
-           <div  className="  hover:text-[#315191]"> Resend OTP  </div>   
-              {resending?<div className="text-black text-xs">Sending...</div>:""}
-              {resent?<div className="text-[#107C10] text-xs">OTP Sent!</div>:""}
+            <button
+              onClick={handleResendOtp}
+              className=" flex flex-col text-[rgba(33,100,232,1)]"
+            >
+              <div className="  hover:text-[#315191]"> Resend OTP </div>
+              {resending ? (
+                <div className="text-black text-xs">Sending...</div>
+              ) : (
+                ""
+              )}
+              {resent ? (
+                <div className="text-[#107C10] text-xs">OTP Sent!</div>
+              ) : (
+                ""
+              )}
             </button>
             <div>
               <button className=" inline-flex items-center p-1 bg-[rgba(188,190,194,1)] text-[rgba(141,144,150,1)] rounded-sm pl-4 pr-4">

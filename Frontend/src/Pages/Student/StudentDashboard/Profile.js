@@ -70,7 +70,6 @@ function Profile() {
           email: decryptEmail(encryptedEmail),
           profileUrl: serverURL,
           token: localStorage.getItem("token"),
-          role: "student",
         });
 
         setProfileURL(serverURL);
@@ -94,7 +93,6 @@ function Profile() {
           program: Program,
           altEmail: AltEmail,
           department: Department,
-          role: "student",
           profileCompletion: Points,
           token: localStorage.getItem("token"),
         }
@@ -119,7 +117,6 @@ function Profile() {
             {
               email: decryptEmail(encryptedEmail),
               token: localStorage.getItem("token"),
-              role: "student",
             }
           );
 

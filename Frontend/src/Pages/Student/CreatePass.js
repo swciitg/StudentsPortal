@@ -4,7 +4,6 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 
-// import HomePage from "./HomePage";
 export default function CreatePass() {
   const [paas, setpass] = useState("");
   const [confpass, setconfpaas] = useState("");
@@ -14,14 +13,13 @@ export default function CreatePass() {
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const ENCRYPTION_KEY = "HELLO_WoRLD";
 
-
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
     const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
     return decryptedEmail;
   }
   const handleCreatePass = async () => {
-    const password=paas;
+    const password = paas;
     try {
       setLoading(true);
       const response = await axios.post(
@@ -39,12 +37,11 @@ export default function CreatePass() {
 
         // Redirect to the dashboard
         navigate(
-        `/StudentDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`
-        );}
-        else{
-          console.log("error while creating password")
-        }
-      
+          `/StudentDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`
+        );
+      } else {
+        console.log("error while creating password");
+      }
     } catch (error) {
       console.error("Error creating password:", error.message);
     } finally {

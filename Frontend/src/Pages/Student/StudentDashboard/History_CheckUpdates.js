@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import axios from "axios";
@@ -45,30 +45,27 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
     "Created request to the wrong person",
     "Request is no longer necessary",
   ];
-   const handleWithdraw= async()=>  {
-     try {
-       setLoading(true)
-       const response = await axios.post(
-         "http://localhost:3002/api/request/withdraw-request",
-         {
-          "Sender email":requestData["Sender email"],
-          _id:requestData._id
-
-         }
-       );
-         if (response.status === 200) {
-          console.log("Withdrawn Successfull!!")
-          setStatus("Withdrawn");
-          closeWithdrawModal()
-         
-       }
-     } catch (error) {
-      console.log(error)
-     }
-     finally{
-      setLoading(false)
-   }
-   }
+  const handleWithdraw = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:3002/api/request/withdraw-request",
+        {
+          "Sender email": requestData["Sender email"],
+          _id: requestData._id,
+        }
+      );
+      if (response.status === 200) {
+        console.log("Withdrawn Successfull!!");
+        setStatus("Withdrawn");
+        closeWithdrawModal();
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div>
       <div className="px-3 py-5 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -88,10 +85,12 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
               <label className="text-[#353B47] text-sm">Sender name</label>
               <div>{requestData["Sender Name"]}</div>
             </div>
-           {requestData["Type of Request"]==='LOR'&& <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">POR Position</label>
-              <div>{requestData["POR Position"]}</div>
-            </div>}
+            {requestData["Type of Request"] === "LOR" && (
+              <div className="flex flex-col">
+                <label className="text-[#353B47] text-sm">POR Position</label>
+                <div>{requestData["POR Position"]}</div>
+              </div>
+            )}
             <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">Year of Tenure</label>
               <div>{requestData["Year of Tenure"]}</div>
@@ -149,9 +148,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
                           disabled={loading}
                           className="inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
                         >
-              {loading ? 'Withdrawing...' : 'Withdraw Request'}
-
-                         
+                          {loading ? "Withdrawing..." : "Withdraw Request"}
                         </button>
                       ) : (
                         <button className="inline-flex items-center p-1 bg-gray-300 text-gray-600 rounded-sm px-4">
