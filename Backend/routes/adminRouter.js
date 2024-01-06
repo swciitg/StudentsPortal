@@ -1,5 +1,3 @@
-// 
-
 import AdminJS from 'adminjs';
 import AdminJSExpress from '@adminjs/express';
 import * as AdminJSMongoose from '@adminjs/mongoose';
@@ -21,7 +19,47 @@ AdminJS.registerAdapter({
 });
 
 const adminOptions = {
-  resources: [Request, User,Admins],
+  resources: [
+    {
+      resource: Request,
+      options: {
+        actions: {
+          delete: {
+            handler: async (request, response, data) => {
+              await Request.findByIdAndDelete(request.params.recordId);
+              return { record: data.record.toJSON(data.currentAdmin) };
+            },
+          },
+        },
+      },
+    },
+    {
+      resource: User,
+      options: {
+        actions: {
+          delete: {
+            handler: async (request, response, data) => {
+              await User.findByIdAndDelete(request.params.recordId);
+              return { record: data.record.toJSON(data.currentAdmin) };
+            },
+          },
+        },
+      },
+    },
+    {
+      resource: Admins,
+      options: {
+        actions: {
+          delete: {
+            handler: async (request, response, data) => {
+              await Admins.findByIdAndDelete(request.params.recordId);
+              return { record: data.record.toJSON(data.currentAdmin) };
+            },
+          },
+        },
+      },
+    },
+  ],
   authenticate: async (email, password) => {
     const user = await User.findOne({ email });
     if (user && bcrypt.compareSync(password, user.encryptedPassword)) {
@@ -41,8 +79,8 @@ const adminRouter = AdminJSExpress.buildAuthenticatedRouter(admin, {
     if (user) {
       const matched = await bcrypt.compare(password, user.password);
       if (matched) {
-        return user;// Call next with null and the user to indicate successful authentication
-      } 
+        return user; // Call next with null and the user to indicate successful authentication
+      }
     }
     return false;
   },
