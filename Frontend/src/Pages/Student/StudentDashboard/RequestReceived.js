@@ -300,7 +300,7 @@ function RequestReceived() {
                 {" "}
                 {History == null || !Array.isArray(History) ? (
                   <div className="flex justify-center py-5 text-xl font-extrabold text-[#7a7e87]">
-                    Loading...
+                  Nothing to Show!
                   </div>
                 ) : (
                   <RenderHistory onCheckUpdates={handleCheckUpdates} />
