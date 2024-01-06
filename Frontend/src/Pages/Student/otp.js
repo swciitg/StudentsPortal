@@ -13,6 +13,7 @@ export default function Otp() {
   const [resending, setresending] = useState(false);   
   const [resent, setresent] = useState(false);   
   const [loading, setLoading] = useState(false); 
+  
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const ENCRYPTION_KEY = 'HELLO_WoRLD';
 
