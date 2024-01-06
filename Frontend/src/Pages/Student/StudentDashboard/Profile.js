@@ -3,7 +3,7 @@ import Student_Navbar from "../../../Components/Student_Navbar";
 import axios from "axios";
 import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
 import CryptoJS from "crypto-js";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Profile() {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function Profile() {
     profileCompletion: 0,
     profileUrl: "",
   });
-//These States are going to be updated
+  //These States are going to be updated
   const [Program, setProgram] = useState("");
   const [Department, setDepartment] = useState("");
   const [AltEmail, setAlt_email] = useState("");
@@ -48,43 +48,44 @@ function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const fileInputRef = useRef(null);
 
- 
   const handleFileInputChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
       const formData = new FormData();
-      formData.append('file', file);
-  
+      formData.append("file", file);
+
       try {
-        const response= await axios.post('http://localhost:3002/api/users/upload', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-  
+        const response = await axios.post(
+          "http://localhost:3002/api/users/upload",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
         const serverURL = response.data.url; // Assuming the server responds with the file URL
-        await axios.post('http://localhost:3002/api/users/user-details', {
+        await axios.post("http://localhost:3002/api/users/user-details", {
           email: decryptEmail(encryptedEmail),
           profileUrl: serverURL,
-            token:localStorage.getItem("token"),
-            role:'student'
+          token: localStorage.getItem("token"),
+          role: "student",
         });
-  
-        setProfileURL(serverURL);
 
-      
+        setProfileURL(serverURL);
       } catch (error) {
-        console.error('Error uploading file:', error);
+        console.error("Error uploading file:", error);
       }
     }
   };
 
   const handleCompleteProfile = async () => {
     let Points = 0;
-    if( user.program && user.program.length>0) Points += 25;
-    if (user.altEmail&&user.altEmail.length > 0) Points += 25;
-    if (user.department&&user.department.length > 0) Points += 25;
-    if (user.profileUrl&&user.profileUrl.length > 0) Points += 25;
+    if (user.program && user.program.length > 0) Points += 25;
+    if (user.altEmail && user.altEmail.length > 0) Points += 25;
+    if (user.department && user.department.length > 0) Points += 25;
+    if (user.profileUrl && user.profileUrl.length > 0) Points += 25;
     try {
       const response = await axios.post(
         "http://localhost:3002/api/users/user-details",
@@ -93,9 +94,9 @@ function Profile() {
           program: Program,
           altEmail: AltEmail,
           department: Department,
-          role:'student',
+          role: "student",
           profileCompletion: Points,
-          token:localStorage.getItem("token")
+          token: localStorage.getItem("token"),
         }
       );
       if (response.status === 200) {
@@ -109,60 +110,62 @@ function Profile() {
     setIsEditing(false);
   };
 
-  useEffect(() => {
-    async function UserDetails() {
-      try {
-        const response = await axios.post(
-          "http://localhost:3002/api/users/user-details",
-          {
-            email: decryptEmail(encryptedEmail),
-            token:localStorage.getItem("token"),
-            role:'student'
+  useEffect(
+    () => {
+      async function UserDetails() {
+        try {
+          const response = await axios.post(
+            "http://localhost:3002/api/users/user-details",
+            {
+              email: decryptEmail(encryptedEmail),
+              token: localStorage.getItem("token"),
+              role: "student",
+            }
+          );
+
+          if (response.status === 200) {
+            const user = response.data;
+            setuser(user);
+          } else {
+            console.error(response.data.message);
           }
-        );
-
-        if (response.status === 200) {
-          const user = response.data;
-          setuser(user);
-          
-        } else {
-          console.error(response.data.message);
-          
+        } catch (error) {
+          console.error("Error:", error.message);
+          navigate("/");
         }
-      } catch (error) {
-        console.error("Error:", error.message);
-        navigate("/");
-
       }
-    }
-    UserDetails();
-    let Points = 0;
-    if( user.program && user.program.length>0) Points += 25;
-    if (user.altEmail&&user.altEmail.length > 0) Points += 25;
-    if (user.department&&user.department.length > 0) Points += 25;
-    if (user.profileUrl&&user.profileUrl.length > 0) Points += 25;
-    async function UpdateProfileCompletion() {
-    try {
-      const response = await axios.post(
-        "http://localhost:3002/api/users/user-details",
-        {
-          email: decryptEmail(encryptedEmail),
-          role:'student',
-            token:localStorage.getItem("token"),
-            profileCompletion: Points,
+      UserDetails();
+      let Points = 0;
+      if (user.program && user.program.length > 0) Points += 25;
+      if (user.altEmail && user.altEmail.length > 0) Points += 25;
+      if (user.department && user.department.length > 0) Points += 25;
+      if (user.profileUrl && user.profileUrl.length > 0) Points += 25;
+      async function UpdateProfileCompletion() {
+        try {
+          const response = await axios.post(
+            "http://localhost:3002/api/users/user-details",
+            {
+              email: decryptEmail(encryptedEmail),
+              role: "student",
+              token: localStorage.getItem("token"),
+              profileCompletion: Points,
+            }
+          );
+          if (response.status === 200) {
+            console.log("Profile Update successful");
+          } else {
+            console.error("Profile Update failed:", response.data.message);
+          }
+        } catch (error) {
+          console.log("Error:" + error);
         }
-      );
-      if (response.status === 200) {
-        console.log("Profile Update successful");
-      } else {
-        console.error("Profile Update failed:", response.data.message);
       }
-    } catch (error) {
-      console.log("Error:" + error);
-    }}
-    UpdateProfileCompletion();
-// eslint-disable-next-line
-  }, [isEditing,handleFileInputChange,user],[]);
+      UpdateProfileCompletion();
+      // eslint-disable-next-line
+    },
+    [isEditing, handleFileInputChange, user],
+    []
+  );
   const handleCustomButtonClick = () => {
     fileInputRef.current.click();
   };
@@ -232,7 +235,11 @@ function Profile() {
                       </label>
                       <input
                         className=" border border-[#767A81] outline-none px-2 py-1 rounded"
-                        placeholder={!(user.altEmail&&user.altEmail.length > 0)?"Enter Email address":user.altEmail}
+                        placeholder={
+                          !(user.altEmail && user.altEmail.length > 0)
+                            ? "Enter Email address"
+                            : user.altEmail
+                        }
                         type="email"
                         name="Alt_Email"
                         onChange={(e) => setAlt_email(e.target.value)}
@@ -293,10 +300,15 @@ function Profile() {
                       onClick={handleCustomButtonClick}
                       className="cursor-pointer border flex  justify-center  rounded-full bg-[#D9D9D9] "
                     >
-                      {(ProfileUrl && ProfileUrl.length > 0)||(user.profileUrl && user.profileUrl.length > 0) ? (
+                      {(ProfileUrl && ProfileUrl.length > 0) ||
+                      (user.profileUrl && user.profileUrl.length > 0) ? (
                         <div className="relative  w-40 object-cover">
                           <img
-                            src={(user.profileUrl && user.profileUrl.length > 0)?user.profileUrl:ProfileUrl}
+                            src={
+                              user.profileUrl && user.profileUrl.length > 0
+                                ? user.profileUrl
+                                : ProfileUrl
+                            }
                             alt="Profile"
                             className=""
                             style={{ width: "200px" }}
@@ -326,20 +338,27 @@ function Profile() {
             </div>
           </div>
 
-          {!isEditing && (
+          {!isEditing &&
             !(
-              (user.name&&user.name.trim() !== "" )&&
-              (user.roll&&user.roll.trim() !== "") &&
-             ( user.program&&user.program.trim() !== "" )&&
-             (user.email&& user.email.trim() !== "") &&
-           ( user.altEmail&&  user.altEmail.trim() !== "" )&&
-            (user.department&&user.department.trim() !== "" )&&
-             ( user.profileUrl&&user.profileUrl.trim() !== "")
-            ) &&
-            <div className="mt-3 text-[#D83B01]">
-              Your Profile seems to be incomplete!
-            </div>
-          )}
+              user.name &&
+              user.name.trim() !== "" &&
+              user.roll &&
+              user.roll.trim() !== "" &&
+              user.program &&
+              user.program.trim() !== "" &&
+              user.email &&
+              user.email.trim() !== "" &&
+              user.altEmail &&
+              user.altEmail.trim() !== "" &&
+              user.department &&
+              user.department.trim() !== "" &&
+              user.profileUrl &&
+              user.profileUrl.trim() !== ""
+            ) && (
+              <div className="mt-3 text-[#D83B01]">
+                Your Profile seems to be incomplete!
+              </div>
+            )}
 
           {isEditing ? (
             <div className="mt-3 flex gap-4">

@@ -4,27 +4,15 @@ import ProfileSelection from "./Pages/ProfileSelection";
 import StudentsSignUp from "./Pages/Student/StudentsSignUp";
 import Otp from "./Pages/Student/otp";
 import CreatePass from "./Pages/Student/CreatePass";
-import AdminSignUp from "./Pages/Admin/AdminSignUp";
 import Home from "./Pages/Student/StudentDashboard/Home";
 import Profile from "./Pages/Student/StudentDashboard/Profile";
 import History from "./Pages/Student/StudentDashboard/History";
-import Request from "./Pages/Student/StudentDashboard/Request";
-import RequestsForward from "./Pages/Student/StudentDashboard/RequestsForward";
-import SelectValidation from "./Pages/Student/StudentDashboard/RequestPages/SelectValidation";
-import Home_admin from "./Pages/Admin/AdminDashboard/Home";
-import Request_admin from "./Pages/Admin/AdminDashboard/Request";
-import RequestsForwardadmin from "./Pages/Admin/AdminDashboard/RequestsForward";
-import AdminProfile from "./Pages/Admin/AdminDashboard/Profile";
-import AdminHistory from "./Pages/Admin/AdminDashboard/History";
-import Otpadmin from "./Pages/Admin/otp";
-import CreatePassadmin from "./Pages/Admin/CreatePass";
 import StudentLogin from "./Pages/Student/StudentLogin";
-import AdminLogin from "./Pages/Admin/AdminLogIn";
-import CreateClubPOR from "./Pages/Student/StudentDashboard/RequestPages/ClubPOR/ClubPOR";
-import CreateProjectVal from "./Pages/Student/StudentDashboard/RequestPages/ProjectValidation/ProjectValidation";
-import CreateBRPOR from "./Pages/Student/StudentDashboard/RequestPages/BR/BRPOR";
-import CreateInterIIT from "./Pages/Student/StudentDashboard/RequestPages/InterIIT/InterIIT";
-import CreateLOR from "./Pages/Student/StudentDashboard/RequestPages/LOR/LOR";
+import RequestReceived from "./Pages/Student/StudentDashboard/RequestReceived";
+import RequestSent from "./Pages/Student/StudentDashboard/RequestSent";
+import CreateRequest from "./Pages/Student/StudentDashboard/CreateRequest";
+import AddNewRequest from "./Pages/Student/StudentDashboard/RequestPages/AddNew";
+import SuccessPage from "./Pages/Student/StudentDashboard/RequestPages/SuccessPage";
 function App() {
   return (
     <BrowserRouter>
@@ -39,29 +27,23 @@ function App() {
         <Route path="/StudentDashboard/Home" element={<Home />} />
         <Route path="/StudentDashboard/Profile" element={<Profile />} />
         <Route path="/StudentDashboard/History" element={<History />} />
-        <Route path="/StudentDashboard/Request" element={<Request />} />
-        <Route path="/StudentDashboard/Request/SelectValidation" element={<SelectValidation />}/>
-        <Route path="/StudentDashboard/Request/ClubPOR" element={<CreateClubPOR />}/>
-        <Route path="/StudentDashboard/Request/ProjectValidation" element={<CreateProjectVal />}/>
-        <Route path="/StudentDashboard/Request/InterIIT" element={<CreateInterIIT />}/>
-        <Route path="/StudentDashboard/Request/BR" element={<CreateBRPOR />} />
-        <Route path="/StudentDashboard/Request/LOR" element={<CreateLOR />} />
-        <Route path="/StudentDashboard/ForwardRequest" element={<RequestsForward />}/>
-
-        {/* Admin Side Routes*/}
-        <Route path="/AdminSignUp" element={<AdminSignUp />} />
-        <Route path="/AdminLogin" element={<AdminLogin />} />
-        {/* Private Routes--Cannot be accessed without authentication or previous step*/}
-        <Route path="/Otp-admin" element={<Otpadmin />} />
-        <Route path="/CreatePass-admin" element={<CreatePassadmin />} />
-        <Route path="/AdminDashboard/Home" element={<Home_admin />} />
-        <Route path="/AdminDashboard/Request" element={<Request_admin />} />
         <Route
-          path="/AdminDashboard/ForwardRequest"
-          element={<RequestsForwardadmin />}
+          path="/StudentDashboard/CreateRequest"
+          element={<CreateRequest />}
         />
-        <Route path="/AdminDashboard/Profile" element={<AdminProfile />} />
-        <Route path="/AdminDashboard/History" element={<AdminHistory />} />
+        <Route
+          path="/StudentDashboard/ReceivedRequest"
+          element={<RequestReceived />}
+        />
+        <Route path="/StudentDashboard/SentRequest" element={<RequestSent />} />
+        <Route
+          path="/StudentDashboard/CreateRequest/add"
+          element={<AddNewRequest />}
+        />
+        <Route
+          path="/StudentDashboard/CreateRequest/success"
+          element={<SuccessPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

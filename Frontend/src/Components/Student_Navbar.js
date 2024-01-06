@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-export default function Student_Navbar({encryptedEmail}) {
+export default function Student_Navbar({ encryptedEmail }) {
   Student_Navbar.propTypes = {
     encryptedEmail: PropTypes.string.isRequired,
   };
@@ -26,6 +26,8 @@ export default function Student_Navbar({encryptedEmail}) {
     }
   };
 
+  const isAdmin = true;
+
   useEffect(() => {
     document.addEventListener("click", closeNavIfClickedOutside);
 
@@ -34,7 +36,7 @@ export default function Student_Navbar({encryptedEmail}) {
     };
   }, []);
   return (
-    <div  >
+    <div>
       {CurrentWidth < 1024 && (
         <div ref={navbarRef} className="absolute ml-8 mt-4">
           <button className="text-2xl" onClick={handleToggleNav}>
@@ -43,10 +45,9 @@ export default function Student_Navbar({encryptedEmail}) {
         </div>
       )}
 
-
       {
         <nav
-        style={{ zIndex: 10 }}
+          style={{ zIndex: 10 }}
           className={`flex flex-col justify-between fixed  bg-white w-[50%] lg:w-[18%] h-screen shadow-[0px 3.2px 7.2px 0px rgba(27,33,45,0.13),0px 0.6px 1.8px 0px rgba(27,33,45,0.10)]  transition-all duration-300 ${
             window.innerWidth < 1024 && (showNav ? "left-0" : "-left-full")
           }`}
@@ -57,10 +58,13 @@ export default function Student_Navbar({encryptedEmail}) {
               <div className="text-lg font-bold">Students Portal</div>
             </div>
             <ul>
-              <Link to={`/StudentDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`}>
+              <Link
+                to={`/StudentDashboard/Home?e=${encodeURIComponent(
+                  encryptedEmail
+                )}`}
+              >
                 <div
                   className={
-                    
                     isSelected("/StudentDashboard/Home")
                       ? "bg-[#E8E9EA] p-3"
                       : "p-3"
@@ -69,7 +73,11 @@ export default function Student_Navbar({encryptedEmail}) {
                   <div className="ml-6">Home</div>
                 </div>
               </Link>
-              <Link to={`/StudentDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}>
+              <Link
+                to={`/StudentDashboard/Profile?e=${encodeURIComponent(
+                  encryptedEmail
+                )}`}
+              >
                 <div
                   className={
                     isSelected("/StudentDashboard/Profile")
@@ -80,18 +88,60 @@ export default function Student_Navbar({encryptedEmail}) {
                   <div className="ml-6">Profile</div>
                 </div>
               </Link>
-              <Link  to={`/StudentDashboard/Request?e=${encodeURIComponent(encryptedEmail)}`}>
+              <Link
+                to={`/StudentDashboard/CreateRequest?e=${encodeURIComponent(
+                  encryptedEmail
+                )}`}
+              >
                 <div
                   className={
-                    isSelected("/StudentDashboard/Request")
+                    isSelected("/StudentDashboard/CreateRequest")
                       ? "bg-[#E8E9EA] p-3"
                       : "p-3"
                   }
                 >
-                  <div className="ml-6">Request</div>
+                  <div className="ml-6">Create New Request</div>
                 </div>
               </Link>
-              <Link to={`/StudentDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}>
+              {isAdmin && (
+                <Link
+                  to={`/StudentDashboard/ReceivedRequest?e=${encodeURIComponent(
+                    encryptedEmail
+                  )}`}
+                >
+                  <div
+                    className={
+                      isSelected("/StudentDashboard/ReceivedRequest")
+                        ? "bg-[#E8E9EA] p-3"
+                        : "p-3"
+                    }
+                  >
+                    <div className="ml-6">Request Received</div>
+                  </div>
+                </Link>
+              )}
+
+              <Link
+                to={`/StudentDashboard/SentRequest?e=${encodeURIComponent(
+                  encryptedEmail
+                )}`}
+              >
+                <div
+                  className={
+                    isSelected("/StudentDashboard/SentRequest")
+                      ? "bg-[#E8E9EA] p-3"
+                      : "p-3"
+                  }
+                >
+                  <div className="ml-6">Request Sent</div>
+                </div>
+              </Link>
+
+              <Link
+                to={`/StudentDashboard/History?e=${encodeURIComponent(
+                  encryptedEmail
+                )}`}
+              >
                 <div
                   className={
                     isSelected("/StudentDashboard/History")
@@ -100,17 +150,6 @@ export default function Student_Navbar({encryptedEmail}) {
                   }
                 >
                   <div className="ml-6">History</div>
-                </div>
-              </Link>
-              <Link to={`/StudentDashboard/ForwardRequest?e=${encodeURIComponent(encryptedEmail)}`}>
-                <div
-                  className={
-                    isSelected("/StudentDashboard/ForwardRequest")
-                      ? "bg-[#E8E9EA] p-3"
-                      : "p-3"
-                  }
-                >
-                  <div className="ml-6">Request Forwards</div>
                 </div>
               </Link>
             </ul>
