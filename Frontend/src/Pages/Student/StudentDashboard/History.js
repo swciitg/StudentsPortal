@@ -106,6 +106,7 @@ function History() {
     [selectedTab, History],
     []
   );
+  console.log(search);
   const RenderHistory = ({ onCheckUpdates }) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -113,57 +114,51 @@ function History() {
       (data) => data.Status === selectedTab
     );
 
-    const filteredAndSearchedHistory = filteredHistory.filter((data) =>
-      data["Request Name"].toLowerCase().includes(search.toLowerCase())
-    );
+    // const filteredAndSearchedHistory = filteredHistory.filter((data) =>
+    //   data["Request Name"].toLowerCase().includes(search.toLowerCase())
+    // );
 
     if (History !== null || !Array.isArray(History))
-      return filteredAndSearchedHistory
-        .slice(startIndex, endIndex)
-        .map((data, index) => {
-          const sequenceNumber = index + 1 + (currentPage - 1) * itemsPerPage;
-          let statusStyle;
+      return filteredHistory.slice(startIndex, endIndex).map((data, index) => {
+        const sequenceNumber = index + 1 + (currentPage - 1) * itemsPerPage;
+        let statusStyle;
 
-          if (data.Status === "Pending") {
-            statusStyle = "text-[#494D57]";
-          } else if (data.Status === "Denied") {
-            statusStyle = "text-[#D83B01]";
-          } else if (data.Status === "Approved") {
-            statusStyle = "text-[#107C10]";
-          }
+        if (data.Status === "Pending") {
+          statusStyle = "text-[#494D57]";
+        } else if (data.Status === "Denied") {
+          statusStyle = "text-[#D83B01]";
+        } else if (data.Status === "Approved") {
+          statusStyle = "text-[#107C10]";
+        }
 
-          return (
-            <div
-              key={index}
-              className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
-            >
-              <div className="text-xs w-[10%]  text-[#494D57]  text-center py-5">
-                {sequenceNumber}
-              </div>
-              <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
-                {data["Request Name"]}
-              </div>
-              <div className="text-xs text-[#494D57] w-[20%] text-center py-5">
-                {data["Type of Request"]}
-              </div>
-              <div className="text-xs text-[#494D57] w-[15%] text-center py-5">
-                {data["Request_sent_date"]}
-              </div>
-              <div
-                className={`text-xs text-center w-[15%] py-5 ${statusStyle}`}
-              >
-                {data.Status}
-              </div>
-              <div
-                onClick={() => onCheckUpdates(data)}
-                className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1"
-              >
-                <div>Check Updates</div>
-                <img src="/Arrow-right.svg" />
-              </div>
+        return (
+          <div
+            key={index}
+            className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
+          >
+            <div className="text-xs w-[10%]  text-[#494D57]  text-center py-5">
+              {sequenceNumber}
             </div>
-          );
-        });
+            <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
+              {data["Sender Name"]}
+            </div>
+           
+            <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
+              {data["Request_sent_date"]}
+            </div>
+            <div className={`text-xs text-center w-[20%] py-5 ${statusStyle}`}>
+              {data.Status}
+            </div>
+            <div
+              onClick={() => onCheckUpdates(data)}
+              className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1"
+            >
+              <div>Check Updates</div>
+              <img src="/Arrow-right.svg" />
+            </div>
+          </div>
+        );
+      });
   };
 
   return (
@@ -250,17 +245,15 @@ function History() {
                   Sl. No.
                 </div>
                 <div className=" text-sm w-[25%]  justify-center  gap-[3px] flex items-center py-3">
-                  Request Name
+                 {"Sender's Name"}
                   <img src="/sort.svg" />
                 </div>
-                <div className=" text-sm  w-[20%] text-center   py-3">
-                  Type of Request.
-                </div>
-                <div className=" text-sm  w-[15%] justify-center  gap-[3px]   flex items-center py-3">
+               
+                <div className=" text-sm  w-[25%] justify-center  gap-[3px]   flex items-center py-3">
                   Date
                   <img src="/Arrow Sort.svg" />
                 </div>
-                <div className=" text-sm  w-[15%]  text-center  py-3">
+                <div className=" text-sm  w-[20%]  text-center  py-3">
                   Status
                 </div>
               </div>

@@ -143,7 +143,6 @@ function Profile() {
             "http://localhost:3002/api/users/user-details",
             {
               email: decryptEmail(encryptedEmail),
-              role: "student",
               token: localStorage.getItem("token"),
               profileCompletion: Points,
             }

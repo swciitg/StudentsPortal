@@ -32,7 +32,7 @@ export default function ProfileSelection() {
               onChange={() => {
                 SetSelectedOption("admin");
               }}
-              className="   appearance-none border-[#494D57]   p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
+              className="appearance-none border-[#494D57]   p-1 border rounded-[50%] grid place-content-center before:w-[0.6rem] before:h-[0.6rem]  before:rounded-[50%] before:shadow-[inset_1em_1em_#2164E8]  before:scale-0  checked:before:scale-100 checked:border-[#2164E8]"
             />
             {"Alumni"}
           </label>

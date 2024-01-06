@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import CryptoJS from "crypto-js";
-=======
 // import { useState } from "react";
 import React, { useEffect, useState } from "react";
-import { Link,useLocation ,useNavigate} from "react-router-dom";
-import CryptoJS from 'crypto-js';
->>>>>>> c859453a2c91e348f1203e3f9d682ace9348ec7e
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import CryptoJS from "crypto-js";
 
 import axios from "axios";
 export default function Otp() {
@@ -15,25 +9,16 @@ export default function Otp() {
   const location = useLocation();
   const [error, seterror] = useState([{ status: false, message: "" }]);
   const navigate = useNavigate();
-<<<<<<< HEAD
   const [resending, setresending] = useState(false);
   const [resent, setresent] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const ENCRYPTION_KEY = "HELLO_WoRLD";
-=======
-  const [resending, setresending] = useState(false);   
-  const [resent, setresent] = useState(false);   
-  const [loading, setLoading] = useState(false);  
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [disabled, setDisabled] = useState(false);
   const [timer, setTimer] = useState(false);
 
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const ENCRYPTION_KEY = 'HELLO_WoRLD';
->>>>>>> c859453a2c91e348f1203e3f9d682ace9348ec7e
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
 
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
@@ -81,18 +66,12 @@ export default function Otp() {
       );
 
       if (response.status === 201) {
-<<<<<<< HEAD
         console.log("OTP resend successfully");
         setresending(false);
-        setresent(true);
-=======
-        console.log('OTP resend successfully');
-        setresending(false)
         setresent(true);
         setDisabled(true);
         setTimer(true);
         setSeconds(30);
->>>>>>> c859453a2c91e348f1203e3f9d682ace9348ec7e
       } else {
         console.error("Error re-sending OTP:", response.data.message);
       }
@@ -105,7 +84,7 @@ export default function Otp() {
       if (timer && seconds > 0) {
         setSeconds((seconds) => seconds - 1);
       }
-  
+
       if (seconds === 0) {
         if (minutes === 0) {
           setTimer(false);
@@ -118,12 +97,12 @@ export default function Otp() {
         }
       }
     }, 1000);
-  
+
     return () => {
       clearInterval(interval);
     };
   }, [timer, seconds, minutes]);
-  
+
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
       <div className="bg-white pl-10 pr-10 w-[90%] md:w-[60%] lg:w-[400px] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
@@ -165,11 +144,6 @@ export default function Otp() {
           <div className="flex justify-between items-center mt-10">
             <button
               onClick={handleResendOtp}
-<<<<<<< HEAD
-              className=" flex flex-col text-[rgba(33,100,232,1)]"
-            >
-              <div className="  hover:text-[#315191]"> Resend OTP </div>
-=======
               disabled={disabled}
               className={`flex flex-col text-${
                 disabled ? "[rgba(141,144,150,1)]" : "[rgba(33,100,232,1)]"
@@ -183,7 +157,6 @@ export default function Otp() {
                 {" "}
                 Resend OTP{" "}
               </div>
->>>>>>> c859453a2c91e348f1203e3f9d682ace9348ec7e
               {resending ? (
                 <div className="text-black text-xs">Sending...</div>
               ) : (
@@ -194,12 +167,9 @@ export default function Otp() {
               ) : (
                 ""
               )}
-<<<<<<< HEAD
-=======
               {disabled && (
                 <div className="text-gray-500 text-xs">{`Re-enable in ${seconds}s`}</div>
               )}
->>>>>>> c859453a2c91e348f1203e3f9d682ace9348ec7e
             </button>
             <div>
               <button
@@ -215,11 +185,6 @@ export default function Otp() {
           <div className="flex justify-between items-center mt-10">
             <button
               onClick={handleResendOtp}
-<<<<<<< HEAD
-              className=" flex flex-col text-[rgba(33,100,232,1)]"
-            >
-              <div className="  hover:text-[#315191]"> Resend OTP </div>
-=======
               disabled={disabled}
               className={`flex flex-col text-${
                 disabled ? "[rgba(141,144,150,1)]" : "[rgba(33,100,232,1)]"
@@ -233,7 +198,6 @@ export default function Otp() {
                 {" "}
                 Resend OTP{" "}
               </div>
->>>>>>> c859453a2c91e348f1203e3f9d682ace9348ec7e
               {resending ? (
                 <div className="text-black text-xs">Sending...</div>
               ) : (
@@ -244,12 +208,9 @@ export default function Otp() {
               ) : (
                 ""
               )}
-<<<<<<< HEAD
-=======
               {disabled && (
                 <div className="text-gray-500 text-xs">{`Re-enable in ${seconds}s`}</div>
               )}
->>>>>>> c859453a2c91e348f1203e3f9d682ace9348ec7e
             </button>
 
             <div>
