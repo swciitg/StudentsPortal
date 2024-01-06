@@ -1,12 +1,7 @@
 // import { useState } from "react";
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import CryptoJS from "crypto-js";
-=======
 import { Link,useLocation ,useNavigate} from "react-router-dom";
 import CryptoJS from 'crypto-js';
->>>>>>> b6202a3f0c3ff1b1d9ff44578271b1f44ea3ab05
 
 import axios from "axios";
 export default function Otp() {
@@ -14,26 +9,16 @@ export default function Otp() {
   const location = useLocation();
   const [error, seterror] = useState([{ status: false, message: "" }]);
   const navigate = useNavigate();
-<<<<<<< HEAD
-  const [resending, setresending] = useState(false);
-  const [resent, setresent] = useState(false);
-  const [loading, setLoading] = useState(false);
-=======
   const [resending, setresending] = useState(false);   
   const [resent, setresent] = useState(false);   
   const [loading, setLoading] = useState(false);  
->>>>>>> b6202a3f0c3ff1b1d9ff44578271b1f44ea3ab05
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [disabled, setDisabled] = useState(false);
   const [timer, setTimer] = useState(false);
 
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-<<<<<<< HEAD
-  const ENCRYPTION_KEY = "HELLO_WoRLD";
-=======
   const ENCRYPTION_KEY = 'HELLO_WoRLD';
->>>>>>> b6202a3f0c3ff1b1d9ff44578271b1f44ea3ab05
 
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
@@ -81,13 +66,8 @@ export default function Otp() {
       );
 
       if (response.status === 201) {
-<<<<<<< HEAD
-        console.log("OTP resend successfully");
-        setresending(false);
-=======
         console.log('OTP resend successfully');
         setresending(false)
->>>>>>> b6202a3f0c3ff1b1d9ff44578271b1f44ea3ab05
         setresent(true);
         setDisabled(true);
         setTimer(true);
