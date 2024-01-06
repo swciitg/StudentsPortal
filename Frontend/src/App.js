@@ -13,6 +13,7 @@ import RequestSent from "./Pages/Student/StudentDashboard/RequestSent";
 import CreateRequest from "./Pages/Student/StudentDashboard/CreateRequest";
 import AddNewRequest from "./Pages/Student/StudentDashboard/RequestPages/AddNew";
 import SuccessPage from "./Pages/Student/StudentDashboard/RequestPages/SuccessPage";
+import ForgotPassword from "./Pages/Student/ForgotPassword";
 function App() {
   return (
     <BrowserRouter>
@@ -45,6 +46,7 @@ function App() {
           path="/StudentDashboard/CreateRequest/success"
           element={<SuccessPage />}
         />
+        <Route path="/Student/ForgotPassword" element={<ForgotPassword />} />
       </Routes>
     </BrowserRouter>
   );

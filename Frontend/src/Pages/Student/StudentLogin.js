@@ -138,7 +138,10 @@ export default function StudentLogin() {
         </div>
         {Password.length > 0 && Email.length > 0 ? (
           <div className="flex justify-between items-center mt-10">
-            <Link to="/" className=" text-[rgba(33,100,232,1)]">
+            <Link
+              to="/Student/ForgotPassword"
+              className=" text-[rgba(33,100,232,1)]"
+            >
               Forgot password?
             </Link>
             <Link>
@@ -153,7 +156,10 @@ export default function StudentLogin() {
           </div>
         ) : (
           <div className="flex justify-between items-center mt-10">
-            <Link to="/" className="  text-[rgba(33,100,232,1)]">
+            <Link
+              to="/Student/ForgotPassword"
+              className="  text-[rgba(33,100,232,1)]"
+            >
               Forgot password?
             </Link>
             <Link>
