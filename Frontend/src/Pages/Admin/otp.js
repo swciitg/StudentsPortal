@@ -1,6 +1,6 @@
 // import { useState } from "react";
 import axios from "axios";
-import React, {useState } from "react";
+import React, {useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 
@@ -13,7 +13,7 @@ export default function Otpadmin() {
   const [resending, setresending] = useState(false);
   const [resent, setresent] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  // const [timer, setTimer] = useState(false);
+  const [timer, setTimer] = useState(false);
   const [remainingSeconds, setRemainingSeconds] = useState(30);
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const ENCRYPTION_KEY = "HELLO_WoRLD";
@@ -67,7 +67,7 @@ export default function Otpadmin() {
         console.log("OTP resend successfully");
         setresending(false);
         setresent(true);
-        setDisabled(false);
+        setDisabled(true);
         setRemainingSeconds(30)
         
         
@@ -82,16 +82,16 @@ export default function Otpadmin() {
     }
   };
 
-  // useEffect(()=>{
-  //   if(remainingSeconds>0)setInterval(() => {
-  //     setRemainingSeconds((prevSeconds) => prevSeconds - 1);
-  //     if (remainingSeconds ===0)   {
-  //       setDisabled(false);
-  //       setTimer(false)
-  //     }
-  //   }, 1000);
+  useEffect(()=>{
+    if(remainingSeconds>0)setInterval(() => {
+      setRemainingSeconds((prevSeconds) => prevSeconds - 1);
+      if (remainingSeconds ===0)   {
+        setDisabled(false);
+        setTimer(false)
+      }
+    }, 1000);
 
-  // },[timer])
+  },[timer])
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
       <div className="bg-white pl-10 pr-10 w-[90%] md:w-[60%] lg:w-[400px] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
