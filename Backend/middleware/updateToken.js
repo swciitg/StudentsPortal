@@ -1,22 +1,23 @@
-import { Admins } from "../Models/Admins";
-middleware = {}
+import { Admins } from "../Models/Admins.js";
+const middleware ={};
 
-middleware.checkAdminToken = function(req,res,next){
+ middleware.checkAdminToken = async function(req,res,next){
     const email=req.body.email;
-    const Admin = Admins.findOne({email});
+    const Admin = await Admins.findOne({email});
     if(Admin){
         if(Admin.token==req.body.token){
             return next();
+
         }
         else{
-            return res.status(401).json({
+            return await res.status(401).json({
                 status:"error",
                 data:[],
                 msg:"Unauthorised"
             });
         }
     }
-    return res.status(401).json({
+    return await res.status(401).json({
         status:"error",
         data:[],
         msg:"Unauthorised"

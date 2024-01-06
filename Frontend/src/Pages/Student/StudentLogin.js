@@ -41,7 +41,6 @@ export default function StudentLogin() {
       const response = await axios.post('http://localhost:3002/api/users/login', {
         email: Email,
         password: Password,
-        role:'student'
       });
 
       if (response.status === 200) {
