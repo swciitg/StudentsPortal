@@ -1,22 +1,93 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {  useLocation, useNavigate } from "react-router-dom";
+import CryptoJS from "crypto-js";
 import Student_Navbar from "../../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "../CornerProfileLogoutSection";
 import Select from "react-select";
+import axios from "axios";
 
 function AddNewRequest() {
   const location = useLocation();
+  const navigate= useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const [document, SetDocument] = useState("");
+  const [body, setBody] = useState("");
+  const [subject, setSubject] = useState('');
+  const [toemail, SetToemail] = useState("");
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  const [user, setuser] = useState("");
 
-  const [val, setVal] = useState(null);
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
+  
+
   const options = [
     { value: "One", label: "One" },
     { value: "Two", label: "Two" },
     { value: "Three", label: "Three" },
     { value: "Four", label: "Four" },
   ];
+  const currentDate = new Date();
 
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth() + 1;
+  const day = currentDate.getDate();
+
+  const formattedDate = `${day.toString().padStart(2, "0")}-${month
+    .toString()
+    .padStart(2, "0")}-${year}`;
+  useEffect(() => {
+    async function UserDetails() {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/api/users/user-details",
+          {
+            email: decryptEmail(encryptedEmail),
+            token: localStorage.getItem("token"),
+          }
+        );
+
+        if (response.status === 200) {
+          const user = response.data;
+          setuser(user);
+        } else {
+          console.error(response.data.message);
+        }
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    }
+    UserDetails();
+    // eslint-disable-next-line
+  }, []);
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post("http://localhost:3002/api/request", {
+        Request_sent_date: formattedDate,
+        "Sender Name": user.name,
+        "Sender Roll no.": user.roll,
+        "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
+        Status: "Pending",
+        "Request sent to":toemail.value,
+        subject:subject,
+        body:body,
+      });
+
+      if (response.status === 201) {
+        console.log("Request created successfully");
+        navigate(`/StudentDashboard/CreateRequest/success?e=${encodeURIComponent(
+          encryptedEmail
+        )}`)
+
+      } else {
+        console.error("Error creating request:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  };
   return (
     <div className=" relative h-screen w-[100%]">
       <Student_Navbar encryptedEmail={encryptedEmail} />
@@ -34,9 +105,8 @@ function AddNewRequest() {
                 <span className="font-medium text-base">To</span>
                 <Select
                   options={options}
-                  defaultValue={val}
                   placeholder="Enter Mail"
-                  onChange={setVal}
+                  onChange={SetToemail}
                   noOptionsMessage={() => "No Mails Found"}
                 />
               </label>
@@ -46,7 +116,7 @@ function AddNewRequest() {
                   className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
                   type="text"
                   placeholder="Add Subject"
-                  onChange={(e) => SetDocument(e.target.value)}
+                  onChange={(e) => setSubject(e.target.value)}
                 />
               </label>
               <label className="flex flex-col gap-1 my-6">
@@ -56,21 +126,16 @@ function AddNewRequest() {
                   className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
                   rows={4}
                   cols={40}
-                  onChange={(e) => SetDocument(e.target.value)}
+                  onChange={(e) => setBody(e.target.value)}
                 />
               </label>
             </div>
             <div className="flex justify-end mt-10">
-              {document.length > 0 ? (
-                <Link
-                  to={`/StudentDashboard/CreateRequest/success?e=${encodeURIComponent(
-                    encryptedEmail
-                  )}`}
-                >
-                  <button className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
+              {body.length>0&&subject.length>0 ? (
+               
+                  <button onClick={handleSubmit} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
                     Submit
                   </button>
-                </Link>
               ) : (
                 <div>
                   <button className=" inline-flex items-center p-1 bg-[rgba(188,190,194,1)] text-[rgba(141,144,150,1)] rounded-sm pl-4 pr-4">
