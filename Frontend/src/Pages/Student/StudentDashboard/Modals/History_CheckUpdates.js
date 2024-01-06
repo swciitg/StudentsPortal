@@ -7,7 +7,6 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
     isOpen: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     requestData: PropTypes.shape({
-      Date: PropTypes.string.isRequired,
       Status: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired,
       subject: PropTypes.string.isRequired,
@@ -87,14 +86,14 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
               <div>{requestData["Year of Tenure"]}</div>
             </div> */}
             <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">To</label>
+              <label className="text-[#353B47] text-sm">Subject</label>
               <div className="border-1 border-gre">
-                {requestData["Sender Roll no."]}
+                {requestData.subject}
               </div>
             </div>
             <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">Body</label>
-              <div>{requestData["Sender Roll no."]}</div>
+              <div>{requestData.body}</div>
             </div>
             {/* <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">
@@ -192,31 +191,10 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
               <label className="text-[#353B47] text-sm">Sender Mail Id</label>
               <div>{requestData["Sender email"]}</div>
             </div>
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">
-                Request Validation required from
-              </label>
-              <div>{requestData["Request Validator"]}</div>
-            </div> */}
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">
-                Document supporting claim
-              </label>
-              <div>{"n/a"}</div>
-            </div> */}
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">
-                Document requested by sender
-              </label>
-              <div>{requestData["Document requested"]}</div>
-            </div> */}
+
           </div>
         </div>
-        {/* <div className=" w-[20%] p-2 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-                        <div>
-                            
-                        </div>
-            </div> */}
+  
       </div>
     </div>
   );

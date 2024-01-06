@@ -21,14 +21,14 @@ function ApprovedRequests({ApprovedRequest,encryptedEmail}) {
           <img src="/requests-approved.svg" />
           <div className=" text-base">Approved Requests</div>
         </div>
-       {ApprovedRequest.length>0? <div className="flex flex-col gap-2 mt-3">
-          {ApprovedRequest.map((item) => (
+       {(ApprovedRequest&&ApprovedRequest.filter(item => item.Status === "Approved").length>0)? <div className="flex flex-col gap-2 mt-3">
+          {ApprovedRequest.filter(item => item.Status === "Approved").slice(0, 4).map((item) => (
             <div
               key={item.id}
               className="bg-[#EFF6FC] flex justify-between items-center p-2"
             >
-              <p className=" text-sm">{item.status}</p>
-              <p className="text-sm text-[#494D57]">{item.Date}</p>
+              <p className=" text-sm">{`${item["Sender Name"]}'s Request`}</p>
+              <p className="text-sm text-[#494D57]">{item.Request_sent_date}</p>
             </div>
           ))}
         </div>:<div className="flex justify-center items-center h-full text-[#8D9096]">

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
 import Registration from "./DashboardTiles/Registration";
 import MyProfile from "./DashboardTiles/MyProfile";
-import ForwardNotification from "./DashboardTiles/ForwardNotification";
 import ApprovedRequests from "./DashboardTiles/ApprovedRequests";
 import PendingRequests from "./DashboardTiles/PendingRequests";
 import BuildMyCV from "./DashboardTiles/BuildMyCV";
@@ -22,6 +21,7 @@ function Home() {
     return decryptedEmail;
   }
   const [user, setuser] = useState();
+  const [data,setData]=useState('')
   useEffect(() => {
     async function UserDetails() {
       try {
@@ -47,73 +47,76 @@ function Home() {
     UserDetails();
     // eslint-disable-next-line
   }, []);
-  const ManageRequests = [
-    {
-      id: 1,
-      status: "New POR Request uploaded: Designer SWC",
-      Date: "18/12/22",
-    },
-    {
-      id: 2,
-      status: "New POR Request uploaded: E-Cell Core De...",
-      Date: "18/12/22",
-    },
-  ];
-  const ApprovedRequests_data = [
-    {
-      id: 1,
-      status: "POR: Designer SWC",
-      Date: "18/12/22",
-    },
-    {
-      id: 2,
-      status: "LOR: By Prof. Pankaj Upa....",
-      Date: "18/12/22",
-    },
-    {
-      id: 3,
-      status: "LOR: By Prof. Pankaj Upa....",
-      Date: "18/12/22",
-    },
-    {
-      id: 4,
-      status: "LOR: By Prof. Pankaj Upa....",
-      Date: "18/12/22",
-    },
-  ];
-  const Notification = [
-    {
-      id: 1,
-      description:
-        "Fr: Request For Design Head POR by Yash Chauhan, Forwaded by General Secretary SWC for C...",
-      status: "Pending",
-      Date: "18/12/22",
-    },
-    {
-      id: 2,
-      description:
-        "Fr: Request For Design Head POR by Yash Chauhan, Forwaded by General Secretary SWC for C...",
-      status: "Pending",
-      Date: "18/12/22",
-    },
-  ];
-  const PendingRequests_data = [
-    {
-      id: 1,
-      POR: "POR: Design Head E-Cell",
-      description: "Waiting for approval from General Secretary E-Cell",
-      status: "Pending",
-      Date: "18/12/22",
-    },
-    {
-      id: 2,
-      POR: "POR: Design Head E-Cell",
-      description:
-        "Your Request has been Forwaded to Sahil Nizam By General Secretary of E-Cell for Confirmation",
-      status: "Pending",
-      Date: "18/12/22",
-    },
-  ];
+  useEffect(() => {
+    async function Requests() {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/api/request/request-details",
+          {
+            "Sender email": decryptEmail(encryptedEmail) + "@iitg.ac.in",
+          }
+        );
+        if (response.status === 200) {
+          setData(response.data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    Requests();
+  }, [encryptedEmail]);
+  // const ManageRequests = [
+  //   {
+  //     id: 1,
+  //     status: "New POR Request uploaded: Designer SWC",
+  //     Date: "18/12/22",
+  //   },
+  //   {
+  //     id: 2,
+  //     status: "New POR Request uploaded: E-Cell Core De...",
+  //     Date: "18/12/22",
+  //   },
+  // ];
+  // const ApprovedRequests_data = [
+  //   {
+  //     id: 1,
+  //     status: "POR: Designer SWC",
+  //     Date: "18/12/22",
+  //   },
+  //   {
+  //     id: 2,
+  //     status: "LOR: By Prof. Pankaj Upa....",
+  //     Date: "18/12/22",
+  //   },
+  //   {
+  //     id: 3,
+  //     status: "LOR: By Prof. Pankaj Upa....",
+  //     Date: "18/12/22",
+  //   },
+  //   {
+  //     id: 4,
+  //     status: "LOR: By Prof. Pankaj Upa....",
+  //     Date: "18/12/22",
+  //   },
+  // ];
+
+  // const PendingRequests_data = [
+  //   {
+  //     id: 1,
+  //     POR: "POR: Design Head E-Cell",
+  //     description: "Waiting for approval from General Secretary E-Cell",
+  //     status: "Pending",
+  //     Date: "18/12/22",
+  //   },
+  //   {
+  //     id: 2,
+  //     POR: "POR: Design Head E-Cell",
+  //     description:
+  //       "Your Request has been Forwaded to Sahil Nizam By General Secretary of E-Cell for Confirmation",
+  //     status: "Pending",
+  //     Date: "18/12/22",
+  //   },
+  // ];
 
   return (
     <div className=" relative h-screen w-[100%]">
@@ -132,32 +135,26 @@ function Home() {
 
           <Registration
             user={user}
-            ManageRequests={ManageRequests}
+            ManageRequests={data}
             encryptedEmail={encryptedEmail}
           />
 
           {/* Tile 2*/}
 
           <MyProfile user={user} encryptedEmail={encryptedEmail} />
-
-          {/* Tile 3*/}
-
-          <ForwardNotification
-            Notification={Notification}
-            encryptedEmail={encryptedEmail}
-          />
+      
 
           {/* Tile 4*/}
 
           <ApprovedRequests
-            ApprovedRequest={ApprovedRequests_data}
+            ApprovedRequest={data}
             encryptedEmail={encryptedEmail}
           />
 
           {/* Tile 5*/}
 
           <PendingRequests
-            PendingRequest={PendingRequests_data}
+            PendingRequest={data}
             encryptedEmail={encryptedEmail}
           />
 

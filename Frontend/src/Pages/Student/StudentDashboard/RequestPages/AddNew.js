@@ -35,9 +35,9 @@ function AddNewRequest() {
   const month = currentDate.getMonth() + 1;
   const day = currentDate.getDate();
 
-  const formattedDate = `${day.toString().padStart(2, "0")}-${month
+  const formattedDate = `${day.toString().padStart(2, "0")}/${month
     .toString()
-    .padStart(2, "0")}-${year}`;
+    .padStart(2, "0")}/${year}`;
   useEffect(() => {
     async function UserDetails() {
       try {
