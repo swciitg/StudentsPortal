@@ -1,29 +1,53 @@
-import AdminJS from 'adminjs'
-import AdminJSExpress from '@adminjs/express'
-import * as AdminJSMongoose from '@adminjs/mongoose'
-import express from 'express'
-import { Request } from '../Models/Request.js'
-import { User } from '../Models/User.js'
+// 
 
-const PORT = 3002
+import AdminJS from 'adminjs';
+import AdminJSExpress from '@adminjs/express';
+import * as AdminJSMongoose from '@adminjs/mongoose';
+import { Request } from '../Models/Request.js';
+import { User } from '../Models/User.js';
+import bcrypt from 'bcrypt';
+import express from 'express';
+import formidableMiddleware from 'express-formidable';
+
+const PORT = 3002;
+const app = express();
+
+app.use(formidableMiddleware());
 
 AdminJS.registerAdapter({
-    Resource: AdminJSMongoose.Resource,
-    Database: AdminJSMongoose.Database,
-})
+  Resource: AdminJSMongoose.Resource,
+  Database: AdminJSMongoose.Database,
+});
 
+const adminOptions = {
+  resources: [Request, User],
+  authenticate: async (email, password) => {
+    const user = await User.findOne({ email });
+    if (user && bcrypt.compareSync(password, user.encryptedPassword)) {
+      return user;
+    }
+    return null;
+  },
+};
 
-  // await mongoose.connect('mongodb+srv://auth-admin:AdHDOvAtNy8He2l3@cluster0.s875rof.mongodb.net/StudentsPortal')
+const admin = new AdminJS(adminOptions);
 
-  const adminOptions = {
-    resources: [Request,User]
-  }
+const adminRouter = AdminJSExpress.buildAuthenticatedRouter(admin, {
+  cookieName: 'adminjs',
+  cookiePassword: 'complicatedsecurepassword',
+  authenticate: async (email, password, next) => {
+    const user = await User.findOne({ email });
+    console.log(user);
+    if (user) {
+      const matched = await bcrypt.compare(password, user.password);
+      if (matched) {
+        return user;// Call next with null and the user to indicate successful authentication
+      } 
+    }
+    return false;
+  },
+});
 
-  const admin = new AdminJS(adminOptions)
+admin.watch();
 
-  const adminRouter = AdminJSExpress.buildRouter(admin)
-
-  admin.watch()
-
-  export {admin,adminRouter}
-
+export { admin, adminRouter };

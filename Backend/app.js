@@ -10,7 +10,6 @@ const app = express();
 const port = 3002;
 import { admin,adminRouter } from './routes/adminRouter.js';
 
-// superadmin();
 
 connect('mongodb+srv://auth-admin:AdHDOvAtNy8He2l3@cluster0.s875rof.mongodb.net/StudentsPortal');
 
@@ -22,8 +21,6 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-// ...
 
 app.use('/uploads', express.static(join(__dirname, 'uploads')));
 
