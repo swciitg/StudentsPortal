@@ -6,7 +6,7 @@ import multer from "multer";
 import path from "path";
 
 async function createUser(req, res) {
-  const { name, email, roll, role } = req.body;
+  const { name, email, roll } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
@@ -35,10 +35,9 @@ async function createUser(req, res) {
     const newUser = new User({
       name,
       email,
-      roll: role === "student" ? roll : undefined,
+      roll:  roll ,
       verified: false,
       otp,
-      role,
       profileCompletion:0
     });
     
