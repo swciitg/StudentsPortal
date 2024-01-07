@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import React, { useState } from "react";
 // import PropTypes from "prop-types";
 // import Modal from "react-modal";
@@ -40,6 +41,50 @@
 //   }
 //   const openApproveModal = () => setApproveModalOpen(true);
 //   const closeApproveModal = () => setApproveModalOpen(false);
+=======
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import Modal from "react-modal";
+import axios from "axios";
+function RequestDetailsModal({ isOpen, requestData }) {
+  RequestDetailsModal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onRequestClose: PropTypes.func.isRequired,
+    requestData: PropTypes.shape({
+      "Request Name": PropTypes.string.isRequired,
+      "Type of Request": PropTypes.string.isRequired,
+      Date: PropTypes.string.isRequired,
+      Status: PropTypes.string.isRequired,
+      "Seen Status": PropTypes.bool.isRequired,
+      "Sender Name": PropTypes.string.isRequired,
+      "Sender Roll no": PropTypes.string.isRequired,
+      "Request sent to": PropTypes.string.isRequired,
+      "Year of Tenure": PropTypes.string.isRequired,
+      "Request Validator": PropTypes.string.isRequired,
+      organisation: PropTypes.string.isRequired,
+      "Parent Body": PropTypes.string.isRequired,
+      "Document requested": PropTypes.string.isRequired,
+      Supporting_Document_url: PropTypes.string.isRequired,
+      Request_sent_date: PropTypes.string.isRequired,
+      "POR Position": PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    }).isRequired,
+  };
+  const [isApproveModalOpen, setApproveModalOpen] = useState(false);
+  const [isDenyModalOpen, setDenyModalOpen] = useState(false);
+  const [isForwardModalOpen, setForwardModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [Status, setStatus] = useState(requestData.Status);
+  const [forwardname, setForwardname] = useState("");
+  const [forwardemail, setforwardemail] = useState("");
+  const [message, setmessage] = useState("");
+  if (!isOpen) {
+    return null;
+  }
+  const openApproveModal = () => setApproveModalOpen(true);
+  const closeApproveModal = () => setApproveModalOpen(false);
+>>>>>>> 6b2f7e311dfdaf105b33e77b5e55d5d46782c6b5
 
 //   const openDenyModal = () => setDenyModalOpen(true);
 //   const closeDenyModal = () => setDenyModalOpen(false);
@@ -327,6 +372,7 @@
 //             </div>{" "}
 //           </div>
 
+<<<<<<< HEAD
 //           <div className=" w-[50%] flex flex-col gap-6">
 //             <div className="flex flex-col">
 //               <label className="text-[#353B47] text-sm">Request type</label>
@@ -364,5 +410,44 @@
 //     </div>
 //   );
 // }
+=======
+          <div className=" w-[50%] flex flex-col gap-6">
+            <div className="flex flex-col">
+              <label className="text-[#353B47] text-sm">Request type</label>
+              <div>{requestData["Type of Request"]}</div>
+            </div>
+            <div className="flex flex-col">
+              <label className="text-[#353B47] text-sm">Sender Roll no</label>
+              <div>{requestData["Sender Roll no"]}</div>
+            </div>
+            <div className="flex flex-col">
+              <label className="text-[#353B47] text-sm">Sender Mail Id</label>
+              <div>{requestData["Request sent to"]}</div>
+            </div>
+            <div className="flex flex-col">
+              <label className="text-[#353B47] text-sm">
+                Request Validation required from
+              </label>
+              <div>{requestData["Request Validator"]}</div>
+            </div>
+            <div className="flex flex-col">
+              <label className="text-[#353B47] text-sm">
+                Document supporting claim
+              </label>
+              <div>{"n/a"}</div>
+            </div>
+            <div className="flex flex-col">
+              <label className="text-[#353B47] text-sm">
+                Document requested by sender
+              </label>
+              <div>{requestData["Document requested"]}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+>>>>>>> 6b2f7e311dfdaf105b33e77b5e55d5d46782c6b5
 
 // export default RequestDetailsModal;

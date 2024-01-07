@@ -6,7 +6,7 @@ async function createRequest(req, res) {
       Status: Status,
       Request_sent_date:Request_sent_date,
         "Sender Name": senderName,
-        "Sender Roll no.": senderRollNo,
+        "Sender Roll no": senderRollNo,
         "Sender email": senderEmail,
         "Request sent to":RequestsentTo,
         subject:subject,
@@ -18,7 +18,7 @@ async function createRequest(req, res) {
       Request_sent_date:Request_sent_date,
         Status: Status,
           "Sender Name": senderName,
-          "Sender Roll no.": senderRollNo,
+          "Sender Roll no": senderRollNo,
           "Sender email": senderEmail,
         "Request sent to":RequestsentTo,
         subject:subject,
@@ -54,7 +54,7 @@ async function RequestDetails(req, res) {
 }
 async function RequestDetailsadmin(req, res) {
   try {
-    const request = await Request.find({"Request sent to": req.body.email});
+    const request = await Request.find({"Request sent to": req.body["Request sent to"]});
     if (!request) {
       return res.status(404).json({ message: 'Request not found' });
     }
@@ -69,7 +69,6 @@ async function ApproveRequest(req,res){
   try {
     const {"Request sent to": Requestsentto,_id:id}=req.body
     const request = await Request.findOne({"Request sent to": Requestsentto,_id:id});
-
     if (!request) {
       return res.status(404).json({ message: 'Request not found' });
     }
