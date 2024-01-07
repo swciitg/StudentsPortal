@@ -15,7 +15,7 @@ function RequestReceived() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const itemsPerPage = 15;
+  const itemsPerPage = 500;
   const ENCRYPTION_KEY = "HELLO_WoRLD";
 
   function decryptEmail(encryptedEmail) {
