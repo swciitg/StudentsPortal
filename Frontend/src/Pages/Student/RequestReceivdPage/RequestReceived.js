@@ -237,10 +237,6 @@ function RequestReceived() {
             </div>
             <div className=" lg:flex w-full lg:flex-row flex flex-col  lg:items-center pr-4 lg:justify-between bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
               <div className="flex lg:w-[60%] w-full ">
-                <div className=" px-4 my-3 flex gap-[6px] items-center ">
-                  <img src="/filter.svg" />
-                  <div>Filter</div>
-                </div>
 
                 <div className=" relative flex items-center lg:w-[75%] w-full ">
                   <img className="translate-x-[26px]" src="/search.svg" />
