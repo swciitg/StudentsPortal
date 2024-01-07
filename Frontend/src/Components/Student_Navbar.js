@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import CryptoJS from "crypto-js";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 export default function Student_Navbar({ encryptedEmail }) {
   Student_Navbar.propTypes = {
