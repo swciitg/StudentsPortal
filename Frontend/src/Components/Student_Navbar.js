@@ -41,7 +41,7 @@ export default function Student_Navbar({ encryptedEmail }) {
         const response = await axios.post(
           "http://localhost:3002/api/users/check-admin",
           {
-            email: decryptEmail(encryptedEmail) + "@iitg.ac.in",
+            email: decryptEmail(encryptedEmail),
           }
         );
         if (response.status === 201) {
