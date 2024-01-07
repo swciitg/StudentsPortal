@@ -204,8 +204,8 @@ async function login(req, res) {
 async function CheckAdmin(req, res) {
   const {email}=req.body;
 try {
-  const admin=Admins.findOne({email});
-  const user=User.findOne({email});
+  const admin=await Admins.findOne({email});
+  const user=await User.findOne({email});
   if(admin){
 user.role='admin';
 await user.save();
