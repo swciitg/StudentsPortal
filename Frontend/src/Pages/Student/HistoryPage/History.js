@@ -15,7 +15,7 @@ function History() {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const itemsPerPage = 15;
+  const itemsPerPage = 3;
 
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
