@@ -67,7 +67,7 @@ function AddNewRequest() {
       const response = await axios.post("http://localhost:3002/api/request", {
         Request_sent_date: formattedDate,
         "Sender Name": user.name,
-        "Sender Roll no.": user.roll,
+        "Sender Roll no": user.roll,
         "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
         Status: "Pending",
         "Request sent to":toemail.value,

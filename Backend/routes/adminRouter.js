@@ -18,6 +18,26 @@ AdminJS.registerAdapter({
   Database: AdminJSMongoose.Database,
 });
 
+const deleteMultipleRequestsHandler = async (request, response, data) => {
+  const { recordIds } = request.body;
+
+  try {
+    // Validate if recordIds is an array
+    if (!Array.isArray(recordIds)) {
+      throw new Error('Invalid recordIds format');
+    }
+
+    // Use deleteMany to delete multiple records
+    const obj = await Request.deleteMany({ _id: { $in: recordIds } });
+    console.log(obj);
+
+    // Return an array of deleted record IDs in the expected format
+    return { obj };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
 const adminOptions = {
   resources: [
     {
@@ -30,6 +50,9 @@ const adminOptions = {
               return { record: data.record.toJSON(data.currentAdmin) };
             },
           },
+          bulkDelete:{
+            isVisible:false
+          }
         },
       },
     },
@@ -43,6 +66,9 @@ const adminOptions = {
               return { record: data.record.toJSON(data.currentAdmin) };
             },
           },
+          bulkDelete:{
+            isVisible:false
+          }
         },
       },
     },
@@ -56,6 +82,9 @@ const adminOptions = {
               return { record: data.record.toJSON(data.currentAdmin) };
             },
           },
+          bulkDelete:{
+            isVisible:false
+          }
         },
       },
     },

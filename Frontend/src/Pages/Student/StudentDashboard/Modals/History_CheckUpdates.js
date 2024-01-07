@@ -11,7 +11,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
       body: PropTypes.string.isRequired,
       subject: PropTypes.string.isRequired,
       "Sender Name": PropTypes.string.isRequired,
-      "Sender Roll no.": PropTypes.string.isRequired,
+      "Sender Roll no": PropTypes.string.isRequired,
       "Sender email": PropTypes.string.isRequired,
       "Request sent to": PropTypes.string.isRequired,
       _id: PropTypes.string.isRequired,
@@ -184,8 +184,8 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
               <div>{requestData["Type of Request"]}</div>
             </div> */}
             <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">Sender Roll no.</label>
-              <div>{requestData["Sender Roll no."]}</div>
+              <label className="text-[#353B47] text-sm">Sender Roll no</label>
+              <div>{requestData["Sender Roll no"]}</div>
             </div>
             <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">Sender Mail Id</label>
