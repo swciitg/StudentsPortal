@@ -140,13 +140,6 @@ function RequestReceived() {
             <div className={`text-xs text-center w-[20%] py-5 ${statusStyle}`}>
               {data.Status}
             </div>
-            {/* <div
-              onClick={() => onCheckUpdates(data)}
-              className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1"
-            >
-              <div>Check Updates</div>
-              <img src="/Arrow-right.svg" />
-            </div> */}
 
             <div
               onClick={() => onCheckUpdates(data)}
@@ -169,7 +162,7 @@ function RequestReceived() {
 
       <div className="lg:absolute h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         <CornerProfileLogoutSectionadmin encryptedEmail={encryptedEmail} />
-        {selectedRequest ? (
+        {selectedRequest && isModalOpen  ? (
           <RequestDetailsModal
             isOpen={isModalOpen}
             onRequestClose={() => setIsModalOpen(false)}

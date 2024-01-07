@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import axios from "axios";
-function RequestDetailsModal({ isOpen, requestData }) {
+function RequestDetailsModal({ isOpen,onRequestClose, requestData }) {
   RequestDetailsModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
@@ -141,6 +141,14 @@ function RequestDetailsModal({ isOpen, requestData }) {
                   Deny
                 </button>
               )}
+                <div>
+                <button
+                  onClick={onRequestClose}
+                  className="text-sm  p-[5px] pl-3 pr-3 border border-[#767A81] rounded"
+                >
+                  Go Back
+                </button>
+              </div>
 
               <Modal
                 isOpen={isDenyModalOpen}
