@@ -97,6 +97,14 @@ function RequestDetailsModal({ isOpen, requestData }) {
               <label className="text-[#353B47] text-sm">Sender name</label>
               <div>{requestData["Sender Name"]}</div>
             </div>
+            <div className="flex flex-col">
+              <label className="text-[#353B47] text-sm">Subject</label>
+              <div>{requestData["subject"]}</div>
+            </div>
+            <div className="flex flex-col">
+              <label className="text-[#353B47] text-sm">Body</label>
+              <div>{requestData["body"]}</div>
+            </div>
             {/* <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">POR Position</label>
               <div>{requestData["POR Position"]}</div>
@@ -308,7 +316,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
             </div>
             <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">Sender Mail Id</label>
-              <div>{requestData["Request sent to"]}</div>
+              <div>{requestData["Sender email"]}</div>
             </div>
             {/* <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">
@@ -316,12 +324,12 @@ function RequestDetailsModal({ isOpen, requestData }) {
               </label>
               <div>{requestData["Request Validator"]}</div>
             </div> */}
-            <div className="flex flex-col">
+            {/* <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">
                 Document supporting claim
               </label>
               <div>{"n/a"}</div>
-            </div>
+            </div> */}
             {/* <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">
                 Document requested by sender
