@@ -216,7 +216,7 @@ user.role='student';
 await user.save();
   }
   
-res.status(201).json({ message: "Checked Admin Successfully" });
+res.status(201).json({ message: "Checked Admin Successfully",role:user.role });
 } catch (error) {
   console.error( error);
     res
@@ -304,5 +304,6 @@ export {
   createPassword,
   userDetails,
   resendOTP,
-  forgotPassword
+  forgotPassword,
+  CheckAdmin
 };

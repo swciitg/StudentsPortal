@@ -10,10 +10,17 @@ export default function Student_Navbar({ encryptedEmail }) {
   const [showNav, setShowNav] = useState(false);
   const [CurrentWidth, SetCurrentWidth] = useState(window.innerWidth);
   const navbarRef = useRef();
+  const [isAdmin,setisAdmin]=useState(false)
   const isSelected = (path) => {
     return location.pathname.startsWith(path);
   };
+  const ENCRYPTION_KEY = "HELLO_WoRLD";
 
+  function decryptEmail(encryptedEmail) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
+    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
+    return decryptedEmail;
+  }
   const handleToggleNav = () => {
     setShowNav(!showNav);
   };
@@ -26,7 +33,24 @@ export default function Student_Navbar({ encryptedEmail }) {
     }
   };
 
-  const isAdmin = true;
+  useEffect(()=>{
+    async function CheckAdmin() {
+      try {
+        const response = await axios.post(
+          "http://localhost:3002/api/users/check-admin",
+          {
+            email: decryptEmail(encryptedEmail) + "@iitg.ac.in",
+          }
+        );
+        if (response.status === 201) {
+          if(response.data.role==='admin'){setisAdmin(true)}
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    CheckAdmin();
+  },[])
 
   useEffect(() => {
     document.addEventListener("click", closeNavIfClickedOutside);
