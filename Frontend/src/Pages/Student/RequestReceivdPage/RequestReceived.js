@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import CornerProfileLogoutSectionadmin from "./CornerProfileLogoutSection";
+import CornerProfileLogoutSectionadmin from "../../../Components/CornerProfileLogoutSection";
 import CryptoJS from "crypto-js";
-import RequestDetailsModal from "../StudentDashboard/Modals/RequestReceived_CheckUpdates";
+import RequestDetailsModal from "./Modals/RequestReceived_CheckUpdates";
 import axios from "axios";
 import Student_Navbar from "../../../Components/Student_Navbar";
 
@@ -300,7 +300,7 @@ function RequestReceived() {
                 {" "}
                 {History == null || !Array.isArray(History) ? (
                   <div className="flex justify-center py-5 text-xl font-extrabold text-[#7a7e87]">
-                  Nothing to Show!
+                    Nothing to Show!
                   </div>
                 ) : (
                   <RenderHistory onCheckUpdates={handleCheckUpdates} />

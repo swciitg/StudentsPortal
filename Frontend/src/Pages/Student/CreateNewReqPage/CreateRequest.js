@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
 import CryptoJS from "crypto-js";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
+import CornerProfileLogoutSection from "../../../Components/CornerProfileLogoutSection";
 import axios from "axios";
 function CreateRequest() {
   const location = useLocation();
@@ -58,15 +58,14 @@ function CreateRequest() {
               <div>
                 {" "}
                 <Link
-                to={`/StudentDashboard/SentRequest?e=${encodeURIComponent(
-                  encryptedEmail
-                )}`}
-              >
-                <button className="lg:p-20 lg:px-24 p-10 px-12 cursor-pointer text-[rgba(33,100,232,1)] text-6xl font-medium bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-                  -
-                </button>
-                
-              </Link>
+                  to={`/StudentDashboard/SentRequest?e=${encodeURIComponent(
+                    encryptedEmail
+                  )}`}
+                >
+                  <button className="lg:p-20 lg:px-24 p-10 px-12 cursor-pointer text-[rgba(33,100,232,1)] text-6xl font-medium bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+                    -
+                  </button>
+                </Link>
               </div>
               <div className="">Manage Request</div>{" "}
             </div>

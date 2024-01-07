@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {  useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import Student_Navbar from "../../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "../CornerProfileLogoutSection";
 import Select from "react-select";
 import axios from "axios";
+import CornerProfileLogoutSection from "../../../../Components/CornerProfileLogoutSection";
 
 function AddNewRequest() {
   const location = useLocation();
-  const navigate= useNavigate();
+  const navigate = useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const [body, setBody] = useState("");
-  const [subject, setSubject] = useState('');
+  const [subject, setSubject] = useState("");
   const [toemail, SetToemail] = useState("");
   const ENCRYPTION_KEY = "HELLO_WoRLD";
   const [user, setuser] = useState("");
@@ -21,10 +21,9 @@ function AddNewRequest() {
     const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
     return decryptedEmail;
   }
-  
 
   const options = [
-    { value: "One", label: "One" },
+    { value: "m.geetanjay@iitg.ac.in", label: "m.geetanjay@iitg.ac.in" },
     { value: "Two", label: "Two" },
     { value: "Three", label: "Three" },
     { value: "Four", label: "Four" },
@@ -70,17 +69,18 @@ function AddNewRequest() {
         "Sender Roll no.": user.roll,
         "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
         Status: "Pending",
-        "Request sent to":toemail.value,
-        subject:subject,
-        body:body,
+        "Request sent to": toemail.value,
+        subject: subject,
+        body: body,
       });
 
       if (response.status === 201) {
         console.log("Request created successfully");
-        navigate(`/StudentDashboard/CreateRequest/success?e=${encodeURIComponent(
-          encryptedEmail
-        )}`)
-
+        navigate(
+          `/StudentDashboard/CreateRequest/success?e=${encodeURIComponent(
+            encryptedEmail
+          )}`
+        );
       } else {
         console.error("Error creating request:", response.data.message);
       }
@@ -131,11 +131,13 @@ function AddNewRequest() {
               </label>
             </div>
             <div className="flex justify-end mt-10">
-              {body.length>0&&subject.length>0 ? (
-               
-                  <button onClick={handleSubmit} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-                    Submit
-                  </button>
+              {body.length > 0 && subject.length > 0 ? (
+                <button
+                  onClick={handleSubmit}
+                  className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
+                >
+                  Submit
+                </button>
               ) : (
                 <div>
                   <button className=" inline-flex items-center p-1 bg-[rgba(188,190,194,1)] text-[rgba(141,144,150,1)] rounded-sm pl-4 pr-4">

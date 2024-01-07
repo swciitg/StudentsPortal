@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import Student_Navbar from "../../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "../CornerProfileLogoutSection";
+import CornerProfileLogoutSection from "../../../../Components/CornerProfileLogoutSection";
 
 function SuccessPage() {
   const location = useLocation();

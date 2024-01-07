@@ -1,19 +1,19 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ProfileSelection from "./Pages/ProfileSelection";
-import StudentsSignUp from "./Pages/Student/StudentsSignUp";
-import Otp from "./Pages/Student/otp";
-import CreatePass from "./Pages/Student/CreatePass";
-import Home from "./Pages/Student/StudentDashboard/Home";
-import Profile from "./Pages/Student/StudentDashboard/Profile";
-import History from "./Pages/Student/StudentDashboard/History";
-import StudentLogin from "./Pages/Student/StudentLogin";
-import RequestReceived from "./Pages/Student/StudentDashboard/RequestReceived";
-import RequestSent from "./Pages/Student/StudentDashboard/RequestSent";
-import CreateRequest from "./Pages/Student/StudentDashboard/CreateRequest";
-import AddNewRequest from "./Pages/Student/StudentDashboard/RequestPages/AddNew";
-import SuccessPage from "./Pages/Student/StudentDashboard/RequestPages/SuccessPage";
-import ForgotPassword from "./Pages/Student/ForgotPassword";
+import ProfileSelection from "./Components/ProfileSelection";
+import StudentsSignUp from "./Pages/Student/SignUpPage/StudentsSignUp";
+import Otp from "./Pages/Student/SignUpPage/otp";
+import CreatePass from "./Pages/Student/SignUpPage/CreatePass";
+import Home from "./Pages/Student/HomePage/Home";
+import Profile from "./Pages/Student/ProfilePage/Profile";
+import History from "./Pages/Student/HistoryPage/History";
+import StudentLogin from "./Pages/Student/LogInPage/StudentLogin";
+import RequestReceived from "./Pages/Student/RequestReceivdPage/RequestReceived";
+import RequestSent from "./Pages/Student/RequestSentPage/RequestSent";
+import CreateRequest from "./Pages/Student/CreateNewReqPage/CreateRequest";
+import AddNewRequest from "./Pages/Student/CreateNewReqPage/RequestPages/AddNewRequest";
+import SuccessPage from "./Pages/Student/CreateNewReqPage/RequestPages/SuccessPage";
+import ForgotPassword from "./Pages/Student/LogInPage/ForgotPassword";
 function App() {
   return (
     <BrowserRouter>

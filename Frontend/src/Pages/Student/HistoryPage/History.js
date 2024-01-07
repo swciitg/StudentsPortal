@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
-import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
+import CornerProfileLogoutSection from "../../../Components/CornerProfileLogoutSection";
 import CryptoJS from "crypto-js";
-import RequestDetailsModal from "./Modals/History_CheckUpdates";
+import RequestDetailsModal from "../../../Components/CheckUpdateModal";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -142,7 +142,7 @@ function History() {
             <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
               {data["Sender Name"]}
             </div>
-           
+
             <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
               {data["Request_sent_date"]}
             </div>
@@ -245,10 +245,10 @@ function History() {
                   Sl. No.
                 </div>
                 <div className=" text-sm w-[25%]  justify-center  gap-[3px] flex items-center py-3">
-                 {"Sender's Name"}
+                  {"Sender's Name"}
                   <img src="/sort.svg" />
                 </div>
-               
+
                 <div className=" text-sm  w-[25%] justify-center  gap-[3px]   flex items-center py-3">
                   Date
                   <img src="/Arrow Sort.svg" />

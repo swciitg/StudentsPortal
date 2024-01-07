@@ -5,7 +5,7 @@ import MyProfile from "./DashboardTiles/MyProfile";
 import ApprovedRequests from "./DashboardTiles/ApprovedRequests";
 import PendingRequests from "./DashboardTiles/PendingRequests";
 import BuildMyCV from "./DashboardTiles/BuildMyCV";
-import CornerProfileLogoutSection from "./CornerProfileLogoutSection";
+import CornerProfileLogoutSection from "../../../Components/CornerProfileLogoutSection";
 import CryptoJS from "crypto-js";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -21,7 +21,7 @@ function Home() {
     return decryptedEmail;
   }
   const [user, setuser] = useState();
-  const [data,setData]=useState('')
+  const [data, setData] = useState("");
   useEffect(() => {
     async function UserDetails() {
       try {
@@ -142,7 +142,6 @@ function Home() {
           {/* Tile 2*/}
 
           <MyProfile user={user} encryptedEmail={encryptedEmail} />
-      
 
           {/* Tile 4*/}
 
