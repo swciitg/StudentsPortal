@@ -106,7 +106,6 @@ function History() {
     [selectedTab, History],
     []
   );
-  console.log(search);
   const RenderHistory = ({ onCheckUpdates }) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
