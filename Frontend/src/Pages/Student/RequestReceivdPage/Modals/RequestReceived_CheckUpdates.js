@@ -20,13 +20,8 @@ function RequestDetailsModal({ isOpen, requestData }) {
   };
   const [isApproveModalOpen, setApproveModalOpen] = useState(false);
   const [isDenyModalOpen, setDenyModalOpen] = useState(false);
-  //   const [isForwardModalOpen, setForwardModalOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState("");
   const [loading, setLoading] = useState(false);
   const [Status, setStatus] = useState(requestData.Status);
-  //   const [forwardname, setForwardname] = useState("");
-  //   const [forwardemail, setforwardemail] = useState("");
-  const [message, setmessage] = useState("");
   if (!isOpen) {
     return null;
   }
@@ -35,9 +30,6 @@ function RequestDetailsModal({ isOpen, requestData }) {
 
   const openDenyModal = () => setDenyModalOpen(true);
   const closeDenyModal = () => setDenyModalOpen(false);
-
-  //   const openForwardModal = () => setForwardModalOpen(true);
-  //   const closeForwardModal = () => setForwardModalOpen(false);
 
   const handleApprove = async () => {
     try {
@@ -105,24 +97,6 @@ function RequestDetailsModal({ isOpen, requestData }) {
               <label className="text-[#353B47] text-sm">Body</label>
               <div>{requestData["body"]}</div>
             </div>
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">POR Position</label>
-              <div>{requestData["POR Position"]}</div>
-            </div> */}
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">Year of Tenure</label>
-              <div>{requestData["Year of Tenure"]}</div>
-            </div> */}
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">
-                Name of organisation
-              </label>
-              <div>{requestData.organisation}</div>
-            </div> */}
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">Parent Body</label>
-              <div>{requestData["Parent Body"]}</div>
-            </div> */}
             <div className=" flex gap-4 lg:mt-0 mt-16">
               <Modal
                 isOpen={isApproveModalOpen}
@@ -131,33 +105,8 @@ function RequestDetailsModal({ isOpen, requestData }) {
                 overlayClassName="fixed inset-0 flex items-center justify-center bg-[#E8E9EA] inset-y-12"
               >
                 <div className="bg-white p-4 rounded-md opacity-100">
-                  <h2 className="text-xl font-bold mb-4">Request Approval</h2>
-                  <div className="flex flex-col gap-3">
-                    <div>
-                      <label className="text-sm">
-                        Upload document requested
-                      </label>
-                      <input
-                        onChange={(e) => {
-                          setSelectedFile(e.target.value);
-                        }}
-                        className="border w-full p-1 py-[4px] text-black outline-none rounded-md border-gray-400 "
-                        type="file"
-                        accept=".pdf"
-                        placeholder="Select a file"
-                      />
-                    </div>
-                    <div className="mb-5">
-                      <label className="text-sm">
-                        Any personalized message you would like to send
-                      </label>
-                      <input
-                        onChange={(e) => setmessage(e.target.value)}
-                        className="border pl-3 w-full pb-32 text-black outline-none rounded-md border-gray-400"
-                        placeholder="Write a message"
-                      />
-                    </div>
-                  </div>
+                  <h2 className="text-xl font-bold mb-16">Confirm The Request Approval</h2>
+              
                   <div className="flex items-center justify-between">
                     <div
                       onClick={closeApproveModal}
@@ -165,7 +114,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
                     >
                       Go Back
                     </div>
-                    {selectedFile.length > 0 ? (
+
                       <button
                         onClick={handleApprove}
                         disabled={loading}
@@ -173,11 +122,6 @@ function RequestDetailsModal({ isOpen, requestData }) {
                       >
                         {loading ? "Approving..." : "Send Approval"}
                       </button>
-                    ) : (
-                      <button className="inline-flex items-center p-1 bg-gray-300 text-gray-600 rounded-sm px-4">
-                        Send Approval
-                      </button>
-                    )}
                   </div>
                 </div>
               </Modal>
@@ -205,19 +149,8 @@ function RequestDetailsModal({ isOpen, requestData }) {
                 overlayClassName="fixed inset-0 flex items-center justify-center bg-[#E8E9EA] inset-y-12"
               >
                 <div className="bg-white p-4 rounded-md opacity-100">
-                  <h2 className="text-xl font-bold mb-4">Request Denial</h2>
-                  <div className="flex flex-col gap-3">
-                    <div className="mb-5">
-                      <label className="text-sm">
-                        Reason for denying the request
-                      </label>
-                      <input
-                        onChange={(e) => setmessage(e.target.value)}
-                        className="border pl-3 w-full pb-32 text-black outline-none rounded-md border-gray-400"
-                        placeholder="Write a message"
-                      />
-                    </div>
-                  </div>
+                  <h2 className="text-xl font-bold mb-16">Confirm The Request Denial</h2>
+                  
                   <div className="flex items-center justify-between">
                     <div
                       onClick={closeDenyModal}
@@ -225,7 +158,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
                     >
                       Go Back
                     </div>
-                    {message.length > 0 ? (
+                    
                       <button
                         onClick={handleDeny}
                         disabled={loading}
@@ -233,83 +166,14 @@ function RequestDetailsModal({ isOpen, requestData }) {
                       >
                         {loading ? "Denying..." : "Deny Request"}
                       </button>
-                    ) : (
-                      <button className="inline-flex items-center p-1 bg-gray-300 text-gray-600 rounded-sm px-4">
-                        Deny Request
-                      </button>
-                    )}
+                    
                   </div>
                 </div>
               </Modal>
-
-              {/* <Modal
-                isOpen={isForwardModalOpen}
-                onRequestClose={closeForwardModal}
-                className="absolute top-1/2 lg:left-[60%] left-[10%] right-[10%] lg:transform lg:-translate-x-1/2 -translate-y-1/2 bg-white p-4"
-                overlayClassName="fixed inset-0 flex items-center justify-center bg-[#E8E9EA] inset-y-12"
-              >
-                <div className="bg-white p-4 rounded-md opacity-100">
-                  <h2 className="text-xl font-bold mb-4">Forward request</h2>
-                  <div className="flex flex-col gap-3">
-                    <div className="">
-                      <label className="text-sm">Name of the person</label>
-                      <input
-                        onChange={(e) => setForwardname(e.target.value)}
-                        className="border pl-3 py-1 w-full text-black outline-none rounded-md border-gray-400"
-                        placeholder="Name"
-                      />
-                    </div>
-                    <div className="">
-                      <label className="text-sm">Mail Id of the person</label>
-                      <input
-                        onChange={(e) => setforwardemail(e.target.value)}
-                        className="border pl-3 w-full py-1 text-black outline-none rounded-md border-gray-400"
-                        placeholder="Mail Id"
-                      />
-                    </div>
-                    <div className="">
-                      <label className="text-sm">
-                        Any message for the person?
-                      </label>
-                      <input
-                        onChange={(e) => setmessage(e.target.value)}
-                        className="border pl-3 w-full pb-10 text-black outline-none rounded-md border-gray-400"
-                        placeholder="Write a message"
-                      />
-                    </div>
-                    <div className="mb-5">
-                      <label className="text-sm">Note-</label>
-                      <ul className=" text-xs text-[#494D57] flex flex-col gap-1">
-                        <li className=" list-disc">
-                          This Person does not get access to Approve or Deny the
-                          request.
-                        </li>
-                        <li className=" list-disc">
-                          Forward feature is introduced so that you can receive
-                          a confirmation from this person to help you in making
-                          an informed decision.
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div
-                      onClick={closeForwardModal}
-                      className="text-[#2164E8] cursor-pointer"
-                    >
-                      Go Back
-                    </div>
-                  </div>
-                </div>
-              </Modal> */}
-            </div>{" "}
+            </div>
           </div>
 
           <div className=" w-[50%] flex flex-col gap-6">
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">Request type</label>
-              <div>{requestData["Type of Request"]}</div>
-            </div> */}
             <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">Sender Roll no</label>
               <div>{requestData["Sender Roll no"]}</div>
@@ -318,24 +182,6 @@ function RequestDetailsModal({ isOpen, requestData }) {
               <label className="text-[#353B47] text-sm">Sender Mail Id</label>
               <div>{requestData["Sender email"]}</div>
             </div>
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">
-                Request Validation required from
-              </label>
-              <div>{requestData["Request Validator"]}</div>
-            </div> */}
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">
-                Document supporting claim
-              </label>
-              <div>{"n/a"}</div>
-            </div> */}
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">
-                Document requested by sender
-              </label>
-              <div>{requestData["Document requested"]}</div>
-            </div> */}
           </div>
         </div>
       </div>
