@@ -113,13 +113,13 @@ function History() {
     const filteredHistory = History.filter(
       (data) => data.Status === selectedTab
     );
-
-    // const filteredAndSearchedHistory = filteredHistory.filter((data) =>
-    //   data["Request Name"].toLowerCase().includes(search.toLowerCase())
-    // );
+    const reversedHistory = filteredHistory.reverse();
+    const filteredAndSearchedHistory = reversedHistory.filter((data) =>
+      data["Sender Name"].toLowerCase().includes(search.toLowerCase())
+    );
 
     if (History !== null || !Array.isArray(History))
-      return filteredHistory.slice(startIndex, endIndex).map((data, index) => {
+      return filteredAndSearchedHistory.slice(startIndex, endIndex).map((data, index) => {
         const sequenceNumber = index + 1 + (currentPage - 1) * itemsPerPage;
         let statusStyle;
 

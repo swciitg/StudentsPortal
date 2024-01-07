@@ -106,20 +106,16 @@ function History() {
     [History],
     []
   );
-  console.log(search);
   const RenderHistory = ({ onCheckUpdates }) => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    // const filteredHistory = History.filter(
-    //   (data) => data.Status === selectedTab
-    // );
-
-    // const filteredAndSearchedHistory = filteredHistory.filter((data) =>
-    //   data["Request Name"].toLowerCase().includes(search.toLowerCase())
-    // );
+    const reversedHistory = History.reverse();
+    const filteredAndSearchedHistory = reversedHistory.filter((data) =>
+      data["Sender Name"].toLowerCase().includes(search.toLowerCase())
+    );
 
     if (History !== null || !Array.isArray(History))
-      return History.slice(startIndex, endIndex).map((data, index) => {
+      return filteredAndSearchedHistory.slice(startIndex, endIndex).map((data, index) => {
         const sequenceNumber = index + 1 + (currentPage - 1) * itemsPerPage;
         let statusStyle;
 
