@@ -50,7 +50,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
         }
       );
       if (response.status === 200) {
-        console.log("Approval Successfull!!");
+        // console.log("Approval Successfull!!");
         setStatus("Approved");
         closeApproveModal();
       }
@@ -71,7 +71,7 @@ function RequestDetailsModal({ isOpen, requestData }) {
         }
       );
       if (response.status === 200) {
-        console.log("Denied Successfull!!");
+        // console.log("Denied Successfull!!");
         setStatus("Denied");
         closeDenyModal();
       }

@@ -24,7 +24,7 @@ function AddNewRequest() {
 
   const options = [
     { value: "m.geetanjay@iitg.ac.in", label: "m.geetanjay@iitg.ac.in" },
-    { value: "Two", label: "Two" },
+    { value: "k.dishant@iitg.ac.in", label: "k.dishant@iitg.ac.in" },
     { value: "Three", label: "Three" },
     { value: "Four", label: "Four" },
   ];

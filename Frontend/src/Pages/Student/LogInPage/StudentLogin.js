@@ -66,7 +66,7 @@ export default function StudentLogin() {
       if (error.response) {
         if (error.response.status === 404) {
           seterror({
-            message: "Incorrect ID. If you don’t remember it,",
+            message: "User does not exist",
             email: true,
             pass: false,
           });
@@ -113,7 +113,7 @@ export default function StudentLogin() {
             {error.email && (
               <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">
                 {error.message}
-                <span className=" text-[#2164E8]">Contact us.</span>
+                {/* <span className=" text-[#2164E8]"></span> */}
               </div>
             )}
           </label>
