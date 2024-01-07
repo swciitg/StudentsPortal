@@ -180,7 +180,7 @@ function RequestReceived() {
               </div>
             </div>
 
-            <div className="bg-white  relative overflow-scroll">
+            <div className="bg-white">
               {/* <nav className="flex border-b-3 relative -z-1 ">
                 <div
                   onClick={() => handleTabClick("POR")}
