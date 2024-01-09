@@ -54,6 +54,7 @@ function RequestReceived() {
           "http://localhost:3002/api/request/request-details-admin",
           {
             "Request sent to": decryptEmail(encryptedEmail) + "@iitg.ac.in",
+            "token": localStorage.getItem("token")
           }
         );
         if (response.status === 200) {
