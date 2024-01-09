@@ -5,11 +5,11 @@ const middleware ={};
  middleware.checkAdminToken = async function(req,res,next){
     const email=req.body['Request sent to'];
     const trimmedEmail = email.replace(/@iitg\.ac\.in$/, '');
-    const user=await User.findOne({email:trimmedEmail});
+    const user_token=req.body.token
     const Admin = await Admins.findOne({ email: trimmedEmail });
 
     if(Admin){
-        if(Admin.token==user.token){
+        if(Admin.token==user_token){
             return next();
         }
         else{
