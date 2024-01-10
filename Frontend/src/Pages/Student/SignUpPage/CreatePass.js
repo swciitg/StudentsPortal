@@ -23,7 +23,7 @@ export default function CreatePass() {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/api/users/create-password",
+        "http://localhost:3002/studentsportal/api/users/create-password",
         {
           email: decryptEmail(encryptedEmail),
           password: password,

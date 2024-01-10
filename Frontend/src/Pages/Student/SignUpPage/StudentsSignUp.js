@@ -40,7 +40,7 @@ export default function StudentSignUp() {
     try {
       setLoading(true); 
       seterror({status:false})
-      const response = await axios.post('http://localhost:3002/api/users', {
+      const response = await axios.post('http://localhost:3002/studentsportal/api/users', {
         name: Name,
         email: Email,
         roll: Roll

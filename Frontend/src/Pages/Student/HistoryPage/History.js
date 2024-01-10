@@ -54,7 +54,7 @@ function History() {
     async function checkEmail() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/api/users/user-details",
+          "http://localhost:3002/studentsportal/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),
@@ -73,7 +73,7 @@ function History() {
     async function Requests() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/api/request/request-details",
+          "http://localhost:3002/studentsportal/api/request/request-details",
           {
             "Sender email": decryptEmail(encryptedEmail) + "@iitg.ac.in",
           }

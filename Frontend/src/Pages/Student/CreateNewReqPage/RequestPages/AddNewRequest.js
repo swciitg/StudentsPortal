@@ -41,7 +41,7 @@ function AddNewRequest() {
     async function UserDetails() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/api/users/user-details",
+          "http://localhost:3002/studentsportal/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),
@@ -63,7 +63,7 @@ function AddNewRequest() {
   }, []);
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3002/api/request", {
+      const response = await axios.post("http://localhost:3002/studentsportal/api/request", {
         Request_sent_date: formattedDate,
         "Sender Name": user.name,
         "Sender Roll no": user.roll,

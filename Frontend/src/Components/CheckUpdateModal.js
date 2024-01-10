@@ -39,7 +39,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/api/request/withdraw-request",
+        "http://localhost:3002/studentsportal/api/request/withdraw-request",
         {
           "Sender email": requestData["Sender email"],
           _id: requestData._id,

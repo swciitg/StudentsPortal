@@ -46,7 +46,7 @@ export default function StudentLogin() {
       seterror({ status: false });
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/api/users/login",
+        "http://localhost:3002/studentsportal/api/users/login",
         {
           email: Email,
           password: Password,

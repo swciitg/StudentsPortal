@@ -19,7 +19,7 @@ function CreateRequest() {
     async function checkEmail() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/api/users/user-details",
+          "http://localhost:3002/studentsportal/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),

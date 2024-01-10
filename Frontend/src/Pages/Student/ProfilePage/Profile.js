@@ -56,7 +56,7 @@ function Profile() {
 
       try {
         const response = await axios.post(
-          "http://localhost:3002/api/users/upload",
+          "http://localhost:3002/studentsportal/api/users/upload",
           formData,
           {
             headers: {
@@ -66,7 +66,7 @@ function Profile() {
         );
 
         const serverURL = response.data.url; // Assuming the server responds with the file URL
-        await axios.post("http://localhost:3002/api/users/user-details", {
+        await axios.post("http://localhost:3002/studentsportal/api/users/user-details", {
           email: decryptEmail(encryptedEmail),
           profileUrl: serverURL,
           token: localStorage.getItem("token"),
@@ -87,7 +87,7 @@ function Profile() {
     if (user.profileUrl && user.profileUrl.length > 0) Points += 25;
     try {
       const response = await axios.post(
-        "http://localhost:3002/api/users/user-details",
+        "http://localhost:3002/studentsportal/api/users/user-details",
         {
           email: decryptEmail(encryptedEmail),
           program: Program,
@@ -113,7 +113,7 @@ function Profile() {
       async function UserDetails() {
         try {
           const response = await axios.post(
-            "http://localhost:3002/api/users/user-details",
+            "http://localhost:3002/studentsportal/api/users/user-details",
             {
               email: decryptEmail(encryptedEmail),
               token: localStorage.getItem("token"),
@@ -140,7 +140,7 @@ function Profile() {
       async function UpdateProfileCompletion() {
         try {
           const response = await axios.post(
-            "http://localhost:3002/api/users/user-details",
+            "http://localhost:3002/studentsportal/api/users/user-details",
             {
               email: decryptEmail(encryptedEmail),
               token: localStorage.getItem("token"),

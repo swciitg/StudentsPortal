@@ -30,7 +30,7 @@ function RequestReceived() {
     async function checkEmail() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/api/users/user-details",
+          "http://localhost:3002/studentsportal/api/users/user-details",
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),
@@ -51,7 +51,7 @@ function RequestReceived() {
     async function Requests() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/api/request/request-details-admin",
+          "http://localhost:3002/studentsportal/api/request/request-details-admin",
           {
             "Request sent to": decryptEmail(encryptedEmail) + "@iitg.ac.in",
             "token": localStorage.getItem("token")

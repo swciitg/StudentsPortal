@@ -35,7 +35,7 @@ function RequestDetailsModal({ isOpen,onRequestClose, requestData }) {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/api/request/approve-request",
+        "http://localhost:3002/studentsportal/api/request/approve-request",
         {
           "Request sent to": requestData["Request sent to"],
           _id: requestData._id,
@@ -56,7 +56,7 @@ function RequestDetailsModal({ isOpen,onRequestClose, requestData }) {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/api/request/deny-request",
+        "http://localhost:3002/studentsportal/api/request/deny-request",
         {
           "Request sent to": requestData["Request sent to"],
           _id: requestData._id,

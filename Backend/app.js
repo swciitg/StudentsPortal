@@ -22,14 +22,14 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-app.use('/uploads', express.static(join(__dirname, 'uploads')));
+app.use('/studentsportal/uploads', express.static(join(__dirname, 'uploads')));
 
 
 
 app.use(admin.options.rootPath, adminRouter)
-app.use('/api/users', userRoutes);
+app.use('/studentsportal/api/users', userRoutes);
 // app.use('/uploads', express.static(join(__dirname, 'uploads')));
-app.use('/api/request', requestRoutes); 
+app.use('/studentsportal/api/request', requestRoutes); 
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

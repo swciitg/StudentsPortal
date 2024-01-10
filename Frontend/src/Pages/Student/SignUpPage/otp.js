@@ -30,7 +30,7 @@ export default function Otp() {
       seterror({ error: false });
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/api/users/verify-otp",
+        "http://localhost:3002/studentsportal/api/users/verify-otp",
         {
           email: decryptEmail(encryptedEmail),
           otp: Otp,
@@ -59,7 +59,7 @@ export default function Otp() {
       setresent(false);
       setresending(true);
       const response = await axios.post(
-        "http://localhost:3002/api/users/resend-otp",
+        "http://localhost:3002/studentsportal/api/users/resend-otp",
         {
           email: decryptEmail(encryptedEmail),
         }

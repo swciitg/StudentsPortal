@@ -39,7 +39,7 @@ export default function Student_Navbar({ encryptedEmail }) {
     async function CheckAdmin() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/api/users/check-admin",
+          "http://localhost:3002/studentsportal/api/users/check-admin",
           {
             email: decryptEmail(encryptedEmail),
           }
