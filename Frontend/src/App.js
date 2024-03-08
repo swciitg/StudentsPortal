@@ -17,7 +17,7 @@ import ForgotPassword from "./Pages/Student/LogInPage/ForgotPassword";
 function App() {
   const SERVER_URL = 'http://localhost:3002';
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={"/studentsportal"}>
       <Routes>
         {/* Student Side Routes*/}
         <Route path="*" element={<ProfileSelection SERVER_URL={SERVER_URL}/>} />
