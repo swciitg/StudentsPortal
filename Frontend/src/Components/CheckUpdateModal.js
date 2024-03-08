@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import axios from "axios";
-function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
+function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL }) {
   RequestDetailsModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
+    SERVER_URL:PropTypes.string.isRequired,
     requestData: PropTypes.shape({
       Status: PropTypes.string.isRequired,
       body: PropTypes.string.isRequired,
@@ -39,7 +40,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose }) {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/studentsportal/api/request/withdraw-request",
+        `${SERVER_URL}/studentsportal/api/request/withdraw-request`,
         {
           "Sender email": requestData["Sender email"],
           _id: requestData._id,

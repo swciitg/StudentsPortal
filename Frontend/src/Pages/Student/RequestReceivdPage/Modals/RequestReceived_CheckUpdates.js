@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
 import axios from "axios";
-function RequestDetailsModal({ isOpen,onRequestClose, requestData }) {
+function RequestDetailsModal({ isOpen,onRequestClose, requestData, SERVER_URL }) {
   RequestDetailsModal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onRequestClose: PropTypes.func.isRequired,
+    SERVER_URL: PropTypes.string.isRequired,
     requestData: PropTypes.shape({
       Date: PropTypes.string.isRequired,
       Status: PropTypes.string.isRequired,
@@ -35,10 +36,11 @@ function RequestDetailsModal({ isOpen,onRequestClose, requestData }) {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/studentsportal/api/request/approve-request",
+        `${SERVER_URL}/studentsportal/api/request/approve-request`,
         {
           "Request sent to": requestData["Request sent to"],
           _id: requestData._id,
+          token: localStorage.getItem("token"),
         }
       );
       if (response.status === 200) {
@@ -56,10 +58,12 @@ function RequestDetailsModal({ isOpen,onRequestClose, requestData }) {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/studentsportal/api/request/deny-request",
+       `${SERVER_URL}/studentsportal/api/request/deny-request`,
         {
           "Request sent to": requestData["Request sent to"],
           _id: requestData._id,
+          token: localStorage.getItem("token"),
+
         }
       );
       if (response.status === 200) {

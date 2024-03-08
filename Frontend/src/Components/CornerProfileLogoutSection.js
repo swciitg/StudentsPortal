@@ -4,9 +4,11 @@ import CryptoJS from "crypto-js";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-function CornerProfileLogoutSection({ encryptedEmail }) {
+function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
   CornerProfileLogoutSection.propTypes = {
     encryptedEmail: PropTypes.string.isRequired,
+    SERVER_URL: PropTypes.string.isRequired,
+
   };
   const [logout_toggle, setlogout_toggle] = useState(false);
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ function CornerProfileLogoutSection({ encryptedEmail }) {
     async function UserDetails() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/users/user-details",
+          `${SERVER_URL}/studentsportal/api/users/user-details`,
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),

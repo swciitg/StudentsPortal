@@ -4,9 +4,11 @@ import CryptoJS from "crypto-js";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-export default function Student_Navbar({ encryptedEmail }) {
+export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
+
   Student_Navbar.propTypes = {
     encryptedEmail: PropTypes.string.isRequired,
+    SERVER_URL: PropTypes.string.isRequired,
   };
   const location = useLocation();
   const [showNav, setShowNav] = useState(false);
@@ -39,7 +41,7 @@ export default function Student_Navbar({ encryptedEmail }) {
     async function CheckAdmin() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/users/check-admin",
+          `${SERVER_URL}/studentsportal/api/users/check-admin`,
           {
             email: decryptEmail(encryptedEmail),
           }

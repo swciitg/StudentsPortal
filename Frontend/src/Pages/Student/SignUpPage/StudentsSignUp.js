@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
+import PropTypes from "prop-types";
 import CryptoJS from 'crypto-js'
-export default function StudentSignUp() {
-
+export default function StudentSignUp({SERVER_URL}) {
+  StudentSignUp.PropTypes = {
+    SERVER_URL: PropTypes.string.isRequired,
+  };
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Roll, setRoll] = useState("");
@@ -40,7 +43,7 @@ export default function StudentSignUp() {
     try {
       setLoading(true); 
       seterror({status:false})
-      const response = await axios.post('http://localhost:3002/studentsportal/api/users', {
+      const response = await axios.post(`${SERVER_URL}/studentsportal/api/users`, {
         name: Name,
         email: Email,
         roll: Roll

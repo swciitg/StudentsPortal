@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import axios from "axios";
 import CryptoJS from "crypto-js";
-export default function ForgotPassword() {
+export default function ForgotPassword({ SERVER_URL }) {
+  ForgotPassword.propTypes = {
+    SERVER_URL: PropTypes.string.isRequired,
+  };
   //   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   //   const [Roll, setRoll] = useState("");
@@ -45,7 +49,7 @@ export default function ForgotPassword() {
     try {
       setLoading(true);
       seterror({ status: false });
-      const response = await axios.post("http://localhost:3002/studentsportal/api/users/forgot-password", {
+      const response = await axios.post(`${SERVER_URL}/studentsportal/api/users/forgot-password`, {
         // name: Name,
         email: Email,
         // roll: Roll,

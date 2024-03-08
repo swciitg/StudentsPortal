@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
+import PropTypes from "prop-types";
 import Student_Navbar from "../../../../Components/Student_Navbar";
 import Select from "react-select";
 import axios from "axios";
 import CornerProfileLogoutSection from "../../../../Components/CornerProfileLogoutSection";
 
-function AddNewRequest() {
+function AddNewRequest({ SERVER_URL }) {
+  AddNewRequest.propTypes = {
+    SERVER_URL: PropTypes.string.isRequired,
+  };
   const location = useLocation();
   const navigate = useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
@@ -24,6 +28,7 @@ function AddNewRequest() {
 
   const options = [
     { value: "m.geetanjay@iitg.ac.in", label: "m.geetanjay@iitg.ac.in" },
+    { value: "vineet.mech22@iitg.ac.in", label: "vineet.mech22@iitg.ac.in" },
     { value: "k.dishant@iitg.ac.in", label: "k.dishant@iitg.ac.in" },
     { value: "Three", label: "Three" },
     { value: "Four", label: "Four" },
@@ -41,7 +46,7 @@ function AddNewRequest() {
     async function UserDetails() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/users/user-details",
+          `${SERVER_URL}/studentsportal/api/users/user-details`,
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),
@@ -63,7 +68,7 @@ function AddNewRequest() {
   }, []);
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("http://localhost:3002/studentsportal/api/request", {
+      const response = await axios.post(`${SERVER_URL}/studentsportal/api/request`, {
         Request_sent_date: formattedDate,
         "Sender Name": user.name,
         "Sender Roll no": user.roll,
@@ -90,9 +95,9 @@ function AddNewRequest() {
   };
   return (
     <div className=" relative h-screen w-[100%]">
-      <Student_Navbar encryptedEmail={encryptedEmail} />
+      <Student_Navbar encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
       <div className=" lg:absolute flex flex-col  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
-        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
+        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} SERVER_URL={SERVER_URL}  />
         <div className="flex justify-center items-center h-full">
           <div className="bg-white px-10 w-[400px] pb-9 pt-9 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
             <div className="flex flex-col gap-2 items-center ">

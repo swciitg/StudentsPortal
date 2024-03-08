@@ -1,10 +1,15 @@
 // import { useState } from "react";
 import React, { useEffect, useState } from "react";
 import { Link,useLocation ,useNavigate} from "react-router-dom";
+import PropTypes from "prop-types";
 import CryptoJS from 'crypto-js';
 
 import axios from "axios";
-export default function Otp() {
+export default function Otp({SERVER_URL}) {
+  Otp.propTypes = {
+    SERVER_URL: PropTypes.string.isRequired,
+  };
+  
   const [Otp, setOtp] = useState("");
   const location = useLocation();
   const [error, seterror] = useState([{ status: false, message: "" }]);
@@ -30,7 +35,7 @@ export default function Otp() {
       seterror({ error: false });
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/studentsportal/api/users/verify-otp",
+        `${SERVER_URL}/studentsportal/api/users/verify-otp`,
         {
           email: decryptEmail(encryptedEmail),
           otp: Otp,
@@ -59,7 +64,7 @@ export default function Otp() {
       setresent(false);
       setresending(true);
       const response = await axios.post(
-        "http://localhost:3002/studentsportal/api/users/resend-otp",
+        `${SERVER_URL}/studentsportal/api/users/resend-otp`,
         {
           email: decryptEmail(encryptedEmail),
         }

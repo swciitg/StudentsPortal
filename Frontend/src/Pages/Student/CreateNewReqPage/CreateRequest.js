@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
+import PropTypes from "prop-types";
 import CryptoJS from "crypto-js";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import CornerProfileLogoutSection from "../../../Components/CornerProfileLogoutSection";
 import axios from "axios";
-function CreateRequest() {
+function CreateRequest({ SERVER_URL }) {
+  CreateRequest.propTypes = {
+    SERVER_URL: PropTypes.string.isRequired,
+  };
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const navigate = useNavigate();
@@ -19,7 +23,7 @@ function CreateRequest() {
     async function checkEmail() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/users/user-details",
+          `${SERVER_URL}/studentsportal/api/users/user-details`,
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),
@@ -36,9 +40,9 @@ function CreateRequest() {
   }, []);
   return (
     <div className=" relative h-screen w-[100%]">
-      <Student_Navbar encryptedEmail={encryptedEmail} />
+      <Student_Navbar encryptedEmail={encryptedEmail} SERVER_URL={SERVER_URL}  />
       <div className=" flex flex-col lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
-        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
+        <CornerProfileLogoutSection encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
 
         <div className=" flex justify-center items-center h-screen">
           <div className="flex gap-10">
