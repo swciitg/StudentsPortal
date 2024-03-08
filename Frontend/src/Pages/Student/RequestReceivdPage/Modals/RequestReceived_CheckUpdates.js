@@ -194,6 +194,12 @@ function RequestDetailsModal({ isOpen,onRequestClose, requestData, SERVER_URL })
               <label className="text-[#353B47] text-sm">Sender Mail Id</label>
               <div>{requestData["Sender email"]}</div>
             </div>
+            <div className="flex flex-col">
+              <label className="text-[#353B47] text-sm">
+                Request sent to
+              </label>
+              <div>{requestData["Request sent to"]}</div>
+            </div>
           </div>
         </div>
       </div>

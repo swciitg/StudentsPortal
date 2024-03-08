@@ -96,12 +96,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
               <label className="text-[#353B47] text-sm">Body</label>
               <div>{requestData.body}</div>
             </div>
-            {/* <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">
-                Name of organisation
-              </label>
-              <div>{requestData.organisation}</div>
-            </div> */}
+          
             {/* <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">Parent Body</label>
               <div>{requestData["Parent Body"]}</div>
@@ -185,14 +180,19 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
               <div>{requestData["Type of Request"]}</div>
             </div> */}
             <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">Sender Roll no</label>
+              <label className="text-[#353B47] text-sm">{"Sender's Roll no"}</label>
               <div>{requestData["Sender Roll no"]}</div>
             </div>
             <div className="flex flex-col">
-              <label className="text-[#353B47] text-sm">Sender Mail Id</label>
+              <label className="text-[#353B47] text-sm">{"Sender's Mail Id"}</label>
               <div>{requestData["Sender email"]}</div>
             </div>
-
+            <div className="flex flex-col">
+              <label className="text-[#353B47] text-sm">
+                Request sent to
+              </label>
+              <div>{requestData["Request sent to"]}</div>
+            </div>
           </div>
         </div>
   
