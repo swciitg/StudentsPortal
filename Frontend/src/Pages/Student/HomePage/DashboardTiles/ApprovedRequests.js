@@ -18,7 +18,7 @@ function ApprovedRequests({ApprovedRequest,encryptedEmail}) {
       <div className=" h-full w-full">
         {" "}
         <div className="flex gap-2 items-center">
-          <img src="/requests-approved.svg" />
+          <img src="requests-approved.svg" />
           <div className=" text-base">Approved Requests</div>
         </div>
        {(ApprovedRequest&&ApprovedRequest.filter(item => item.Status === "Approved").length>0)? <div className="flex flex-col gap-2 mt-3">

@@ -19,7 +19,7 @@ function MyProfile({user,encryptedEmail}) {
       <div>
         {" "}
         <div className="flex gap-2 items-center">
-          <img src="/Profile-grey.svg" />
+          <img src="Profile-grey.svg" />
           <div className=" text-base">
             My Profile
             {user&&(user.profileCompletion !== 100 ? (
@@ -40,17 +40,17 @@ function MyProfile({user,encryptedEmail}) {
       </div>:
          <div className="mt-3">
           <div className="flex gap-2">
-            <img src="/branch.svg" />
+            <img src="branch.svg" />
            {user.program&& user.program.length>0?<div>{user.program}</div>:
             <div>--</div>}
           </div>
           <div className="flex gap-2">
-            <img src="/tag.svg" />
+            <img src="tag.svg" />
            {user.department&&user.department.length>0? <div>{user.department}</div>:
             <div>--</div>}
           </div>
           <div className="flex gap-2">
-            <img src="/email.svg" />
+            <img src="email.svg" />
             <div>{user.email}@iitg.ac.in</div>
           </div>
         </div> }

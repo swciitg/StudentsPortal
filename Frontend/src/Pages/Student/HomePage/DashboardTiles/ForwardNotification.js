@@ -20,7 +20,7 @@ function ForwardNotification({ Notification, encryptedEmail }) {
         {" "}
         <div className="flex justify-between items-center">
           <div className="flex gap-2 items-center">
-            <img src="/Notification.svg" />
+            <img src="Notification.svg" />
             <div>Notification</div>
           </div>
           <div className="text-xs text-[#D83B01]">2 Unread</div>
@@ -35,7 +35,7 @@ function ForwardNotification({ Notification, encryptedEmail }) {
                 {item.description}
               </div>
               <div className=" items-center  flex flex-col gap-6 ">
-                <img src="/Bookmark-Notification.svg" width="10px" />
+                <img src="Bookmark-Notification.svg" width="10px" />
                 <div className="text-[0.60rem] text-[#494D57] ">
                   {item.Date}
                 </div>

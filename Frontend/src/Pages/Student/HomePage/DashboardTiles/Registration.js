@@ -30,7 +30,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
         <div className="bg-white  h-[60px]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
           <div className="flex gap-1 items-center">
             <div>Registration</div>
-            <img src="/Checkmark.svg" width="20px " />
+            <img src="Checkmark.svg" width="20px " />
           </div>
           <img
             className="cursor-pointer "
@@ -39,14 +39,14 @@ function Registration({user,ManageRequests,encryptedEmail}) {
               setToggle2(false);
               setToggle3(false);
             }}
-            src="/down-arrow-grey.svg"
+            src="down-arrow-grey.svg"
           />
         </div>
       ) : (
         <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className=" flex flex-col gap-2">
             <div className="flex gap-2">
-              <img src="/registration.svg" />
+              <img src="registration.svg" />
               <div className="text-xl font-semibold">Registration</div>
             </div>
           { user&& user.profileCompletion !== 100 ? (
@@ -83,13 +83,13 @@ function Registration({user,ManageRequests,encryptedEmail}) {
               setToggle1(false);
               setToggle3(false);
             }}
-            src="/down-arrow-grey.svg"
+            src="down-arrow-grey.svg"
           />
         </div>
       ) : (
         <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className="flex gap-2">
-            <img src="/list.svg" />
+            <img src="list.svg" />
             <div className="text-xl font-semibold">Request</div>
           </div>
           <div className=" pr-5">
@@ -118,13 +118,13 @@ function Registration({user,ManageRequests,encryptedEmail}) {
               setToggle1(false);
               setToggle2(false);
             }}
-            src="/down-arrow-grey.svg"
+            src="down-arrow-grey.svg"
           />
         </div>
       ) : (
         <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4  border-[#2164E8]   shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className="flex gap-2">
-            <img src="/registration.svg" />
+            <img src="registration.svg" />
             <div className="text-xl font-semibold">Manage Requests</div>
           </div>
           <div className="flex gap-1 flex-col lg:my-0 my-2">

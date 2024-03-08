@@ -10,7 +10,7 @@ export default function Otp({SERVER_URL}) {
     SERVER_URL: PropTypes.string.isRequired,
   };
   
-  const [Otp, setOtp] = useState("");
+  const [Otp1, setOtp1] = useState("");
   const location = useLocation();
   const [error, seterror] = useState([{ status: false, message: "" }]);
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export default function Otp({SERVER_URL}) {
         `${SERVER_URL}/studentsportal/api/users/verify-otp`,
         {
           email: decryptEmail(encryptedEmail),
-          otp: Otp,
+          otp: Otp1,
         }
       );
 
@@ -112,7 +112,7 @@ export default function Otp({SERVER_URL}) {
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
       <div className="bg-white pl-10 pr-10 w-[90%] md:w-[60%] lg:w-[400px] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
         <div className="flex justify-start  mb-2">
-          <img className="" src="/iitg_logo.png" alt="iitg_logo" width="65px" />
+          <img className="" src="iitg_logo.png" alt="iitg_logo" width="65px" />
         </div>
         <p className="text-[rgb(27,33,45)] font-semibold text-2xl mb-5">
           Sign Up
@@ -125,7 +125,7 @@ export default function Otp({SERVER_URL}) {
             <span className="font-medium text-sm">OTP</span>
             <input
               onChange={(e) => {
-                setOtp(e.target.value);
+                setOtp1(e.target.value);
               }}
               min="0"
               max="999999"
@@ -145,7 +145,7 @@ export default function Otp({SERVER_URL}) {
           </label>
           {/*onKeyDown={(e)=> Otp.length===6&&e.preventDefault()}*/}
         </div>
-        {Otp.length >= 6 ? (
+        {Otp1.length >= 6 ? (
           <div className="flex justify-between items-center mt-10">
             <button
               onClick={handleResendOtp}

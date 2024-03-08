@@ -15,7 +15,7 @@ import AddNewRequest from "./Pages/Student/CreateNewReqPage/RequestPages/AddNewR
 import SuccessPage from "./Pages/Student/CreateNewReqPage/RequestPages/SuccessPage";
 import ForgotPassword from "./Pages/Student/LogInPage/ForgotPassword";
 function App() {
-  const SERVER_URL = 'http://localhost:3002';
+  const SERVER_URL = 'https://swc.iitg.ac.in';
   return (
     <BrowserRouter basename={"/studentsportal"}>
       <Routes>
