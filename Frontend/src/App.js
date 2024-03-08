@@ -16,7 +16,7 @@ import SuccessPage from "./Pages/Student/CreateNewReqPage/RequestPages/SuccessPa
 import ForgotPassword from "./Pages/Student/LogInPage/ForgotPassword";
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={"/studentsportal"}>
       <Routes>
         {/* Student Side Routes*/}
         <Route path="*" element={<ProfileSelection />} />

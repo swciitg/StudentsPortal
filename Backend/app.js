@@ -11,7 +11,7 @@ const port = 3002;
 import { admin,adminRouter } from './routes/adminRouter.js';
 
 
-connect('mongodb+srv://auth-admin:AdHDOvAtNy8He2l3@cluster0.s875rof.mongodb.net/StudentsPortal');
+connect('mongodb://host.docker.internal/studentsportaldb?retryWrites=true&w=majority');
 
 app.use(cors());
 app.use(express.json());
@@ -22,7 +22,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-app.use('/studentsportal/uploads', express.static(join(__dirname, 'uploads')));
+app.use('/studentsportal', express.static(join(__dirname, '..', 'build')));
+app.use('/uploads', express.static(join(__dirname, '..','uploads')));
 
 
 
