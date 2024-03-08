@@ -1,11 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import Student_Navbar from "../../../Components/Student_Navbar";
+import PropTypes from "prop-types";
 import axios from "axios";
 import CornerProfileLogoutSection from "../../../Components/CornerProfileLogoutSection";
 import CryptoJS from "crypto-js";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function Profile() {
+function Profile({ SERVER_URL}) {
+  Profile.propTypes = {
+    SERVER_URL: PropTypes.string.isRequired,
+  };
   const navigate = useNavigate();
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
@@ -56,7 +60,7 @@ function Profile() {
 
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/users/upload",
+          `${SERVER_URL}/studentsportal/api/users/upload`,
           formData,
           {
             headers: {
@@ -66,7 +70,9 @@ function Profile() {
         );
 
         const serverURL = response.data.url; // Assuming the server responds with the file URL
-        await axios.post("http://localhost:3002/studentsportal/api/users/user-details", {
+        await axios.post( 
+          `${SERVER_URL}/studentsportal/api/users/user-details`,
+          {
           email: decryptEmail(encryptedEmail),
           profileUrl: serverURL,
           token: localStorage.getItem("token"),
@@ -87,7 +93,7 @@ function Profile() {
     if (user.profileUrl && user.profileUrl.length > 0) Points += 25;
     try {
       const response = await axios.post(
-        "http://localhost:3002/studentsportal/api/users/user-details",
+        `${SERVER_URL}/studentsportal/api/users/user-details`,
         {
           email: decryptEmail(encryptedEmail),
           program: Program,
@@ -113,7 +119,7 @@ function Profile() {
       async function UserDetails() {
         try {
           const response = await axios.post(
-            "http://localhost:3002/studentsportal/api/users/user-details",
+            `${SERVER_URL}/studentsportal/api/users/user-details`,
             {
               email: decryptEmail(encryptedEmail),
               token: localStorage.getItem("token"),
@@ -140,7 +146,7 @@ function Profile() {
       async function UpdateProfileCompletion() {
         try {
           const response = await axios.post(
-            "http://localhost:3002/studentsportal/api/users/user-details",
+            `${SERVER_URL}/studentsportal/api/users/user-details`,
             {
               email: decryptEmail(encryptedEmail),
               token: localStorage.getItem("token"),
@@ -168,10 +174,10 @@ function Profile() {
 
   return (
     <div className="relative h-screen w-[100%]">
-      <Student_Navbar encryptedEmail={encryptedEmail} />
+      <Student_Navbar encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
       <div className="lg:absolute h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
+        <CornerProfileLogoutSection encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
         <div className="px-4 py-5 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
           <div className="text-lg font-semibold">My Profile</div>
         </div>

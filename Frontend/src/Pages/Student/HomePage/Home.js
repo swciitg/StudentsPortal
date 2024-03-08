@@ -3,6 +3,7 @@ import Student_Navbar from "../../../Components/Student_Navbar";
 import Registration from "./DashboardTiles/Registration";
 import MyProfile from "./DashboardTiles/MyProfile";
 import ApprovedRequests from "./DashboardTiles/ApprovedRequests";
+import PropTypes from "prop-types";
 import PendingRequests from "./DashboardTiles/PendingRequests";
 import BuildMyCV from "./DashboardTiles/BuildMyCV";
 import CornerProfileLogoutSection from "../../../Components/CornerProfileLogoutSection";
@@ -10,7 +11,10 @@ import CryptoJS from "crypto-js";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Home() {
+function Home({SERVER_URL}) {
+  Home.propTypes = {
+    SERVER_URL: PropTypes.string.isRequired,
+  };
   const location = useLocation();
   const navigate = useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
@@ -26,7 +30,7 @@ function Home() {
     async function UserDetails() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/users/user-details",
+          `${SERVER_URL}/studentsportal/api/users/user-details`,
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),
@@ -51,7 +55,7 @@ function Home() {
     async function Requests() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/request/request-details",
+          `${SERVER_URL}/studentsportal/api/request/request-details`,
           {
             "Sender email": decryptEmail(encryptedEmail) + "@iitg.ac.in",
           }
@@ -122,13 +126,13 @@ function Home() {
     <div className=" relative h-screen w-[100%]">
       {/*Side Navbar */}
 
-      <Student_Navbar encryptedEmail={encryptedEmail} />
+      <Student_Navbar encryptedEmail={encryptedEmail} SERVER_URL={SERVER_URL} />
 
       {/*Tiles Area*/}
 
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
+        <CornerProfileLogoutSection encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
 
         <div className="flex flex-col gap-10 lg:gap-5 lg:grid lg:grid-cols-10 pb-10 lg:pb-0 ">
           {/* Tile 1*/}

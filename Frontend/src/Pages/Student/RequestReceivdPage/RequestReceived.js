@@ -2,11 +2,15 @@ import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import CornerProfileLogoutSectionadmin from "../../../Components/CornerProfileLogoutSection";
 import CryptoJS from "crypto-js";
+import PropTypes from "prop-types";
 import RequestDetailsModal from "./Modals/RequestReceived_CheckUpdates";
 import axios from "axios";
 import Student_Navbar from "../../../Components/Student_Navbar";
 
-function RequestReceived() {
+function RequestReceived({ SERVER_URL }) {
+  RequestReceived.propTypes = {
+    SERVER_URL: PropTypes.string.isRequired,
+  };
   // const navigate = useNavigate();
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
@@ -30,7 +34,7 @@ function RequestReceived() {
     async function checkEmail() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/users/user-details",
+          `${SERVER_URL}/studentsportal/api/users/user-details`,
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),
@@ -51,7 +55,7 @@ function RequestReceived() {
     async function Requests() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/request/request-details-admin",
+          `${SERVER_URL}/studentsportal/api/request/request-details-admin`,
           {
             "Request sent to": decryptEmail(encryptedEmail) + "@iitg.ac.in",
             "token": localStorage.getItem("token")
@@ -159,15 +163,16 @@ function RequestReceived() {
       {/*Side Navbar */}
 
       {/* <Admin_Navbar encryptedEmail={encryptedEmail} /> */}
-      <Student_Navbar encryptedEmail={encryptedEmail} />
+      <Student_Navbar encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
 
       <div className="lg:absolute h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
-        <CornerProfileLogoutSectionadmin encryptedEmail={encryptedEmail} />
+        <CornerProfileLogoutSectionadmin encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
         {selectedRequest && isModalOpen  ? (
           <RequestDetailsModal
             isOpen={isModalOpen}
             onRequestClose={() => setIsModalOpen(false)}
             requestData={selectedRequest}
+            SERVER_URL={SERVER_URL} 
           />
         ) : (
           <>
@@ -287,7 +292,7 @@ function RequestReceived() {
                     Nothing to Show!
                   </div>
                 ) : (
-                  <RenderHistory onCheckUpdates={handleCheckUpdates} />
+                  <RenderHistory onCheckUpdates={handleCheckUpdates} SERVER_URL={SERVER_URL}  />
                 )}
                 <div className="flex justify-center items-center mt-4 mb-10">
                   <div

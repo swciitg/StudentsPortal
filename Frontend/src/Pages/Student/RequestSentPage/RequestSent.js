@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import Student_Navbar from "../../../Components/Student_Navbar";
 import CornerProfileLogoutSection from "../../../Components/CornerProfileLogoutSection";
 import CryptoJS from "crypto-js";
@@ -6,7 +7,10 @@ import RequestDetailsModal from "../../../Components/CheckUpdateModal";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function History() {
+function RequestSent({ SERVER_URL }) {
+  RequestSent.propTypes = {
+    SERVER_URL: PropTypes.string.isRequired
+  };
   const location = useLocation();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
   const [History, setHistory] = useState(null);
@@ -54,7 +58,7 @@ function History() {
     async function checkEmail() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/users/user-details",
+          `${SERVER_URL}/studentsportal/api/users/user-details`,
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),
@@ -73,7 +77,7 @@ function History() {
     async function Requests() {
       try {
         const response = await axios.post(
-          "http://localhost:3002/studentsportal/api/request/request-details",
+          `${SERVER_URL}/studentsportal/api/request/request-details`,
           {
             "Sender email": decryptEmail(encryptedEmail) + "@iitg.ac.in",
           }
@@ -159,10 +163,10 @@ function History() {
 
   return (
     <div className=" relative h-screen w-[100%]">
-      <Student_Navbar encryptedEmail={encryptedEmail} />
+      <Student_Navbar encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} />
+        <CornerProfileLogoutSection encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
 
         {selectedRequest && isModalOpen ? (
           <RequestDetailsModal
@@ -170,6 +174,7 @@ function History() {
             onRequestClose={() => setIsModalOpen(false)}
             requestData={selectedRequest}
             encryptedEmail={encryptedEmail}
+            SERVER_URL={SERVER_URL} 
           />
         ) : (
           <>
@@ -316,4 +321,4 @@ function History() {
     </div>
   );
 }
-export default History;
+export default RequestSent;

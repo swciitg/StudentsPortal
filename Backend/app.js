@@ -1,7 +1,7 @@
 // import { superadmin } from './routes/adminRouter.js';
 import express from 'express';
 import { connect } from 'mongoose';
-// import { json } from 'body-parser';
+import  bodyParser from 'body-parser';
 import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
 import requestRoutes from './routes/requestRoutes.js';
@@ -14,7 +14,7 @@ import { admin,adminRouter } from './routes/adminRouter.js';
 connect('mongodb+srv://auth-admin:AdHDOvAtNy8He2l3@cluster0.s875rof.mongodb.net/StudentsPortal');
 
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
 
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';

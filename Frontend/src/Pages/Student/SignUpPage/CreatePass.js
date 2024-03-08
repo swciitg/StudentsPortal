@@ -1,10 +1,14 @@
 // import { useState } from "react";
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 
-export default function CreatePass() {
+export default function CreatePass({ SERVER_URL }) {
+  CreatePass.propTypes = {
+    SERVER_URL: PropTypes.string.isRequired,
+  };
   const [paas, setpass] = useState("");
   const [confpass, setconfpaas] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,7 +27,7 @@ export default function CreatePass() {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3002/studentsportal/api/users/create-password",
+        `${SERVER_URL}/studentsportal/api/users/create-password`,
         {
           email: decryptEmail(encryptedEmail),
           password: password,
