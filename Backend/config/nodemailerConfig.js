@@ -1,3 +1,5 @@
-export const EMAIL = 'vineetalp002@gmail.com';
-export const PASSWORD = 'gubq agfa dldr nwqq';
+import {config} from 'dotenv';
+config();
+export const EMAIL = process.env.NODEMAILER_EMAIL;
+export const PASSWORD = process.env.NODEMAILER_PASSWORD;
   

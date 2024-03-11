@@ -7,7 +7,8 @@ import { Admins } from '../Models/Admins.js';
 import bcrypt from 'bcrypt';
 import express from 'express';
 import formidableMiddleware from 'express-formidable';
-
+import {config} from 'dotenv';
+config();
 const PORT = 3002;
 const app = express();
 
@@ -102,7 +103,7 @@ const admin = new AdminJS(adminOptions);
 
 const adminRouter = AdminJSExpress.buildAuthenticatedRouter(admin, {
   cookieName: 'adminjs',
-  cookiePassword: 'complicatedsecurepassword',
+  cookiePassword: process.env.ADMINJS_COOKIE_PASSWORD,
   authenticate: async (email, password, next) => {
     const user = await User.findOne({ email });
     if (user) {

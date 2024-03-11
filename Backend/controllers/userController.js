@@ -5,7 +5,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import multer from "multer";
 import path from "path";
-
+import {config } from 'dotenv';
+config();
 async function createUser(req, res) {
   const { name, email, roll } = req.body;
 
@@ -44,7 +45,7 @@ async function createUser(req, res) {
     const Admin = await Admins.findOne({ email });
 
     if(Admin){
-      const token = jwt.sign({ email: Admin.email }, "Heloo_World", {
+      const token = jwt.sign({ email: Admin.email }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
       Admin.token=token;
@@ -140,7 +141,7 @@ async function createPassword(req, res) {
     }
     const hashedPassword = await bcrypt.hash(password, 10); 
     
-    const token = jwt.sign({ email: user.email }, "Heloo_World", {
+    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
     user.password = hashedPassword;
@@ -174,7 +175,7 @@ async function login(req, res) {
     const Admin = await Admins.findOne({ email });
 
     if(Admin){
-      const token = jwt.sign({ email: Admin.email }, "Heloo_World", {
+      const token = jwt.sign({ email: Admin.email }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
       Admin.token=token;
@@ -182,7 +183,7 @@ async function login(req, res) {
     }
   
 
-    const token = jwt.sign({ email: user.email}, "Heloo_World", {
+    const token = jwt.sign({ email: user.email}, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
     user.token=token;

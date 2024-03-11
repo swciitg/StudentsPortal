@@ -9,9 +9,10 @@ import requestRoutes from './routes/requestRoutes.js';
 const app = express();
 const port = 3002;
 import { admin,adminRouter } from './routes/adminRouter.js';
+import {config} from 'dotenv';
+config();
 
-
-connect('mongodb://host.docker.internal/studentsportaldb?retryWrites=true&w=majority');
+connect(process.env.MONGODB_URI);
 
 app.use(cors());
 app.use(bodyParser.json());
