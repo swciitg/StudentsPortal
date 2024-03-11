@@ -14,7 +14,7 @@ export default function StudentLogin({ SERVER_URL}) {
   const [Password, setpassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
   function encryptEmail(email) {
     const encryptedEmail = CryptoJS.AES.encrypt(
       email,

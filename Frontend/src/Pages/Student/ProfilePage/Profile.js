@@ -29,7 +29,7 @@ function Profile({ SERVER_URL}) {
   const [AltEmail, setAlt_email] = useState("");
   const [ProfileUrl, setProfileURL] = useState("");
 
-  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
     const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);

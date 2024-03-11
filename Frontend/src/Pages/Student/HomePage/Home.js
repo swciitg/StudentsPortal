@@ -18,7 +18,7 @@ function Home({SERVER_URL}) {
   const location = useLocation();
   const navigate = useNavigate();
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
     const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);

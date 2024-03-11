@@ -13,7 +13,7 @@ export default function ForgotPassword({ SERVER_URL }) {
   const [error, seterror] = useState([{ status: false, message: "" }]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
 
   // Function to encrypt the email
   function encryptEmail(email) {

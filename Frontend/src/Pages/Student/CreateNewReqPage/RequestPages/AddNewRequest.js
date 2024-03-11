@@ -17,7 +17,7 @@ function AddNewRequest({ SERVER_URL }) {
   const [body, setBody] = useState("");
   const [subject, setSubject] = useState("");
   const [toemail, SetToemail] = useState("");
-  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
   const [user, setuser] = useState("");
 
   function decryptEmail(encryptedEmail) {

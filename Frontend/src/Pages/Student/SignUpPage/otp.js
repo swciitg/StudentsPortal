@@ -23,7 +23,7 @@ export default function Otp({SERVER_URL}) {
   const [timer, setTimer] = useState(false);
 
   const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const ENCRYPTION_KEY = 'HELLO_WoRLD';
+  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
 
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);

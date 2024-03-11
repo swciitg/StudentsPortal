@@ -19,7 +19,7 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
     navigate("/");
   };
   const [user, setuser] = useState("");
-  const ENCRYPTION_KEY = "HELLO_WoRLD";
+  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
 
   function decryptEmail(encryptedEmail) {
     const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
