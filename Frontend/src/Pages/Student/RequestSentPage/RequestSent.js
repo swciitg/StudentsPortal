@@ -247,7 +247,7 @@ function RequestSent({ SERVER_URL }) {
                 </div>
                 <div className=" text-sm w-[25%]  justify-center  gap-[3px] flex items-center py-3">
                   {"Sender's Name"}
-                  <img src="sort.svg" />
+                  <img src="/studentsportal/sort.svg" />
                 </div>
 
                 <div className=" text-sm  w-[25%] justify-center  gap-[3px]   flex items-center py-3">
