@@ -79,7 +79,7 @@ export default function ForgotPassword({ SERVER_URL }) {
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
       <div className="bg-white pl-10 pr-10 w-[90%] md:w-[60%] lg:w-[400px] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
         <div className="flex justify-start  mb-2">
-          <img className="" src="iitg_logo.png" alt="iitg_logo" width="65px" />
+          <img className="" src="/studentsportal/iitg_logo.png" alt="iitg_logo" width="65px" />
         </div>
         <p className="text-[rgb(27,33,45)] font-semibold text-2xl mb-5">
           Reset Password

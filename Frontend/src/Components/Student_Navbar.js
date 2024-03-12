@@ -82,7 +82,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
         >
           <div>
             <div className="flex items-center gap-2 pb-6 justify-center pt-6">
-              <img src="iitg_logo.png" alt="iitg_logo" width="45px" />
+              <img src="/studentsportal/iitg_logo.png" alt="iitg_logo" width="45px" />
               <div className="text-lg font-bold">Students Portal</div>
             </div>
             <ul>
@@ -183,7 +183,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
             </ul>
           </div>
           <div className="flex mb-12 items-center justify-center gap-2">
-            <img src="swcLogo.svg" width="35px" />
+            <img src="/studentsportal/swcLogo.svg" width="35px" />
             <div className="text-[#BBBCC0] text-sm">Copyrights @SWC_2023</div>
           </div>
         </nav>

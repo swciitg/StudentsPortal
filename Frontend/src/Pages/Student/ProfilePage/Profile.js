@@ -106,14 +106,14 @@ function Profile({ SERVER_URL}) {
       if (response.status === 200) {
         console.log("Profile Update successful");
       } else {
-        console.error("Profile Update failed:", response.data.message);
+        // console.error("Profile Update failed:", response.data.message);
       }
     } catch (error) {
-      console.log("Error:" + error);
+      // console.log("Error:" + error);
     }
     setIsEditing(false);
   };
-
+// console.log(ProfileUrl)
   useEffect(
     () => {
       async function UserDetails() {
@@ -130,10 +130,10 @@ function Profile({ SERVER_URL}) {
             const user = response.data;
             setuser(user);
           } else {
-            console.error(response.data.message);
+            // console.error(response.data.message);
           }
         } catch (error) {
-          console.error("Error:", error.message);
+          // console.error("Error:", error.message);
           navigate("/");
         }
       }
@@ -308,7 +308,7 @@ function Profile({ SERVER_URL}) {
                           <img
                             src={
                               user.profileUrl && user.profileUrl.length > 0
-                                ? user.profileUrl
+                                ? `${user.profileUrl}`
                                 : ProfileUrl
                             }
                             alt="Profile"
@@ -316,12 +316,12 @@ function Profile({ SERVER_URL}) {
                             style={{ width: "200px" }}
                           />
                           <div className="absolute  inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <img src="edit_profile.svg" width="50px" />
+                            <img src="/studentsportal/edit_profile.svg" width="50px" />
                           </div>
                         </div>
                       ) : (
                         <img
-                          src="camera-icon.svg"
+                          src="/studentsportal/camera-icon.svg"
                           alt="Camera"
                           className="w-8 h-8 m-10"
                         />

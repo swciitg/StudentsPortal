@@ -154,7 +154,7 @@ function RequestSent({ SERVER_URL }) {
               className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1"
             >
               <div>Check Updates</div>
-              <img src="Arrow-right.svg" />
+              <img src="/studentsportal/Arrow-right.svg" />
             </div>
           </div>
         );
@@ -232,7 +232,7 @@ function RequestSent({ SERVER_URL }) {
 
             <div className=" flex -gap-2 bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
               <div className=" relative flex items-center  w-full">
-                <img className="translate-x-[26px]" src="search.svg" />
+                <img className="translate-x-[26px]" src="/studentsportal/search.svg" />
                 <input
                   onChange={(e) => setSearch(e.target.value)}
                   className="my-3 lg:w-[50%] w-[90%] px-3 pl-8 py-[6px] border-[1px] rounded outline-none placeholder-[#113274] border-[#626670] "
@@ -252,7 +252,7 @@ function RequestSent({ SERVER_URL }) {
 
                 <div className=" text-sm  w-[25%] justify-center  gap-[3px]   flex items-center py-3">
                   Date
-                  <img src="Arrow Sort.svg" />
+                  <img src="/studentsportal/Arrow Sort.svg" />
                 </div>
                 <div className=" text-sm  w-[20%]  text-center  py-3">
                   Status
@@ -276,9 +276,9 @@ function RequestSent({ SERVER_URL }) {
                   }
                 >
                   {currentPage > 1 ? (
-                    <img src="b-arrow-left.svg" />
+                    <img src="/studentsportal/b-arrow-left.svg" />
                   ) : (
-                    <img src="grey-arrow-left.svg" />
+                    <img src="/studentsportal/grey-arrow-left.svg" />
                   )}
                   Previous
                 </div>
@@ -308,9 +308,9 @@ function RequestSent({ SERVER_URL }) {
                 >
                   Next
                   {currentPage < totalPages ? (
-                    <img src="b-arrow-right.svg" />
+                    <img src="/studentsportal/b-arrow-right.svg" />
                   ) : (
-                    <img src="grey-arrow-right.svg" />
+                    <img src="/studentsportal/grey-arrow-right.svg" />
                   )}
                 </div>
               </div>
