@@ -6,10 +6,12 @@ const emailService = {
   sendOTP:
   async function sendOTP(email, otp) {
     let transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.office365.com', 
+      port: 587, 
+      secure: false, 
       auth: {
-        user: EMAIL,
-        pass: PASSWORD,
+        user: EMAIL, // Your Outlook email address
+        pass: PASSWORD, // Your Outlook password
       },
     });
   
