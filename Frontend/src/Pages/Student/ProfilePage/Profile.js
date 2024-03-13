@@ -316,12 +316,12 @@ function Profile({ SERVER_URL}) {
                             style={{ width: "200px" }}
                           />
                           <div className="absolute  inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <img src="/studentsportal/edit_profile.svg" width="50px" />
+                            <img src="/students_portal/edit_profile.svg" width="50px" />
                           </div>
                         </div>
                       ) : (
                         <img
-                          src="/studentsportal/camera-icon.svg"
+                          src="/students_portal/camera-icon.svg"
                           alt="Camera"
                           className="w-8 h-8 m-10"
                         />

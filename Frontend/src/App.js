@@ -18,7 +18,7 @@ import ForgotPassword from "./Pages/Student/LogInPage/ForgotPassword";
 function App() {
   const SERVER_URL = process.env.REACT_APP_SERVER_URL||'http://localhost:3002';
   return (
-    <BrowserRouter basename={"/studentsportal"}>
+    <BrowserRouter basename={"/students_portal"}>
       <Routes>
         {/* Student Side Routes*/}
         <Route path="*" element={<ProfileSelection SERVER_URL={SERVER_URL}/>} />

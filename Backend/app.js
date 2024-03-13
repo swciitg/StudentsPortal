@@ -27,7 +27,6 @@ app.use('/studentsportal', express.static(join(__dirname, 'build')));
 app.use('/uploads', express.static(join(__dirname,'uploads')));
 
 
-
 app.use(admin.options.rootPath, adminRouter)
 app.use('/studentsportal/api/users', userRoutes);
 // app.use('/uploads', express.static(join(__dirname, 'uploads')));

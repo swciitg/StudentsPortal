@@ -53,7 +53,7 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
   return (
     <div>
       <div className="flex p-3 -mt-3 mb-2 justify-end gap-2 items-center">
-        <img src="/studentsportal/profile-blue.svg" />
+        <img src="/students_portal/profile-blue.svg" />
         <Link
           to={`/StudentDashboard/Profile?e=${encodeURIComponent(
             encryptedEmail
@@ -71,7 +71,7 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
                 : setlogout_toggle(false);
             }}
             className=" cursor-pointer"
-            src="/studentsportal/down-arrow.svg"
+            src="/students_portal/down-arrow.svg"
           />
         ) : (
           <img
@@ -81,7 +81,7 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
                 : setlogout_toggle(false);
             }}
             className=" cursor-pointer"
-            src="/studentsportal/blue-arrow-up.svg"
+            src="/students_portal/blue-arrow-up.svg"
           />
         )}
       </div>
