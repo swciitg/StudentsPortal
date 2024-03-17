@@ -4,6 +4,9 @@ import CryptoJS from "crypto-js";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import profile_blue from "../assets/profile-blue.svg";
+import down_arrow from "../assets/down-arrow.svg";
+import blue_arrow_up from "../assets/blue-arrow-up.svg";
 function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
   CornerProfileLogoutSection.propTypes = {
     encryptedEmail: PropTypes.string.isRequired,
@@ -53,7 +56,7 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
   return (
     <div>
       <div className="flex p-3 -mt-3 mb-2 justify-end gap-2 items-center">
-        <img src="/students_portal/profile-blue.svg" />
+        <img src={profile_blue}/>
         <Link
           to={`/StudentDashboard/Profile?e=${encodeURIComponent(
             encryptedEmail
@@ -71,7 +74,7 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
                 : setlogout_toggle(false);
             }}
             className=" cursor-pointer"
-            src="/students_portal/down-arrow.svg"
+            src={down_arrow}
           />
         ) : (
           <img
@@ -81,7 +84,7 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
                 : setlogout_toggle(false);
             }}
             className=" cursor-pointer"
-            src="/students_portal/blue-arrow-up.svg"
+            src={blue_arrow_up}
           />
         )}
       </div>

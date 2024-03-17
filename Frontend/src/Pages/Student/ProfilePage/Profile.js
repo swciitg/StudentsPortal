@@ -5,7 +5,8 @@ import axios from "axios";
 import CornerProfileLogoutSection from "../../../Components/CornerProfileLogoutSection";
 import CryptoJS from "crypto-js";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import camera_icon from "../../../assets/camera-icon.svg";
+import edit_profile from "../../../assets/edit_profile.svg";
 function Profile({ SERVER_URL}) {
   Profile.propTypes = {
     SERVER_URL: PropTypes.string.isRequired,
@@ -316,12 +317,12 @@ function Profile({ SERVER_URL}) {
                             style={{ width: "200px" }}
                           />
                           <div className="absolute  inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <img src="/students_portal/edit_profile.svg" width="50px" />
+                            <img src={edit_profile} width="50px" />
                           </div>
                         </div>
                       ) : (
                         <img
-                          src="/students_portal/camera-icon.svg"
+                          src={camera_icon}
                           alt="Camera"
                           className="w-8 h-8 m-10"
                         />

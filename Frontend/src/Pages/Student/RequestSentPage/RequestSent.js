@@ -6,7 +6,14 @@ import CryptoJS from "crypto-js";
 import RequestDetailsModal from "../../../Components/CheckUpdateModal";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Arrow_right from "../../../assets/Arrow-right.svg";
+import Arrow_sort from "../../../assets/Arrow-sort.svg";
+import b_arrow_left from "../../../assets/b-arrow-left.svg";
+import b_arrow_right from "../../../assets/b-arrow-right.svg";
+import grey_arrow_left from "../../../assets/grey-arrow-left.svg";
+import grey_arrow_right from "../../../assets/grey-arrow-right.svg";
+import search_icon from "../../../assets/search.svg";
+import sort from "../../../assets/sort.svg";
 function RequestSent({ SERVER_URL }) {
   RequestSent.propTypes = {
     SERVER_URL: PropTypes.string.isRequired
@@ -154,7 +161,7 @@ function RequestSent({ SERVER_URL }) {
               className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1"
             >
               <div>Check Updates</div>
-              <img src="/students_portal/Arrow-right.svg" />
+              <img src={Arrow_right} />
             </div>
           </div>
         );
@@ -232,7 +239,7 @@ function RequestSent({ SERVER_URL }) {
 
             <div className=" flex -gap-2 bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
               <div className=" relative flex items-center  w-full">
-                <img className="translate-x-[26px]" src="/students_portal/search.svg" />
+                <img className="translate-x-[26px]" src={search_icon} />
                 <input
                   onChange={(e) => setSearch(e.target.value)}
                   className="my-3 lg:w-[50%] w-[90%] px-3 pl-8 py-[6px] border-[1px] rounded outline-none placeholder-[#113274] border-[#626670] "
@@ -247,12 +254,12 @@ function RequestSent({ SERVER_URL }) {
                 </div>
                 <div className=" text-sm w-[25%]  justify-center  gap-[3px] flex items-center py-3">
                   {"Sender's Name"}
-                  <img src="/students_portal/sort.svg" />
+                  <img src={sort} />
                 </div>
 
                 <div className=" text-sm  w-[25%] justify-center  gap-[3px]   flex items-center py-3">
                   Date
-                  <img src="/students_portal/Arrow Sort.svg" />
+                  <img src={Arrow_sort} />
                 </div>
                 <div className=" text-sm  w-[20%]  text-center  py-3">
                   Status
@@ -276,9 +283,9 @@ function RequestSent({ SERVER_URL }) {
                   }
                 >
                   {currentPage > 1 ? (
-                    <img src="/students_portal/b-arrow-left.svg" />
+                    <img src={b_arrow_left} />
                   ) : (
-                    <img src="/students_portal/grey-arrow-left.svg" />
+                    <img src={grey_arrow_left} />
                   )}
                   Previous
                 </div>
@@ -308,9 +315,9 @@ function RequestSent({ SERVER_URL }) {
                 >
                   Next
                   {currentPage < totalPages ? (
-                    <img src="/students_portal/b-arrow-right.svg" />
+                    <img src={b_arrow_right} />
                   ) : (
-                    <img src="/students_portal/grey-arrow-right.svg" />
+                    <img src={grey_arrow_right} />
                   )}
                 </div>
               </div>

@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Profile_grey from "../../../../assets/Profile-grey.svg";
+import tag from "../../../../assets/tag.svg";
+import email from "../../../../assets/email.svg";
+import branch from "../../../../assets/branch.svg";
 function MyProfile({user,encryptedEmail}) {
   MyProfile.propTypes = {
     user:(
@@ -19,7 +23,7 @@ function MyProfile({user,encryptedEmail}) {
       <div>
         {" "}
         <div className="flex gap-2 items-center">
-          <img src="/students_portal/Profile-grey.svg" />
+          <img src={Profile_grey} />
           <div className=" text-base">
             My Profile
             {user&&(user.profileCompletion !== 100 ? (
@@ -40,17 +44,17 @@ function MyProfile({user,encryptedEmail}) {
       </div>:
          <div className="mt-3">
           <div className="flex gap-2">
-            <img src="/students_portal/branch.svg" />
+            <img src={branch} />
            {user.program&& user.program.length>0?<div>{user.program}</div>:
             <div>--</div>}
           </div>
           <div className="flex gap-2">
-            <img src="/students_portal/tag.svg" />
+            <img src={tag} />
            {user.department&&user.department.length>0? <div>{user.department}</div>:
             <div>--</div>}
           </div>
           <div className="flex gap-2">
-            <img src="/students_portal/email.svg" />
+            <img src={email} />
             <div>{user.email}@iitg.ac.in</div>
           </div>
         </div> }

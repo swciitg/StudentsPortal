@@ -6,6 +6,13 @@ import PropTypes from "prop-types";
 import RequestDetailsModal from "./Modals/RequestReceived_CheckUpdates";
 import axios from "axios";
 import Student_Navbar from "../../../Components/Student_Navbar";
+import Arrow_right from "../../../assets/Arrow-right.svg";
+import Arrow_sort from "../../../assets/Arrow-sort.svg";
+import b_arrow_left from "../../../assets/b-arrow-left.svg";
+import b_arrow_right from "../../../assets/b-arrow-right.svg";
+import grey_arrow_left from "../../../assets/grey-arrow-left.svg";
+import grey_arrow_right from "../../../assets/grey-arrow-right.svg";
+import search_icon from "../../../assets/search.svg";
 
 function RequestReceived({ SERVER_URL }) {
   RequestReceived.propTypes = {
@@ -151,7 +158,7 @@ function RequestReceived({ SERVER_URL }) {
               className="text-[#2164E8] flex cursor-pointer items-center text-sm gap-1"
             >
               <div>Details</div>
-              <img src="/students_portal/Arrow-right.svg" />
+              <img src={Arrow_right} />
             </div>
           </div>
         );
@@ -245,7 +252,7 @@ function RequestReceived({ SERVER_URL }) {
               <div className="flex lg:w-[60%] w-full ">
 
                 <div className=" relative flex items-center lg:w-[75%] w-full ">
-                  <img className="translate-x-[26px]" src="/students_portal/search.svg" />
+                  <img className="translate-x-[26px]" src={search_icon} />
                   <input
                     onChange={(e) => setSearch(e.target.value)}
                     className="my-3 px-3 pl-8 py-[6px] w-full  border-[1px] rounded outline-none placeholder-[#113274] border-[#626670] "
@@ -278,7 +285,7 @@ function RequestReceived({ SERVER_URL }) {
                 </div>
                 <div className=" text-sm  w-[25%] justify-center  gap-[3px]   flex items-center py-3">
                   Date
-                  <img src="/students_portal/Arrow Sort.svg" />
+                  <img src={Arrow_sort} />
                 </div>
                 <div className=" text-sm w-[20%]  text-center  py-3">
                   Status
@@ -304,9 +311,9 @@ function RequestReceived({ SERVER_URL }) {
                     }
                   >
                     {currentPage > 1 ? (
-                      <img src="/students_portal/b-arrow-left.svg" />
+                      <img src={b_arrow_left} />
                     ) : (
-                      <img src="/students_portal/grey-arrow-left.svg" />
+                      <img src={grey_arrow_left} />
                     )}
                     Previous
                   </div>
@@ -336,9 +343,9 @@ function RequestReceived({ SERVER_URL }) {
                   >
                     Next
                     {currentPage < totalPages ? (
-                      <img src="/students_portal/b-arrow-right.svg" />
+                      <img src={b_arrow_right} />
                     ) : (
-                      <img src="/students_portal/grey-arrow-right.svg" />
+                      <img src={grey_arrow_right} />
                     )}
                   </div>
                 </div>

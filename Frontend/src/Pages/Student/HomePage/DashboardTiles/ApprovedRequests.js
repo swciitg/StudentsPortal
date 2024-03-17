@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types'
+import requests_approved from "../../../../assets/requests-approved.svg";
 function ApprovedRequests({ApprovedRequest,encryptedEmail}) {
     ApprovedRequests.propTypes = {
         ApprovedRequest: PropTypes.arrayOf(
@@ -18,7 +19,7 @@ function ApprovedRequests({ApprovedRequest,encryptedEmail}) {
       <div className=" h-full w-full">
         {" "}
         <div className="flex gap-2 items-center">
-          <img src="/students_portal/requests-approved.svg" />
+          <img src={requests_approved} />
           <div className=" text-base">Approved Requests</div>
         </div>
        {(ApprovedRequest&&ApprovedRequest.filter(item => item.Status === "Approved").length>0)? <div className="flex flex-col gap-2 mt-3">

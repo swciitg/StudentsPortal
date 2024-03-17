@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types"
-
+import request_pending from "../../../../assets/requests-pending.svg";
 function PendingRequests({PendingRequest,encryptedEmail}) {
     PendingRequests.propTypes = {
         PendingRequest: PropTypes.arrayOf(
@@ -21,7 +21,7 @@ function PendingRequests({PendingRequest,encryptedEmail}) {
       <div className="h-full w-full">
         {" "}
         <div className="flex gap-2 items-center">
-          <img src="/students_portal/requests-pending.svg" />
+          <img src={request_pending} />
           <div className=" text-base">Pending Requests</div>
         </div>
      {(PendingRequest&&PendingRequest.filter(item => item.Status === "Pending").length>0)?   <div className="mt-2 lg:mb-0 mb-3 flex flex-col gap-2">

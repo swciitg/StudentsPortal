@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-
+import notification from "../../../../assets/Notification.svg";
+import bookmark_notification from "../../../../assets/Bookmark-Notification.svg";
 function ForwardNotification({ Notification, encryptedEmail }) {
   ForwardNotification.propTypes = {
     Notification: PropTypes.arrayOf(
@@ -20,7 +21,7 @@ function ForwardNotification({ Notification, encryptedEmail }) {
         {" "}
         <div className="flex justify-between items-center">
           <div className="flex gap-2 items-center">
-            <img src="/students_portal/Notification.svg" />
+            <img src={notification} />
             <div>Notification</div>
           </div>
           <div className="text-xs text-[#D83B01]">2 Unread</div>
@@ -35,7 +36,7 @@ function ForwardNotification({ Notification, encryptedEmail }) {
                 {item.description}
               </div>
               <div className=" items-center  flex flex-col gap-6 ">
-                <img src="/students_portal/Bookmark-Notification.svg" width="10px" />
+                <img src={bookmark_notification} width="10px" />
                 <div className="text-[0.60rem] text-[#494D57] ">
                   {item.Date}
                 </div>

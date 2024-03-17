@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 import CryptoJS from "crypto-js";
+import iitg_logo from "../../../assets/iitg_logo.png";
 export default function ForgotPassword({ SERVER_URL }) {
   ForgotPassword.propTypes = {
     SERVER_URL: PropTypes.string.isRequired,
@@ -79,7 +80,7 @@ export default function ForgotPassword({ SERVER_URL }) {
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
       <div className="bg-white pl-10 pr-10 w-[90%] md:w-[60%] lg:w-[400px] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
         <div className="flex justify-start  mb-2">
-          <img className="" src="/students_portal/iitg_logo.png" alt="iitg_logo" width="65px" />
+          <img className="" src={iitg_logo} alt="iitg_logo" width="65px" />
         </div>
         <p className="text-[rgb(27,33,45)] font-semibold text-2xl mb-5">
           Reset Password

@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import PropTypes from "prop-types";
 import axios from "axios";
-
+import iitg_logo from "../assets/iitg_logo.png";
+import swcLogo from "../assets/swcLogo.svg";
 export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
 
   Student_Navbar.propTypes = {
@@ -82,7 +83,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
         >
           <div>
             <div className="flex items-center gap-2 pb-6 justify-center pt-6">
-              <img src="/students_portal/iitg_logo.png" alt="iitg_logo" width="45px" />
+              <img src={iitg_logo} alt="iitg_logo" width="45px" />
               <div className="text-lg font-bold">Students Portal</div>
             </div>
             <ul>
@@ -183,7 +184,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
             </ul>
           </div>
           <div className="flex mb-12 items-center justify-center gap-2">
-            <img src="/students_portal/swcLogo.svg" width="35px" />
+            <img src={swcLogo} width="35px" />
             <div className="text-[#BBBCC0] text-sm">Copyrights @SWC_2023</div>
           </div>
         </nav>

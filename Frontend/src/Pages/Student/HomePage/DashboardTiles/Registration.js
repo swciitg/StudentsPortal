@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Checkmark from "../../../../assets/Checkmark.svg";
+import registration from "../../../../assets/registration.svg";
+import list from "../../../../assets/List.svg";
+import down_arrow_grey from "../../../../assets/down-arrow-grey.svg";
 
 function Registration({user,ManageRequests,encryptedEmail}) {
   const [toggle1, setToggle1] = useState(true);
@@ -30,7 +34,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
         <div className="bg-white  h-[60px]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] flex items-center justify-between text-[#BCBEC2] pl-4 pr-4">
           <div className="flex gap-1 items-center">
             <div>Registration</div>
-            <img src="/students_portal/Checkmark.svg" width="20px " />
+            <img src={Checkmark} width="20px " />
           </div>
           <img
             className="cursor-pointer "
@@ -39,14 +43,14 @@ function Registration({user,ManageRequests,encryptedEmail}) {
               setToggle2(false);
               setToggle3(false);
             }}
-            src="/students_portal/down-arrow-grey.svg"
+            src={down_arrow_grey}
           />
         </div>
       ) : (
         <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className=" flex flex-col gap-2">
             <div className="flex gap-2">
-              <img src="/students_portal/registration.svg" />
+              <img src={registration} />
               <div className="text-xl font-semibold">Registration</div>
             </div>
           { user&& user.profileCompletion !== 100 ? (
@@ -83,13 +87,13 @@ function Registration({user,ManageRequests,encryptedEmail}) {
               setToggle1(false);
               setToggle3(false);
             }}
-            src="/students_portal/down-arrow-grey.svg"
+            src={down_arrow_grey}
           />
         </div>
       ) : (
         <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4 border-[#2164E8]  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className="flex gap-2">
-            <img src="/students_portal/list.svg" />
+            <img src={list} />
             <div className="text-xl font-semibold">Request</div>
           </div>
           <div className=" pr-5">
@@ -118,13 +122,13 @@ function Registration({user,ManageRequests,encryptedEmail}) {
               setToggle1(false);
               setToggle2(false);
             }}
-            src="/students_portal/down-arrow-grey.svg"
+            src={down_arrow_grey}
           />
         </div>
       ) : (
         <div className="bg-white border-l-[6px] p-3 lg:pb-0 pb-4  border-[#2164E8]   shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ">
           <div className="flex gap-2">
-            <img src="/students_portal/registration.svg" />
+            <img src={registration} />
             <div className="text-xl font-semibold">Manage Requests</div>
           </div>
           <div className="flex gap-1 flex-col lg:my-0 my-2">
