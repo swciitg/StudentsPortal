@@ -246,7 +246,7 @@ function RequestReceived({ SERVER_URL }) {
                   CR/BR POR
                 </div> */}
               {/* </nav> */}
-              <hr className=" absolute border-[2px] text-[#E9E9EB] -translate-y-[3px] w-full  lg:w-full -z-10 " />
+              {/* <hr className=" absolute border-[2px] text-[#E9E9EB] -translate-y-[3px] w-full  lg:w-full -z-10 " /> */}
             </div>
             <div className=" lg:flex w-full lg:flex-row flex flex-col  lg:items-center pr-4 lg:justify-between bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
               <div className="flex lg:w-[60%] w-full ">
@@ -275,7 +275,8 @@ function RequestReceived({ SERVER_URL }) {
                 </div>
               </div>
             </div>
-            <div className=" flex flex-col gap-[3px] lg:w-full w-[720px] ">
+            <div className=" w-full overflow-scroll no-scrollbar">
+            <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]  ">
               <div className="flex mt-4 bg-[#E8E9EA] items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
                 <div className=" text-sm  w-[10%] text-center  py-3">
                   Sl. No.
@@ -301,7 +302,12 @@ function RequestReceived({ SERVER_URL }) {
                 ) : (
                   <RenderHistory onCheckUpdates={handleCheckUpdates} SERVER_URL={SERVER_URL}  />
                 )}
-                <div className="flex justify-center items-center mt-4 mb-10">
+           
+              </>
+            </div>
+            
+           </div>
+           <div className="flex justify-center items-center mt-5 pb-5 ">
                   <div
                     className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${
                       currentPage === 1 ? "text-[#8D9096]" : "text-[#1E2532]"
@@ -349,8 +355,6 @@ function RequestReceived({ SERVER_URL }) {
                     )}
                   </div>
                 </div>
-              </>
-            </div>
           </>
         )}
       </div>

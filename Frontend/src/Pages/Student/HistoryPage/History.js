@@ -195,13 +195,13 @@ function History_Page({ SERVER_URL }) {
                 {/* <h2 className="text-[#2164E8] text-xs">{History.filter(item => !item["Seen Status"]).length} Updates</h2> */}
               </div>
             </div>
-            <div className="bg-white relative overflow-scroll ">
-              <nav className="flex border-b-3 relative z-10">
+            <div className="bg-white overflow-scroll  no-scrollbar">
+              <nav className="flex border-b-3  z-10">
                 <div
                   onClick={() => handleTabClick("Pending")}
                   className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform  border-b-[3px] ${
                     selectedTab === "Pending"
-                      ? "border-b-[#2164E8] relative "
+                      ? "border-b-[#2164E8]  "
                       : "border-b-[#E9E9EB] text-[#494D57]"
                   }`}
                 >
@@ -211,7 +211,7 @@ function History_Page({ SERVER_URL }) {
                   onClick={() => handleTabClick("Approved")}
                   className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
                     selectedTab === "Approved"
-                      ? "border-b-[#2164E8] relative "
+                      ? "border-b-[#2164E8]  "
                       : "border-b-[#E9E9EB] text-[#494D57]"
                   }`}
                 >
@@ -221,7 +221,7 @@ function History_Page({ SERVER_URL }) {
                   onClick={() => handleTabClick("Denied")}
                   className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
                     selectedTab === "Denied"
-                      ? "border-b-[#2164E8] relative "
+                      ? "border-b-[#2164E8]  "
                       : "border-b-[#E9E9EB] text-[#494D57]"
                   }`}
                 >
@@ -231,14 +231,14 @@ function History_Page({ SERVER_URL }) {
                   onClick={() => handleTabClick("Withdrawn")}
                   className={`pb-[9px] text-sm cursor-pointer px-8 transition-transform border-b-[3px] ${
                     selectedTab === "Withdrawn"
-                      ? "border-b-[#2164E8] relative "
+                      ? "border-b-[#2164E8]  "
                       : "border-b-[#E9E9EB] text-[#494D57]"
                   }`}
                 >
                   Withdrawn
                 </div>
               </nav>
-              <hr className=" absolute border-[2px] text-[#E9E9EB] -translate-y-[3px]  w-full z-0 " />
+              {/* <hr className=" absolute border-[2px] text-[#E9E9EB] -translate-y-[3px]  w-full z-0 " /> */}
             </div>
 
             <div className=" flex -gap-2 bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -251,6 +251,7 @@ function History_Page({ SERVER_URL }) {
                 />
               </div>
             </div>
+            <div className=" w-full overflow-scroll no-scrollbar">
             <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]">
               <div className=" flex mt-4 bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
                 <div className=" text-sm w-[10%] text-center  py-3">
@@ -277,7 +278,10 @@ function History_Page({ SERVER_URL }) {
               ) : (
                 <RenderHistory onCheckUpdates={handleCheckUpdates} SERVER_URL={SERVER_URL}  />
               )}
-              <div className="flex justify-center items-center mt-4 mb-10">
+             
+            </div>
+            </div>
+            <div className="flex justify-center items-center mt-4 pb-10">
                 <div
                   className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${
                     currentPage === 1 ? "text-[#8D9096]" : "text-[#1E2532]"
@@ -325,7 +329,6 @@ function History_Page({ SERVER_URL }) {
                   )}
                 </div>
               </div>
-            </div>
           </>
         )}
       </div>
