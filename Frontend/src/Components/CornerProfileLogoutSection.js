@@ -33,7 +33,7 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
     async function UserDetails() {
       try {
         const response = await axios.post(
-          `${SERVER_URL}/studentsportal/api/users/user-details`,
+          `${SERVER_URL}/users/user-details`,
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),

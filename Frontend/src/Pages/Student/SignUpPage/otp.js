@@ -36,7 +36,7 @@ export default function Otp({SERVER_URL}) {
       seterror({ error: false });
       setLoading(true);
       const response = await axios.post(
-        `${SERVER_URL}/studentsportal/api/users/verify-otp`,
+        `${SERVER_URL}/users/verify-otp`,
         {
           email: decryptEmail(encryptedEmail),
           otp: Otp1,
@@ -65,7 +65,7 @@ export default function Otp({SERVER_URL}) {
       setresent(false);
       setresending(true);
       const response = await axios.post(
-        `${SERVER_URL}/studentsportal/api/users/resend-otp`,
+        `${SERVER_URL}/users/resend-otp`,
         {
           email: decryptEmail(encryptedEmail),
         }

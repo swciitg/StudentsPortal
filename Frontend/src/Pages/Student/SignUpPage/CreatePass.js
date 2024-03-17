@@ -27,7 +27,7 @@ export default function CreatePass({ SERVER_URL }) {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${SERVER_URL}/studentsportal/api/users/create-password`,
+        `${SERVER_URL}/users/create-password`,
         {
           email: decryptEmail(encryptedEmail),
           password: password,

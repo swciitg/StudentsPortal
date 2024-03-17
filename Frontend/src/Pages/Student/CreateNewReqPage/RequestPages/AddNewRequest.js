@@ -46,7 +46,7 @@ function AddNewRequest({ SERVER_URL }) {
     async function UserDetails() {
       try {
         const response = await axios.post(
-          `${SERVER_URL}/studentsportal/api/users/user-details`,
+          `${SERVER_URL}/users/user-details`,
           {
             email: decryptEmail(encryptedEmail),
             token: localStorage.getItem("token"),
@@ -68,7 +68,7 @@ function AddNewRequest({ SERVER_URL }) {
   }, []);
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(`${SERVER_URL}/studentsportal/api/request`, {
+      const response = await axios.post(`${SERVER_URL}/request`, {
         Request_sent_date: formattedDate,
         "Sender Name": user.name,
         "Sender Roll no": user.roll,

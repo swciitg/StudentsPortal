@@ -61,7 +61,7 @@ function Profile({ SERVER_URL}) {
 
       try {
         const response = await axios.post(
-          `${SERVER_URL}/studentsportal/api/users/upload`,
+          `${SERVER_URL}/users/upload`,
           formData,
           {
             headers: {
@@ -72,7 +72,7 @@ function Profile({ SERVER_URL}) {
 
         const serverURL = response.data.url; // Assuming the server responds with the file URL
         await axios.post( 
-          `${SERVER_URL}/studentsportal/api/users/user-details`,
+          `${SERVER_URL}/users/user-details`,
           {
           email: decryptEmail(encryptedEmail),
           profileUrl: serverURL,
@@ -94,7 +94,7 @@ function Profile({ SERVER_URL}) {
     if (user.profileUrl && user.profileUrl.length > 0) Points += 25;
     try {
       const response = await axios.post(
-        `${SERVER_URL}/studentsportal/api/users/user-details`,
+        `${SERVER_URL}/users/user-details`,
         {
           email: decryptEmail(encryptedEmail),
           program: Program,
@@ -120,7 +120,7 @@ function Profile({ SERVER_URL}) {
       async function UserDetails() {
         try {
           const response = await axios.post(
-            `${SERVER_URL}/studentsportal/api/users/user-details`,
+            `${SERVER_URL}/users/user-details`,
             {
               email: decryptEmail(encryptedEmail),
               token: localStorage.getItem("token"),
@@ -147,7 +147,7 @@ function Profile({ SERVER_URL}) {
       async function UpdateProfileCompletion() {
         try {
           const response = await axios.post(
-            `${SERVER_URL}/studentsportal/api/users/user-details`,
+            `${SERVER_URL}/users/user-details`,
             {
               email: decryptEmail(encryptedEmail),
               token: localStorage.getItem("token"),

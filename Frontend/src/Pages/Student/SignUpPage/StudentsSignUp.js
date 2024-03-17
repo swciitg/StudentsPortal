@@ -43,7 +43,7 @@ export default function StudentSignUp({SERVER_URL}) {
     try {
       setLoading(true); 
       seterror({status:false})
-      const response = await axios.post(`${SERVER_URL}/studentsportal/api/users`, {
+      const response = await axios.post(`${SERVER_URL}/users`, {
         name: Name,
         email: Email,
         roll: Roll

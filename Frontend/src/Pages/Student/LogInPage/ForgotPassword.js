@@ -50,7 +50,7 @@ export default function ForgotPassword({ SERVER_URL }) {
     try {
       setLoading(true);
       seterror({ status: false });
-      const response = await axios.post(`${SERVER_URL}/studentsportal/api/users/forgot-password`, {
+      const response = await axios.post(`${SERVER_URL}/users/forgot-password`, {
         // name: Name,
         email: Email,
         // roll: Roll,
