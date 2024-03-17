@@ -70,6 +70,7 @@ export default function CreatePass({ SERVER_URL }) {
               className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
               type="password"
               placeholder="Enter Password"
+              title="Characters must be 6 or more"
             />
           </label>
           <label className="flex flex-col gap-2 ">
@@ -79,10 +80,12 @@ export default function CreatePass({ SERVER_URL }) {
               className="border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md border-[rgba(118,122,129,1)] pl-3"
               type="password"
               placeholder="Rewrite Password "
+              title="Rewrite the above password"
+
             />
           </label>
         </div>
-        {paas === confpass && paas.length > 0 ? (
+        {paas === confpass && paas.length > 6 ? (
           <div className="flex justify-end mt-10">
             <div>
               <button
