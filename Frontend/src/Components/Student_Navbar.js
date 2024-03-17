@@ -84,7 +84,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
           <div>
             <div className="flex items-center gap-2 pb-6 justify-center pt-6">
               <img src={iitg_logo} alt="iitg_logo" width="45px" />
-              <div className="text-lg font-bold">Students Portal</div>
+              <div className="text-lg font-bold">POR Portal</div>
             </div>
             <ul>
               <Link

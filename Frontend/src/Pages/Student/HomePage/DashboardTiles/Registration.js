@@ -99,8 +99,10 @@ function Registration({user,ManageRequests,encryptedEmail}) {
           <div className=" pr-5">
             {" "}
             <p className="text-sm mt-3">
-              Can put some text here explaining what requests are and what kinda
-              request we can put like POR, LOR, etc.
+              Create new
+              requests for Position of Responsibility,Letter of Recommendation
+              ,Inter IIT Participation,Branch Representative
+              , etc.
             </p>
           </div>
           <div className=" flex justify-end ">

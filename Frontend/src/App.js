@@ -19,7 +19,7 @@ function App() {
   const SERVER_URL = process.env.REACT_APP_SERVER_URL||'http://localhost:3002';
   // keep the REACT_APP_SERVER_URLl in .env file as 'https://swc.iitg.ac.in/studentsportal/api
   return (
-    <BrowserRouter basename={"/students_portal"}>
+    <BrowserRouter basename={"/por_portal"}>
       <Routes>
         {/* Student Side Routes*/}
         <Route path="*" element={<ProfileSelection SERVER_URL={SERVER_URL}/>} />
