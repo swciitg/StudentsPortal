@@ -30,7 +30,7 @@ function CreateRequest({ SERVER_URL }) {
           }
         );
         if (response.status === 200) {
-          console.log("OK");
+          // console.log("OK");
         }
       } catch (error) {
         navigate(`/`);

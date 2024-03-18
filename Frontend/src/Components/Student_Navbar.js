@@ -51,7 +51,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
           if(response.data.role==='admin'){setisAdmin(true)}
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     }
     CheckAdmin();

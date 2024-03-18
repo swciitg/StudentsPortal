@@ -49,7 +49,7 @@ function RequestDetailsModal({ isOpen,onRequestClose, requestData, SERVER_URL })
         closeApproveModal();
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setLoading(false);
     }
@@ -72,7 +72,7 @@ function RequestDetailsModal({ isOpen,onRequestClose, requestData, SERVER_URL })
         closeDenyModal();
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setLoading(false);
     }

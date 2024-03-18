@@ -41,10 +41,10 @@ function Home({SERVER_URL}) {
           const user = response.data;
           setuser(user);
         } else {
-          console.error(response.data.message);
+          // console.error(response.data.message);
         }
       } catch (error) {
-        console.error("Error:", error.message);
+        // console.error("Error:", error.message);
         navigate("/");
       }
     }
@@ -64,7 +64,7 @@ function Home({SERVER_URL}) {
           setData(response.data.data);
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     }
     Requests();

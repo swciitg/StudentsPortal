@@ -57,11 +57,11 @@ export default function ForgotPassword({ SERVER_URL }) {
       });
 
       if (response.status === 200) {
-        console.log("ok");
+        // console.log("ok");
 
         navigate(`/Otp?e=${encodeURIComponent(encryptEmail(Email))}`);
       } else {
-        console.error("Error creating user:", response.data.message);
+        // console.error("Error creating user:", response.data.message);
       }
     } catch (error) {
       if (error.response) {
@@ -71,7 +71,7 @@ export default function ForgotPassword({ SERVER_URL }) {
           seterror({ status: true, message: "Enter correct email!" });
         }
       }
-      console.error("Error:", error.message);
+      // console.error("Error:", error.message);
     } finally {
       setLoading(false);
     }

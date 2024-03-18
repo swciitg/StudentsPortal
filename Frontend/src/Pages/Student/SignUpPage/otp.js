@@ -44,10 +44,10 @@ export default function Otp({SERVER_URL}) {
       );
 
       if (response.status === 200) {
-        console.log("OTP verified successfully");
+        // console.log("OTP verified successfully");
         navigate(`/CreatePass?e=${encodeURIComponent(encryptedEmail)}`);
       } else {
-        console.error("Error verifying OTP:", response.data.message);
+        // console.error("Error verifying OTP:", response.data.message);
       }
     } catch (error) {
       if (error.response) {
@@ -55,7 +55,7 @@ export default function Otp({SERVER_URL}) {
           seterror({ status: true, message: "Invalid OTP!" });
         }
       }
-      console.error("Error:", error.message);
+      // console.error("Error:", error.message);
     } finally {
       setLoading(false);
     }
@@ -72,17 +72,17 @@ export default function Otp({SERVER_URL}) {
       );
 
       if (response.status === 201) {
-        console.log('OTP resend successfully');
+        // console.log('OTP resend successfully');
         setresending(false)
         setresent(true);
         setDisabled(true);
         setTimer(true);
         setSeconds(30);
       } else {
-        console.error("Error re-sending OTP:", response.data.message);
+        // console.error("Error re-sending OTP:", response.data.message);
       }
     } catch (error) {
-      console.error("Error:", error.message);
+      // console.error("Error:", error.message);
     }
   };
   useEffect(() => {

@@ -48,11 +48,11 @@ function RequestReceived({ SERVER_URL }) {
           }
         );
         if (response.status === 200) {
-          console.log("OK");
+          // console.log("OK");
         }
       } catch (error) {
         // navigate(`/`);
-        console.log(error);
+        // console.log(error);
       }
     }
     checkEmail();
@@ -72,7 +72,7 @@ function RequestReceived({ SERVER_URL }) {
           setHistory(response.data.data);
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     }
     Requests();
@@ -164,7 +164,7 @@ function RequestReceived({ SERVER_URL }) {
         );
       });
   };
-  console.log(search);
+  // console.log(search);
   return (
     <div className="relative h-screen w-[100%]">
       {/*Side Navbar */}

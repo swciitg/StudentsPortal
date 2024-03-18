@@ -18,7 +18,7 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    console.log("Logout Successfully");
+    // console.log("Logout Successfully");
     navigate("/");
   };
   const [user, setuser] = useState("");
@@ -44,10 +44,10 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
           const user = response.data;
           setuser(user);
         } else {
-          console.error(response.data.message);
+          // console.error(response.data.message);
         }
       } catch (error) {
-        console.error("Error:", error.message);
+        // console.error("Error:", error.message);
       }
     }
     UserDetails();

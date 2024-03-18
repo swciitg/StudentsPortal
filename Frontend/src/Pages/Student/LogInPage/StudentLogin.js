@@ -60,12 +60,12 @@ export default function StudentLogin({ SERVER_URL}) {
 
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
-        console.log("Login successful");
+        // console.log("Login successful");
         navigate(
           `/StudentDashboard/Home?e=${encodeURIComponent(encryptEmail(Email))}`
         );
       } else {
-        console.error("Login failed:", response.data.message);
+        // console.error("Login failed:", response.data.message);
       }
     } catch (error) {
       if (error.response) {
@@ -85,7 +85,7 @@ export default function StudentLogin({ SERVER_URL}) {
           });
         }
       }
-      console.error("Error:", error.message);
+      // console.error("Error:", error.message);
     } finally {
       setLoading(false);
     }

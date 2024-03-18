@@ -47,12 +47,12 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
         }
       );
       if (response.status === 200) {
-        console.log("Withdrawn Successfull!!");
+        // console.log("Withdrawn Successfull!!");
         setStatus("Withdrawn");
         closeWithdrawModal();
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     } finally {
       setLoading(false);
     }

@@ -37,17 +37,17 @@ export default function CreatePass({ SERVER_URL }) {
       if (response.status === 200) {
         // console.log(response)
         localStorage.setItem("token", response.data.token);
-        console.log("Password created successfully");
+        // console.log("Password created successfully");
 
         // Redirect to the dashboard
         navigate(
           `/StudentDashboard/Home?e=${encodeURIComponent(encryptedEmail)}`
         );
       } else {
-        console.log("error while creating password");
+        // console.log("error while creating password");
       }
     } catch (error) {
-      console.error("Error creating password:", error.message);
+      // console.error("Error creating password:", error.message);
     } finally {
       setLoading(false);
     }

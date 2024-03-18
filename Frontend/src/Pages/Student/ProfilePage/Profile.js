@@ -81,7 +81,7 @@ function Profile({ SERVER_URL}) {
 
         setProfileURL(serverURL);
       } catch (error) {
-        console.error("Error uploading file:", error);
+        // console.error("Error uploading file:", error);
       }
     }
   };
@@ -105,7 +105,7 @@ function Profile({ SERVER_URL}) {
         }
       );
       if (response.status === 200) {
-        console.log("Profile Update successful");
+        // console.log("Profile Update successful");
       } else {
         // console.error("Profile Update failed:", response.data.message);
       }
@@ -155,12 +155,12 @@ function Profile({ SERVER_URL}) {
             }
           );
           if (response.status === 200) {
-            console.log("Profile Update successful");
+            // console.log("Profile Update successful");
           } else {
-            console.error("Profile Update failed:", response.data.message);
+            // console.error("Profile Update failed:", response.data.message);
           }
         } catch (error) {
-          console.log("Error:" + error);
+          // console.log("Error:" + error);
         }
       }
       UpdateProfileCompletion();

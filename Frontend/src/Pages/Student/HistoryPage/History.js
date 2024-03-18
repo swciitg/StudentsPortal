@@ -73,7 +73,7 @@ function History_Page({ SERVER_URL }) {
           }
         );
         if (response.status === 200) {
-          console.log("OK");
+          // console.log("OK");
         }
       } catch (error) {
         navigate(`/`);
@@ -94,7 +94,7 @@ function History_Page({ SERVER_URL }) {
           setHistory(response.data.data);
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     }
     Requests();

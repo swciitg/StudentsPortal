@@ -50,12 +50,12 @@ export default function StudentSignUp({SERVER_URL}) {
       });
   
      if (response.status === 201) {
-        console.log('User created successfully');
+        // console.log('User created successfully');
        
         navigate(`/Otp?e=${encodeURIComponent(encryptEmail(Email))}`);
       } 
       else {
-        console.error('Error creating user:', response.data.message);
+        // console.error('Error creating user:', response.data.message);
       }
     } catch (error) {
       if (error.response) {
@@ -65,7 +65,7 @@ export default function StudentSignUp({SERVER_URL}) {
           seterror({ status: true, message:"Enter correct email!"  });
           
         }}
-      console.error('Error:', error.message);
+      // console.error('Error:', error.message);
       
     }finally {
       setLoading(false); 

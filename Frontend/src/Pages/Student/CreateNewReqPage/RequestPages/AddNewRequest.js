@@ -57,10 +57,10 @@ function AddNewRequest({ SERVER_URL }) {
           const user = response.data;
           setuser(user);
         } else {
-          console.error(response.data.message);
+          // console.error(response.data.message);
         }
       } catch (error) {
-        console.error("Error:", error.message);
+        // console.error("Error:", error.message);
       }
     }
     UserDetails();
@@ -80,17 +80,17 @@ function AddNewRequest({ SERVER_URL }) {
       });
 
       if (response.status === 201) {
-        console.log("Request created successfully");
+        // console.log("Request created successfully");
         navigate(
           `/StudentDashboard/CreateRequest/success?e=${encodeURIComponent(
             encryptedEmail
           )}`
         );
       } else {
-        console.error("Error creating request:", response.data.message);
+        // console.error("Error creating request:", response.data.message);
       }
     } catch (error) {
-      console.error("Error:", error.message);
+      // console.error("Error:", error.message);
     }
   };
   return (
