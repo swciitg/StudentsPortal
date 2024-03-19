@@ -48,7 +48,7 @@ function CreateRequest({ SERVER_URL }) {
           <div className="flex gap-10">
             <div className="flex flex-col gap-4 items-center text-[#2164E8]">
               <Link
-                to={`/StudentDashboard/CreateRequest/add?e=${encodeURIComponent(
+                to={`/studentdashboard/createrequest/add?e=${encodeURIComponent(
                   encryptedEmail
                 )}`}
               >
@@ -62,7 +62,7 @@ function CreateRequest({ SERVER_URL }) {
               <div>
                 {" "}
                 <Link
-                  to={`/StudentDashboard/SentRequest?e=${encodeURIComponent(
+                  to={`/studentdashboard/sentrequest?e=${encodeURIComponent(
                     encryptedEmail
                   )}`}
                 >

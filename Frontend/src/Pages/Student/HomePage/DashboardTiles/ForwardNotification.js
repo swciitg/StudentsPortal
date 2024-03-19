@@ -46,7 +46,7 @@ function ForwardNotification({ Notification, encryptedEmail }) {
         </div>
       </div>
       <Link
-        to={`/StudentDashboard/ForwardRequest?e=${encodeURIComponent(
+        to={`/studentdashboard/forwardrequest?e=${encodeURIComponent(
           encryptedEmail
         )}`}
         className="text-[#2164E8] text-sm flex justify-end "

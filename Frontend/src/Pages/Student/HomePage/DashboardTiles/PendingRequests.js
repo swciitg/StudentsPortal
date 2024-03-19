@@ -48,7 +48,7 @@ function PendingRequests({PendingRequest,encryptedEmail}) {
       </div>}
       </div>
       <Link
-        to={`/StudentDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}
+        to={`/studentdashboard/history?e=${encodeURIComponent(encryptedEmail)}`}
         className="text-[#2164E8] text-sm flex justify-end my-2 "
       >
         View all Pending Requests

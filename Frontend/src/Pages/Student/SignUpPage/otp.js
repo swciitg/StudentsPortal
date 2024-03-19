@@ -45,7 +45,7 @@ export default function Otp({SERVER_URL}) {
 
       if (response.status === 200) {
         // console.log("OTP verified successfully");
-        navigate(`/CreatePass?e=${encodeURIComponent(encryptedEmail)}`);
+        navigate(`/createpass?e=${encodeURIComponent(encryptedEmail)}`);
       } else {
         // console.error("Error verifying OTP:", response.data.message);
       }
@@ -230,7 +230,7 @@ export default function Otp({SERVER_URL}) {
       <div className="w-[90%] md:w-[60%] lg:w-[400px] p-4 pl-8 text-sm font-normal  items-center  bg-white shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)]">
         <p>
           {"Already have an account?\t"}
-          <Link to="/StudentsLogIn" className="text-[rgba(33,100,232,1)]">
+          <Link to="/studentslogin" className="text-[rgba(33,100,232,1)]">
             Login
           </Link>
         </p>

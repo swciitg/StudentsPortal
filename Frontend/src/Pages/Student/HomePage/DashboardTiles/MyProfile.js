@@ -60,7 +60,7 @@ function MyProfile({user,encryptedEmail}) {
         </div> }
       </div>
       <Link
-        to={`/StudentDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}
+        to={`/studentdashboard/profile?e=${encodeURIComponent(encryptedEmail)}`}
         className="text-[#2164E8] text-sm flex justify-end"
       >
         View profile

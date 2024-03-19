@@ -24,32 +24,32 @@ function App() {
         {/* Student Side Routes*/}
         <Route path="*" element={<ProfileSelection SERVER_URL={SERVER_URL}/>} />
         <Route path="/StudentsSignUp" element={<StudentsSignUp SERVER_URL={SERVER_URL} />} />
-        <Route path="/StudentsLogIn" element={<StudentLogin SERVER_URL={SERVER_URL}  />} />
+        <Route path="/studentslogin" element={<StudentLogin SERVER_URL={SERVER_URL}  />} />
         <Route path="/" element={<StudentLogin  SERVER_URL={SERVER_URL} />} />
         {/* Private Routes--Cannot be accessed without authentication or previous step*/}
-        <Route path="/Otp" element={<Otp  SERVER_URL={SERVER_URL} />} />
-        <Route path="/CreatePass" element={<CreatePass  SERVER_URL={SERVER_URL} />} />
-        <Route path="/StudentDashboard/Home" element={<Home  SERVER_URL={SERVER_URL} />} />
-        <Route path="/StudentDashboard/Profile" element={<Profile  SERVER_URL={SERVER_URL} />} />
-        <Route path="/StudentDashboard/History" element={<History_Page SERVER_URL={SERVER_URL}  />} />
+        <Route path="/otp" element={<Otp  SERVER_URL={SERVER_URL} />} />
+        <Route path="/createpass" element={<CreatePass  SERVER_URL={SERVER_URL} />} />
+        <Route path="/studentdashboard/home" element={<Home  SERVER_URL={SERVER_URL} />} />
+        <Route path="/studentdashboard/profile" element={<Profile  SERVER_URL={SERVER_URL} />} />
+        <Route path="/studentdashboard/history" element={<History_Page SERVER_URL={SERVER_URL}  />} />
         <Route
-          path="/StudentDashboard/CreateRequest"
+          path="/studentdashboard/createrequest"
           element={<CreateRequest  SERVER_URL={SERVER_URL} />}
         />
         <Route
-          path="/StudentDashboard/ReceivedRequest"
+          path="/studentdashboard/receivedrequest"
           element={<RequestReceived SERVER_URL={SERVER_URL}  />}
         />
-        <Route path="/StudentDashboard/SentRequest" element={<RequestSent  SERVER_URL={SERVER_URL} />} />
+        <Route path="/studentdashboard/SentRequest" element={<RequestSent  SERVER_URL={SERVER_URL} />} />
         <Route
-          path="/StudentDashboard/CreateRequest/add"
+          path="/studentdashboard/createrequest/add"
           element={<AddNewRequest  SERVER_URL={SERVER_URL} />}
         />
         <Route
-          path="/StudentDashboard/CreateRequest/success"
+          path="/studentdashboard/createrequest/success"
           element={<SuccessPage  SERVER_URL={SERVER_URL} />}
         />
-        <Route path="/Student/ForgotPassword" element={<ForgotPassword  SERVER_URL={SERVER_URL} />} />
+        <Route path="/student/forgotpassword" element={<ForgotPassword  SERVER_URL={SERVER_URL} />} />
       </Routes>
     </BrowserRouter>
   );

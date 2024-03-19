@@ -68,7 +68,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
               order to make Requests through this Portal.
             </p>
             <div className="flex justify-end ">
-              <Link to={`/StudentDashboard/Profile?e=${encodeURIComponent(encryptedEmail)}`}>
+              <Link to={`/studentdashboard/profile?e=${encodeURIComponent(encryptedEmail)}`}>
                 <button className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8]  my-2 text-white rounded">
                   View Profile
                 </button>
@@ -106,7 +106,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
             </p>
           </div>
           <div className=" flex justify-end ">
-            <Link to={`/StudentDashboard/CreateRequest?e=${encodeURIComponent(encryptedEmail)}`}>
+            <Link to={`/studentdashboard/createrequest?e=${encodeURIComponent(encryptedEmail)}`}>
               <button className="text-sm p-[5px] pl-3   my-2 mt-4 pr-3 bg-[#2164E8] text-white rounded">
                 Make a Request
               </button>
@@ -145,7 +145,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
             ))}
           </div>
           <div className=" flex justify-end ">
-            <Link to={`/StudentDashboard/History?e=${encodeURIComponent(encryptedEmail)}`}>
+            <Link to={`/studentdashboard/history?e=${encodeURIComponent(encryptedEmail)}`}>
               <button className="text-sm p-[5px] pl-3 pr-3 my-2  bg-[#2164E8] text-white rounded">
                 Check my History
               </button>

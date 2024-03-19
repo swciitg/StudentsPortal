@@ -58,7 +58,7 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
       <div className="flex p-3 -mt-3 mb-2 justify-end gap-2 items-center">
         <img src={profile_blue}/>
         <Link
-          to={`/StudentDashboard/Profile?e=${encodeURIComponent(
+          to={`/studentdashboard/profile?e=${encodeURIComponent(
             encryptedEmail
           )}`}
           className="text-[rgba(33,100,232,1)]"

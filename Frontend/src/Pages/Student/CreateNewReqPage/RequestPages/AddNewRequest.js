@@ -82,7 +82,7 @@ function AddNewRequest({ SERVER_URL }) {
       if (response.status === 201) {
         // console.log("Request created successfully");
         navigate(
-          `/StudentDashboard/CreateRequest/success?e=${encodeURIComponent(
+          `/studentdashboard/createrequest/success?e=${encodeURIComponent(
             encryptedEmail
           )}`
         );

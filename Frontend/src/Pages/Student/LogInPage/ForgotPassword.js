@@ -40,7 +40,7 @@ export default function ForgotPassword({ SERVER_URL }) {
 
     if (token) {
       navigate(
-        `/StudentDashboard/Home?e=${encodeURIComponent(
+        `/studentdashboard/home?e=${encodeURIComponent(
           encryptEmail(user.email)
         )}`
       );
@@ -59,7 +59,7 @@ export default function ForgotPassword({ SERVER_URL }) {
       if (response.status === 200) {
         // console.log("ok");
 
-        navigate(`/Otp?e=${encodeURIComponent(encryptEmail(Email))}`);
+        navigate(`/otp?e=${encodeURIComponent(encryptEmail(Email))}`);
       } else {
         // console.error("Error creating user:", response.data.message);
       }
@@ -132,7 +132,7 @@ export default function ForgotPassword({ SERVER_URL }) {
       <div className="w-[90%] md:w-[60%] lg:w-[400px] p-4 pl-8 text-sm font-normal  items-center  bg-white shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)]">
         <p>
           {"Already have an account?\t"}
-          <Link to="/StudentsLogIn" className="text-[rgba(33,100,232,1)]">
+          <Link to="/studentslogin" className="text-[rgba(33,100,232,1)]">
             Login
           </Link>
         </p>

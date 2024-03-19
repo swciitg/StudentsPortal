@@ -88,13 +88,13 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
             </div>
             <ul>
               <Link
-                to={`/StudentDashboard/Home?e=${encodeURIComponent(
+                to={`/studentdashboard/home?e=${encodeURIComponent(
                   encryptedEmail
                 )}`}
               >
                 <div
                   className={
-                    isSelected("/StudentDashboard/Home")
+                    isSelected("/studentdashboard/home")
                       ? "bg-[#E8E9EA] p-3"
                       : "p-3"
                   }
@@ -103,13 +103,13 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
                 </div>
               </Link>
               <Link
-                to={`/StudentDashboard/Profile?e=${encodeURIComponent(
+                to={`/studentdashboard/profile?e=${encodeURIComponent(
                   encryptedEmail
                 )}`}
               >
                 <div
                   className={
-                    isSelected("/StudentDashboard/Profile")
+                    isSelected("/studentdashboard/profile")
                       ? "bg-[#E8E9EA] p-3"
                       : "p-3"
                   }
@@ -118,13 +118,13 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
                 </div>
               </Link>
               <Link
-                to={`/StudentDashboard/CreateRequest?e=${encodeURIComponent(
+                to={`/studentdashboard/createrequest?e=${encodeURIComponent(
                   encryptedEmail
                 )}`}
               >
                 <div
                   className={
-                    isSelected("/StudentDashboard/CreateRequest")
+                    isSelected("/studentdashboard/createrequest")
                       ? "bg-[#E8E9EA] p-3"
                       : "p-3"
                   }
@@ -134,13 +134,13 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
               </Link>
               {isAdmin && (
                 <Link
-                  to={`/StudentDashboard/ReceivedRequest?e=${encodeURIComponent(
+                  to={`/studentdashboard/receivedrequest?e=${encodeURIComponent(
                     encryptedEmail
                   )}`}
                 >
                   <div
                     className={
-                      isSelected("/StudentDashboard/ReceivedRequest")
+                      isSelected("/studentdashboard/receivedrequest")
                         ? "bg-[#E8E9EA] p-3"
                         : "p-3"
                     }
@@ -151,13 +151,13 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
               )}
 
               <Link
-                to={`/StudentDashboard/SentRequest?e=${encodeURIComponent(
+                to={`/studentdashboard/sentrequest?e=${encodeURIComponent(
                   encryptedEmail
                 )}`}
               >
                 <div
                   className={
-                    isSelected("/StudentDashboard/SentRequest")
+                    isSelected("/studentdashboard/sentrequest")
                       ? "bg-[#E8E9EA] p-3"
                       : "p-3"
                   }
@@ -167,13 +167,13 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
               </Link>
 
               <Link
-                to={`/StudentDashboard/History?e=${encodeURIComponent(
+                to={`/studentdashboard/history?e=${encodeURIComponent(
                   encryptedEmail
                 )}`}
               >
                 <div
                   className={
-                    isSelected("/StudentDashboard/History")
+                    isSelected("/studentdashboard/history")
                       ? "bg-[#E8E9EA] p-3"
                       : "p-3"
                   }

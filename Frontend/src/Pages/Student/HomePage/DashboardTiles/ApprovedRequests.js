@@ -38,7 +38,7 @@ function ApprovedRequests({ApprovedRequest,encryptedEmail}) {
       </div>
       <Link
          to={{
-          pathname: "/StudentDashboard/History",
+          pathname: "/studentdashboard/history",
           search: `?e=${encodeURIComponent(encryptedEmail)}&tab=Approved`,
         }}
         className="text-[#2164E8] text-sm flex justify-end "

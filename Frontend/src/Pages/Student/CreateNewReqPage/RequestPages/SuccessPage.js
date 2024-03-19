@@ -33,7 +33,7 @@ function SuccessPage({SERVER_URL}) {
 
             <div className="flex flex-col items-center mt-12">
               <Link
-                to={`/StudentDashboard/History?e=${encodeURIComponent(
+                to={`/studentdashboard/history?e=${encodeURIComponent(
                   encryptedEmail
                 )}`}
               >
@@ -42,7 +42,7 @@ function SuccessPage({SERVER_URL}) {
                 </button>
               </Link>
               <Link
-                to={`/StudentDashboard/CreateRequest?e=${encodeURIComponent(
+                to={`/studentdashboard/createrequest?e=${encodeURIComponent(
                   encryptedEmail
                 )}`}
                 className="text-[#2164E8] mt-2"

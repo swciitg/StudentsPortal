@@ -40,7 +40,7 @@ export default function StudentLogin({ SERVER_URL}) {
 
     if (token) {
       navigate(
-        `/StudentDashboard/Home?e=${encodeURIComponent(
+        `/studentdashboard/home?e=${encodeURIComponent(
           encryptEmail(user.email)
         )}`
       );
@@ -62,7 +62,7 @@ export default function StudentLogin({ SERVER_URL}) {
         localStorage.setItem("token", response.data.token);
         // console.log("Login successful");
         navigate(
-          `/StudentDashboard/Home?e=${encodeURIComponent(encryptEmail(Email))}`
+          `/studentdashboard/home?e=${encodeURIComponent(encryptEmail(Email))}`
         );
       } else {
         // console.error("Login failed:", response.data.message);
@@ -144,7 +144,7 @@ export default function StudentLogin({ SERVER_URL}) {
         {Password.length > 0 && Email.length > 0 ? (
           <div className="flex justify-between items-center mt-10">
             <Link
-              to="/Student/ForgotPassword"
+              to="/student/forgotpassword"
               className=" text-[rgba(33,100,232,1)]"
             >
               Forgot password?
@@ -162,7 +162,7 @@ export default function StudentLogin({ SERVER_URL}) {
         ) : (
           <div className="flex justify-between items-center mt-10">
             <Link
-              to="/Student/ForgotPassword"
+              to="/student/forgotpassword"
               className="  text-[rgba(33,100,232,1)]"
             >
               Forgot password?
@@ -178,7 +178,7 @@ export default function StudentLogin({ SERVER_URL}) {
       <div className="w-[90%] md:w-[60%] lg:w-[400px] p-4 pl-8 text-sm font-normal  items-center  bg-white shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)]">
         <p>
           {"New User?\t"}
-          <Link to="/StudentsSignUp" className="text-[rgba(33,100,232,1)]">
+          <Link to="/studentssignup" className="text-[rgba(33,100,232,1)]">
             SignUp
           </Link>
         </p>
