@@ -285,7 +285,7 @@ async function handleFileUpload(req, res) {
   try {
     const filePath = req.file.path;
     const serverURL =
-      `${process.env.HOST_URL}/uploads/` + path.basename(filePath); // Assuming your uploads are in the 'uploads' folder
+      `${process.env.HOST_URL}/porportal/uploads/` + path.basename(filePath); // Assuming your uploads are in the 'uploads' folder
     res.json({ url: serverURL });
   } catch (error) {
     console.error("Error uploading file:", error);

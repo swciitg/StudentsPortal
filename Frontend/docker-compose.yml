@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  web:
+    image: por_portal_frontend
+    container_name: por_portal_frontend
+    restart: always
+    build:
+        context: .
+    ports:
+      - "9834:3000"
+    command: sh -c "cd /app && serve -s build"

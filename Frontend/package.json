@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "homepage": "",
+  "homepage": "/por_portal",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

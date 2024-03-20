@@ -2,6 +2,8 @@ version: '2'
 
 services:
   web:
+    image: por_portal_backend
+    container_name: por_portal_backend
     build: 
       context: .
       dockerfile: Dockerfile
@@ -10,5 +12,4 @@ services:
     ports:
       - "9501:3002"
     volumes:
-      - .:/code/build
       - .:/code/uploads
