@@ -23,8 +23,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-app.use('/por_portal', express.static(join(__dirname, 'build')));
-app.use('/uploads', express.static(join(__dirname,'uploads')));
+// app.use('/por_portal', express.static(join(__dirname, 'build')));
+// app.use('/por_portal/student', express.static(join(__dirname, 'build')));
+app.use('/porportal/uploads', express.static(join(__dirname,'uploads')));
 
 
 app.use(admin.options.rootPath, adminRouter)
