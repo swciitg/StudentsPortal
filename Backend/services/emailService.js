@@ -18,7 +18,7 @@ const emailService = {
     let mailOptions = {
       from: EMAIL,
       to: `${email}@iitg.ac.in`,
-      subject: 'OTP Verification For Students Portal',
+      subject: 'OTP Verification For POR Portal',
       text: `Your OTP for verification is: ${otp}`,
     };
   
