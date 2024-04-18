@@ -29,7 +29,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
   }
 
   const openWithdrawModal = () => setWithdrawModalOpen(true);
-  const closeWithdrawModal = () => setWithdrawModalOpen(false);
+  const closeWithdrawModal = () => {setWithdrawModalOpen(false) ;setReason("");}
 
   const reasonOptions = [
     "Mind has changed",
@@ -57,6 +57,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
       setLoading(false);
     }
   };
+  
   return (
     <div>
       <div className="px-3 py-5 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -138,7 +139,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
                       >
                         Go Back
                       </div>
-                      {reason.length > 0 ? (
+                      {reason.length > 5 ? (
                         <button
                           onClick={handleWithdraw}
                           disabled={loading}
