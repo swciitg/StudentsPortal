@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { createUser, verifyOTP, createPassword, userDetails, login, resendOTP, upload, handleFileUpload, forgotPassword, CheckAdmin } from '../controllers/userController.js';
+
 const router = Router();
 
 

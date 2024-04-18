@@ -26,7 +26,7 @@ async function createRequest(req, res) {
          token
     });
   
-
+    // console.log(newRequest.toJSON())
     await newRequest.save();
 
     return res

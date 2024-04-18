@@ -8,6 +8,7 @@ import path from "path";
 import {config } from 'dotenv';
 config();
 async function createUser(req, res) {
+  console.log(req.body)
   const { name, email, roll } = req.body;
 
   try {
@@ -90,7 +91,7 @@ await emailService.sendOTP(email, otp);
 }
 async function verifyOTP(req, res) {
   const { email, otp } = req.body;
-
+  console.log(req.body)
   try {
     const user = await User.findOne({ email, otp });
 

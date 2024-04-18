@@ -14,9 +14,10 @@ import CreateRequest from "./Pages/Student/CreateNewReqPage/CreateRequest";
 import AddNewRequest from "./Pages/Student/CreateNewReqPage/RequestPages/AddNewRequest";
 import SuccessPage from "./Pages/Student/CreateNewReqPage/RequestPages/SuccessPage";
 import ForgotPassword from "./Pages/Student/LogInPage/ForgotPassword";
+// import {config} from 'dotenv';x
 
 function App() {
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL||'http://localhost:3002';
+  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   // keep the REACT_APP_SERVER_URLl in .env file as 'https://swc.iitg.ac.in/porportal/api
   return (
     <BrowserRouter basename={"/por_portal"}>
