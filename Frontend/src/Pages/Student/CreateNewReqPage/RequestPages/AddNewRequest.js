@@ -137,7 +137,8 @@ function AddNewRequest({ SERVER_URL }) {
               </label>
             </div>
             <div className="flex justify-end mt-10">
-              {body.length > 0 && subject.length > 0 ? (
+              {body.length > 0  && subject.length>0 && toemail  ? (
+               
                 <button
                   onClick={handleSubmit}
                   className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"
