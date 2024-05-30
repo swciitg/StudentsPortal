@@ -6,6 +6,7 @@ import Student_Navbar from "../../../../Components/Student_Navbar";
 import Select from "react-select";
 import axios from "axios";
 import CornerProfileLogoutSection from "../../../../Components/CornerProfileLogoutSection";
+import recipients from "../../../../Constants/recipients";
 
 function AddNewRequest({ SERVER_URL }) {
   AddNewRequest.propTypes = {
@@ -26,14 +27,13 @@ function AddNewRequest({ SERVER_URL }) {
     return decryptedEmail;
   }
 
-  const options = [
-    { value: "m.geetanjay@iitg.ac.in", label: "m.geetanjay@iitg.ac.in" },
-    { value: "vineet.mech22@iitg.ac.in", label: "vineet.mech22@iitg.ac.in" },
-    { value: "k.dishant@iitg.ac.in", label: "k.dishant@iitg.ac.in" },
-    { value: "aryan.arya@iitg.ac.in", label: "aryan.arya@iitg.ac.in" },
-    { value: "Three", label: "Three" },
-    { value: "Four", label: "Four" },
-  ];
+ 
+  const options = recipients.map(recipient => ({
+    value: recipient.email,
+    label: recipient.por
+  }));
+
+ 
   const currentDate = new Date();
 
   const year = currentDate.getFullYear();
