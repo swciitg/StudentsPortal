@@ -90,6 +90,9 @@ const adminOptions = {
       },
     },
   ],
+    rootPath: `/admin`, // Define the rootPath for AdminJS
+    loginPath: `/admin/login`, // Define the loginPath for AdminJS
+    logoutPath:`/admin/logout`, // Define the logoutPath for AdminJS
   authenticate: async (email, password) => {
     const user = await User.findOne({ email });
     if (user && bcrypt.compareSync(password, user.encryptedPassword)) {

@@ -27,7 +27,7 @@ const __dirname = dirname(__filename);
 // app.use('/por_portal/student', express.static(join(__dirname, 'build')));
 app.use('/porportal/uploads', express.static(join(__dirname,'uploads')));
 
-
+// console.log(admin.options.rootPath);
 app.use(admin.options.rootPath, adminRouter)
 app.use('/porportal/api/users', userRoutes);
 // app.use('/uploads', express.static(join(__dirname, 'uploads')));

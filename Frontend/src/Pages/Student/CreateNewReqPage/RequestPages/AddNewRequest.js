@@ -30,7 +30,8 @@ function AddNewRequest({ SERVER_URL }) {
     { value: "m.geetanjay@iitg.ac.in", label: "m.geetanjay@iitg.ac.in" },
     { value: "vineet.mech22@iitg.ac.in", label: "vineet.mech22@iitg.ac.in" },
     { value: "k.dishant@iitg.ac.in", label: "k.dishant@iitg.ac.in" },
-    { value: "aryan.arya@iitg.ac.in", label: "aryan.arya@iitg.ac.in" },
+    { value: "aryan.arya@iitg.ac.in", label: "aryan.aray@iitg.ac.in" },
+    { value: "arushi.kumar@iitg.ac.in", label: "arushi.kumar@iitg.ac.in" },
     { value: "Three", label: "Three" },
     { value: "Four", label: "Four" },
   ];
