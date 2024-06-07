@@ -99,9 +99,9 @@ const adminOptions = {
     }
     return null;
   },
-  rootPath: process.env.BASE_API_PATH,
-  loginPath: `${process.env.BASE_API_PATH}/login`,
-  logoutPath: `${process.env.BASE_API_PATH}/logout`
+  rootPath: `${process.env.BASE_API_PATH}/admin`,
+loginPath: `${process.env.BASE_API_PATH}/admin/login`,
+logoutPath: `${process.env.BASE_API_PATH}/admin/logout`
 };
 
 const admin = new AdminJS(adminOptions);
