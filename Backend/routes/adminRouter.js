@@ -1,5 +1,7 @@
 import AdminJS from 'adminjs';
 import AdminJSExpress from '@adminjs/express';
+import dotenv from 'dotenv';
+dotenv.config();
 import * as AdminJSMongoose from '@adminjs/mongoose';
 import { Request } from '../Models/Request.js';
 import { User } from '../Models/User.js';
@@ -97,6 +99,9 @@ const adminOptions = {
     }
     return null;
   },
+  rootPath: `${process.env.BASE_API_PATH}/admin`,
+  loginPath: `${process.env.BASE_API_PATH}/admin/login`,
+  logoutPath: `${process.env.BASE_API_PATH}/admin/logout`
 };
 
 const admin = new AdminJS(adminOptions);

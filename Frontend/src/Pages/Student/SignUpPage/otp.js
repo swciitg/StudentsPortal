@@ -111,6 +111,20 @@ export default function Otp({SERVER_URL}) {
 
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
+
+         <style>
+        {`
+          
+          input[type=number]::-webkit-outer-spin-button,
+          input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        
+          input[type=number] {
+            -moz-appearance: textfield; 
+        `}
+      </style>
       <div className="bg-white pl-10 pr-10 w-[90%] md:w-[60%] lg:w-[400px] pb-9 pt-5 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
         <div className="flex justify-start  mb-2">
           <img className="" src={iitg_logo} alt="iitg_logo" width="65px" />

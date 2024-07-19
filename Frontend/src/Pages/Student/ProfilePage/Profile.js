@@ -43,6 +43,7 @@ function Profile({ SERVER_URL}) {
     "Chemical Science and Technology",
     "Civil Engineering",
     "Computer Science and Engineering",
+    "Data Science and Artificial Intelligence",
     "Design",
     "Electronics & Electrical Engineering ",
     "Humanities and Social Sciences",
@@ -387,7 +388,8 @@ function Profile({ SERVER_URL}) {
               >
                 Edit Profile
               </button>
-              <button className="text-sm mt-1 p-[5px] pl-3 pr-3 border border-[#767A81] rounded">
+              <button onClick={() =>  navigate("/")}
+              className="text-sm mt-1 p-[5px] pl-3 pr-3 border border-[#767A81] rounded">
                 Go Back
               </button>
             </div>
