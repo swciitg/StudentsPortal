@@ -273,9 +273,10 @@ const storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
+    const rollNumber = req.body.rollNumber;
     cb(
       null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      rollNumber+path.extname(file.originalname)
     );
   },
 });
@@ -284,6 +285,9 @@ const upload = multer({ storage: storage });
 
 async function handleFileUpload(req, res) {
   try {
+    // const email =req.body;
+    // const user = await User.findOne({ email });
+    // const fileRequest=upload.single('file');
     const filePath = req.file.path;
     const serverURL =
       `${process.env.HOST_URL}/porportal/uploads/` + path.basename(filePath); // Assuming your uploads are in the 'uploads' folder

@@ -57,6 +57,7 @@ function Profile({ SERVER_URL}) {
     const file = e.target.files[0];
     if (file) {
       const formData = new FormData();
+      formData.append("rollNumber",user.roll)
       formData.append("file", file);
 
       try {
