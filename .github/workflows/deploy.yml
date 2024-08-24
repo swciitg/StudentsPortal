@@ -41,5 +41,5 @@ jobs:
             cd /webapps/StudentsPortal/Backend
             git fetch origin
             git checkout deploy
-            git pull
+            git pull | tee git-pull.log
             docker compose -f docker-compose.yml up -d --build | tee docker-compose.log
