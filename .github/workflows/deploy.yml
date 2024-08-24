@@ -42,4 +42,4 @@ jobs:
             git fetch origin
             git checkout deploy
             git pull
-            docker compose -f docker-compose.yml
+            docker compose -f docker-compose.yml up -d --build | tee docker-compose.log
