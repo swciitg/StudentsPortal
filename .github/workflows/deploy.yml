@@ -37,11 +37,9 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
-      - name: List Directories and Navigate to Backend
+      - name: Navigate to Backend
         run: |
-          cd webapps
-          ls  | tee ls-output.log
-          cd /StudentsPortal/Backend
+          cd /webapps/StudentsPortal/Backend
   
       - name: Fetch Latest Changes from Git
         run: |
