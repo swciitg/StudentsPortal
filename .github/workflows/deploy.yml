@@ -39,7 +39,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
       - name: List Directories and Navigate to Backend
         run: |
-          cd /webapps
+          cd webapps
           ls  | tee ls-output.log
           cd /StudentsPortal/Backend
   
