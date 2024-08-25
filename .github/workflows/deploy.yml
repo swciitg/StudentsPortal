@@ -39,8 +39,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
       - name: List Directories and Navigate to Backend
         run: |
-          ls /webapps | tee ls-output.log
-          cd /webapps/StudentsPortal/Backend
+          cd /webapps
+          ls  | tee ls-output.log
+          cd /StudentsPortal/Backend
   
       - name: Fetch Latest Changes from Git
         run: |
