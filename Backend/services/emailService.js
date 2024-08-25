@@ -63,6 +63,7 @@ const emailService = {
     const email=requestDetails["Sender email"]
     const senderName=requestDetails["Sender Name"]
     const requestBody=requestDetails.subject
+    const ApprovedByEmail=requestDetails["Request sent to"]
     let transporter = nodemailer.createTransport({
       host: 'smtp.office365.com',
       port: 587,
@@ -107,7 +108,8 @@ const emailService = {
           <h2>Congratulations, ${senderName}!</h2>
           <p>Your request has been successfully verified. Below is the summary of your request:</p>
           <div class="request-body">
-            <p>${requestBody}</p>
+            <p>Re:${requestBody}</p>
+            <p>Approved By:${ApprovedByEmail}</p>
           </div>
           <p>Thank you for using our portal!</p>
         </div>
