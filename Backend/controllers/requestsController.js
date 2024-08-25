@@ -1,4 +1,5 @@
 import { Request } from "../Models/Request.js";
+import emailService from "../services/emailService.js";
 
 async function createRequest(req, res) {
   try {
@@ -73,8 +74,12 @@ async function ApproveRequest(req,res){
       return res.status(404).json({ message: 'Request not found' });
     }
     request.Status="Approved";
+    // const senderEmail=request["Sender email"]
+    // console.log(senderEmail)
     await request.save();
-    return res.status(200).json({ message: 'Request Withdrawn successfully'});
+    await emailService.sendVerificationSuccess(request);
+    // console.log(request)
+    return res.status(200).json({ message: 'Request Approved successfully'});
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Internal Server Error' });
