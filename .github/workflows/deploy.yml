@@ -37,9 +37,23 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
-          script: |
-            cd /webapps/StudentsPortal/Backend
-            git fetch origin
-            git checkout deploy
-            git pull | tee git-pull.log
-            docker compose -f docker-compose.yml up -d --build | tee docker-compose.log
+      - name: List Directories and Navigate to Backend
+        run: |
+          ls /webapps | tee ls-output.log
+          cd /webapps/StudentsPortal/Backend
+  
+      - name: Fetch Latest Changes from Git
+        run: |
+          git fetch origin
+  
+      - name: Switch to Deploy Branch
+        run: |
+          git checkout deploy
+  
+      - name: Pull Latest Changes
+        run: |
+          git pull | tee git-pull.log
+  
+      - name: Build and Start Docker Containers
+        run: |
+          docker compose -f docker-compose.yml up -d --build | tee docker-compose.log
