@@ -38,9 +38,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
           script: |
-            cd webapps
-            ls | tee ls-out.log
-            cd /StudentsPortal/Backend
+            cd /webapps/StudentsPortal/Backend
             git fetch origin
             git checkout deploy
             git pull | tee git-pull.log
