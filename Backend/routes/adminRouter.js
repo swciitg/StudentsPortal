@@ -99,9 +99,9 @@ const adminOptions = {
     }
     return null;
   },
-  rootPath: `${process.env.BASE_API_PATH}/admin`,
-  loginPath: `${process.env.BASE_API_PATH}/admin/login`,
-  logoutPath: `${process.env.BASE_API_PATH}/admin/logout`
+  rootPath: `/porportal/api/admin`,
+  loginPath: `/porportal/api/admin/login`,
+  logoutPath: `/porportal/api/admin/logout`
 };
 
 const admin = new AdminJS(adminOptions);
