@@ -67,7 +67,7 @@ function AddNewRequest({ SERVER_URL }) {
     UserDetails();
     // eslint-disable-next-line
   }, []);
-  console.log(user);
+  // console.log(user);
   const handleSubmit = async () => {
     try {
       const response = await axios.post(`${SERVER_URL}/request`, {
@@ -83,7 +83,7 @@ function AddNewRequest({ SERVER_URL }) {
       });
 
       console.log("Request created successfully");
-      console.log(response.data);
+      // console.log(response.data);
       if (response.status === 201) {
         navigate(
           `/studentdashboard/createrequest/success?e=${encodeURIComponent(
