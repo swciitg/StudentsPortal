@@ -45,4 +45,4 @@ jobs:
             git add .
             git commit -m "Deploying to Production"
             git pull | tee git-pull.log
-            docker compose -f docker-compose.yml up | tee docker-compose.log
+            docker compose -f docker-compose.yml up -d --build | tee docker-compose.log
