@@ -123,6 +123,7 @@ const requestSchema = new mongoose.Schema({
   Request_sent_date: {
     type: String,
   },
+  profileUrl: String,
   // "POR Position": {
   //   type: String,
   // },

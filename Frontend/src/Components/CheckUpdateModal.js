@@ -15,6 +15,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
       "Sender Roll no": PropTypes.string.isRequired,
       "Sender email": PropTypes.string.isRequired,
       "Request sent to": PropTypes.string.isRequired,
+      profileUrl: PropTypes.string.isRequired,
       _id: PropTypes.string.isRequired,
     }).isRequired,
     encryptedEmail: PropTypes.string.isRequired,
@@ -67,8 +68,8 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
         </div>
       </div>
       <div className="flex w-full mt-1 gap-1">
-        <div className=" w-[100%] flex p-6 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-          <div className="w-[50%] flex flex-col gap-6">
+        <div className=" w-[100%] md:flex md:flex-row flex-col p-6 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+          <div className="md:w-[50%] flex flex-col gap-6 pb-3">
             <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">Status</label>
               <div>{requestData.Status}</div>
@@ -102,9 +103,7 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
               <label className="text-[#353B47] text-sm">Parent Body</label>
               <div>{requestData["Parent Body"]}</div>
             </div> */}
-            <div className=" flex gap-6">
-              <div>
-                <Modal
+              <Modal
                   isOpen={isWithdrawModalOpen}
                   onRequestClose={closeWithdrawModal}
                   className="absolute top-1/2 lg:left-[60%] left-[10%] right-[10%] lg:transform lg:-translate-x-1/2 -translate-y-1/2 bg-white p-4"
@@ -155,27 +154,12 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
                     </div>
                   </div>
                 </Modal>
-                {Status === "Pending" && (
-                  <button
-                    onClick={openWithdrawModal}
-                    className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8] text-white rounded"
-                  >
-                    Withdraw
-                  </button>
-                )}
-              </div>
-              <div>
-                <button
-                  onClick={onRequestClose}
-                  className="text-sm  p-[5px] pl-3 pr-3 border border-[#767A81] rounded"
-                >
-                  Go Back
-                </button>
-              </div>
-            </div>{" "}
+           
           </div>
-
-          <div className=" w-[50%] flex flex-col gap-6">
+                
+                <div className=" w-full flex-col ">
+                  <div className=" w-full flex-col md:flex md:flex-row">
+                         <div className=" md:w-[50%] flex flex-col gap-6">
             {/* <div className="flex flex-col">
               <label className="text-[#353B47] text-sm">Request type</label>
               <div>{requestData["Type of Request"]}</div>
@@ -195,9 +179,39 @@ function RequestDetailsModal({ isOpen, requestData, onRequestClose,SERVER_URL })
               <div>{requestData["Request sent to"]}</div>
             </div>
           </div>
+          <div className=" md:w-[50%] flex flex-col gap-6 py-3">
+            {requestData.profileUrl ? ( 
+            <img src={requestData.profileUrl} alt="profile" className="w-[200px]  object-cover" />
+            ) :( <img  className="w-[150px]  rounded-full" src={`https://ui-avatars.com/api/?name=${requestData["Sender Name"]}&background=random&length=1`} />)}
+          </div>
+          </div>
+          <div className=" flex gap-6 my-3">
+              <div>
+                {Status === "Pending" && (
+                  <button
+                    onClick={openWithdrawModal}
+                    className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8] text-white rounded"
+                  >
+                    Withdraw
+                  </button>
+                )}
+              </div>
+              <div>
+                <button
+                  onClick={onRequestClose}
+                  className="text-sm  p-[5px] pl-3 pr-3 border border-[#767A81] rounded"
+                >
+                  Go Back
+                </button>
+              </div>
+            </div>
+
+
+          </div>
         </div>
   
       </div>
+
     </div>
   );
 }

@@ -67,6 +67,7 @@ function AddNewRequest({ SERVER_URL }) {
     UserDetails();
     // eslint-disable-next-line
   }, []);
+  console.log(user);
   const handleSubmit = async () => {
     try {
       const response = await axios.post(`${SERVER_URL}/request`, {
@@ -75,12 +76,14 @@ function AddNewRequest({ SERVER_URL }) {
         "Sender Roll no": user.roll,
         "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
         Status: "Pending",
+        profileUrl: user.profileUrl,
         "Request sent to": toemail.value,
         subject: subject,
         body: body,
       });
 
       console.log("Request created successfully");
+      console.log(response.data);
       if (response.status === 201) {
         navigate(
           `/studentdashboard/createrequest/success?e=${encodeURIComponent(

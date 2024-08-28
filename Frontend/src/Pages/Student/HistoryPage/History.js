@@ -147,17 +147,20 @@ function History_Page({ SERVER_URL }) {
             key={index}
             className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
           >
-            <div className="text-xs w-[10%]  text-[#494D57]  text-center py-5">
+           <div className="text-xs w-[10%]  text-[#494D57]  text-center py-3">
               {sequenceNumber}
             </div>
-            <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
+            <div className="text-center w-[20%] py-3 flex justify-center items-center">
+              {data.profileUrl ? (  <img  className="w-[35px] h-[35px] text-center rounded-full" src={data.profileUrl} />) : ( <img  className="w-[30px] h-[30px] rounded-full" src={`https://ui-avatars.com/api/?name=${data["Sender Name"]}&background=random&length=1&rounded=true`} />)}
+            </div>
+            <div className="text-xs text-[#494D57] w-[15%] text-center py-3">
               {data["Sender Name"]}
             </div>
 
-            <div className="text-xs text-[#494D57] w-[25%] text-center py-5">
+            <div className="text-xs text-[#494D57] w-[15%] text-center py-3">
               {data["Request_sent_date"]}
             </div>
-            <div className={`text-xs text-center w-[20%] py-5 ${statusStyle}`}>
+            <div className={`text-xs text-center w-[20%] py-3 ${statusStyle}`}>
               {data.Status}
             </div>
             <div
@@ -253,18 +256,21 @@ function History_Page({ SERVER_URL }) {
             </div>
             <div className=" w-full overflow-scroll no-scrollbar">
             <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]">
-              <div className=" flex mt-4 bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+            <div className=" flex mt-4 bg-[#E8E9EA] items-center    shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
                 <div className=" text-sm w-[10%] text-center  py-3">
                   Sl. No.
                 </div>
-                <div className=" text-sm w-[25%]  justify-center  gap-[3px] flex items-center py-3">
+                <div className=" text-sm w-[20%]  justify-center  gap-[3px] flex items-center py-3">
+                  {"Profile"}
+                </div>
+                <div className=" text-sm w-[15%]  justify-center  gap-[3px] flex items-center py-3">
                   {"Sender's Name"}
                   <img src={sort} />
                 </div>
 
-                <div className=" text-sm  w-[25%] justify-center  gap-[3px]   flex items-center py-3">
+                <div className=" text-sm  w-[15%] justify-center  gap-[3px]   flex items-center py-3">
                   Date
-                  <img src={Arrow_sort}/>
+                  <img src={Arrow_sort} />
                 </div>
                 <div className=" text-sm  w-[20%]  text-center  py-3">
                   Status

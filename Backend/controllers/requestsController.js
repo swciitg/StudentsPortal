@@ -10,6 +10,7 @@ async function createRequest(req, res) {
         "Sender Roll no": senderRollNo,
         "Sender email": senderEmail,
         "Request sent to":RequestsentTo,
+        profileUrl:profileUrl,
         subject:subject,
         body:body,
         token
@@ -22,6 +23,7 @@ async function createRequest(req, res) {
           "Sender Roll no": senderRollNo,
           "Sender email": senderEmail,
         "Request sent to":RequestsentTo,
+        profileUrl:profileUrl,
         subject:subject,
         body:body,
          token
