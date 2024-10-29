@@ -38,7 +38,10 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           username: ${{ secrets.SSH_USERNAME }}
           script: |
+            set -e
             cd /webapps/StudentsPortal/Backend
+            # Remove index.lock if it exists
+            [ -f .git/index.lock ] && rm .git/index.lock
             git fetch origin
             git checkout deploy
             git fetch
