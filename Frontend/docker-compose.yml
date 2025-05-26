@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  web:
+  por_portal_frontend:
     image: por_portal_frontend
     container_name: por_portal_frontend
     restart: always
@@ -9,4 +9,12 @@ services:
         context: .
     ports:
       - "9834:3000"
+    env_file:
+    - ".env"
     command: sh -c "cd /app && serve -s build"
+    networks:
+      - frontend_default
+
+networks:
+  frontend_default:
+    external: true

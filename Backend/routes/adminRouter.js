@@ -21,6 +21,10 @@ AdminJS.registerAdapter({
   Database: AdminJSMongoose.Database,
 });
 
+const DEFAULT_ADMIN = {
+  email: process.env.ADMIN_EMAIL,
+  password: process.env.ADMIN_PASSWORD,
+};
 const deleteMultipleRequestsHandler = async (request, response, data) => {
   const { recordIds } = request.body;
 
@@ -40,6 +44,12 @@ const deleteMultipleRequestsHandler = async (request, response, data) => {
     return { error: error.message };
   }
 };
+const authenticate = async (email, password) => {
+  if (email === DEFAULT_ADMIN.email && password === DEFAULT_ADMIN.password) {
+    return DEFAULT_ADMIN;
+  }
+  return null;
+};
 
 const adminOptions = {
   resources: [
@@ -54,7 +64,7 @@ const adminOptions = {
             },
           },
           bulkDelete:{
-            isVisible:false
+            isVisible:true
           }
         },
       },
@@ -92,33 +102,17 @@ const adminOptions = {
       },
     },
   ],
-  authenticate: async (email, password) => {
-    const user = await User.findOne({ email });
-    if (user && bcrypt.compareSync(password, user.encryptedPassword)) {
-      return user;
-    }
-    return null;
-  },
-  rootPath: `/porportal/api/admin`,
-  loginPath: `/porportal/api/admin/login`,
-  logoutPath: `/porportal/api/admin/logout`
+  rootPath: `/por_portal/api/admin`,
+  loginPath: `/por_portal/api/admin/login`,
+  logoutPath: `/por_portal/api/admin/logout`
 };
 
 const admin = new AdminJS(adminOptions);
 
 const adminRouter = AdminJSExpress.buildAuthenticatedRouter(admin, {
+  authenticate,
   cookieName: 'adminjs',
-  cookiePassword: process.env.ADMINJS_COOKIE_PASSWORD,
-  authenticate: async (email, password, next) => {
-    const user = await User.findOne({ email });
-    if (user) {
-      const matched = await bcrypt.compare(password, user.password);
-      if (matched) {
-        return user; // Call next with null and the user to indicate successful authentication
-      }
-    }
-    return false;
-  },
+  cookiePassword: process.env.ADMINJS_COOKIE_PASSWORD
 });
 
 admin.watch();

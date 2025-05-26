@@ -1,9 +1,10 @@
-version: '2'
+version: '3.3'
 
 services:
-  web:
+  por_portal_backend:
     image: por_portal_backend
     container_name: por_portal_backend
+    restart: always
     build: 
       context: .
       dockerfile: Dockerfile
@@ -12,4 +13,14 @@ services:
     ports:
       - "9501:3002"
     volumes:
-      - .:/code/uploads
+      - ./uploads:/code/uploads
+    env_file:
+      - ".env"
+    networks:
+      - backend_sports-board-strapi
+
+
+
+networks:
+  backend_sports-board-strapi:
+    external: true
