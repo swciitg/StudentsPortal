@@ -27,8 +27,15 @@ async function createUser(req, res) {
       existingUser.otp = otp;
 
       await existingUser.save();
-
+      try
+      {
       await emailService.sendOTP(email, otp);
+      console.log("OTP sent to existing user");
+      }
+      catch(error)
+      {
+        console.error("Error sending OTP to existing user:", error);
+      }
 
       return res.status(201).json({ message: 'User updated with new OTP' });
     }
@@ -55,7 +62,15 @@ async function createUser(req, res) {
 
     await newUser.save();
 
-    await emailService.sendOTP(email, otp);
+       try
+      {
+      await emailService.sendOTP(email, otp);
+      console.log("OTP sent to existing user");
+      }
+      catch(error)
+      {
+        console.error("Error sending OTP to existing user:", error);
+      }
 
     console.log("User Created Successfully");
     res.status(201).json({ message: "User created successfully" });
