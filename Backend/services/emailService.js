@@ -1,24 +1,24 @@
 import nodemailer from 'nodemailer';
-import { EMAIL,PASSWORD } from '../config/nodemailerConfig.js';
+import { EMAIL, PASSWORD } from '../config/nodemailerConfig.js';
 
 
 const emailService = {
   sendOTP:
-  async function sendOTP(email, otp) {
-    let transporter = nodemailer.createTransport({
-      host: 'smtp.office365.com', 
-      port: 587, 
-      secure: false, 
-      auth: {
-        user: EMAIL, // Your Outlook email address
-        pass: PASSWORD, // Your Outlook password
-      },
-    });
-    let mailOptions = {
-      from: EMAIL,
-      to: `${email}@iitg.ac.in`,
-      subject: 'OTP Verification For POR Portal',
-      html: `
+    async function sendOTP(email, otp) {
+      let transporter = nodemailer.createTransport({
+        host: 'smtp-mail.outlook.com',
+        port: 587,
+        secure: false,
+        auth: {
+          user: EMAIL, // Your Outlook email address
+          pass: PASSWORD, // Your Outlook password
+        },
+      });
+      let mailOptions = {
+        from: EMAIL,
+        to: `${email}@iitg.ac.in`,
+        subject: 'OTP Verification For POR Portal',
+        html: `
       <html>
       <head>
         <style>
@@ -54,18 +54,19 @@ const emailService = {
       </body>
     </html>
       `
-    };
-    
-  
-    await transporter.sendMail(mailOptions);
-  },
+      };
+
+
+      await transporter.sendMail(mailOptions);
+    },
   sendVerificationSuccess: async function sendVerificationSuccess(requestDetails) {
-    const email=requestDetails["Sender email"]
-    const senderName=requestDetails["Sender Name"]
-    const requestBody=requestDetails.subject
-    const ApprovedByEmail=requestDetails["Request sent to"]
+    const email = requestDetails["Sender email"]
+    const senderName = requestDetails["Sender Name"]
+    const requestBody = requestDetails.subject
+    const ApprovedByEmail = requestDetails["Request sent to"]
+    //console.log(requestDetails)
     let transporter = nodemailer.createTransport({
-      host: 'smtp.office365.com',
+      host: 'smtp-mail.outlook.com',
       port: 587,
       secure: false,
       auth: {
@@ -116,7 +117,7 @@ const emailService = {
       </body>
     </html>
       `,
-    }; 
+    };
     await transporter.sendMail(mailOptions);
   },
 };

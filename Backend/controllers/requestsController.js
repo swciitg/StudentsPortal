@@ -5,30 +5,30 @@ async function createRequest(req, res) {
   try {
     const {
       Status: Status,
-      Request_sent_date:Request_sent_date,
-        "Sender Name": senderName,
-        "Sender Roll no": senderRollNo,
-        "Sender email": senderEmail,
-        "Request sent to":RequestsentTo,
-        profileUrl:profileUrl,
-        subject:subject,
-        body:body,
-        token
+      Request_sent_date: Request_sent_date,
+      "Sender Name": senderName,
+      "Sender Roll no": senderRollNo,
+      "Sender email": senderEmail,
+      "Request sent to": RequestsentTo,
+      profileUrl: profileUrl,
+      subject: subject,
+      body: body,
+      token
     } = req.body;
-    
+
     const newRequest = new Request({
-      Request_sent_date:Request_sent_date,
-        Status: Status,
-          "Sender Name": senderName,
-          "Sender Roll no": senderRollNo,
-          "Sender email": senderEmail,
-        "Request sent to":RequestsentTo,
-        profileUrl:profileUrl,
-        subject:subject,
-        body:body,
-         token
+      Request_sent_date: Request_sent_date,
+      Status: Status,
+      "Sender Name": senderName,
+      "Sender Roll no": senderRollNo,
+      "Sender email": senderEmail,
+      "Request sent to": RequestsentTo,
+      profileUrl: profileUrl,
+      subject: subject,
+      body: body,
+      token
     });
-  
+
     // console.log(newRequest.toJSON())
     await newRequest.save();
 
@@ -42,8 +42,8 @@ async function createRequest(req, res) {
 }
 async function RequestDetails(req, res) {
   try {
-    const {"Sender email": senderEmail}=req.body
-    const request = await Request.find({"Sender email": senderEmail});
+    const { "Sender email": senderEmail } = req.body
+    const request = await Request.find({ "Sender email": senderEmail });
 
     if (!request) {
       return res.status(404).json({ message: 'Request not found' });
@@ -57,7 +57,7 @@ async function RequestDetails(req, res) {
 }
 async function RequestDetailsadmin(req, res) {
   try {
-    const request = await Request.find({"Request sent to": req.body["Request sent to"]});
+    const request = await Request.find({ "Request sent to": req.body["Request sent to"] });
     if (!request) {
       return res.status(404).json({ message: 'Request not found' });
     }
@@ -68,53 +68,52 @@ async function RequestDetailsadmin(req, res) {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
-async function ApproveRequest(req,res){
+async function ApproveRequest(req, res) {
   try {
-    const {"Request sent to": Requestsentto,_id:id}=req.body
-    const request = await Request.findOne({"Request sent to": Requestsentto,_id:id});
+    const { "Request sent to": Requestsentto, _id: id } = req.body
+    const request = await Request.findOne({ "Request sent to": Requestsentto, _id: id });
     if (!request) {
       return res.status(404).json({ message: 'Request not found' });
     }
-    request.Status="Approved";
+    request.Status = "Approved";
     // const senderEmail=request["Sender email"]
     // console.log(senderEmail)
     await request.save();
-    await emailService.sendVerificationSuccess(request);
-    // console.log(request)
-    return res.status(200).json({ message: 'Request Approved successfully'});
+    res.status(200).json({ message: 'Request Approved successfully' });
+    emailService.sendVerificationSuccess(request).catch(err => console.error('Error sending email:', err));
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
-async function DenyRequest(req,res){
+async function DenyRequest(req, res) {
   try {
-    const {"Request sent to": Requestsentto,_id:id}=req.body
-    const request = await Request.findOne({"Request sent to": Requestsentto,_id:id});
+    const { "Request sent to": Requestsentto, _id: id } = req.body
+    const request = await Request.findOne({ "Request sent to": Requestsentto, _id: id });
 
     if (!request) {
       return res.status(404).json({ message: 'Request not found' });
     }
-    request.Status="Denied";
+    request.Status = "Denied";
     await request.save();
-    return res.status(200).json({ message: 'Request Withdrawn successfully'});
+    return res.status(200).json({ message: 'Request Withdrawn successfully' });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 }
 
-async function WithdrawRequest(req,res){
+async function WithdrawRequest(req, res) {
   try {
-    const {"Sender email": senderEmail,_id:id}=req.body
-    const request = await Request.findOne({"Sender email": senderEmail,_id:id});
+    const { "Sender email": senderEmail, _id: id } = req.body
+    const request = await Request.findOne({ "Sender email": senderEmail, _id: id });
 
     if (!request) {
       return res.status(404).json({ message: 'Request not found' });
     }
-    request.Status="Withdrawn";
+    request.Status = "Withdrawn";
     await request.save();
-    return res.status(200).json({ message: 'Request Withdrawn successfully'});
+    return res.status(200).json({ message: 'Request Withdrawn successfully' });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Internal Server Error' });
@@ -122,4 +121,4 @@ async function WithdrawRequest(req,res){
 }
 
 
-export {createRequest,RequestDetails,WithdrawRequest,RequestDetailsadmin,DenyRequest,ApproveRequest};
+export { createRequest, RequestDetails, WithdrawRequest, RequestDetailsadmin, DenyRequest, ApproveRequest };

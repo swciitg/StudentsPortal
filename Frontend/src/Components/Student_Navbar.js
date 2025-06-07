@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import iitg_logo from "../assets/iitg_logo.png";
 import swcLogo from "../assets/swcLogo.svg";
-export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
+export default function Student_Navbar({ encryptedEmail, SERVER_URL }) {
 
   Student_Navbar.propTypes = {
     encryptedEmail: PropTypes.string.isRequired,
@@ -15,7 +15,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
   const [showNav, setShowNav] = useState(false);
   const [CurrentWidth, SetCurrentWidth] = useState(window.innerWidth);
   const navbarRef = useRef();
-  const [isAdmin,setisAdmin]=useState(false)
+  const [isAdmin, setisAdmin] = useState(false)
   const isSelected = (path) => {
     return location.pathname.startsWith(path);
   };
@@ -38,7 +38,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     async function CheckAdmin() {
       try {
         const response = await axios.post(
@@ -48,14 +48,14 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
           }
         );
         if (response.status === 201) {
-          if(response.data.role==='admin'){setisAdmin(true)}
+          if (response.data.role === 'admin') { setisAdmin(true) }
         }
       } catch (error) {
         // console.log(error);
       }
     }
     CheckAdmin();
-  },[])
+  }, [])
 
   useEffect(() => {
     document.addEventListener("click", closeNavIfClickedOutside);
@@ -77,9 +77,8 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
       {
         <nav
           style={{ zIndex: 10 }}
-          className={`flex flex-col justify-between fixed  bg-white w-[50%] lg:w-[18%] h-screen shadow-[0px 3.2px 7.2px 0px rgba(27,33,45,0.13),0px 0.6px 1.8px 0px rgba(27,33,45,0.10)]  transition-all duration-300 ${
-            window.innerWidth < 1024 && (showNav ? "left-0" : "-left-full")
-          }`}
+          className={`flex flex-col justify-between fixed  bg-white w-[50%] lg:w-[18%] h-screen shadow-[0px 3.2px 7.2px 0px rgba(27,33,45,0.13),0px 0.6px 1.8px 0px rgba(27,33,45,0.10)]  transition-all duration-300 ${window.innerWidth < 1024 && (showNav ? "left-0" : "-left-full")
+            }`}
         >
           <div>
             <div className="flex items-center gap-2 pb-6 justify-center pt-6">
@@ -150,7 +149,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
                 </Link>
               )}
 
-              <Link
+              {/* <Link
                 to={`/studentdashboard/sentrequest?e=${encodeURIComponent(
                   encryptedEmail
                 )}`}
@@ -164,7 +163,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
                 >
                   <div className="ml-6">Request Sent</div>
                 </div>
-              </Link>
+              </Link> */}
 
               <Link
                 to={`/studentdashboard/history?e=${encodeURIComponent(
@@ -185,7 +184,7 @@ export default function Student_Navbar({ encryptedEmail,SERVER_URL }) {
           </div>
           <div className="flex mb-12 items-center justify-center gap-2">
             <img src={swcLogo} width="35px" />
-            <div className="text-[#BBBCC0] text-sm">Copyrights @SWC_2023</div>
+            <div className="text-[#BBBCC0] text-sm">Copyrights @SWC_2025</div>
           </div>
         </nav>
       }

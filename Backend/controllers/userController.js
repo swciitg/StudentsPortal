@@ -5,17 +5,17 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import multer from "multer";
 import path from "path";
-import {config } from 'dotenv';
+import { config } from 'dotenv';
 config();
 async function createUser(req, res) {
-  console.log(req.body)
+
   const { name, email, roll } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      if (existingUser.verified&&existingUser.password){
+      if (existingUser.verified && existingUser.password) {
         return res.status(400).json({ message: 'User already exists and is verified' });
       }
       // If the user exists but is not verified,update the existing user
@@ -37,22 +37,22 @@ async function createUser(req, res) {
     const newUser = new User({
       name,
       email,
-      roll:  roll ,
+      roll: roll,
       verified: false,
       otp,
-      profileCompletion:0
+      profileCompletion: 0
     });
 
     const Admin = await Admins.findOne({ email });
 
-    if(Admin){
+    if (Admin) {
       const token = jwt.sign({ email: Admin.email }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
-      Admin.token=token;
-      await Admin.save(); 
+      Admin.token = token;
+      await Admin.save();
     }
-    
+
     await newUser.save();
 
     await emailService.sendOTP(email, otp);
@@ -66,28 +66,28 @@ async function createUser(req, res) {
       .json({ message: "Internal Server Error", error: error.message });
   }
 }
-async function forgotPassword(req,res){
+async function forgotPassword(req, res) {
   const { email } = req.body;
-try {
-  const user = await User.findOne({ email });
+  try {
+    const user = await User.findOne({ email });
 
-  
-if(!user){
-  return res.status(404).json({ message: "User not found" });
-}
-const otp=generateOTP();
-  user.otp = otp;
-  await user.save();
-await emailService.sendOTP(email, otp);
 
-    res.status(200).json({ message:"User Found"});
-  
-} catch (error) {
-  console.error("Error Finding user:", error);
-  res
-    .status(500)
-    .json({ message: "Internal Server Error", error: error.message });
-}
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const otp = generateOTP();
+    user.otp = otp;
+    await user.save();
+    await emailService.sendOTP(email, otp);
+
+    res.status(200).json({ message: "User Found" });
+
+  } catch (error) {
+    console.error("Error Finding user:", error);
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
+  }
 }
 async function verifyOTP(req, res) {
   const { email, otp } = req.body;
@@ -140,13 +140,13 @@ async function createPassword(req, res) {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const hashedPassword = await bcrypt.hash(password, 10); 
-    
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
     user.password = hashedPassword;
-    user.token=token;
+    user.token = token;
     await user.save();
     res.status(200).json({ token });
     console.log("Password created successfully");
@@ -158,7 +158,7 @@ async function createPassword(req, res) {
   }
 }
 async function login(req, res) {
-  console.log(req.body)
+  //console.log(req.body)
   const { email, password } = req.body;
 
   try {
@@ -176,23 +176,23 @@ async function login(req, res) {
 
     const Admin = await Admins.findOne({ email });
 
-    if(Admin){
+    if (Admin) {
       const token = jwt.sign({ email: Admin.email }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
-      Admin.token=token;
-      await Admin.save(); 
+      Admin.token = token;
+      await Admin.save();
     }
-  
 
-    const token = jwt.sign({ email: user.email}, process.env.JWT_SECRET, {
+
+    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
-    user.token=token;
+    user.token = token;
     await user.save();
     // res.cookie('Login', token, { httpOnly: true,sameSite: 'None', secure: true , maxAge: 3600000 });
 
-    
+
 
 
     res.status(200).json({ token });
@@ -205,27 +205,27 @@ async function login(req, res) {
 }
 
 async function CheckAdmin(req, res) {
-  const {email}=req.body;
-try {
-  const admin=await Admins.findOne({email});
-  const user=await User.findOne({email});
-  if(admin){
-user.role='admin';
-await user.save();
-  }
-  else{
-    
-user.role='student';
-await user.save();
-  }
-  
-res.status(201).json({ message: "Checked Admin Successfully",role:user.role });
-} catch (error) {
-  console.error( error);
+  const { email } = req.body;
+  try {
+    const admin = await Admins.findOne({ email });
+    const user = await User.findOne({ email });
+    if (admin) {
+      user.role = 'admin';
+      await user.save();
+    }
+    else {
+
+      user.role = 'student';
+      await user.save();
+    }
+
+    res.status(201).json({ message: "Checked Admin Successfully", role: user.role });
+  } catch (error) {
+    console.error(error);
     res
       .status(500)
       .json({ message: "Internal Server Error", error: error.message });
-}
+  }
 }
 
 async function userDetails(req, res) {
@@ -239,14 +239,14 @@ async function userDetails(req, res) {
       profileUrl,
       token
     } = req.body;
-    const user = await User.findOne({ email,token });
+    const user = await User.findOne({ email, token });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
     if (program && program.length > 0) user.program = program;
     if (altEmail && altEmail.length > 0) user.altEmail = altEmail;
-    if (department && department.length > 0) user.department = department; 
+    if (department && department.length > 0) user.department = department;
     if (profileUrl && profileUrl.length > 0) user.profileUrl = profileUrl;
     if (profileCompletion) {
       user.profileCompletion = profileCompletion;
@@ -277,7 +277,7 @@ const storage = multer.diskStorage({
     const rollNumber = req.body.rollNumber;
     cb(
       null,
-      rollNumber+path.extname(file.originalname)
+      rollNumber + path.extname(file.originalname)
     );
   },
 });

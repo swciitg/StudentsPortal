@@ -4,15 +4,15 @@ import axios from 'axios'
 import PropTypes from "prop-types";
 import CryptoJS from 'crypto-js'
 import iitg_logo from "../../../assets/iitg_logo.png";
-export default function StudentSignUp({SERVER_URL}) {
+export default function StudentSignUp({ SERVER_URL }) {
   StudentSignUp.propTypes = {
     SERVER_URL: PropTypes.string.isRequired,
   };
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Roll, setRoll] = useState("");
-  const [error, seterror] = useState([{status:false,message:""}]);
-  const [loading, setLoading] = useState(false); 
+  const [error, seterror] = useState([{ status: false, message: "" }]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
   // Function to encrypt the email
@@ -30,45 +30,48 @@ export default function StudentSignUp({SERVER_URL}) {
       const base64 = base64Url.replace("-", "+").replace("_", "/");
       return JSON.parse(window.atob(base64));
     }
-  
-    // loggedin user
-    const user=parseJwt(token)
 
-    if (token)
-   { navigate(
-      `/studentdashboard/home?e=${encodeURIComponent(encryptEmail(user.email))}`
-    );}
+    // loggedin user
+    const user = parseJwt(token)
+
+    if (token) {
+      navigate(
+        `/studentdashboard/home?e=${encodeURIComponent(encryptEmail(user.email))}`
+      );
+    }
   }, []);
   const handleSignUp = async () => {
     try {
-      setLoading(true); 
-      seterror({status:false})
+
+      setLoading(true);
+      seterror({ status: false })
       const response = await axios.post(`${SERVER_URL}/users`, {
         name: Name,
         email: Email,
         roll: Roll
       });
-  
-     if (response.status === 201) {
-        // console.log('User created successfully');
-       
+
+      if (response.status === 201) {
+        console.log('User created successfully');
+
         navigate(`/otp?e=${encodeURIComponent(encryptEmail(Email))}`);
-      } 
+      }
       else {
-        // console.error('Error creating user:', response.data.message);
+        console.error('Error creating user:', response.data.message);
       }
     } catch (error) {
       if (error.response) {
         if (error.response.status === 400) {
-          seterror({ status: true, message:"User already exists!"  });
+          seterror({ status: true, message: "User already exists!" });
         } else if (error.response.status === 500) {
-          seterror({ status: true, message:"Enter correct email!"  });
-          
-        }}
-      // console.error('Error:', error.message);
-      
-    }finally {
-      setLoading(false); 
+          seterror({ status: true, message: "Enter correct email!" });
+
+        }
+      }
+      console.error('Error:', error.message);
+
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -96,11 +99,11 @@ export default function StudentSignUp({SERVER_URL}) {
             </span>
             <input
               onChange={(e) => setEmail(e.target.value)}
-              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.status?"border-[#ba3940] animate-shake":'border-[rgba(118,122,129,1)]'} pl-3`}
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.status ? "border-[#ba3940] animate-shake" : 'border-[rgba(118,122,129,1)]'} pl-3`}
               type="text"
               placeholder="Enter ERP id"
             />
-       {error.status&&   <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">{error.message}</div>}
+            {error.status && <div className="text-sm font-semibold text-[#ba3940] -mb-7 animate-shake">{error.message}</div>}
           </label>
           <label className="flex flex-col gap-1">
             <span className="font-medium text-sm">Enter your Roll no.</span>
@@ -115,8 +118,8 @@ export default function StudentSignUp({SERVER_URL}) {
         {Roll.length > 0 && Name.length > 0 && Email.length > 0 ? (
           <div className="flex justify-end mt-10">
             <div>
-              <button   disabled={loading} onClick={handleSignUp} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
-              {loading ? 'Submiting...' : 'Submit'}
+              <button disabled={loading} onClick={handleSignUp} className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4">
+                {loading ? 'Submiting...' : 'Submit'}
               </button>
             </div>
           </div>
