@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import CryptoJS from "crypto-js";
 import PropTypes from "prop-types";
 import axios from "axios";
 import iitg_logo from "../../../assets/iitg_logo.png";
-export default function StudentLogin({ SERVER_URL}) {
-  StudentLogin.propTypes = {  
+export default function StudentLogin({ SERVER_URL }) {
+  StudentLogin.propTypes = {
     SERVER_URL: PropTypes.string.isRequired,
   };
   const [Email, setEmail] = useState("");
@@ -15,15 +14,6 @@ export default function StudentLogin({ SERVER_URL}) {
   const [Password, setpassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
-  function encryptEmail(email) {
-    const encryptedEmail = CryptoJS.AES.encrypt(
-      email,
-      ENCRYPTION_KEY
-    ).toString();
-    return encryptedEmail;
-  }
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     function parseJwt(token) {
@@ -38,12 +28,9 @@ export default function StudentLogin({ SERVER_URL}) {
     // loggedin user
     const user = parseJwt(token);
 
-    if (token) {
-      navigate(
-        `/studentdashboard/home?e=${encodeURIComponent(
-          encryptEmail(user.email)
-        )}`
-      );
+    if (token && user && user.email) {
+      localStorage.setItem("email", user.email); // Store email in localStorage
+      navigate(`/studentdashboard/home`); // No email in URL
     }
   }, []);
   const handleLogin = async () => {
@@ -60,10 +47,8 @@ export default function StudentLogin({ SERVER_URL}) {
 
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
-        // console.log("Login successful");
-        navigate(
-          `/studentdashboard/home?e=${encodeURIComponent(encryptEmail(Email))}`
-        );
+        localStorage.setItem("email", Email); // Store email in localStorage
+        navigate(`/studentdashboard/home`); // No email in URL
       } else {
         // console.error("Login failed:", response.data.message);
       }
@@ -107,11 +92,10 @@ export default function StudentLogin({ SERVER_URL}) {
             </span>
             <input
               onChange={(e) => setEmail(e.target.value)}
-              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${
-                error.email
-                  ? "border-[#ba3940] animate-shake"
-                  : "border-[rgba(118,122,129,1)]"
-              } pl-3`}
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.email
+                ? "border-[#ba3940] animate-shake"
+                : "border-[rgba(118,122,129,1)]"
+                } pl-3`}
               type="text"
               placeholder="Enter ERP id"
             />
@@ -126,11 +110,10 @@ export default function StudentLogin({ SERVER_URL}) {
             <span className="font-medium text-sm">Password</span>
             <input
               onChange={(e) => setpassword(e.target.value)}
-              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${
-                error.pass
-                  ? "border-[#ba3940] animate-shake"
-                  : "border-[rgba(118,122,129,1)]"
-              } pl-3`}
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.pass
+                ? "border-[#ba3940] animate-shake"
+                : "border-[rgba(118,122,129,1)]"
+                } pl-3`}
               type="password"
               placeholder="Enter your Password"
             />

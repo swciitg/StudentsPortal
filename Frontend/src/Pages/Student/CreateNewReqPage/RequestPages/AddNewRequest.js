@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import CryptoJS from "crypto-js";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import Student_Navbar from "../../../../Components/Student_Navbar";
 import Select from "react-select";
@@ -12,28 +11,19 @@ function AddNewRequest({ SERVER_URL }) {
   AddNewRequest.propTypes = {
     SERVER_URL: PropTypes.string.isRequired,
   };
-  const location = useLocation();
   const navigate = useNavigate();
-  const encryptedEmail = new URLSearchParams(location.search).get("e");
+  // Remove encryptedEmail from URL and logic, use email from localStorage
+  const email = localStorage.getItem("email");
   const [body, setBody] = useState("");
   const [subject, setSubject] = useState("");
   const [toemail, SetToemail] = useState("");
-  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
   const [user, setuser] = useState("");
 
-  function decryptEmail(encryptedEmail) {
-    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
-    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
-    return decryptedEmail;
-  }
-
- 
-  const options = recipients.map(recipient => ({
+  const options = recipients.map((recipient) => ({
     value: recipient.email,
-    label: recipient.por
+    label: recipient.por,
   }));
 
- 
   const currentDate = new Date();
 
   const year = currentDate.getFullYear();
@@ -49,7 +39,7 @@ function AddNewRequest({ SERVER_URL }) {
         const response = await axios.post(
           `${SERVER_URL}/users/user-details`,
           {
-            email: decryptEmail(encryptedEmail),
+            email: email,
             token: localStorage.getItem("token"),
           }
         );
@@ -74,7 +64,7 @@ function AddNewRequest({ SERVER_URL }) {
         Request_sent_date: formattedDate,
         "Sender Name": user.name,
         "Sender Roll no": user.roll,
-        "Sender email": `${decryptEmail(encryptedEmail)}@iitg.ac.in`,
+        "Sender email": `${email}@iitg.ac.in`,
         Status: "Pending",
         profileUrl: user.profileUrl,
         "Request sent to": toemail.value,
@@ -85,11 +75,7 @@ function AddNewRequest({ SERVER_URL }) {
       console.log("Request created successfully");
       // console.log(response.data);
       if (response.status === 201) {
-        navigate(
-          `/studentdashboard/createrequest/success?e=${encodeURIComponent(
-            encryptedEmail
-          )}`
-        );
+        navigate(`/studentdashboard/createrequest/success`);
       } else {
         // console.error("Error creating request:", response.data.message);
       }
@@ -99,9 +85,9 @@ function AddNewRequest({ SERVER_URL }) {
   };
   return (
     <div className=" relative h-screen w-[100%]">
-      <Student_Navbar encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
+      <Student_Navbar SERVER_URL={SERVER_URL} />
       <div className=" lg:absolute flex flex-col  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
-        <CornerProfileLogoutSection encryptedEmail={encryptedEmail} SERVER_URL={SERVER_URL}  />
+        <CornerProfileLogoutSection SERVER_URL={SERVER_URL} />
         <div className="flex justify-center items-center h-full">
           <div className="bg-white px-10 w-[400px] pb-9 pt-9 shadow-[0_4px_8px_2px_rgba(0,0,0,0.16)] ">
             <div className="flex flex-col gap-2 items-center ">
@@ -140,8 +126,7 @@ function AddNewRequest({ SERVER_URL }) {
               </label>
             </div>
             <div className="flex justify-end mt-10">
-              {body.length > 0  && subject.length>0 && toemail  ? (
-               
+              {body.length > 0 && subject.length > 0 && toemail ? (
                 <button
                   onClick={handleSubmit}
                   className=" inline-flex items-center p-1 bg-[#2164E8] text-white rounded-sm pl-4 pr-4"

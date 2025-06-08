@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import PropTypes from "prop-types";
-import CryptoJS from 'crypto-js'
 import iitg_logo from "../../../assets/iitg_logo.png";
 export default function StudentSignUp({ SERVER_URL }) {
   StudentSignUp.propTypes = {
@@ -14,12 +13,6 @@ export default function StudentSignUp({ SERVER_URL }) {
   const [error, seterror] = useState([{ status: false, message: "" }]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
-  // Function to encrypt the email
-  function encryptEmail(email) {
-    const encryptedEmail = CryptoJS.AES.encrypt(email, ENCRYPTION_KEY).toString();
-    return encryptedEmail;
-  }
   useEffect(() => {
     const token = localStorage.getItem("token");
     function parseJwt(token) {
@@ -34,10 +27,9 @@ export default function StudentSignUp({ SERVER_URL }) {
     // loggedin user
     const user = parseJwt(token)
 
-    if (token) {
-      navigate(
-        `/studentdashboard/home?e=${encodeURIComponent(encryptEmail(user.email))}`
-      );
+    if (token && user && user.email) {
+      localStorage.setItem("email", user.email); // Store email in localStorage
+      navigate(`/studentdashboard/home`); // No email in URL
     }
   }, []);
   const handleSignUp = async () => {
@@ -53,8 +45,8 @@ export default function StudentSignUp({ SERVER_URL }) {
 
       if (response.status === 201) {
         console.log('User created successfully');
-
-        navigate(`/otp?e=${encodeURIComponent(encryptEmail(Email))}`);
+        localStorage.setItem("email", Email); // Store email in localStorage
+        navigate(`/otp`); // No email in URL
       }
       else {
         console.error('Error creating user:', response.data.message);

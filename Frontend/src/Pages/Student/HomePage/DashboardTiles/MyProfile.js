@@ -5,19 +5,18 @@ import Profile_grey from "../../../../assets/Profile-grey.svg";
 import tag from "../../../../assets/tag.svg";
 import email from "../../../../assets/email.svg";
 import branch from "../../../../assets/branch.svg";
-function MyProfile({user,encryptedEmail}) {
+function MyProfile({ user }) {
   MyProfile.propTypes = {
-    user:(
-   PropTypes.shape({
-      name: PropTypes.string,
-      program: PropTypes.string,
-      department: PropTypes.string,
-      email: PropTypes.string,
-      profileCompletion: PropTypes.number,
-    })),
-    encryptedEmail: PropTypes.string.isRequired,
+    user: (
+      PropTypes.shape({
+        name: PropTypes.string,
+        program: PropTypes.string,
+        department: PropTypes.string,
+        email: PropTypes.string,
+        profileCompletion: PropTypes.number,
+      })),
   };
- 
+
   return (
     <div className=" col-span-3 flex flex-col justify-between p-7  bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
       <div>
@@ -26,7 +25,7 @@ function MyProfile({user,encryptedEmail}) {
           <img src={Profile_grey} />
           <div className=" text-base">
             My Profile
-            {user&&(user.profileCompletion !== 100 ? (
+            {user && (user.profileCompletion !== 100 ? (
               <span className=" text-xs font-semibold text-[#D83B01]">
                 ({user.profileCompletion}% complete)
               </span>
@@ -37,30 +36,30 @@ function MyProfile({user,encryptedEmail}) {
             ))}
           </div>
         </div>
-       {!user? <div className="mt-6 text-2xl font-semibold">--</div>:
-        <div className="mt-6 text-2xl font-semibold">{user.name}</div>}
-       {!user?<div className="flex justify-center items-center h-full text-[#8D9096]">
-        Loading...
-      </div>:
-         <div className="mt-3">
-          <div className="flex gap-2">
-            <img src={branch} />
-           {user.program&& user.program.length>0?<div>{user.program}</div>:
-            <div>--</div>}
-          </div>
-          <div className="flex gap-2">
-            <img src={tag} />
-           {user.department&&user.department.length>0? <div>{user.department}</div>:
-            <div>--</div>}
-          </div>
-          <div className="flex gap-2">
-            <img src={email} />
-            <div>{user.email}@iitg.ac.in</div>
-          </div>
-        </div> }
+        {!user ? <div className="mt-6 text-2xl font-semibold">--</div> :
+          <div className="mt-6 text-2xl font-semibold">{user.name}</div>}
+        {!user ? <div className="flex justify-center items-center h-full text-[#8D9096]">
+          Loading...
+        </div> :
+          <div className="mt-3">
+            <div className="flex gap-2">
+              <img src={branch} />
+              {user.program && user.program.length > 0 ? <div>{user.program}</div> :
+                <div>--</div>}
+            </div>
+            <div className="flex gap-2">
+              <img src={tag} />
+              {user.department && user.department.length > 0 ? <div>{user.department}</div> :
+                <div>--</div>}
+            </div>
+            <div className="flex gap-2">
+              <img src={email} />
+              <div>{user.email}@iitg.ac.in</div>
+            </div>
+          </div>}
       </div>
       <Link
-        to={`/studentdashboard/profile?e=${encodeURIComponent(encryptedEmail)}`}
+        to={`/studentdashboard/profile`}
         className="text-[#2164E8] text-sm flex justify-end"
       >
         View profile

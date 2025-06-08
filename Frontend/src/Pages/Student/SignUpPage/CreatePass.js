@@ -1,9 +1,8 @@
 // import { useState } from "react";
 import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
-import CryptoJS from "crypto-js";
 import iitg_logo from "../../../assets/iitg_logo.png";
 export default function CreatePass({ SERVER_URL }) {
   CreatePass.propTypes = {
@@ -13,15 +12,12 @@ export default function CreatePass({ SERVER_URL }) {
   const [confpass, setconfpaas] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
-  const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
+  // const encryptedEmail = new URLSearchParams(location.search).get("e");
+  // const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
 
-  function decryptEmail(encryptedEmail) {
-    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
-    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
-    return decryptedEmail;
-  }
+  // Use email from localStorage
+  const email = localStorage.getItem("email");
+
   const handleCreatePass = async () => {
     const password = paas;
     try {
@@ -29,7 +25,7 @@ export default function CreatePass({ SERVER_URL }) {
       const response = await axios.post(
         `${SERVER_URL}/users/create-password`,
         {
-          email: decryptEmail(encryptedEmail),
+          email: email,
           password: password,
         }
       );
@@ -40,9 +36,7 @@ export default function CreatePass({ SERVER_URL }) {
         // console.log("Password created successfully");
 
         // Redirect to the dashboard
-        navigate(
-          `/studentdashboard/home?e=${encodeURIComponent(encryptedEmail)}`
-        );
+        navigate(`/studentdashboard/home`); // No email in URL
       } else {
         // console.log("error while creating password");
       }

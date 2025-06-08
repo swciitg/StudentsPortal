@@ -1,36 +1,32 @@
 // import { useState } from "react";
 import React, { useEffect, useState } from "react";
-import { Link,useLocation ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import CryptoJS from 'crypto-js';
 import iitg_logo from "../../../assets/iitg_logo.png";
 
 import axios from "axios";
-export default function Otp({SERVER_URL}) {
+export default function Otp({ SERVER_URL }) {
   Otp.propTypes = {
     SERVER_URL: PropTypes.string.isRequired,
   };
-  
+
   const [Otp1, setOtp1] = useState("");
-  const location = useLocation();
   const [error, seterror] = useState([{ status: false, message: "" }]);
   const navigate = useNavigate();
-  const [resending, setresending] = useState(false);   
-  const [resent, setresent] = useState(false);   
-  const [loading, setLoading] = useState(false);  
+  const [resending, setresending] = useState(false);
+  const [resent, setresent] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [disabled, setDisabled] = useState(false);
   const [timer, setTimer] = useState(false);
 
-  const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
+  // const encryptedEmail = new URLSearchParams(location.search).get("e");
+  // const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
 
-  function decryptEmail(encryptedEmail) {
-    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
-    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
-    return decryptedEmail;
-  }
+  // Use email from localStorage
+  const email = localStorage.getItem("email");
+
   const handleOtpSubmit = async () => {
     try {
       seterror({ error: false });
@@ -38,14 +34,14 @@ export default function Otp({SERVER_URL}) {
       const response = await axios.post(
         `${SERVER_URL}/users/verify-otp`,
         {
-          email: decryptEmail(encryptedEmail),
+          email: email,
           otp: Otp1,
         }
       );
 
       if (response.status === 200) {
         // console.log("OTP verified successfully");
-        navigate(`/createpass?e=${encodeURIComponent(encryptedEmail)}`);
+        navigate(`/createpass`); // No email in URL
       } else {
         // console.error("Error verifying OTP:", response.data.message);
       }
@@ -67,7 +63,7 @@ export default function Otp({SERVER_URL}) {
       const response = await axios.post(
         `${SERVER_URL}/users/resend-otp`,
         {
-          email: decryptEmail(encryptedEmail),
+          email: email,
         }
       );
 
@@ -112,7 +108,7 @@ export default function Otp({SERVER_URL}) {
   return (
     <div className="h-screen w-screen flex justify-center items-center  flex-col gap-5">
 
-         <style>
+      <style>
         {`
           
           input[type=number]::-webkit-outer-spin-button,
@@ -144,11 +140,10 @@ export default function Otp({SERVER_URL}) {
               }}
               min="0"
               max="999999"
-              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${
-                error.status
-                  ? "border-[#ba3940] animate-shake"
-                  : "border-[rgba(118,122,129,1)]"
-              } pl-3`}
+              className={`border p-2 pt-[5px] pb-[5px] text-black outline-none rounded-md  ${error.status
+                ? "border-[#ba3940] animate-shake"
+                : "border-[rgba(118,122,129,1)]"
+                } pl-3`}
               type="number"
               placeholder="Enter OTP"
             />
@@ -165,14 +160,12 @@ export default function Otp({SERVER_URL}) {
             <button
               onClick={handleResendOtp}
               disabled={disabled}
-              className={`flex flex-col text-${
-                disabled ? "[rgba(141,144,150,1)]" : "[rgba(33,100,232,1)]"
-              }`}
+              className={`flex flex-col text-${disabled ? "[rgba(141,144,150,1)]" : "[rgba(33,100,232,1)]"
+                }`}
             >
               <div
-                className={`hover:text-${
-                  disabled ? "[rgba(141,144,150,1)]" : "[#315191]"
-                }`}
+                className={`hover:text-${disabled ? "[rgba(141,144,150,1)]" : "[#315191]"
+                  }`}
               >
                 {" "}
                 Resend OTP{" "}
@@ -206,14 +199,12 @@ export default function Otp({SERVER_URL}) {
             <button
               onClick={handleResendOtp}
               disabled={disabled}
-              className={`flex flex-col text-${
-                disabled ? "[rgba(141,144,150,1)]" : "[rgba(33,100,232,1)]"
-              }`}
+              className={`flex flex-col text-${disabled ? "[rgba(141,144,150,1)]" : "[rgba(33,100,232,1)]"
+                }`}
             >
               <div
-                className={`hover:text-${
-                  disabled ? "[rgba(141,144,150,1)]" : "[#315191]"
-                }`}
+                className={`hover:text-${disabled ? "[rgba(141,144,150,1)]" : "[#315191]"
+                  }`}
               >
                 {" "}
                 Resend OTP{" "}

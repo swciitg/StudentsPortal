@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import CryptoJS from "crypto-js";
 import PropTypes from "prop-types";
 import axios from "axios";
 import iitg_logo from "../assets/iitg_logo.png";
 import swcLogo from "../assets/swcLogo.svg";
-export default function Student_Navbar({ encryptedEmail, SERVER_URL }) {
+export default function Student_Navbar({ SERVER_URL }) {
 
   Student_Navbar.propTypes = {
-    encryptedEmail: PropTypes.string.isRequired,
     SERVER_URL: PropTypes.string.isRequired,
   };
   const location = useLocation();
@@ -19,13 +17,9 @@ export default function Student_Navbar({ encryptedEmail, SERVER_URL }) {
   const isSelected = (path) => {
     return location.pathname.startsWith(path);
   };
-  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
+  // Get email from localStorage
+  const email = localStorage.getItem("email");
 
-  function decryptEmail(encryptedEmail) {
-    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
-    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
-    return decryptedEmail;
-  }
   const handleToggleNav = () => {
     setShowNav(!showNav);
   };
@@ -44,7 +38,7 @@ export default function Student_Navbar({ encryptedEmail, SERVER_URL }) {
         const response = await axios.post(
           `${SERVER_URL}/users/check-admin`,
           {
-            email: decryptEmail(encryptedEmail),
+            email: email,
           }
         );
         if (response.status === 201) {
@@ -87,9 +81,7 @@ export default function Student_Navbar({ encryptedEmail, SERVER_URL }) {
             </div>
             <ul>
               <Link
-                to={`/studentdashboard/home?e=${encodeURIComponent(
-                  encryptedEmail
-                )}`}
+                to={`/studentdashboard/home`}
               >
                 <div
                   className={
@@ -102,9 +94,7 @@ export default function Student_Navbar({ encryptedEmail, SERVER_URL }) {
                 </div>
               </Link>
               <Link
-                to={`/studentdashboard/profile?e=${encodeURIComponent(
-                  encryptedEmail
-                )}`}
+                to={`/studentdashboard/profile`}
               >
                 <div
                   className={
@@ -117,9 +107,7 @@ export default function Student_Navbar({ encryptedEmail, SERVER_URL }) {
                 </div>
               </Link>
               <Link
-                to={`/studentdashboard/createrequest?e=${encodeURIComponent(
-                  encryptedEmail
-                )}`}
+                to={`/studentdashboard/createrequest`}
               >
                 <div
                   className={
@@ -133,9 +121,7 @@ export default function Student_Navbar({ encryptedEmail, SERVER_URL }) {
               </Link>
               {isAdmin && (
                 <Link
-                  to={`/studentdashboard/receivedrequest?e=${encodeURIComponent(
-                    encryptedEmail
-                  )}`}
+                  to={`/studentdashboard/receivedrequest`}
                 >
                   <div
                     className={
@@ -166,9 +152,7 @@ export default function Student_Navbar({ encryptedEmail, SERVER_URL }) {
               </Link> */}
 
               <Link
-                to={`/studentdashboard/history?e=${encodeURIComponent(
-                  encryptedEmail
-                )}`}
+                to={`/studentdashboard/history`}
               >
                 <div
                   className={

@@ -7,23 +7,15 @@ import PropTypes from "prop-types";
 import PendingRequests from "./DashboardTiles/PendingRequests";
 import BuildMyCV from "./DashboardTiles/BuildMyCV";
 import CornerProfileLogoutSection from "../../../Components/CornerProfileLogoutSection";
-import CryptoJS from "crypto-js";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Home({SERVER_URL}) {
+function Home({ SERVER_URL }) {
   Home.propTypes = {
     SERVER_URL: PropTypes.string.isRequired,
   };
-  const location = useLocation();
   const navigate = useNavigate();
-  const encryptedEmail = new URLSearchParams(location.search).get("e");
-  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
-  function decryptEmail(encryptedEmail) {
-    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
-    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
-    return decryptedEmail;
-  }
+  const email = localStorage.getItem("email");
   const [user, setuser] = useState();
   const [data, setData] = useState("");
   useEffect(() => {
@@ -32,7 +24,7 @@ function Home({SERVER_URL}) {
         const response = await axios.post(
           `${SERVER_URL}/users/user-details`,
           {
-            email: decryptEmail(encryptedEmail),
+            email: email,
             token: localStorage.getItem("token"),
           }
         );
@@ -57,7 +49,7 @@ function Home({SERVER_URL}) {
         const response = await axios.post(
           `${SERVER_URL}/request/request-details`,
           {
-            "Sender email": decryptEmail(encryptedEmail) + "@iitg.ac.in",
+            "Sender email": email + "@iitg.ac.in",
           }
         );
         if (response.status === 200) {
@@ -68,7 +60,7 @@ function Home({SERVER_URL}) {
       }
     }
     Requests();
-  }, [encryptedEmail]);
+  }, [email]);
   // const ManageRequests = [
   //   {
   //     id: 1,
@@ -126,13 +118,13 @@ function Home({SERVER_URL}) {
     <div className=" relative h-screen w-[100%]">
       {/*Side Navbar */}
 
-      <Student_Navbar encryptedEmail={encryptedEmail} SERVER_URL={SERVER_URL} />
+      <Student_Navbar SERVER_URL={SERVER_URL} />
 
       {/*Tiles Area*/}
 
       <div className=" lg:absolute  h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
         {/*Corner Profile Option*/}
-        <CornerProfileLogoutSection encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
+        <CornerProfileLogoutSection SERVER_URL={SERVER_URL} />
 
         <div className="flex flex-col gap-10 lg:gap-5 lg:grid lg:grid-cols-10 pb-10 lg:pb-0 ">
           {/* Tile 1*/}
@@ -140,30 +132,27 @@ function Home({SERVER_URL}) {
           <Registration
             user={user}
             ManageRequests={data}
-            encryptedEmail={encryptedEmail}
           />
 
           {/* Tile 2*/}
 
-          <MyProfile user={user} encryptedEmail={encryptedEmail} />
+          <MyProfile user={user} />
 
           {/* Tile 4*/}
 
           <ApprovedRequests
             ApprovedRequest={data}
-            encryptedEmail={encryptedEmail}
           />
 
           {/* Tile 5*/}
 
           <PendingRequests
             PendingRequest={data}
-            encryptedEmail={encryptedEmail}
           />
 
           {/* Tile 6*/}
 
-          <BuildMyCV encryptedEmail={encryptedEmail} />
+          <BuildMyCV />
         </div>
       </div>
     </div>
