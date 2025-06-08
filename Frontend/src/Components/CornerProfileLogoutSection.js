@@ -1,41 +1,30 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import CryptoJS from "crypto-js";
-import PropTypes from "prop-types";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import profile_blue from "../assets/profile-blue.svg";
 import down_arrow from "../assets/down-arrow.svg";
 import blue_arrow_up from "../assets/blue-arrow-up.svg";
-function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
-  CornerProfileLogoutSection.propTypes = {
-    encryptedEmail: PropTypes.string.isRequired,
-    SERVER_URL: PropTypes.string.isRequired,
+import PropTypes from "prop-types";
 
-  };
+function CornerProfileLogoutSection({ SERVER_URL }) {
   const [logout_toggle, setlogout_toggle] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    // console.log("Logout Successfully");
     navigate("/");
   };
   const [user, setuser] = useState("");
-  const ENCRYPTION_KEY = process.env.REACT_APP_ENCRYPTION_KEY;
-
-  function decryptEmail(encryptedEmail) {
-    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
-    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
-    return decryptedEmail;
-  }
+  // Get email from localStorage
+  const email = localStorage.getItem("email");
   useEffect(() => {
     async function UserDetails() {
       try {
         const response = await axios.post(
           `${SERVER_URL}/users/user-details`,
           {
-            email: decryptEmail(encryptedEmail),
+            email: email,
             token: localStorage.getItem("token"),
           }
         );
@@ -56,11 +45,9 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
   return (
     <div>
       <div className="flex p-3 -mt-3 mb-2 justify-end gap-2 items-center">
-        <img src={profile_blue}/>
+        <img src={profile_blue} />
         <Link
-          to={`/studentdashboard/profile?e=${encodeURIComponent(
-            encryptedEmail
-          )}`}
+          to={`/studentdashboard/profile`}
           className="text-[rgba(33,100,232,1)]"
         >
           {user.name}
@@ -106,5 +93,10 @@ function CornerProfileLogoutSection({ encryptedEmail, SERVER_URL }) {
     </div>
   );
 }
+
+// Add prop validation for SERVER_URL
+CornerProfileLogoutSection.propTypes = {
+  SERVER_URL: PropTypes.string.isRequired,
+};
 
 export default CornerProfileLogoutSection;

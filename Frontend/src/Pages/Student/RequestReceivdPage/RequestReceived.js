@@ -1,9 +1,5 @@
-import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import CornerProfileLogoutSectionadmin from "../../../Components/CornerProfileLogoutSection";
-import CryptoJS from "crypto-js";
-import PropTypes from "prop-types";
-import RequestDetailsModal from "./Modals/RequestReceived_CheckUpdates";
 import axios from "axios";
 import Student_Navbar from "../../../Components/Student_Navbar";
 import Arrow_right from "../../../assets/Arrow-right.svg";
@@ -13,27 +9,19 @@ import b_arrow_right from "../../../assets/b-arrow-right.svg";
 import grey_arrow_left from "../../../assets/grey-arrow-left.svg";
 import grey_arrow_right from "../../../assets/grey-arrow-right.svg";
 import search_icon from "../../../assets/search.svg";
+import PropTypes from 'prop-types';
+import RequestDetailsModal from "./Modals/RequestReceived_CheckUpdates";
 
 function RequestReceived({ SERVER_URL }) {
-  RequestReceived.propTypes = {
-    SERVER_URL: PropTypes.string.isRequired,
-  };
-  // const navigate = useNavigate();
-  const location = useLocation();
-  const encryptedEmail = new URLSearchParams(location.search).get("e");
+  // Use email from localStorage
+  const email = localStorage.getItem("email");
   // const [selectedTab, setSelectedTab] = useState("POR");
   const [History, setHistory] = useState(null);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const itemsPerPage = 500;
-  const ENCRYPTION_KEY =process.env.REACT_APP_ENCRYPTION_KEY;
 
-  function decryptEmail(encryptedEmail) {
-    const decryptedBytes = CryptoJS.AES.decrypt(encryptedEmail, ENCRYPTION_KEY);
-    const decryptedEmail = decryptedBytes.toString(CryptoJS.enc.Utf8);
-    return decryptedEmail;
-  }
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -43,7 +31,7 @@ function RequestReceived({ SERVER_URL }) {
         const response = await axios.post(
           `${SERVER_URL}/users/user-details`,
           {
-            email: decryptEmail(encryptedEmail),
+            email: email,
             token: localStorage.getItem("token"),
           }
         );
@@ -64,7 +52,7 @@ function RequestReceived({ SERVER_URL }) {
         const response = await axios.post(
           `${SERVER_URL}/request/request-details-admin`,
           {
-            "Request sent to": decryptEmail(encryptedEmail) + "@iitg.ac.in",
+            "Request sent to": email + "@iitg.ac.in",
             "token": localStorage.getItem("token")
           }
         );
@@ -76,7 +64,7 @@ function RequestReceived({ SERVER_URL }) {
       }
     }
     Requests();
-  }, [encryptedEmail, isModalOpen]);
+  }, [email, isModalOpen]);
 
   const updateTotalPages = () => {
     if (History !== null) {
@@ -139,11 +127,11 @@ function RequestReceived({ SERVER_URL }) {
             key={index}
             className={`flex bg-white items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]`}
           >
-          <div className="text-xs w-[10%]  text-[#494D57]  text-center py-3">
+            <div className="text-xs w-[10%]  text-[#494D57]  text-center py-3">
               {sequenceNumber}
             </div>
             <div className="text-center w-[20%] py-3 flex justify-center items-center">
-              {data.profileUrl ? (  <img  className="w-[35px] h-[35px] text-center rounded-full" src={data.profileUrl} />) : ( <img  className="w-[30px] h-[30px] rounded-full" src={`https://ui-avatars.com/api/?name=${data["Sender Name"]}&background=random&length=1&rounded=true`} />)}
+              {data.profileUrl ? (<img className="w-[35px] h-[35px] text-center rounded-full" src={data.profileUrl} />) : (<img className="w-[30px] h-[30px] rounded-full" src={`https://ui-avatars.com/api/?name=${data["Sender Name"]}&background=random&length=1&rounded=true`} />)}
             </div>
             <div className="text-xs text-[#494D57] w-[15%] text-center py-3">
               {data["Sender Name"]}
@@ -173,16 +161,16 @@ function RequestReceived({ SERVER_URL }) {
       {/*Side Navbar */}
 
       {/* <Admin_Navbar encryptedEmail={encryptedEmail} /> */}
-      <Student_Navbar encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
+      <Student_Navbar SERVER_URL={SERVER_URL} />
 
       <div className="lg:absolute h-screen lg:w-[82%] lg:ml-[18%] p-5 ">
-        <CornerProfileLogoutSectionadmin encryptedEmail={encryptedEmail}  SERVER_URL={SERVER_URL} />
-        {selectedRequest && isModalOpen  ? (
+        <CornerProfileLogoutSectionadmin SERVER_URL={SERVER_URL} />
+        {selectedRequest && isModalOpen ? (
           <RequestDetailsModal
             isOpen={isModalOpen}
             onRequestClose={() => setIsModalOpen(false)}
             requestData={selectedRequest}
-            SERVER_URL={SERVER_URL} 
+            SERVER_URL={SERVER_URL}
           />
         ) : (
           <>
@@ -279,93 +267,94 @@ function RequestReceived({ SERVER_URL }) {
               </div>
             </div>
             <div className=" w-full overflow-scroll no-scrollbar">
-            <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]  ">
-              <div className="flex mt-4 bg-[#E8E9EA] items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
-                <div className=" text-sm  w-[10%] text-center  py-3">
-                  Sl. No.
+              <div className=" flex flex-col gap-[3px] lg:w-full w-[720px]  ">
+                <div className="flex mt-4 bg-[#E8E9EA] items-center  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
+                  <div className=" text-sm  w-[10%] text-center  py-3">
+                    Sl. No.
+                  </div>
+                  <div className=" text-sm w-[20%] text-center   py-3">
+                    Profile
+                  </div>
+                  <div className=" text-sm w-[15%] text-center   py-3">
+                    Request Sender
+                  </div>
+                  <div className=" text-sm  w-[15%] justify-center  gap-[3px]   flex items-center py-3">
+                    Date
+                    <img src={Arrow_sort} />
+                  </div>
+                  <div className=" text-sm w-[20%]  text-center  py-3">
+                    Status
+                  </div>
                 </div>
-                <div className=" text-sm w-[20%] text-center   py-3">
-                  Profile
-                </div>
-                <div className=" text-sm w-[15%] text-center   py-3">
-                  Request Sender
-                </div>
-                <div className=" text-sm  w-[15%] justify-center  gap-[3px]   flex items-center py-3">
-                  Date
-                  <img src={Arrow_sort} />
-                </div>
-                <div className=" text-sm w-[20%]  text-center  py-3">
-                  Status
-                </div>
+
+                <>
+                  {" "}
+                  {History == null || !Array.isArray(History) ? (
+                    <div className="flex justify-center py-5 text-xl font-extrabold text-[#7a7e87]">
+                      Nothing to Show!
+                    </div>
+                  ) : (
+                    <RenderHistory onCheckUpdates={handleCheckUpdates} SERVER_URL={SERVER_URL} />
+                  )}
+
+                </>
               </div>
 
-              <>
-                {" "}
-                {History == null || !Array.isArray(History) ? (
-                  <div className="flex justify-center py-5 text-xl font-extrabold text-[#7a7e87]">
-                    Nothing to Show!
-                  </div>
-                ) : (
-                  <RenderHistory onCheckUpdates={handleCheckUpdates} SERVER_URL={SERVER_URL}  />
-                )}
-           
-              </>
             </div>
-            
-           </div>
-           <div className="flex justify-center items-center mt-5 pb-5 ">
-                  <div
-                    className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${
-                      currentPage === 1 ? "text-[#8D9096]" : "text-[#1E2532]"
+            <div className="flex justify-center items-center mt-5 pb-5 ">
+              <div
+                className={` px-4  select-none py-3 cursor-pointer flex items-center  bg-white  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] text-xs ${currentPage === 1 ? "text-[#8D9096]" : "text-[#1E2532]"
+                  }`}
+                onClick={() =>
+                  currentPage > 1 && handlePageChange(currentPage - 1)
+                }
+              >
+                {currentPage > 1 ? (
+                  <img src={b_arrow_left} />
+                ) : (
+                  <img src={grey_arrow_left} />
+                )}
+                Previous
+              </div>
+              {[...Array(Math.ceil(totalPages)).keys()].map((page) => (
+                <div
+                  key={page + 1}
+                  onClick={() => handlePageChange(page + 1)}
+                  className={`cursor-pointer select-none px-4 py-2  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ${currentPage === page + 1
+                    ? "bg-[#2164E8] text-white"
+                    : "bg-white text-[#2164E8]"
                     }`}
-                    onClick={() =>
-                      currentPage > 1 && handlePageChange(currentPage - 1)
-                    }
-                  >
-                    {currentPage > 1 ? (
-                      <img src={b_arrow_left} />
-                    ) : (
-                      <img src={grey_arrow_left} />
-                    )}
-                    Previous
-                  </div>
-                  {[...Array(Math.ceil(totalPages)).keys()].map((page) => (
-                    <div
-                      key={page + 1}
-                      onClick={() => handlePageChange(page + 1)}
-                      className={`cursor-pointer select-none px-4 py-2  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] ${
-                        currentPage === page + 1
-                          ? "bg-[#2164E8] text-white"
-                          : "bg-white text-[#2164E8]"
-                      }`}
-                    >
-                      {page + 1}
-                    </div>
-                  ))}
-                  <div
-                    className={` flex select-none items-center cursor-pointer  px-4 py-3  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] bg-white text-xs ${
-                      currentPage === totalPages
-                        ? "text-[#8D9096]"
-                        : "text-[#1E2532]"
-                    }`}
-                    onClick={() =>
-                      currentPage < totalPages &&
-                      handlePageChange(currentPage + 1)
-                    }
-                  >
-                    Next
-                    {currentPage < totalPages ? (
-                      <img src={b_arrow_right} />
-                    ) : (
-                      <img src={grey_arrow_right} />
-                    )}
-                  </div>
+                >
+                  {page + 1}
                 </div>
+              ))}
+              <div
+                className={` flex select-none items-center cursor-pointer  px-4 py-3  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)] bg-white text-xs ${currentPage === totalPages
+                  ? "text-[#8D9096]"
+                  : "text-[#1E2532]"
+                  }`}
+                onClick={() =>
+                  currentPage < totalPages &&
+                  handlePageChange(currentPage + 1)
+                }
+              >
+                Next
+                {currentPage < totalPages ? (
+                  <img src={b_arrow_right} />
+                ) : (
+                  <img src={grey_arrow_right} />
+                )}
+              </div>
+            </div>
           </>
         )}
       </div>
     </div>
   );
 }
+
+RequestReceived.propTypes = {
+  SERVER_URL: PropTypes.string.isRequired,
+};
 
 export default RequestReceived;

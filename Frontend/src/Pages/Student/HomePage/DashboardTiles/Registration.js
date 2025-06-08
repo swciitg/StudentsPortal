@@ -6,16 +6,16 @@ import registration from "../../../../assets/registration.svg";
 import list from "../../../../assets/List.svg";
 import down_arrow_grey from "../../../../assets/down-arrow-grey.svg";
 
-function Registration({user,ManageRequests,encryptedEmail}) {
+function Registration({ user, ManageRequests }) {
   const [toggle1, setToggle1] = useState(true);
   const [toggle2, setToggle2] = useState(false);
   const [toggle3, setToggle3] = useState(false);
- 
+
   Registration.propTypes = {
     user: (
-    PropTypes.shape({
-      profileCompletion: PropTypes.number,
-    })),
+      PropTypes.shape({
+        profileCompletion: PropTypes.number,
+      })),
     ManageRequests: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number,
@@ -23,10 +23,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
         Date: PropTypes.string,
       })
     ).isRequired,
-    encryptedEmail: PropTypes.string.isRequired,
   };
-  
-  
 
   return (
     <div className="h-[100%] lg:mt-0 mt-10 flex flex-col gap-1 col-span-4  shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -53,7 +50,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
               <img src={registration} />
               <div className="text-xl font-semibold">Registration</div>
             </div>
-          { user&& user.profileCompletion !== 100 ? (
+            {user && user.profileCompletion !== 100 ? (
               <div className="text-sm text-[#D83B01]">
                 Your Profile is not complete!!
               </div>
@@ -68,7 +65,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
               order to make Requests through this Portal.
             </p>
             <div className="flex justify-end ">
-              <Link to={`/studentdashboard/profile?e=${encodeURIComponent(encryptedEmail)}`}>
+              <Link to={`/studentdashboard/profile`}>
                 <button className="text-sm p-[5px] pl-3 pr-3  bg-[#2164E8]  my-2 text-white rounded">
                   View Profile
                 </button>
@@ -106,7 +103,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
             </p>
           </div>
           <div className=" flex justify-end ">
-            <Link to={`/studentdashboard/createrequest?e=${encodeURIComponent(encryptedEmail)}`}>
+            <Link to={`/studentdashboard/createrequest`}>
               <button className="text-sm p-[5px] pl-3   my-2 mt-4 pr-3 bg-[#2164E8] text-white rounded">
                 Make a Request
               </button>
@@ -145,7 +142,7 @@ function Registration({user,ManageRequests,encryptedEmail}) {
             ))}
           </div>
           <div className=" flex justify-end ">
-            <Link to={`/studentdashboard/history?e=${encodeURIComponent(encryptedEmail)}`}>
+            <Link to={`/studentdashboard/history`}>
               <button className="text-sm p-[5px] pl-3 pr-3 my-2  bg-[#2164E8] text-white rounded">
                 Check my History
               </button>

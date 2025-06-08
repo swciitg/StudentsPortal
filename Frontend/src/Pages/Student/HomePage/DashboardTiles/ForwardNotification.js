@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import notification from "../../../../assets/Notification.svg";
 import bookmark_notification from "../../../../assets/Bookmark-Notification.svg";
-function ForwardNotification({ Notification, encryptedEmail }) {
+function ForwardNotification({ Notification }) {
   ForwardNotification.propTypes = {
     Notification: PropTypes.arrayOf(
       PropTypes.shape({
@@ -13,7 +13,6 @@ function ForwardNotification({ Notification, encryptedEmail }) {
         Date: PropTypes.string,
       })
     ).isRequired,
-    encryptedEmail: PropTypes.string.isRequired,
   };
   return (
     <div className="p-7 col-span-3 flex flex-col gap-3 bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
@@ -46,9 +45,7 @@ function ForwardNotification({ Notification, encryptedEmail }) {
         </div>
       </div>
       <Link
-        to={`/studentdashboard/forwardrequest?e=${encodeURIComponent(
-          encryptedEmail
-        )}`}
+        to={`/studentdashboard/forwardrequest`}
         className="text-[#2164E8] text-sm flex justify-end "
       >
         View all Request Forwards
