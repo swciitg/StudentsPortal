@@ -30,6 +30,9 @@ export default function StudentLogin({ SERVER_URL }) {
 
     if (token && user && user.email) {
       localStorage.setItem("email", user.email); // Store email in localStorage
+      if (user.name) {
+        localStorage.setItem("name", user.name); // Store name in localStorage
+      }
       navigate(`/studentdashboard/home`); // No email in URL
     }
   }, []);
@@ -48,6 +51,9 @@ export default function StudentLogin({ SERVER_URL }) {
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("email", Email); // Store email in localStorage
+        if (response.data.name) {
+          localStorage.setItem("name", response.data.name); // Store name in localStorage if returned
+        }
         navigate(`/studentdashboard/home`); // No email in URL
       } else {
         // console.error("Login failed:", response.data.message);

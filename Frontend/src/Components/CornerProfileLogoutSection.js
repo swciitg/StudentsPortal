@@ -15,33 +15,47 @@ function CornerProfileLogoutSection({ SERVER_URL }) {
     localStorage.removeItem("token");
     navigate("/");
   };
-  const [user, setuser] = useState("");
+  const [user, setuser] = useState({ name: localStorage.getItem("name") || "" });
   // Get email from localStorage
   const email = localStorage.getItem("email");
   useEffect(() => {
-    async function UserDetails() {
-      try {
-        const response = await axios.post(
-          `${SERVER_URL}/users/user-details`,
-          {
-            email: email,
-            token: localStorage.getItem("token"),
-          }
-        );
-
-        if (response.status === 200) {
-          const user = response.data;
-          setuser(user);
-        } else {
-          // console.error(response.data.message);
-        }
-      } catch (error) {
-        // console.error("Error:", error.message);
-      }
+    // Only fetch if name is not in localStorage
+    if (!localStorage.getItem("name")) {
+      UserDetails();
     }
-    UserDetails();
     // eslint-disable-next-line
   }, []);
+
+  async function UserDetails() {
+    try {
+      const response = await axios.post(
+        `${SERVER_URL}/users/user-details`,
+        {
+          email: email,
+          token: localStorage.getItem("token"),
+        }
+      );
+      if (response.status === 200) {
+        const user = response.data;
+        setuser(user);
+        if (user.name) {
+          localStorage.setItem("name", user.name);
+        }
+      } else {
+        // If user not found, log out and redirect
+        localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        localStorage.removeItem("name");
+        navigate("/studentslogin");
+      }
+    } catch (error) {
+      // On error (e.g., user deleted), log out and redirect
+      localStorage.removeItem("token");
+      localStorage.removeItem("email");
+      localStorage.removeItem("name");
+      navigate("/studentslogin");
+    }
+  }
   return (
     <div>
       <div className="flex p-3 -mt-3 mb-2 justify-end gap-2 items-center">

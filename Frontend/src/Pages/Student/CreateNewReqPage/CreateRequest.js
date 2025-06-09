@@ -52,7 +52,7 @@ function CreateRequest({ SERVER_URL }) {
               <div>
                 {" "}
                 <Link
-                  to={`/studentdashboard/sentrequest`}
+                  to={`/studentdashboard/history`}
                 >
                   <button className="lg:p-20 lg:px-24 p-10 px-12 cursor-pointer text-[rgba(33,100,232,1)] text-6xl font-medium bg-white shadow-[0px_1.6px_3.6px_0px_rgba(27,33,45,0.13),0px_0.3px_0.9px_0px_rgba(27,33,45,0.10)]">
                     -

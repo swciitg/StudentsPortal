@@ -30,6 +30,9 @@ export default function ForgotPassword({ SERVER_URL }) {
 
     if (token && user && user.email) {
       localStorage.setItem("email", user.email); // Store email in localStorage
+      if (user.name) {
+        localStorage.setItem("name", user.name); // Store name in localStorage
+      }
       navigate(`/studentdashboard/home`); // No email in URL
     }
   }, []);

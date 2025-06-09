@@ -15,7 +15,7 @@ function Profile({ SERVER_URL }) {
   // Use email from localStorage
   const email = localStorage.getItem("email");
   const [user, setuser] = useState({
-    name: "",
+    name: localStorage.getItem("name") || "",
     roll: "",
     program: "",
     department: "",
@@ -126,9 +126,22 @@ function Profile({ SERVER_URL }) {
         });
         if (response.status === 200) {
           setuser(response.data);
+          if (response.data.name) {
+            localStorage.setItem("name", response.data.name);
+          }
+        } else {
+          // If user not found, log out and redirect
+          localStorage.removeItem("token");
+          localStorage.removeItem("email");
+          localStorage.removeItem("name");
+          navigate("/studentslogin");
         }
       } catch (error) {
-        navigate("/");
+        // On error (e.g., user deleted), log out and redirect
+        localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        localStorage.removeItem("name");
+        navigate("/studentslogin");
       }
     }
     UserDetails();
