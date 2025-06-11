@@ -51,6 +51,34 @@ export default function Student_Navbar({ SERVER_URL }) {
     CheckAdmin();
   }, [])
 
+  // Polling to check if user is deleted and redirect instantly
+  useEffect(() => {
+    async function pollUserExists() {
+      try {
+        const response = await axios.post(
+          `${SERVER_URL}/users/user-details`,
+          {
+            email: email,
+            token: localStorage.getItem("token"),
+          }
+        );
+        if (response.status !== 200 || !response.data) {
+          throw new Error();
+        }
+      } catch (error) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        localStorage.removeItem("name");
+        window.location.href = "/por_portal/studentslogin";
+      }
+    }
+    if (email && localStorage.getItem("token")) {
+      pollUserExists();
+      const interval = setInterval(pollUserExists, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [SERVER_URL, email]);
+
   useEffect(() => {
     document.addEventListener("click", closeNavIfClickedOutside);
 
