@@ -8,6 +8,7 @@ import { User } from '../Models/User.js';
 import { Admins } from '../Models/Admins.js';
 import bcrypt from 'bcrypt';
 import express from 'express';
+import importExportFeature from '@adminjs/import-export';
 import formidableMiddleware from 'express-formidable';
 import {config} from 'dotenv';
 config();
