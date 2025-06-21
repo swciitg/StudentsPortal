@@ -2,6 +2,7 @@ import { User } from "../Models/User.js";
 import { Admins } from "../Models/Admins.js";
 import emailService from "../services/emailService.js";
 import bcrypt from "bcrypt";
+import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import multer from "multer";
 import path from "path";
@@ -155,8 +156,8 @@ async function createPassword(req, res) {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await argon2.hash(password); 
 
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
       expiresIn: "1h",
@@ -180,11 +181,11 @@ async function login(req, res) {
   try {
     const user = await User.findOne({ email, verified: true });
 
-    if (!user) {
+    if (!user|| !user.password) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await argon2.verify(user.password, password);
 
     if (!passwordMatch) {
       return res.status(401).json({ message: "Invalid password" });
