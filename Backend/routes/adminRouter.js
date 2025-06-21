@@ -1,4 +1,4 @@
-import AdminJS from 'adminjs';
+import AdminJS, { ComponentLoader } from 'adminjs';
 import AdminJSExpress from '@adminjs/express';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -20,6 +20,7 @@ AdminJS.registerAdapter({
   Resource: AdminJSMongoose.Resource,
   Database: AdminJSMongoose.Database,
 });
+const componentLoader = new ComponentLoader();
 
 const DEFAULT_ADMIN = {
   email: process.env.ADMIN_EMAIL,
@@ -100,6 +101,7 @@ const adminOptions = {
           }
         },
       },
+      features: [importExportFeature({ componentLoader })],
     },
   ],
   rootPath: `/por_portal/api/admin`,
@@ -107,7 +109,10 @@ const adminOptions = {
   logoutPath: `/por_portal/api/admin/logout`
 };
 
-const admin = new AdminJS(adminOptions);
+const admin = new AdminJS({
+  ...adminOptions,
+  componentLoader,
+});
 
 const adminRouter = AdminJSExpress.buildAuthenticatedRouter(admin, {
   authenticate,

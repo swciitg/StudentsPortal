@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@adminjs/express": "^6.1.0",
+    "@adminjs/import-export": "^3.0.0",
     "@adminjs/mongoose": "^4.0.0",
     "adminjs": "^7.5.2",
     "axios": "^1.6.8",
