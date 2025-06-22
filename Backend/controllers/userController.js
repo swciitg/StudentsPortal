@@ -14,7 +14,11 @@ async function createUser(req, res) {
 
   try {
     const existingUser = await User.findOne({ email });
-
+    //if email contains @iitg.ac.in or any @ character
+    const contains = email.includes("@iitg.ac.in") || email.includes("@");
+    if(contains){
+      return res.status(500).json({ message: 'Email should not contain @iitg.ac.in or @ character' });
+    }
     if (existingUser) {
       if (existingUser.verified && existingUser.password) {
         return res.status(400).json({ message: 'User already exists and is verified' });
