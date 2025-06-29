@@ -58,7 +58,9 @@ const recipients = [
   { email: "haboff@iitg.ac.in", por: "HAB" },
   { email: "nss@iitg.ac.in", por: "NSS" },
   { email: "ishanya@iitg.ac.in", por: "Ishanya DoD" },
-  { email: "equinox@iitg.ac.in", por: "Astronomy Club" }
+  { email: "equinox@iitg.ac.in", por: "Astronomy Club" },
+  { email: "web_swc@iitg.ac.in", por: "Super Admin" },
+  
 ];
 
 export default recipients;
